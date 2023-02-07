@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Um pouco do Japão</title>
+    <link rel="stylesheet" href="sobre.css">
+    <script src="https://kit.fontawesome.com/0e949e0c2d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!--Navbar Section -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="../index.html" id="navbar__logo">Japão</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="#home" class="navbar__links" id="home-page">Início</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#about" class="navbar__links" id="about-page">Sobre</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#study" class="navbar__links" id="estudar">Estudar</a>
+                </li>  
+                <li class="navbar__item">
+                    <a href="#work" class="navbar__links" id="trabalhar">Trabalhar</a>
+                </li>     
+            </ul>
+        </div>
+    </nav>
+
+    <div class="slider">
+        <div class="slides">
+            <!-- Radio Buttons -->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+            
+
+            <!-- Slide images -->
+            <div class="slide first">
+                <img src="/imagensbaka/slider1.jpg" alt="imagem 1">
+            </div>
+            <div class="slide">
+                <img src="/imagensbaka/slider2.jpg" alt="imagem 2">
+            </div>
+            <div class="slide">
+                <img src="/imagensbaka/slider3.jpg" alt="imagem 3">
+            </div>
+            <div class="slide">
+                <img src="/imagensbaka/slider4.jpg" alt="imagem 4">
+            </div>
+            
+
+            <!-- Navigation auto -->
+            <div class="navigation__auto">
+                <div class="auto__btn1"></div>
+                <div class="auto__btn2"></div>
+                <div class="auto__btn3"></div>
+                <div class="auto__btn4"></div>
+            </div>
+        </div>
+
+        <div class="manual__navigation">
+            <label for="radio1" class="manual__btn"></label>
+            <label for="radio2" class="manual__btn"></label>
+            <label for="radio3" class="manual__btn"></label>
+            <label for="radio4" class="manual__btn"></label>
+        </div>
+    </div>
+
+    <script src="slider.js"></script>
+    <script src="sobre.js"></script>
+</body>
+</html>
+
