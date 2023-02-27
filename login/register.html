@@ -26,16 +26,17 @@
         </div>
     </nav>
     
-    <!-- Login -->
-    <div class="login-box">
+    <!-- Register -->
+    <div class="register-box">
         <h2>Login</h2>
-        <% if (messages.error) { %>
-            <%= messages.error %>
-        <% } %>
-        <form action="/login" method="POST">
+        <form action="/register" method="POST">
+            <div class="user-box">
+                <input type="text" id="name" name="name" required>
+                <label for="name">Username</label>
+            </div>
             <div class="user-box">
                 <input type="email" id="email" name="email" required>
-                <label for="email">User</label>
+                <label for="email">Email</label>
             </div>
             <div class="user-box">
                 <input type="password" id="password" name="password" required>
@@ -44,16 +45,17 @@
             <div>
                 <a href="#" class="forgot__pass" >Forgot password?</a>
             </div>
-            <a type="submit" class="btn__submit">
+            <a class="btn__submit" href="#">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                 Submit
             </a>
+
             <button type="submit" >Aqui</button>
             
-            <a href="/register">Register</a>
+            <a href="/login">Login</a>
         </form>
     </div>
 
