@@ -28,10 +28,7 @@
     
     <!-- Login -->
     <div class="login-box">
-        <h2>Login</h2>
-        <% if (messages.error) { %>
-            <%= messages.error %>
-        <% } %>
+        <h2>Login</h2>  
         <form action="/login" method="POST">
             <div class="user-box">
                 <input type="email" id="email" name="email" required>
