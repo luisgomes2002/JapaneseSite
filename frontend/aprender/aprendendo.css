@@ -6,8 +6,7 @@
     scroll-behavior: smooth;
 }
 
-.navbar {
-    
+.navbar { 
     position: relative;
     width: 100%;
     background: transparent;  
@@ -37,6 +36,7 @@
     z-index: 1;
     width: 100%;
     max-width: 1300px;
+    margin: 0 600px;
     
 }
 
@@ -47,7 +47,7 @@
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
-   
+    margin-left: -400px;
 }
 
 .navbar__menu{
