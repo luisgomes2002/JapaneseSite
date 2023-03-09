@@ -425,7 +425,7 @@
     flex-direction: column;
     justify-content: center;
     color: #fff;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 700%), url('../imagensbaka/card.jpg');
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 700%), url('./card/alfa.jpeg');
     background-size: cover;
     transition: 0.3s ease-in;
 }
@@ -514,7 +514,7 @@
     flex-direction: column;
     justify-content: center;
     color: #fff;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 700%), url('../imagensbaka/card.jpg');
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 700%), url('./card/Dicas.png');
     background-size: cover;
     transition: 0.3s ease-in;
 }
@@ -587,7 +587,7 @@
     flex-direction: column;
     justify-content: center;
     color: #fff;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 700%), url('../imagensbaka/card.jpg');
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 700%), url('./card/Gram.jpeg');
     background-size: cover;
     transition: 0.3s ease-in;
 }

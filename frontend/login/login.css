@@ -81,7 +81,6 @@ body {
     overflow: hidden;
     transition: .5s;
     margin-top: 20px;
-    letter-spacing: 4px;
     border-radius: 5px;
 }
 
@@ -89,7 +88,6 @@ body {
     background: #ffffff;
     color: #000000;
     border-radius: 5px;
-
 }
 
 
