@@ -87,7 +87,7 @@ submit2.addEventListener('click', function(){
 
 submit3.addEventListener('click', function(){
     nextQuestion(4)
-    growProgressBar('70%')
+    growProgressBar('80%')
 })
 
 submit4.addEventListener('click', function(){
