@@ -1,0 +1,80 @@
+.main-itens {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr; */
+  display: flex;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  height: 600px;
+}
+
+.title-name {
+  background-color: rgb(255, 255, 255);
+  padding: 35px;
+}
+
+.title-name h1 {
+  color: #000000;
+  text-align: center;
+}
+
+.img-space {
+  display: grid;
+  grid-template-columns: 32% 1fr;
+}
+
+.card-space {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  width: 500px;
+  height: 250px;
+  transition: 0.3s ease-in;
+  margin: 50px;
+  margin-bottom: 120px;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.11);
+}
+
+.card-space p {
+  color: rgb(73, 69, 69);
+  padding-top: 10px;
+}
+
+.card-space:hover {
+  transform: scale(1.02);
+  transition: 0.3s ease-in;
+}
+
+.space-portfolioImg {
+  display: grid;
+  grid-template-columns: 33% 1fr;
+}
+
+.space-portfolioImg img {
+  border-radius: 5px 0px 0px 5px;
+  width: 150px;
+  height: 250px;
+}
+
+.info-card {
+  grid-template-rows: 1fr;
+}
+
+.info-card h1 {
+  font-size: 1.5rem;
+  color: black;
+  margin: 20px 0 25px 5px;
+  margin-left: 5px;
+}
+
+.button-card {
+  color: #fff;
+  background-color: black;
+  width: 100px;
+  height: 40px;
+  border: none;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+hr {
+  width: 95%;
+}

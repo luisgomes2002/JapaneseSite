@@ -1,0 +1,49 @@
+.name-categories h1 {
+  color: black;
+  margin: 8% 5%;
+  font-size: 35px;
+  transition: 0.3s ease-in-out;
+}
+
+.section-categories {
+  margin: 150px 0;
+}
+
+.categories {
+  margin: 0 300px;
+}
+
+.name-categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.name-categories h3 {
+  color: black;
+  font-size: 20px;
+  text-align: right;
+  margin: 10% 15%;
+  transition: 0.3s ease-in-out;
+}
+
+.name-categories:hover h1 {
+  color: rgb(110, 110, 110);
+  transform: translateX(-10px);
+  transition: 0.1s ease-in-out;
+}
+
+.name-categories:hover h3 {
+  color: rgb(110, 110, 110);
+  transform: translateX(10px);
+  transition: 0.1s ease-in-out;
+}
+
+.modal-screen img {
+  width: 250px;
+  height: 200px;
+}
+
+.categories hr {
+  margin: 0;
+  z-index: -1;
+}

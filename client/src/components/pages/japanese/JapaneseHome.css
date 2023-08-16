@@ -1,0 +1,117 @@
+/* Home */
+.hero-japanese {
+  background: linear-gradient(to right, #161616, #000000);
+  background-image: url("../../../assets/baka/card/card(0).jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0% 57%;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 90%;
+  text-align: center;
+}
+
+.hero-heading {
+  margin-top: 20%;
+  font-size: 50px;
+  color: #fff;
+}
+
+.hero-description {
+  font-size: 30px;
+  margin-bottom: 2%;
+  color: #fff;
+  margin-bottom: 5%;
+}
+
+/* TabsJplt */
+.title {
+  text-align: center;
+}
+
+.title h2 {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 3rem;
+}
+
+.title h3 {
+  text-align: center;
+  padding-top: 5%;
+  font-size: 1.5rem;
+  color: var(--second-main-color);
+}
+
+.title button {
+  border-radius: var(--button-border);
+  width: 200px;
+  height: 70px;
+  font-size: var(--size-h1);
+  margin: 5%;
+  border: solid var(--second-main-color);
+  transition: 0.3s ease-in-out;
+  color: var(--second-main-color);
+  background-color: #fff;
+}
+
+.title button:hover {
+  color: var(--main-color);
+  background-color: var(--second-main-color);
+  transition: 0.3s ease-in-out;
+}
+
+.tabs-container {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  padding: 0 10% 0 10%;
+}
+
+.tabs-info--jlpt {
+  height: 400px;
+  width: 350px;
+  background-color: #fff;
+  box-shadow: var(--black-shadow);
+  border-radius: var(--border-slim);
+  text-align: center;
+}
+
+.tabs-info--jlpt img {
+  height: 200px;
+  width: 350px;
+  border-radius: var(--card-img-big);
+}
+
+.tabs-container h1 {
+  font-size: var(--size-h1);
+  padding-top: 10px;
+  font-family: var(--second-font);
+  color: #000000;
+  padding-top: 10%;
+}
+
+.tabs-info--jlpt p {
+  font-size: var(--size-p);
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 1400px) {
+}
+
+@media screen and (max-width: 768px) {
+  .hero-heading {
+    margin-top: 40%;
+    font-size: 40px;
+  }
+
+  .hero-description {
+    font-size: 20px;
+  }
+}

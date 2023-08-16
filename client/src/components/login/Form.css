@@ -1,0 +1,46 @@
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 100px 0 100px 350px;
+}
+
+form input {
+  width: 500px;
+  height: 50px;
+  border: 1px solid black;
+  font-size: 20px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.button-confirm {
+  width: 200px;
+  height: 60px;
+  margin-bottom: 5px;
+  background-color: black;
+  text-decoration: none;
+  border: 1px solid black;
+  color: #fff;
+  font-size: 23px;
+}
+
+p {
+  color: #444343;
+  text-decoration: none;
+  font-size: 15px;
+  margin-top: 3px;
+}
+
+h1 {
+  color: #444343;
+}
+
+form a {
+  color: #444343;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+form a:hover {
+  color: #444343;
+}

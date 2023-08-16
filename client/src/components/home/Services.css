@@ -1,0 +1,273 @@
+.span-btns {
+  font-size: 15px;
+  background: #000000;
+  padding: 20px 40px;
+  border: none;
+  position: relative;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in;
+  justify-content: center;
+  top: 320px;
+  left: 50px;
+}
+
+.categorias-btns:hover .span-btns {
+  transition: 0.3s ease-in;
+  visibility: visible;
+  z-index: 1;
+  opacity: 1;
+}
+
+.categorias {
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 2rem 0;
+}
+
+.categorias-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.span-card h3 {
+  font-size: 25px;
+  margin-top: 120px;
+  color: #fff;
+  text-align: center;
+}
+
+.categorias-card {
+  margin: 10px;
+  height: 425px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.253) 0%,
+      #000000 700%
+    ),
+    url("../../assets/baka/card/card.jpg");
+  background-size: cover;
+  transition: 0.3s ease-in;
+}
+
+.categorias-card1 {
+  margin: 10px;
+  height: 425px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.253) 0%,
+      #000000 700%
+    ),
+    url("../../assets/baka/card/card1.jpg");
+  background-size: cover;
+  transition: 0.3s ease-in;
+}
+
+.categorias-card2 {
+  margin: 10px;
+  height: 425px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.253) 0%,
+      #000000 700%
+    ),
+    url("../../assets/baka/card/card2.jpg");
+  background-size: cover;
+  transition: 0.3s ease-in;
+}
+
+.categorias-card3 {
+  margin: 10px;
+  height: 425px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.253) 0%,
+      #000000 700%
+    ),
+    url("../../assets/baka/card/card3.jpg");
+  background-size: cover;
+  transition: 0.3s ease-in;
+}
+
+.categorias-card4 {
+  margin: 10px;
+  height: 425px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.253) 0%,
+      #000000 700%
+    ),
+    url("../../assets/baka/card/card4.jpg");
+  background-size: cover;
+  transition: 0.3s ease-in;
+}
+
+.categorias-btns {
+  display: flex;
+  justify-content: center;
+}
+
+.categorias-btns a {
+  text-decoration: none;
+  height: 425px;
+  width: 300px;
+}
+
+.categorias-btn:hover {
+  display: flex;
+  justify-content: center;
+}
+
+.categorias-btn1 {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  height: 260px;
+}
+
+.categorias-btn2 {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  height: 260px;
+}
+
+.categorias-btn3 {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  height: 260px;
+}
+
+.categorias-card button {
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 300px;
+}
+
+.categorias-card1 button {
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 300px;
+}
+
+.categorias-card2 button {
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 300px;
+}
+
+.categorias-card3 button {
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 300px;
+}
+
+.categorias-card4 button {
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 300px;
+}
+
+.categorias-card button:hover {
+  cursor: pointer;
+}
+
+.categorias-card1 button:hover {
+  cursor: pointer;
+}
+
+.categorias-card2 button:hover {
+  cursor: pointer;
+}
+
+.categorias-card3 button:hover {
+  cursor: pointer;
+}
+
+.categorias-card4 button:hover {
+  cursor: pointer;
+}
+
+.categorias-card:hover {
+  transform: scale(1.075);
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+
+.categorias-card1:hover {
+  transform: scale(1.075);
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+
+.categorias-card2:hover {
+  transform: scale(1.075);
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+
+.categorias-card3:hover {
+  transform: scale(1.075);
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+
+.categorias-card4:hover {
+  transform: scale(1.075);
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1300px) {
+  .categorias-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .categorias-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
