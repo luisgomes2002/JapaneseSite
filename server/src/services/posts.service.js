@@ -4,7 +4,7 @@ const createService = (body) => Posts.create(body);
 
 const findAllService = () => Posts.find();
 
-export default {
+export {
   createService,
   findAllService,
 }

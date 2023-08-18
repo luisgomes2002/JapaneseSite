@@ -1,9 +1,10 @@
 import { Router } from "express";
 const router = Router();
 
-import { create, findAll } from '../controllers/posts.controller.js'
+import { create, findAll } from '../controllers/posts.controller.js';
+import { authMiddleware } from "../middlewares/auth.middleware.js";
 
-router.post('/', create);
-router.ger('/', findAll);
+router.post('/', authMiddleware, create);
+router.get('/', findAll);
 
 export default router;
