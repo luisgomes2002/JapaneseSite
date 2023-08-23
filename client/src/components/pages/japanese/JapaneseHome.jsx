@@ -2,8 +2,6 @@ import React from "react";
 import "./JapaneseHome.css";
 import "./Info.css";
 import "./Alfabeto.css";
-import "./Dicas.css";
-import "./Cursos.css";
 import "./Presentation.css";
 import NavBar from "../../nav/Nav";
 import { Link } from "react-router-dom";
@@ -18,25 +16,11 @@ const TabsJlptInfo = [
     link: "/jlpt",
   },
   {
-    id: 1,
+    id: 2,
     img: JlptImg,
     h1: "JAPONÊS",
     p: "escrever algo sobre jplt escrever algo sobre jplt escrever algo sobre jplt escrever algo sobre jplt escrever algo sobre jpltescrever",
     link: "/learner",
-  },
-  {
-    id: 1,
-    img: JlptImg,
-    h1: "DICAS",
-    p: "escrever algo sobre jplt escrever algo sobre jplt escrever algo sobre jplt escrever algo sobre jplt escrever algo sobre jpltescrever",
-    link: "/jlpt",
-  },
-  {
-    id: 1,
-    img: JlptImg,
-    h1: "CURSOS",
-    p: "escrever algo sobre jplt escrever algo sobre jplt escrever algo sobre jplt escrever algo sobre jplt escrever algo sobre jpltescrever",
-    link: "/jlpt",
   },
 ];
 
@@ -131,7 +115,7 @@ function TabsJlpt() {
         {TabsJlptInfo.map((items, i) => (
           <div className="tabs-info--jlpt" key={i}>
             <Link to={items.link} className="box-items">
-              <img src={items.img} />
+              <img src={items.img} alt="" />
             </Link>
             <h1>{items.h1}</h1>
             <p>{items.p}</p>

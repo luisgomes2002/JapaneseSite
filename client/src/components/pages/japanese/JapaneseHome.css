@@ -69,14 +69,14 @@
 .tabs-container {
   margin-top: 100px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   justify-items: center;
-  padding: 0 10% 0 10%;
+  padding: 0 15% 0 15%;
 }
 
 .tabs-info--jlpt {
-  height: 400px;
-  width: 350px;
+  height: 550px;
+  width: 550px;
   background-color: #fff;
   box-shadow: var(--black-shadow);
   border-radius: var(--border-slim);
@@ -84,22 +84,21 @@
 }
 
 .tabs-info--jlpt img {
-  height: 200px;
-  width: 350px;
+  height: 350px;
+  width: 550px;
   border-radius: var(--card-img-big);
 }
 
 .tabs-container h1 {
-  font-size: var(--size-h1);
-  padding-top: 10px;
+  font-size: 40px;
   font-family: var(--second-font);
   color: #000000;
-  padding-top: 10%;
+  padding-top: 3%;
 }
 
 .tabs-info--jlpt p {
-  font-size: var(--size-p);
-  padding: 0 20px;
+  font-size: 18px;
+  padding: 10px 25px;
 }
 
 @media screen and (max-width: 1400px) {
