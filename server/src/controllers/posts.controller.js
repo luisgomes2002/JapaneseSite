@@ -38,13 +38,11 @@ const findAll = async (req, res) => {
   };
 
   const posts = await findAllService(offset, limit);
-
   const total = await countPosts();
 
   const currentUrl = req.baseUrl;
 
   const next = offset + limit;
-
   const nextUrl = next < total ? `${currentUrl}?limit=${limit}&offset=${next}` : null;
 
   const previous = offset - limit < 0 ? null : offset - limit;
@@ -61,16 +59,16 @@ const findAll = async (req, res) => {
     offset,
     total,
 
-    results: posts.map((postsItem) => ({
-      id: postsItem._id,
-      title: postsItem.title,
-      text: postsItem.text,
-      banner: postsItem.banner,
-      likes: postsItem.likes,
-      Comments: postsItem.comments,
-      name: postsItem.user.name,
-      userName: postsItem.user.username,
-      userAvatar: postsItem.user.avatar,
+    results: posts.map((postsItems) => ({
+      id: postsItems._id,
+      title: postsItems.title,
+      text: postsItems.text,
+      banner: postsItems.banner,
+      likes: postsItems.likes,
+      Comments: postsItems.comments,
+      name: postsItems.user.name,
+      userName: postsItems.user.username,
+      userAvatar: postsItems.user.avatar,
     }))
   });
 };
