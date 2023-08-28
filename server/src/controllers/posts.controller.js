@@ -5,6 +5,7 @@ import {
   topPostsService,
   findByIdService,
   searchByTitleService,
+  byUserService,
 } from '../services/posts.service.js'
 
 export const create = async (req, res) => {
@@ -162,3 +163,26 @@ export const searchByTitle = async (req, res) => {
     res.status(500).send({ message: err.message })
   };
 };
+
+export const byUser = async (req, res) => {
+  try {
+    const id = req.userId;
+    const posts = await byUserService(id);
+
+    return res.send({
+      results: posts.map((postsItems) => ({
+        id: postsItems._id,
+        title: postsItems.title,
+        text: postsItems.text,
+        banner: postsItems.banner,
+        likes: postsItems.likes,
+        Comments: postsItems.comments,
+        name: postsItems.user.name,
+        userName: postsItems.user.username,
+        userAvatar: postsItems.user.avatar,
+      }))
+    });
+  } catch (err) {
+    res.status(500).send({ message: err.message })
+  };
+}
