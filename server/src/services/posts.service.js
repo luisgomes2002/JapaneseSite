@@ -7,7 +7,7 @@ export const findAllService = (offset, limit) => Posts.find().sort({ likes: -1 }
 export const countPosts = () => Posts.countDocuments();
 
 export const topPostsService = () => Posts.findOne().sort({ likes: -1 }).populate("user");
-
+1
 export const findByIdService = (id) => Posts.findById(id).populate("user");
 
 export const searchByTitleService = (title) => Posts.find({
@@ -15,3 +15,5 @@ export const searchByTitleService = (title) => Posts.find({
 }).sort({ _id: -1 }).populate("user");
 
 export const byUserService = (id) => Posts.find({ user: id }).sort({ _id: -1 }).populate("user");
+
+export const updateService = (id, title, text, banner) => Posts.findOneAndUpdate({ _id: id }, { title, text, banner }, { rawResult: true, });

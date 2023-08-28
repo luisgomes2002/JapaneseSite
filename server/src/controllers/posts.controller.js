@@ -6,6 +6,7 @@ import {
   findByIdService,
   searchByTitleService,
   byUserService,
+  updateService,
 } from '../services/posts.service.js'
 
 export const create = async (req, res) => {
@@ -186,3 +187,30 @@ export const byUser = async (req, res) => {
     res.status(500).send({ message: err.message })
   };
 }
+
+export const update = async (req, res) => {
+  try {
+    const { title, text, banner } = req.body;
+    const { id } = req.params;
+
+    if (!title && !text && !banner) {
+      res.status(400).send({
+        message: "Submit all fields for registration",
+      });
+    };
+
+    const posts = await findByIdService(id);
+
+    if (String(posts.user._id) !== req.userId) {
+      return res.status(400).send({
+        message: "You didn't update this post",
+      });
+    };
+
+    await updateService(id, title, text, banner);
+
+    return res.send({ message: "Post successfully updated!" });
+  } catch (err) {
+    res.status(500).send({ message: err.message })
+  };
+};
