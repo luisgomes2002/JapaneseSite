@@ -1,14 +1,21 @@
-import { createService, findAllService, countPosts, topPostsService } from '../services/posts.service.js'
+import {
+  createService,
+  findAllService,
+  countPosts,
+  topPostsService,
+  findByIdService,
+  searchByTitleService,
+} from '../services/posts.service.js'
 
-const create = async (req, res) => {
+export const create = async (req, res) => {
   try {
     const { title, text, banner } = req.body;
 
     if (!title || !text || !banner) {
       res.status(400).send({
         message: "Submit all fields for registration",
-      });
-    };
+      })
+    }
 
     await createService({
       title,
@@ -23,7 +30,7 @@ const create = async (req, res) => {
   };
 };
 
-const findAll = async (req, res) => {
+export const findAll = async (req, res) => {
   try {
     let { limit, offset } = req.query;
 
@@ -75,10 +82,9 @@ const findAll = async (req, res) => {
   } catch (err) {
     res.status(500).send({ message: err.message })
   };
-
 };
 
-const topPosts = async (req, res) => {
+export const topPosts = async (req, res) => {
   try {
     const post = await topPostsService();
 
@@ -98,11 +104,61 @@ const topPosts = async (req, res) => {
         userName: post.user.username,
         userAvatar: post.user.avatar,
       }
-    });
+    })
   } catch (err) {
     res.status(500).send({ message: err.message })
   };
 
 };
 
-export { create, findAll, topPosts };
+export const findById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const post = await findByIdService(id)
+
+    res.send({
+      post: {
+        id: post._id,
+        title: post.title,
+        text: post.text,
+        banner: post.banner,
+        likes: post.likes,
+        Comments: post.comments,
+        name: post.user.name,
+        userName: post.user.username,
+        userAvatar: post.user.avatar,
+      }
+    })
+  } catch (err) {
+    res.status(500).send({ message: err.message })
+  };
+};
+
+export const searchByTitle = async (req, res) => {
+  try {
+    const { title } = req.query;
+
+    const posts = await searchByTitleService(title);
+
+    if (posts.length === 0) {
+      return res.status(400).send({ message: 'There are no posts with this title' })
+    }
+
+    res.send({
+      results: posts.map((postsItems) => ({
+        id: postsItems._id,
+        title: postsItems.title,
+        text: postsItems.text,
+        banner: postsItems.banner,
+        likes: postsItems.likes,
+        Comments: postsItems.comments,
+        name: postsItems.user.name,
+        userName: postsItems.user.username,
+        userAvatar: postsItems.user.avatar,
+      }))
+    });
+  } catch (err) {
+    res.status(500).send({ message: err.message })
+  };
+};

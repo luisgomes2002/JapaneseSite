@@ -1,16 +1,15 @@
 import Posts from '../models/Posts.js'
 
-const createService = (body) => Posts.create(body);
+export const createService = (body) => Posts.create(body);
 
-const findAllService = (offset, limit) => Posts.find().sort({ likes: -1 }).skip(offset).limit(limit).populate("user");
+export const findAllService = (offset, limit) => Posts.find().sort({ likes: -1 }).skip(offset).limit(limit).populate("user");
 
-const countPosts = () => Posts.countDocuments();
+export const countPosts = () => Posts.countDocuments();
 
-const topPostsService = () => Posts.findOne().sort({ likes: -1 }).populate("user");
+export const topPostsService = () => Posts.findOne().sort({ likes: -1 }).populate("user");
 
-export {
-  createService,
-  findAllService,
-  countPosts,
-  topPostsService,
-}
+export const findByIdService = (id) => Posts.findById(id).populate("user");
+
+export const searchByTitleService = (title) => Posts.find({
+  title: { $regex: `${title || ""}`, $options: "i" },
+}).sort({ _id: -1 }).populate("user");
