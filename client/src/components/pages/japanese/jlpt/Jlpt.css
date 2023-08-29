@@ -157,10 +157,6 @@ nav {
   font-size: 18px;
 }
 
-.video-gird {
-  width: 50%;
-  margin: 0 auto;
-}
 
 @media screen and (max-width: 1700px) {
   .grid-img h3 {
@@ -198,19 +194,9 @@ nav {
     padding-top: 50px;
     margin: 0 100px 0 100px;
   }
-
-  .video-gird {
-    width: 55%;
-    margin: 0 auto;
-  }
 }
 
 @media screen and (max-width: 1600px) {
-  .video-gird {
-    width: 60%;
-    margin: 0 auto;
-  }
-
   .jlptlist-content {
     text-align: center;
     margin: 150px 200px 0px 200px;
@@ -284,17 +270,11 @@ nav {
     font-size: 20px;
   }
 
-  .video-gird {
-    width: 65%;
-    margin: 0 auto;
-  }
+
 }
 
 @media screen and (max-width: 1280px) {
-  .video-gird {
-    width: 75%;
-    margin: 0 auto;
-  }
+
 }
 
 @media screen and (max-width: 1024px) {
@@ -316,10 +296,6 @@ nav {
     height: 430px;
   }
 
-  .video-gird {
-    width: 90%;
-    margin: 0 auto;
-  }
 
   .table-jlpt {
     padding: 40px 5px 30px 5px;
@@ -327,17 +303,11 @@ nav {
 }
 
 @media screen and (max-width: 820px) {
-  .video-gird {
-    width: 85%;
-    margin: 0 auto;
-  }
+
 }
 
 @media screen and (max-width: 768px) {
-  .video-gird {
-    width: 90%;
-    margin: 0 auto;
-  }
+
 }
 
 @media screen and (max-width: 767px) {

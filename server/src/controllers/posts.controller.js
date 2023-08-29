@@ -7,7 +7,7 @@ import {
   searchByTitleService,
   byUserService,
   updateService,
-} from '../services/posts.service.js'
+} from '../services/posts.service.js';
 
 export const create = async (req, res) => {
   try {

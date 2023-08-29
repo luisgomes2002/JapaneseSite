@@ -178,7 +178,7 @@ function JlptHome() {
             </div>
           </div>
         </div>
-        <div className="video-gird">
+        <div className="video-grid">
           <VideoList />
         </div>
       </div>

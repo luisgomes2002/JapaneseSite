@@ -77,7 +77,7 @@ function Services() {
             <Link to="/">
               <span className="span-btns">MOSTRE MAIS</span>
               <span className="span-card">
-                <h3>COMPARTILHE</h3>
+                <h3>COMUNIDADE</h3>
               </span>
             </Link>
           </div>
@@ -117,23 +117,15 @@ const Novidades = () => {
   return (
     <div className="info-area">
       <h1>Novidades</h1>
-      <div className="info-img">
-        <div className="text-info">
-          <p>
-            Apresentamos com entusiasmo uma emocionante novidade que estamos
-            desenvolvendo exclusivamente para o site MURASAKI! Agora, os alunos
-            terão a oportunidade de compartilhar suas dúvidas e conhecimentos no
-            estudo de línguas estrangeiras como nunca antes. Sabemos o quão
-            crucial é para os alunos de línguas estrangeiras ter um espaço onde
-            possam esclarecer suas dúvidas e, ao mesmo tempo, contribuir com seu
-            próprio conhecimento para ajudar os outros. Com essa nova
-            funcionalidade, queremos criar uma comunidade vibrante e interativa,
-            onde todos possam se conectar e aprender juntos.
-          </p>
-          <p className="come-soon">EM BREVE</p>
+      <div className="all-info">
+        <div className="info-img">
+          
         </div>
-        <div className="text-img">
-          <p>COMPARTILHE</p>
+        <div className="info-img">
+              
+        </div>
+        <div className="info-img">
+              
         </div>
       </div>
     </div>
