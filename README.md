@@ -7,15 +7,15 @@
 
 <h3 align="center">Descubra um site dedicado a pessoas que desejam aprender japonês, explorar a cultura do Japão e compartilhar suas experiências de estudo!</p>
 
-![image](https://github.com/luisgomes2002/siteReact/assets/85139913/71b208ad-3da4-454a-ac56-cb42e27c7942)
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/e1dc9434-a734-40d9-a95e-4b8dbbde299a)
 
 <h3 align="center">Você pode escolher sua área de interesse específica sobre o Japão! Explore o idioma japonês, mergulhe na cultura e compartilhe suas experiências de estudo em sua área preferida.</p>
 
-![image](https://github.com/luisgomes2002/siteReact/assets/85139913/a780358b-4227-4b2e-91d6-64a1782e0b68)
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/c9ac7d4d-a200-4a62-9560-54b0d25a1891)
 
 <h3 align="center">Oferecemos a criação de contas para pessoas interessadas em compartilhar dicas e conhecimentos sobre o estudo de línguas estrangeiras.</p>
 
-![Login](https://github.com/luisgomes2002/siteReact/assets/85139913/c821d68d-7797-4161-943e-f55cab65aab9)
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/e2d16820-91e7-4d08-be1f-528a120f0dfc)
 
 ### Features
 
