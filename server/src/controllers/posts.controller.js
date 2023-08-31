@@ -8,6 +8,10 @@ import {
   byUserService,
   updateService,
   eraseService,
+  likePostService,
+  deleteLikePostService,
+  addCommentService,
+  deleteCommentService,
 } from '../services/posts.service.js';
 
 export const create = async (req, res) => {
@@ -231,6 +235,65 @@ export const erase = async (req, res) => {
     await eraseService(id);
 
     return res.send({ message: "Post deleted successfully" });
+  } catch (err) {
+    res.status(500).send({ message: err.message })
+  };
+};
+
+export const likePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.userId;
+
+    const postLiked = await likePostService(id, userId);
+
+    if (!postLiked) {
+      await deleteLikePostService(id, userId);
+      return res.status(200).send({ message: "Like successfully removed!!" });
+    };
+
+    res.send({ message: 'Like done successfully ' })
+  } catch (err) {
+    res.status(500).send({ message: err.message })
+  };
+};
+
+export const addComment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.userId;
+    const { comment } = req.body;
+
+    if (!comment) {
+      return res.status(400).send({ message: "Write a message to comment" });
+    };
+
+    await addCommentService(id, comment, userId);
+
+    res.send({ message: "Comment successfully completed!" });
+  } catch (err) {
+    res.status(500).send({ message: err.message })
+  };
+};
+
+export const deleteComment = async (req, res) => {
+  try {
+    const { idPosts, idComment } = req.params;
+    const userId = req.userId;
+
+    const commentDeleted = await deleteCommentService(idPosts, idComment, userId);
+
+    const commentFinder = commentDeleted.comments.find((comment) => comment.idComment === idComment);
+
+    if (!commentFinder) {
+      return res.status(404).send({ message: "Comment not found" })
+    }
+
+    if (commentFinder.userId !== userId) {
+      return res.status(400).send({ message: "You can't delete this commet" })
+    };
+
+    res.send({ message: "Comment successfully removed!" });
   } catch (err) {
     res.status(500).send({ message: err.message })
   };
