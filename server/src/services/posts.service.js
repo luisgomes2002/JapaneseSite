@@ -17,3 +17,5 @@ export const searchByTitleService = (title) => Posts.find({
 export const byUserService = (id) => Posts.find({ user: id }).sort({ _id: -1 }).populate("user");
 
 export const updateService = (id, title, text, banner) => Posts.findOneAndUpdate({ _id: id }, { title, text, banner }, { rawResult: true, });
+
+export const eraseService = (id) => Posts.findOneAndDelete({ _id: id });

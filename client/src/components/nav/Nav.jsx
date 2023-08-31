@@ -86,7 +86,7 @@ function NavBar() {
             <Link to='/sobre' className='navbar-links--sobre' id='about-page'>SOBRE</Link>
           </li>
           <li className='navbar-item'>
-            <h1 className='navbar-links--disable'>COMPARTILHE</h1>
+            <h1 className='navbar-links--disable'>COMUNIDADE</h1>
           </li>
           {dropDown}
         </ul>
