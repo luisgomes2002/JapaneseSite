@@ -17,16 +17,16 @@ import {
 
 import { authMiddleware } from "../middlewares/auth.middleware.js";
 
-router.post('/', authMiddleware, create);
+router.post('/create', authMiddleware, create);
 router.get('/', findAll);
 router.get('/top', topPosts);
 router.get('/search', searchByTitle);
-router.get('/byUser', authMiddleware, byUser);
-router.get('/:id', authMiddleware, findById);
-router.patch('/:id', authMiddleware, update);
-router.delete('/:id', authMiddleware, erase);
-router.patch('/like/:id', authMiddleware, likePost);
-router.patch('/comment/:id', authMiddleware, addComment);
-router.patch('/comment/:idPosts/:idComment', authMiddleware, deleteComment);
+router.get('/byUserId', authMiddleware, byUser);
+router.get('/byIdPost/:id', authMiddleware, findById);
+router.patch('/upadate/:id', authMiddleware, update);
+router.delete('/delete/:id', authMiddleware, erase);
+router.patch('/:id/like', authMiddleware, likePost);
+router.patch('/:id/comment', authMiddleware, addComment);
+router.patch("/:id/:idComment/comment", authMiddleware, deleteComment);
 
 export default router;

@@ -21,9 +21,9 @@ nav {
   color: #fff;
 }
 
-.background {
-  background-image: linear-gradient(to right, #ffffffef, #ffffffe5),
-    url("../../../../assets/baka/background/background2 - Black.jpg");
+.background { 
+  background-image: linear-gradient(to right, #ffffffce, #ffffffce),
+  url("../../../../assets/baka/background/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 70px;

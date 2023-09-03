@@ -35,14 +35,14 @@
   color: #000000;
 }
 
-.image-thumb--channel:hover img{
-  transition: 0.3s ease-in;
-  cursor: pointer;
-}
-
 .image-thumb--channel:hover img {
   transition: 0.3s ease-in;
   border-radius: 0;
+}
+
+.image-thumb--channel img{
+  transition: 0.3s ease-in;
+  cursor: pointer;
 }
 
 .grid-video-space--info {
