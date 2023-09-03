@@ -1,31 +1,33 @@
 <h1 align="center">Murasaki 
 
 <h4 align="center"> 
-	🚧  React Select 🚀 Em construção...  🚧
+	🚧  React Select 🚀 Building  🚧
 </h4></h1>
 <br >
 
-<h3 align="center">Descubra um site dedicado a pessoas que desejam aprender japonês, explorar a cultura do Japão e compartilhar suas experiências de estudo!</p>
+<h3 align="center">Discover a website dedicated to people who want to learn Japanese, explore Japanese culture, and share their study experiences!</p>
 
 ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/e1dc9434-a734-40d9-a95e-4b8dbbde299a)
 
-<h3 align="center">Você pode escolher sua área de interesse específica sobre o Japão! Explore o idioma japonês, mergulhe na cultura e compartilhe suas experiências de estudo em sua área preferida.</p>
+<h3 align="center">You can choose your specific area of interest about Japan! Explore the Japanese language, immerse yourself in the culture, and share your study experiences in your favorite field.</p>
 
 ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/c9ac7d4d-a200-4a62-9560-54b0d25a1891)
 
-<h3 align="center">Oferecemos a criação de contas para pessoas interessadas em compartilhar dicas e conhecimentos sobre o estudo de línguas estrangeiras.</p>
+<h3 align="center">We offer account creation for individuals interested in sharing tips and knowledge about foreign language study.</p>
 
 ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/e2d16820-91e7-4d08-be1f-528a120f0dfc)
 
 ### Features
 
-- [x] Cadastro de usuário
-- [x] Ensino de japonês
-- [ ] Compartilhar Experiências
+- [x] User registration
+- [ ] Japanese language teaching
+- [x] Sharing experiences
+- [ ] Private chat
 
-### 🛠 Tecnologias
 
-As seguintes ferramentas foram usadas na construção do projeto:
+### 🛠 Technologies
+
+The following tools were used in the project's construction:
 
 - [React](https://pt-br.reactjs.org/) 
 - [Bootstrap](https://react-bootstrap.github.io/)
@@ -33,7 +35,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Node.js](https://nodejs.org/en/)
 - [MongoDB](https://www.mongodb.com/)
 
-### Autor
+### Author
 ---
 
 <table>
