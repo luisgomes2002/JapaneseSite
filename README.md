@@ -20,10 +20,10 @@
 ### Features
 
 - [x] User registration
-- [ ] Japanese language teaching
+- [ ] Japanese language teaching (text)
 - [x] Sharing experiences
 - [ ] Private chat
-
+- [ ] Paid Japanese course (video)
 
 ### 🛠 Technologies
 
