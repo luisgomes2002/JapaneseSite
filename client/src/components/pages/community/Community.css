@@ -1,0 +1,53 @@
+.intro-space-community {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  margin: 0 10%;
+}
+
+.search-area {
+  padding: 10%;
+}
+
+.search-area h1 {
+  color: var(--second-main-color);
+}
+
+.search-area p {
+  color: var(--second-color);
+  font-size: var(--size-p);
+}
+
+.search-area input {
+  border: solid 1px rgba(0, 0, 0, 0.349);
+  border-radius: 25px;
+  padding-left: 5%;
+}
+
+.search-area i {
+  margin-right: 2%;
+  color: rgba(0, 0, 0, 0.459);
+}
+
+.amount-like--post {
+  margin: 5% 10% 0 10%;
+  width: 90%;
+  height: 400px;
+  background-color: var(--main-color);
+  border-radius: var(--border-slim);
+  box-shadow: var(--black-shadow);
+}
+
+.users-posts--area {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 5% 7%;
+}
+
+.post-area {
+  margin: 10%;
+  width: 450px;
+  height: 500px;
+  background-color: var(--main-color);
+  border-radius: var(--border-slim);
+  box-shadow: var(--black-shadow);
+}

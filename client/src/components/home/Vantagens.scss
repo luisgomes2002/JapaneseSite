@@ -1,0 +1,25 @@
+.space-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--third-color);
+  padding: 100px;
+
+  .content-info-vant {
+    img {
+      border-radius: var(--card-img-big);
+    }
+
+    h3 {
+      font-size: 40px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  }
+
+  .grid-display-vant {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+  }
+}

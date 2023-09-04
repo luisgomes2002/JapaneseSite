@@ -142,7 +142,7 @@
 }
 
 .posts-space:hover {
-  transform: scale(1.020);
+  transform: scale(1.02);
   transition: 0.3s ease-in;
   cursor: pointer;
 }
@@ -218,7 +218,6 @@ th {
 
 tr:hover {
   background-color: rgba(187, 187, 187, 0.295);
-
 }
 
 td {

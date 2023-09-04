@@ -1,10 +1,10 @@
 import React from "react";
 import NavBar from "../nav/Nav";
-import "./HomePage.css";
+import "./HomePage.scss";
 import "./Services.css";
 import "./About.css";
 import "./Novidades.css";
-import "./Vantagens.css";
+import "./Vantagens.scss";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -118,15 +118,9 @@ const Novidades = () => {
     <div className="info-area">
       <h1>Novidades</h1>
       <div className="all-info">
-        <div className="info-img">
-          
-        </div>
-        <div className="info-img">
-              
-        </div>
-        <div className="info-img">
-              
-        </div>
+        <div className="info-img"></div>
+        <div className="info-img"></div>
+        <div className="info-img"></div>
       </div>
     </div>
   );
@@ -180,7 +174,7 @@ function HomePage() {
       <Home />
       <Services />
       <About />
-      <Novidades />
+      {/* <Novidades /> */}
       <Vantagens />
     </>
   );

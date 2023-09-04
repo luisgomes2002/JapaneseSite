@@ -15,7 +15,7 @@
 
 .about-box img {
   border-radius: 50%;
-  background-image: url('../../assets/eu/eu.jpeg');
+  background-image: url("../../assets/eu/eu.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 250px;
