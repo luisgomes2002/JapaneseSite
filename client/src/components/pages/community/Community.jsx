@@ -1,6 +1,6 @@
 import React from "react";
 import "./Community.css";
-import NavBar from "../../nav/Nav";
+import NavBar from "../../nav/NavBar";
 
 const UsersPosts = [
   {

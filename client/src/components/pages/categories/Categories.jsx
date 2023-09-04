@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './Categories.css';
-import Nav from '../../nav/Nav';
-import { categoriesItens } from './CategoriesItens';
+import React, { useState } from "react";
+import "./Categories.css";
+import Nav from "../../nav/NavBar";
+import { categoriesItens } from "./CategoriesItens";
 
 const Categories = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -28,32 +28,31 @@ const Categories = () => {
 
     const { x, y } = mousePosition;
     const modalStyle = {
-      position: 'fixed',
-      top: y + 'px',
-      left: x + 'px',
+      position: "fixed",
+      top: y + "px",
+      left: x + "px",
     };
 
     return (
-      <div className='modal-screen' style={modalStyle}>
-        <img src={img} alt='Modal' />
+      <div className="modal-screen" style={modalStyle}>
+        <img src={img} alt="Modal" />
       </div>
     );
   };
-
 
   return (
     <>
       <nav>
         <Nav />
       </nav>
-      <section className='section-categories'>
+      <section className="section-categories">
         {categoriesItens.map((info, key) => {
           return (
             <React.Fragment key={key}>
-              <div className='categories'>
+              <div className="categories">
                 <hr />
                 <div
-                  className='name-categories'
+                  className="name-categories"
                   onMouseEnter={() => handleMouseEnter(info.id, info.img)}
                   onMouseLeave={handleMouseLeave}
                   onMouseMove={handleMouseMove}

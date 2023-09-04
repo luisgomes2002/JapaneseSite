@@ -1,6 +1,6 @@
 import React from "react";
 import "./Jlpt.css";
-import NavBar from "../../../nav/Nav";
+import NavBar from "../../../nav/NavBar";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import { VideoList } from "../../videos/LoopVideo/Loop";

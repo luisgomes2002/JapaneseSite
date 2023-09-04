@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import { Scrollbars } from "react-custom-scrollbars-2";
-import NavBar from "../nav/Nav";
+import NavBar from "../nav/NavBar";
 import "./User.css";
 import Baka from "../../assets/baka/background/background.jpg";
 import axios from "axios";

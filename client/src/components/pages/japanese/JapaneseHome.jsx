@@ -3,7 +3,7 @@ import "./JapaneseHome.css";
 import "./Info.css";
 import "./Alfabeto.css";
 import "./Presentation.css";
-import NavBar from "../../nav/Nav";
+import NavBar from "../../nav/NavBar";
 import { Link } from "react-router-dom";
 import JlptImg from "../../../assets/JLPT/livros.jpg";
 
