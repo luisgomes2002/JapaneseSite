@@ -34,6 +34,7 @@ The following tools were used in the project's construction:
 - [Express](https://expressjs.com/pt-br/)
 - [Node.js](https://nodejs.org/en/)
 - [MongoDB](https://www.mongodb.com/)
+- [Styled-components](https://styled-components.com/)
 
 ### Author
 ---
