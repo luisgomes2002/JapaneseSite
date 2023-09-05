@@ -20,6 +20,11 @@ export const NavBarLogo = styled.div `
   a {
     text-decoration: none;
     font-size: var(--size-h3);
+    margin-right: 10%;
+  }
+
+  a:hover {
+    color: #dfdcd8;
   }
 
   h1 {
@@ -27,6 +32,8 @@ export const NavBarLogo = styled.div `
     font-size: 30px;
     margin: 0;
   }
+
+  
 `;
 
 export const NavBarCategories = styled.div `

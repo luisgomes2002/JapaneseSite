@@ -74,7 +74,7 @@ function Services() {
         </div>
         <div className="categorias-card4">
           <div className="categorias-btns">
-            <Link to="/">
+            <Link to="/community">
               <span className="span-btns">MOSTRE MAIS</span>
               <span className="span-card">
                 <h3>COMUNIDADE</h3>

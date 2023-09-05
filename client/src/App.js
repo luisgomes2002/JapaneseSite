@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import { GlobalStyled } from './GlobalStyled';
 import { BrowserRouter } from 'react-router-dom'
 import Footer from './components/template/Footer';
 import Routes from './components/Routes';
@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <BrowserRouter>
+    <GlobalStyled />
       <div className='App'>
         <Routes />
         <Footer />
