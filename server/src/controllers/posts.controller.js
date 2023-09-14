@@ -63,9 +63,10 @@ export const findAll = async (req, res) => {
     const previous = offset - limit < 0 ? null : offset - limit;
     const previousUrl = previous != null ? `${currentUrl}?limit=${limit}&offset=${previous}` : null;
 
-    if (posts.length === 0) {
-      return res.status(400).send({ message: 'There are no registered posts' })
-    };
+    // if (posts.length === 0) {
+    //   return res.status(400).send({ message: 'There are no registered posts' })
+    // };
+
 
     res.send({
       nextUrl,
@@ -148,9 +149,9 @@ export const searchByTitle = async (req, res) => {
 
     const posts = await searchByTitleService(title);
 
-    if (posts.length === 0) {
-      return res.status(400).send({ message: 'There are no posts with this title' })
-    }
+    // if (posts.length === 0) {
+    //   return res.status(400).send({ message: 'There are no posts with this title' })
+    // }
 
     res.send({
       results: posts.map((postsItems) => ({
