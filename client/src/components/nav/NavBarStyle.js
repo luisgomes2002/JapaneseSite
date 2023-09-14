@@ -32,8 +32,6 @@ export const NavBarLogo = styled.div `
     font-size: 30px;
     margin: 0;
   }
-
-  
 `;
 
 export const NavBarCategories = styled.div `

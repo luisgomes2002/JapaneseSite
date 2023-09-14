@@ -1,6 +1,6 @@
 import React from "react";
-import { Nav, NavBarLogo, NavBarCategories } from "./NavBarStyled";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { Nav, NavBarLogo, NavBarCategories } from "./NavBarStyle";
+// import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 
 function NavBar() {
