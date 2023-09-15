@@ -6,9 +6,9 @@ export const CardContainer= styled.section`
   gap: 1rem;
   width: 100%;
   height: 100%;
-  box-shadow: var(--black-shadow);
   border-radius: 25px;
   text-align: center;
+  background-color: var(--card-color);
 
   h2{
     padding: 3% 5%;
@@ -17,6 +17,16 @@ export const CardContainer= styled.section`
   
   p{
     padding: 0 8%;
+    color: var(--main-color);
+  }
+
+  i{
+    color: var(--main-color);
+  }
+
+  span{
+    padding: 0 10%;
+    color: var(--main-color);
   }
 `;
 
@@ -29,6 +39,7 @@ export const CardBody = styled.article`
 
   img {
     width: 100%;
+    height: 250px;
     max-height: 250px;
     object-fit: cover;
     border-radius: 25px 25px 0px 0px;

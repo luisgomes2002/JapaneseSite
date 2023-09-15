@@ -1,5 +1,5 @@
 .footer-container {
-  background-color: #131313;
+  background-color: var(--card-color);
   padding: 120px;
 }
 

@@ -16,6 +16,8 @@ export const GlobalStyled = createGlobalStyle`
     --third-color: #f0eeea;
     --fourth-color: #222222;
     --second-main-color: #6f00ff;
+    --card-color: #202024;
+    --background-color: #121214;
     /* box-shadow */
     --black-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.267);
     /* borde-radius */

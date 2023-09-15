@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   IntroSpaceCommunity,
   SearchArea,
@@ -6,85 +6,27 @@ import {
   CardContainerCommunity,
   CardBodyCommunity,
   CardIconsCommunity,
+  UsersPostsAreaCommunity,
 } from "./CommunityStyled";
 import NavBar from "../../nav/NavBar";
 import Card from "./Card";
-
-const UsersPosts = [
-  {
-    id: "64dd8a28a89363d6acbd30ac",
-    title: "Digitar um titulo legal aqui",
-    text: "Bem-vindo à Comunidade Murasaki! Este é o lugar ideal para compartilhar seus conhecimentos e ideias, assim como explorar as contribuições de outras pessoas e interagir com elas. Junte-se a nós e enriqueça nossa comunidade com seus insights e perspectivas únicas.",
-    banner: "img2.jpg",
-    likes: [],
-    comments: [],
-    name: "password",
-    userName: "password",
-    userAvatar:
-      "https://i.pinimg.com/originals/9c/7b/e4/9c7be43979a736a8695361a544630b97.jpg",
-  },
-  {
-    id: "64dd8a28a89363d6acbd30ac",
-    title: "Digitar um titulo legal aqui",
-    text: "Bem-vindo à Comunidade Murasaki! Este é o lugar ideal para compartilhar seus conhecimentos e ideias, assim como explorar as contribuições de outras pessoas e interagir com elas. Junte-se a nós e enriqueça nossa comunidade com seus insights e perspectivas únicas.",
-    banner: "img2.jpg",
-    likes: [],
-    comments: [],
-    name: "password",
-    userName: "password",
-    userAvatar: "https://avatars.githubusercontent.com/u/85139913?v=4",
-  },
-  {
-    id: "64dd8a28a89363d6acbd30ac",
-    title: "Digitar um titulo legal aqui",
-    text: "Bem-vindo à Comunidade Murasaki! Este é o lugar ideal para compartilhar seus conhecimentos e ideias, assim como explorar as contribuições de outras pessoas e interagir com elas. Junte-se a nós e enriqueça nossa comunidade com seus insights e perspectivas únicas.",
-    banner: "img2.jpg",
-    likes: [],
-    comments: [],
-    name: "password",
-    userName: "password",
-    userAvatar:
-      "https://s2-techtudo.glbimg.com/394RBfUvMKCOa2BI9qaeFzafTdA=/0x0:1024x609/1000x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg",
-  },
-  {
-    id: "64dd8a28a89363d6acbd30ac",
-    title: "Digitar um titulo legal aqui",
-    text: "Bem-vindo à Comunidade Murasaki! Este é o lugar ideal para compartilhar seus conhecimentos e ideias, assim como explorar as contribuições de outras pessoas e interagir com elas. Junte-se a nós e enriqueça nossa comunidade com seus insights e perspectivas únicas.",
-    banner: "img2.jpg",
-    likes: [],
-    comments: [],
-    name: "password",
-    userName: "password",
-    userAvatar:
-      "https://img.freepik.com/fotos-gratis/papeis-de-parede-e-imagens-do-por-do-sol-na-praia_1340-43042.jpg?w=740&t=st=1694659704~exp=1694660304~hmac=ef486711f0c991254d5211ff0c01b2ce461ecbac8667d5aba9655df3d35716fe",
-  },
-  {
-    id: "64dd8a28a89363d6acbd30ac",
-    title: "Digitar um titulo legal aqui",
-    text: "Bem-vindo à Comunidade Murasaki! Este é o lugar ideal para compartilhar seus conhecimentos e ideias, assim como explorar as contribuições de outras pessoas e interagir com elas. Junte-se a nós e enriqueça nossa comunidade com seus insights e perspectivas únicas.",
-    banner: "img2.jpg",
-    likes: [],
-    comments: [],
-    name: "password",
-    userName: "password",
-    userAvatar: "https://avatars.githubusercontent.com/u/85139913?v=4",
-  },
-  {
-    id: "64dd8a28a89363d6acbd30ac",
-    title: "Digitar um titulo legal aqui",
-    text: "Bem-vindo à Comunidade Murasaki! Este é o lugar ideal para compartilhar seus conhecimentos e ideias, assim como explorar as contribuições de outras pessoas e interagir com elas. Junte-se a nós e enriqueça nossa comunidade com seus insights e perspectivas únicas.",
-    banner: "img2.jpg",
-    likes: [],
-    comments: [],
-    name: "password",
-    userName: "password",
-    userAvatar: "https://avatars.githubusercontent.com/u/85139913?v=4",
-  },
-];
+import { getAllPosts } from "../../../services/postsServices";
+import { TextLimit } from "../../textLimit/TextLimit";
 
 const UsersPostsArea = () => {
+  const [posts, setPosts] = useState([]);
+
+  const findAllPosts = async () => {
+    const response = await getAllPosts();
+    setPosts(response.data.results);
+  };
+
+  useEffect(() => {
+    findAllPosts();
+  }, []);
+
   return (
-    <div>
+    <UsersPostsAreaCommunity>
       <nav>
         <NavBar />
       </nav>
@@ -106,29 +48,46 @@ const UsersPostsArea = () => {
         <CardContainerCommunity>
           <CardBodyCommunity>
             <div>
-              <h2>{UsersPosts[0].title}</h2>
-              <p>{UsersPosts[0].text}</p>
-              <CardIconsCommunity>
-                <div>
-                  <i className="fa-regular fa-heart"></i>
-                  <span>2{UsersPosts.likes}</span>
-                </div>
-                <div>
-                  <i className="fa-regular fa-message"></i>
-                  <span>3{UsersPosts.comments}</span>
-                </div>
-              </CardIconsCommunity>
+              {posts.length > 0 ? (
+                <>
+                  <h2>{posts[0].title}</h2>
+                  <TextLimit text={posts[0].text} limit={280} />
+                  <CardIconsCommunity>
+                    <div>
+                      <i className="fa-regular fa-heart"></i>
+                      <span>{posts[0].likes ? posts[0].likes.length : 0}</span>
+                    </div>
+                    <div>
+                      <i className="fa-regular fa-message"></i>
+                      <span>
+                        {posts[0].comments ? posts[0].comments.length : 0}
+                      </span>
+                    </div>
+                  </CardIconsCommunity>
+                </>
+              ) : (
+                <h3>Nenhuma postagem disponível</h3>
+              )}
             </div>
           </CardBodyCommunity>
-          <img src={UsersPosts[0].userAvatar} alt="Imagem" />
+          <img src={posts.length > 0 ? posts[0].banner : ""} alt="banner" />
         </CardContainerCommunity>
       </IntroSpaceCommunity>
       <CardContainerBody>
-        {UsersPosts.map((post, index) => {
-          return <Card key={index} UsersPosts={post} />;
+        {posts.map((item) => {
+          return (
+            <Card
+              key={item.id}
+              title={item.title}
+              text={item.text}
+              banner={item.banner}
+              likes={item.likes ? item.likes.length : 0}
+              comments={item.comments ? item.comments.length : 0}
+            />
+          );
         })}
       </CardContainerBody>
-    </div>
+    </UsersPostsAreaCommunity>
   );
 };
 

@@ -2,7 +2,7 @@ import Posts from '../models/Posts.js'
 
 export const createService = (body) => Posts.create(body);
 
-export const findAllService = (offset, limit) => Posts.find().sort({ likes: -1 }).skip(offset).limit(limit).populate("user");
+export const findAllService = (offset, limit) => Posts.find().sort({ likes: -1}).skip(offset).limit(limit).populate("user");
 
 export const countPosts = () => Posts.countDocuments();
 
