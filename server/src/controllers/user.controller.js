@@ -1,123 +1,72 @@
 import userService from '../services/user.service.js'
 
-const create = async (req, res) => {
+const createUserController = async (req, res) => {
+  const { name, username, email, password, avatar, background } = req.body;
+
   try {
-    const { name, username, email, password, avatar, background } = req.body;
-
-    if (!name || !username || !email || !password || !avatar || !background) {
-      res.status(400).send({ message: "Submit all fields for registration" })
-    };
-
-    const user = await userService.createService(req.body);
-
-    if (!user) {
-      return res.status(400).send({ message: 'Erro creating User' });
-    }
-
-    res.status(201).send({
-      message: "User created sucessfully",
-      user: {
-        id: user._id,
-        name,
-        username,
-        email,
-        avatar,
-        background,
-      },
-    });
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
-
-const findAll = async (req, res) => {
-  try {
-    let { limit, offset } = req.query;
-
-    limit = Number(limit);
-    offset = Number(offset);
-
-    if (!limit) {
-      limit = 5;
-    };
-
-    if (!offset) {
-      offset = 0;
-    };
-
-    const users = await userService.findAllService(offset, limit);
-    const total = await userService.countUsers();
-
-    const currentUrl = req.baseUrl;
-
-    const next = offset + limit;
-    const nextUrl = next < total ? `${currentUrl}?limit=${limit}&offset=${next}` : null;
-
-    const previous = offset - limit < 0 ? null : offset - limit;
-    const previousUrl = previous != null ? `${currentUrl}?limit=${limit}&offset=${previous}` : null;
-
-    if (users.length === 0) {
-      return res.status(400).send({ message: 'There are no registered users' })
-    };
-
-    res.send({
-      nextUrl,
-      previousUrl,
-      limit,
-      offset,
-      total,
-      users
-    });
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
-
-const findById = async (req, res) => {
-  try {
-    const user = req.user;
-    res.send(user)
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
-
-const update = async (req, res) => {
-  try {
-    const { name, username, email, password, avatar, background } = req.body;
-
-    if (!name && !username && !email && !password && !avatar && !background) {
-      res.status(400).send({ message: "Submit at least one field for update" })
-    };
-
-    const { id, user } = req;
-
-    await userService.updateService(
-      id,
+    const token = await userService.createUserService({
       name,
       username,
       email,
       password,
       avatar,
-      background
+      background,
+    });
+    res.status(201).send(token);
+  } catch (e) {
+    return res.status(400).send(e.message);
+  }
+}
+
+const findAllUserController = async (req, res) => {
+  try {
+    const users = await userService.findAllUserService();
+    return res.send(users);
+  } catch (e) {
+    return res.status(404).send(e.message);
+  }
+}
+
+const findUserByIdController = async (req, res) => {
+  try {
+    const user = await userService.findUserByIdService(
+      req.params.id,
+      req.userId
+    );
+    return res.send(user);
+  } catch (e) {
+    return res.status(400).send(e.message);
+  }
+}
+
+const updateUserController = async (req, res) => {
+  try {
+    const { name, username, email, password, avatar, background } = req.body;
+    const { id: userId } = req.params;
+    const userIdLogged = req.userId;
+
+    const response = await userService.updateUserService(
+      { name, username, email, password, avatar, background },
+      userId,
+      userIdLogged
     );
 
-    res.send({ message: 'User updated successfully !' });
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
+    return res.send(response);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
+}
 
-const deleteById = async (req, res) => {
+const deleteUserByIdController = async (req, res) => {
   try {
-    const userId = req.id;
-    await userService.deleteService(userId);
+    const { id: userIdParam } = req.params;
 
-    res.send({ message: 'User deleted successfully!' });
+    const response = await userService.deleteUserByIdService(userIdParam);
 
-  } catch (err) {
-    res.status(500).send({ message: err.message })
+    return res.send(response);
+  } catch (e) {
+    res.status(400).send(e.message);
   };
 };
 
-export default { create, findAll, findById, update, deleteById };
+export default { createUserController, findAllUserController, findUserByIdController, updateUserController, deleteUserByIdController };

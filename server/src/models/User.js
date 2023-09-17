@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import bcryot from 'bcrypt';
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   email: {
     type: String,
@@ -19,7 +20,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    select: false,
+    select: true,
   },
   avatar: {
     type: String,
@@ -32,10 +33,10 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre("save", async function (next) {
-  this.password = await bcryot.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 export default User;

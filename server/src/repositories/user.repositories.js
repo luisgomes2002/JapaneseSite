@@ -1,34 +1,31 @@
 import User from '../models/User.js'
 
-const createRepository = (body) => User.create(body);
+const findByEmailUserRepository = (email) => User.findOne({ email: email });
 
-const findAllRepository = (offset, limit) => User.find().sort({ _id: 1 }).skip(offset).limit(limit); //fazer uma paginação
+const createUserRepository = (body) => User.create(body);
 
-const findByIdRepository = (idUser) => User.findById(idUser);
+const findAllUserRepository = (offset, limit) => User.find().sort({ _id: 1 }).skip(offset).limit(limit); //fazer uma paginação
 
-const updateRepository = (
-  id,
-  name,
-  username,
-  email,
-  password,
-  avatar,
-  background
-) =>
+const findByIdUserRepository = (idUser) => User.findById(idUser);
+
+const updateUserRepository = (id, name, username, email, password, avatar, background) => {
   User.findOneAndUpdate(
     { _id: id },
-    { name, username, email, password, avatar, background }
+    { name, username, email, password, avatar, background },
+    { rawResult: true, }
   );
+}
 
-const deleteRepository = (id) => User.deleteOne({ _id: id });
+const deleteUserRepository = (idUser) => User.deleteOne({ _id: idUser });
 
 const countRepository = () => User.countDocuments();
 
 export default {
-  createServiceRepository,
-  findAllServiceRepository,
-  findByIdServiceRepository,
-  updateServiceRepository,
-  deleteServiceRepository,
-  countUsersRepository,
+  findByEmailUserRepository,
+  createUserRepository,
+  findAllUserRepository,
+  findByIdUserRepository,
+  updateUserRepository,
+  deleteUserRepository,
+  countRepository,
 };

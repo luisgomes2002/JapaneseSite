@@ -1,37 +1,37 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const PostsSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    require: true,
-  },
-  text: {
-    type: String,
-    require: true,
+const PostSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
   },
   banner: {
     type: String,
-    require: true,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  text: {
+    type: String,
+    required: true,
+  },
+  likes: {
+    type: Array,
+    required: true,
+  },
+  comments: {
+    type: Array,
+    required: true,
   },
   createdAt: {
     type: Date,
     default: Date.now(),
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    require: true,
-  },
-  likes: {
-    type: Array,
-    require: true,
-  },
-  comments: {
-    type: Array,
-    require: true,
-  },
 });
 
-const Posts = mongoose.model('Posts', PostsSchema);
+const Post = mongoose.model("Post", PostSchema);
 
-export default Posts;
+export default Post;

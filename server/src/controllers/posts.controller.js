@@ -1,301 +1,155 @@
-import {
-  createService,
-  findAllService,
-  countPosts,
-  topPostsService,
-  findByIdService,
-  searchByTitleService,
-  byUserService,
-  updateService,
-  eraseService,
-  likePostService,
-  deleteLikePostService,
-  addCommentService,
-  deleteCommentService,
-} from '../services/posts.service.js';
+import postService from "../services/posts.service.js";
 
-export const create = async (req, res) => {
+async function createPostController(req, res) {
+  const { title, banner, text } = req.body;
+  const userId = req.userId;
+
   try {
-    const { title, text, banner } = req.body;
-
-    if (!title || !text || !banner) {
-      res.status(400).send({
-        message: "Submit all fields for registration",
-      })
-    }
-
-    await createService({
-      title,
-      text,
-      banner,
-      user: req.userId,
-    });
-
-    res.sendStatus(201);
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
-
-export const findAll = async (req, res) => {
-  try {
-    let { limit, offset } = req.query;
-
-    limit = Number(limit);
-    offset = Number(offset);
-
-    if (!limit) {
-      limit = 6;
-    };
-
-    if (!offset) {
-      offset = 0;
-    };
-
-    const posts = await findAllService(offset, limit);
-    const total = await countPosts();
-
-    const currentUrl = req.baseUrl;
-
-    const next = offset + limit;
-    const nextUrl = next < total ? `${currentUrl}?limit=${limit}&offset=${next}` : null;
-
-    const previous = offset - limit < 0 ? null : offset - limit;
-    const previousUrl = previous != null ? `${currentUrl}?limit=${limit}&offset=${previous}` : null;
-
-    // if (posts.length === 0) {
-    //   return res.status(400).send({ message: 'There are no registered posts' })
-    // };
-
-
-    res.send({
-      nextUrl,
-      previousUrl,
-      limit,
-      offset,
-      total,
-
-      results: posts.map((postsItems) => ({
-        id: postsItems._id,
-        title: postsItems.title,
-        text: postsItems.text,
-        banner: postsItems.banner,
-        likes: postsItems.likes,
-        Comments: postsItems.comments,
-        name: postsItems.user.name,
-        userName: postsItems.user.username,
-        userAvatar: postsItems.user.avatar,
-      }))
-    });
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
-
-export const topPosts = async (req, res) => {
-  try {
-    const post = await topPostsService();
-
-    if (!post) {
-      return res.status(400).send({ message: 'There is no registered post' });
-    };
-
-    res.send({
-      post: {
-        id: post._id,
-        title: post.title,
-        text: post.text,
-        banner: post.banner,
-        likes: post.likes,
-        Comments: post.comments,
-        name: post.user.name,
-        userName: post.user.username,
-        userAvatar: post.user.avatar,
-      }
-    })
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-
-};
-
-export const findById = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const post = await findByIdService(id)
-
-    res.send({
-      post: {
-        id: post._id,
-        title: post.title,
-        text: post.text,
-        banner: post.banner,
-        likes: post.likes,
-        Comments: post.comments,
-        name: post.user.name,
-        userName: post.user.username,
-        userAvatar: post.user.avatar,
-      }
-    })
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
-
-export const searchByTitle = async (req, res) => {
-  try {
-    const { title } = req.query;
-
-    const posts = await searchByTitleService(title);
-
-    // if (posts.length === 0) {
-    //   return res.status(400).send({ message: 'There are no posts with this title' })
-    // }
-
-    res.send({
-      results: posts.map((postsItems) => ({
-        id: postsItems._id,
-        title: postsItems.title,
-        text: postsItems.text,
-        banner: postsItems.banner,
-        likes: postsItems.likes,
-        Comments: postsItems.comments,
-        name: postsItems.user.name,
-        userName: postsItems.user.username,
-        userAvatar: postsItems.user.avatar,
-      }))
-    });
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
-
-export const byUser = async (req, res) => {
-  try {
-    const id = req.userId;
-    const posts = await byUserService(id);
-
-    return res.send({
-      results: posts.map((postsItems) => ({
-        id: postsItems._id,
-        title: postsItems.title,
-        text: postsItems.text,
-        banner: postsItems.banner,
-        likes: postsItems.likes,
-        Comments: postsItems.comments,
-        name: postsItems.user.name,
-        userName: postsItems.user.username,
-        userAvatar: postsItems.user.avatar,
-      }))
-    });
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
+    const post = await postService.createPostService(
+      { title, banner, text },
+      userId
+    );
+    return res.status(201).send(post);
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
 }
 
-export const update = async (req, res) => {
+async function findAllPostsController(req, res) {
+  const { limit, offset } = req.query;
+  const currentUrl = req.baseUrl;
+
   try {
-    const { title, text, banner } = req.body;
-    const { id } = req.params;
+    const posts = await postService.findAllPostsService(
+      limit,
+      offset,
+      currentUrl
+    );
+    return res.send(posts);
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
+}
 
-    if (!title && !text && !banner) {
-      res.status(400).send({
-        message: "Submit all fields for registration",
-      });
-    };
+async function topPostsController(req, res) {
+  try {
+    const post = await postService.topPostsService();
+    return res.send(post);
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
+}
 
-    const posts = await findByIdService(id);
+async function findPostByIdController(req, res) {
+  const { id } = req.params;
 
-    if (String(posts.user._id) !== req.userId) {
-      return res.status(400).send({
-        message: "You didn't update this post",
-      });
-    };
+  try {
+    const post = await postService.findPostByIdService(id);
+    return res.send(post);
+  } catch (e) {
+    res.status(404).send(e.message);
+  }
+}
 
-    await updateService(id, title, text, banner);
+async function searchPostController(req, res) {
+  const { title } = req.query;
+
+  try {
+    const foundPosts = await postService.searchPostService(title);
+
+    return res.send(foundPosts);
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
+}
+async function findPostsByUserIdController(req, res) {
+  const id = req.userId;
+  try {
+    const posts = await postService.findPostsByUserIdService(id);
+    return res.send(posts);
+  } catch (e) {
+    return res.status(500).send(e.message);
+  }
+}
+
+async function updatePostController(req, res) {
+  const { title, banner, text } = req.body;
+  const { id } = req.params;
+  const userId = req.userId;
+
+  try {
+    await postService.updatePostService(id, title, banner, text, userId);
 
     return res.send({ message: "Post successfully updated!" });
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
+  } catch (e) {
+    return res.status(500).send(e.message);
+  }
+}
 
-export const erase = async (req, res) => {
+async function deletePostController(req, res) {
+  const { id } = req.params;
+  const userId = req.userId;
+
   try {
-    const { id } = req.params;
-
-    const posts = await findByIdService(id);
-
-    if (String(posts.user._id) !== req.userId) {
-      return res.status(400).send({
-        message: "You didn't delete this post",
-      });
-    };
-
-    await eraseService(id);
-
+    await postService.deletePostService(id, userId);
     return res.send({ message: "Post deleted successfully" });
   } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
+    return res.status(500).send(e.message);
+  }
+}
 
-export const likePost = async (req, res) => {
+async function likePostController(req, res) {
+  const { id } = req.params;
+  const userId = req.userId;
+
   try {
-    const { id } = req.params;
-    const userId = req.userId;
+    const response = await postService.likePostService(id, userId);
 
-    const postLiked = await likePostService(id, userId);
+    return res.send(response);
+  } catch (e) {
+    return res.status(500).send(e.message);
+  }
+}
 
-    if (!postLiked) {
-      await deleteLikePostService(id, userId);
-      return res.status(200).send({ message: "Like successfully removed!!" });
-    };
+async function commentPostController(req, res) {
+  const { id: postId } = req.params;
+  const { message } = req.body;
+  const userId = req.userId;
 
-    res.send({ message: 'Like done successfully ' })
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
-
-export const addComment = async (req, res) => {
   try {
-    const { id } = req.params;
-    const userId = req.userId;
-    const { comment } = req.body;
+    await postService.commentPostService(postId, message, userId);
 
-    if (!comment) {
-      return res.status(400).send({ message: "Write a message to comment" });
-    };
+    return res.send({
+      message: "Comment successfully completed!",
+    });
+  } catch (e) {
+    return res.status(500).send(e.message);
+  }
+}
 
-    await addCommentService(id, comment, userId);
+async function commentDeletePostController(req, res) {
+  const { id: postId, idComment } = req.params;
+  const userId = req.userId;
 
-    res.send({ message: "Comment successfully completed!" });
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
-};
-
-export const deleteComment = async (req, res) => {
   try {
-    const { idPosts, idComment } = req.params;
-    const userId = req.userId;
+    await postService.commentDeletePostService(postId, userId, idComment);
 
-    const commentDeleted = await deleteCommentService(idPosts, idComment, userId);
+    return res.send({ message: "Comment successfully removed" });
+  } catch (e) {
+    return res.status(500).send(e.message);
+  }
+}
 
-    const commentFinder = commentDeleted.comments.find((comment) => comment.idComment === idComment);
-
-    if (!commentFinder) {
-      return res.status(404).send({ message: "Comment not found" })
-    }
-
-    if (commentFinder.userId !== userId) {
-      return res.status(400).send({ message: "You can't delete this commet" })
-    };
-
-    res.send({ message: "Comment successfully removed!" });
-  } catch (err) {
-    res.status(500).send({ message: err.message })
-  };
+export default {
+  createPostController,
+  findAllPostsController,
+  topPostsController,
+  searchPostController,
+  findPostByIdController,
+  findPostsByUserIdController,
+  updatePostController,
+  deletePostController,
+  likePostController,
+  commentPostController,
+  commentDeletePostController,
 };

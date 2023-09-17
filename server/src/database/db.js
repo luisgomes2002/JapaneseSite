@@ -11,6 +11,4 @@ const connectDatabase = () => {
     .catch((error) => console.log(error));
 };
 
-
-
 export default connectDatabase;

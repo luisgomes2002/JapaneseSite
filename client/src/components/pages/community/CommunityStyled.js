@@ -69,7 +69,7 @@ export const CardContainerCommunity = styled.section`
 export const CardBodyCommunity = styled.article`
   display: flex;
   align-items: center;
-  text-align: center;
+  text-align: left;
 
   h2{
     padding: 3% 8%;
