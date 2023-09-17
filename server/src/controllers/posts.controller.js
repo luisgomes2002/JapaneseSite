@@ -62,6 +62,7 @@ async function searchPostController(req, res) {
     res.status(500).send(e.message);
   }
 }
+
 async function findPostsByUserIdController(req, res) {
   const id = req.userId;
   try {

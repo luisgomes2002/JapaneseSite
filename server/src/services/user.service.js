@@ -3,32 +3,26 @@ import authService from "../services/auth.service.js"
 import bcrypt from 'bcrypt';
 
 const createUserService = async ({ name, username, email, password, avatar, background }) => {
-  if (!name || !username || !email || !password || !avatar || !background) throw new Erro("Envie todos os campos para cadastro");
-
-  const newUser = { name, username, email, password, avatar, background }
+  if (!username || !name || !email || !password || !avatar || !background) throw new Error("Envie todos os campos para cadastro");
 
   const foundUser = await userRepositories.findByEmailUserRepository(email);
 
-  if (foundUser) throw new Erro("Usuário já existe");
+  if (foundUser) throw new Error("Usuário já existe");
 
-  const user = await userRepositories.createUserRepository(newUser);
+  const user = await userRepositories.createUserRepository({
+    name,
+    username,
+    email,
+    password,
+    avatar,
+    background,
+  });
 
-  if (!user) throw new Erro("Erro ao criar usuário");
+  if (!user) throw new Error("Erro ao criar usuário");
 
   const token = authService.generateToken(user.id);
 
-  return {
-    message: "User created sucessfully",
-    user: {
-      id: user._id,
-      name,
-      username,
-      email,
-      avatar,
-      background,
-    },
-    token,
-  };
+  return token;
 };
 
 const findAllUserService = async () => {
@@ -68,7 +62,7 @@ const updateUserService = async ({ name, username, email, password, avatar, back
 
   if (password) password = await bcrypt.hash(password, 10);
 
-  await userRepositories.updateUserRepository(
+  /*await*/ userRepositories.updateUserRepository(
     userId,
     name,
     username,
@@ -81,19 +75,22 @@ const updateUserService = async ({ name, username, email, password, avatar, back
   return { message: "Usuário atualizado com sucesso!" };
 }
 
-const deleteUserByIdService = async (userIdParam, userIdLogged) => {
-  let idParam;
+const deleteUserByIdService = async (userId) => {
+  const user = await userRepositories.deleteUserRepository(userId);
 
-  if (!userIdParam) {
-    userIdParam = userIdLogged;
-    idParam = userIdParam;
-  } else {
-    idParam = userIdParam;
-  }
-
-  await userRepositories.deleteUserRepository(idParam);
+  if (!user) throw new Error("Usuário não encontrado");
 
   return { message: "Usuário deletado om sucesso!" };
 };
 
-export default { createUserService, findAllUserService, findUserByIdService, updateUserService, deleteUserByIdService };
+const followUserService = async (userIdParam, userIdLogged, name) => {
+
+}
+
+export default {
+  createUserService,
+  findAllUserService,
+  findUserByIdService,
+  updateUserService,
+  deleteUserByIdService
+};

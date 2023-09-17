@@ -14,5 +14,6 @@ userRouter.get("/", userController.findAllUserController);
 userRouter.use(validId);
 userRouter.get("/findById/:id?", userController.findUserByIdController);
 userRouter.patch("/update/:id", userController.updateUserController);
+userRouter.delete("/delete/:id", userController.deleteUserByIdController);
 
 export default userRouter;

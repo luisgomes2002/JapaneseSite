@@ -3,18 +3,19 @@ import bcrypt from "bcrypt";
 import "dotenv/config";
 import userRepositories from "../repositories/user.repositories.js";
 
+
 const generateToken = (id) => {
-  return jwt.sign({ id: id }, process.env.SECRET, { expiresIn: 432000 });
+  return jwt.sign({ id: id }, process.env.SECRET_JWT, { expiresIn: 432000 });
 }
 
 const loginService = async ({ email, password }) => {
   const user = await userRepositories.findByEmailUserRepository(email);
 
-  if (!user) throw new Error("Wrong password or username");
+  if (!user) throw new Error("Senha ou nome de usuário errados");
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
-  if (!isPasswordValid) throw new Error("Invalid password");
+  if (!isPasswordValid) throw new Error("Senha ou nome de usuário errados");
 
   const token = generateToken(user.id);
 

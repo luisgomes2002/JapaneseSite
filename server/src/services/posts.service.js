@@ -167,19 +167,15 @@ const deletePostService = async (id, userId) => {
 }
 
 const likePostService = async (id, userId) => {
-  const postLiked = await postService.likesService(id, userId);
+  const postLiked = await postRepositories.likesRepository(id, userId);
 
   if (postLiked.lastErrorObject.n === 0) {
-    await postService.likesDeleteService(id, userId);
+    await postRepositories.likesDeleteRepository(id, userId);
     return { message: "Like successfully removed" };
   }
 
   return { message: "Like done successfully" };
 }
-
-// const deleteLikePostService = (id, userId) => {
-
-// }
 
 const commentPostService = async (postId, message, userId) => {
   if (!message) throw new Error("Write a message to comment");

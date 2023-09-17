@@ -59,9 +59,9 @@ const updateUserController = async (req, res) => {
 
 const deleteUserByIdController = async (req, res) => {
   try {
-    const { id: userIdParam } = req.params;
+    const userId = req.userId;
 
-    const response = await userService.deleteUserByIdService(userIdParam);
+    const response = await userService.deleteUserByIdService(userId);
 
     return res.send(response);
   } catch (e) {
@@ -69,4 +69,10 @@ const deleteUserByIdController = async (req, res) => {
   };
 };
 
-export default { createUserController, findAllUserController, findUserByIdController, updateUserController, deleteUserByIdController };
+export default {
+  createUserController,
+  findAllUserController,
+  findUserByIdController,
+  updateUserController,
+  deleteUserByIdController
+};
