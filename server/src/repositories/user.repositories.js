@@ -20,7 +20,7 @@ const deleteUserRepository = (idUser) => User.deleteOne({ _id: idUser });
 
 const countRepository = () => User.countDocuments();
 
-const followUserRepository = (id, userId) => {
+const followUserRepository = (id, userId, name) => {
   return User.findOneAndUpdate(
     {
       _id: id,
@@ -28,7 +28,7 @@ const followUserRepository = (id, userId) => {
     },
     {
       $push: {
-        follows: { userId, created: new Date() },
+        follows: { userId, name, created: new Date() },
       },
     },
     {

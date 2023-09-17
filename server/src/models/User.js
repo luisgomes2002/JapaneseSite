@@ -33,6 +33,10 @@ const UserSchema = new mongoose.Schema({
   follows: {
     type: Array,
     required: true,
+  },
+  follows: {
+    type: Array,
+    require: true,
   }
 });
 

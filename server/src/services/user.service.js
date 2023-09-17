@@ -83,11 +83,11 @@ const deleteUserByIdService = async (userId) => {
   return { message: "Usuário deletado om sucesso!" };
 };
 
-const followUserService = async (id, userId) => {
-  const postLiked = await userRepositories.followUserRepository(id, userId);
+const followUserService = async (id, userId, name) => {
+  const postFollow = await userRepositories.followUserRepository(id, userId, name);
 
-  if (postLiked.lastErrorObject.n === 0) {
-    await userRepositories.deletefollowUserRepository(id, userId);
+  if (postFollow.lastErrorObject.n === 0) {
+    await userRepositories.deletefollowUserRepository(id, userId, name);
     return { message: "Follow successfully removed" };
   }
 
