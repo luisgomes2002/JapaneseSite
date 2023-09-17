@@ -69,10 +69,25 @@ const deleteUserByIdController = async (req, res) => {
   };
 };
 
+const followUserController = async (req, res) => {
+  const { id } = req.params;
+  const userId = req.userId;
+
+  try {
+    const response = await userService.followUserService(id, userId);
+
+    return res.send(response);
+  } catch (e) {
+    return res.status(500).send(e.message);
+  }
+
+};
+
 export default {
   createUserController,
   findAllUserController,
   findUserByIdController,
   updateUserController,
-  deleteUserByIdController
+  deleteUserByIdController,
+  followUserController
 };

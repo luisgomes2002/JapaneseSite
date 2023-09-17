@@ -20,6 +20,38 @@ const deleteUserRepository = (idUser) => User.deleteOne({ _id: idUser });
 
 const countRepository = () => User.countDocuments();
 
+const followUserRepository = (id, userId) => {
+  return User.findOneAndUpdate(
+    {
+      _id: id,
+      "follows.userId": { $nin: [userId] },
+    },
+    {
+      $push: {
+        follows: { userId, created: new Date() },
+      },
+    },
+    {
+      rawResult: true,
+    }
+  );
+}
+
+const deletefollowUserRepository = (id, userId) => {
+  return User.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    {
+      $pull: {
+        follows: {
+          userId: userId,
+        },
+      },
+    }
+  );
+}
+
 export default {
   findByEmailUserRepository,
   createUserRepository,
@@ -28,4 +60,6 @@ export default {
   updateUserRepository,
   deleteUserRepository,
   countRepository,
+  followUserRepository,
+  deletefollowUserRepository
 };
