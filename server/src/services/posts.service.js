@@ -22,7 +22,7 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
   offset = Number(offset);
 
   if (!limit) {
-    limit = 6;
+    limit = 7;
   }
 
   if (!offset) {

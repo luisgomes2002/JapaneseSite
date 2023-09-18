@@ -72,16 +72,16 @@ const deleteUserByIdController = async (req, res) => {
 const followUserController = async (req, res) => {
   const { id } = req.params;
   const userId = req.userId;
-  const { name } = await userService.findUserByIdService(req.userId);
+  const idName = await userService.findUserByIdService(id);
+  const userIdName = await userService.findUserByIdService(req.userId);
 
   try {
-    const response = await userService.followUserService(id, userId, name);
+    const response = await userService.followUserService(id, idName.username, userId, userIdName.username);
 
     return res.send(response);
   } catch (e) {
     return res.status(500).send(e.message);
   }
-
 };
 
 export default {
@@ -90,5 +90,5 @@ export default {
   findUserByIdController,
   updateUserController,
   deleteUserByIdController,
-  followUserController
+  followUserController,
 };

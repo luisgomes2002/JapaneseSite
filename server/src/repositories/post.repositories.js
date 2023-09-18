@@ -28,7 +28,7 @@ const searchPostRepository = (title) => {
   return Post.find({
     title: { $regex: `${title || ""}`, $options: "i" },
   })
-    .sort({ _id: -1 })
+    .sort({ _likes: -1 })
     .populate("user");
 }
 

@@ -14,13 +14,13 @@ const updateUserRepository = (id, name, username, email, password, avatar, backg
     { name, username, email, password, avatar, background },
     { rawResult: true, }
   );
-}
+};
 
 const deleteUserRepository = (idUser) => User.deleteOne({ _id: idUser });
 
 const countRepository = () => User.countDocuments();
 
-const followUserRepository = (id, userId, name) => {
+const followUserRepository = (id, userId, userIdName) => {
   return User.findOneAndUpdate(
     {
       _id: id,
@@ -28,14 +28,14 @@ const followUserRepository = (id, userId, name) => {
     },
     {
       $push: {
-        follows: { userId, name, created: new Date() },
+        follows: { userId, userIdName, created: new Date() },
       },
     },
     {
       rawResult: true,
     }
   );
-}
+};
 
 const deletefollowUserRepository = (id, userId) => {
   return User.findOneAndUpdate(
@@ -44,13 +44,41 @@ const deletefollowUserRepository = (id, userId) => {
     },
     {
       $pull: {
-        follows: {
-          userId: userId,
-        },
+        follows: { userId: userId, },
       },
     }
   );
-}
+};
+
+const followedUserRepository = (id, userId, idName) => {
+  return User.findOneAndUpdate(
+    {
+      _id: userId,
+      "followed.id": { $nin: [id] },
+    },
+    {
+      $push: {
+        followed: { id, idName, created: new Date() }
+      }
+    },
+    {
+      rawResult: true,
+    }
+  )
+};
+
+const deletefollowedUserRepository = (id, userId) => {
+  return User.findOneAndUpdate(
+    {
+      _id: userId,
+    },
+    {
+      $pull: {
+        followed: { id: id, },
+      }
+    }
+  )
+};
 
 export default {
   findByEmailUserRepository,
@@ -61,5 +89,7 @@ export default {
   deleteUserRepository,
   countRepository,
   followUserRepository,
-  deletefollowUserRepository
+  deletefollowUserRepository,
+  followedUserRepository,
+  deletefollowedUserRepository
 };

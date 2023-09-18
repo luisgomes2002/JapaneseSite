@@ -73,7 +73,7 @@ const updateUserService = async ({ name, username, email, password, avatar, back
   );
 
   return { message: "Usuário atualizado com sucesso!" };
-}
+};
 
 const deleteUserByIdService = async (userId) => {
   const user = await userRepositories.deleteUserRepository(userId);
@@ -83,16 +83,18 @@ const deleteUserByIdService = async (userId) => {
   return { message: "Usuário deletado om sucesso!" };
 };
 
-const followUserService = async (id, userId, name) => {
-  const postFollow = await userRepositories.followUserRepository(id, userId, name);
+const followUserService = async (id, idName, userId, userIdName) => {
+  const userFollow = await userRepositories.followUserRepository(id, userId, userIdName);
+  const userFollowed = await userRepositories.followedUserRepository(id, userId, idName);
 
-  if (postFollow.lastErrorObject.n === 0) {
-    await userRepositories.deletefollowUserRepository(id, userId, name);
+  if (userFollow.lastErrorObject.n === 0 && userFollowed.lastErrorObject.n === 0) {
+    await userRepositories.deletefollowUserRepository(id, userId);
+    await userRepositories.deletefollowedUserRepository(id, userId);
     return { message: "Follow successfully removed" };
   }
 
   return { message: "Follow done successfully" };
-}
+};
 
 export default {
   createUserService,
@@ -100,5 +102,5 @@ export default {
   findUserByIdService,
   updateUserService,
   deleteUserByIdService,
-  followUserService
+  followUserService,
 };
