@@ -1,7 +1,7 @@
 import postService from "../services/posts.service.js";
 import userRepositories from "../repositories/user.repositories.js";
 
-async function createPostController(req, res) {
+ const createPostController = async(req, res) => {
   const { title, banner, text } = req.body;
   const userId = req.userId;
 
@@ -16,7 +16,7 @@ async function createPostController(req, res) {
   }
 }
 
-async function findAllPostsController(req, res) {
+ const findAllPostsController = async(req, res) => {
   const { limit, offset } = req.query;
   const currentUrl = req.baseUrl;
 
@@ -32,7 +32,7 @@ async function findAllPostsController(req, res) {
   }
 }
 
-async function topPostsController(req, res) {
+ const topPostsController = async(req, res) => {
   try {
     const post = await postService.topPostsService();
     return res.send(post);
@@ -41,7 +41,7 @@ async function topPostsController(req, res) {
   }
 }
 
-async function findPostByIdController(req, res) {
+ const findPostByIdController = async(req, res) => {
   const { id } = req.params;
 
   try {
@@ -52,7 +52,7 @@ async function findPostByIdController(req, res) {
   }
 }
 
-async function searchPostController(req, res) {
+ const searchPostController = async(req, res) => {
   const { title } = req.query;
 
   try {
@@ -64,7 +64,7 @@ async function searchPostController(req, res) {
   }
 }
 
-async function findPostsByUserIdController(req, res) {
+ const findPostsByUserIdController = async(req, res) => {
   const id = req.userId;
   try {
     const posts = await postService.findPostsByUserIdService(id);
@@ -74,7 +74,7 @@ async function findPostsByUserIdController(req, res) {
   }
 }
 
-async function updatePostController(req, res) {
+ const updatePostController = async(req, res) => {
   const { title, banner, text } = req.body;
   const { id } = req.params;
   const userId = req.userId;
@@ -88,7 +88,7 @@ async function updatePostController(req, res) {
   }
 }
 
-async function deletePostController(req, res) {
+ const deletePostController = async(req, res) =>  {
   const { id } = req.params;
   const userId = req.userId;
   const userFullPermission = await userRepositories.findByIdUserRepository(userId);
@@ -102,7 +102,7 @@ async function deletePostController(req, res) {
   }
 }
 
-async function likePostController(req, res) {
+ const likePostController = async(req, res)  => {
   const { id } = req.params;
   const userId = req.userId;
 
@@ -115,7 +115,7 @@ async function likePostController(req, res) {
   }
 }
 
-async function commentPostController(req, res) {
+ const commentPostController = async(req, res) => {
   const { id: postId } = req.params;
   const { message } = req.body;
   const userId = req.userId;
@@ -131,7 +131,7 @@ async function commentPostController(req, res) {
   }
 }
 
-async function commentDeletePostController(req, res) {
+ const commentDeletePostController = async(req, res) => {
   const { id: postId, idComment } = req.params;
   const userId = req.userId;
 
