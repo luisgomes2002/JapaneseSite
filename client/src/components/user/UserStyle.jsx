@@ -1,14 +1,13 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const TotalSpace = styled.div`
-  p{ 
+  p {
     margin: 0;
   }
 `;
 
 export const GifArea = styled.div`
-  background-size: cover; 
+  background-size: cover;
   background-color: black;
   background-position: center center;
   background-attachment: fixed;
@@ -16,7 +15,7 @@ export const GifArea = styled.div`
 
 export const UserInfomationsArea = styled.div`
   margin: 0 20%;
-  background-color: #202024e5;
+  background-color: #232325e4;
   height: 100%;
 `;
 
@@ -26,27 +25,27 @@ export const UserInformation = styled.div`
   grid-template-columns: 30% 1fr;
 
   img {
-  border: 1px solid #fff;
-  height: 200px;
-  width: 200px;
-  margin-bottom: 20%;
+    border: 1px solid #fff;
+    height: 200px;
+    width: 200px;
+    margin-bottom: 20%;
   }
 
   h2 {
-  color: #6c6c72;
-  font-size: 20px;
+    color: #6c6c72;
+    font-size: 20px;
   }
 
   h3 {
-  color: #fff;
-  font-size: 40px;
-  padding: 3% 0;
+    color: #fff;
+    font-size: 40px;
+    padding: 3% 0;
   }
 
   p {
-  color: #fff;
-  font-size: 20px;
-  padding-bottom: 5%;
+    color: #fff;
+    font-size: 20px;
+    padding-bottom: 5%;
   }
 `;
 
@@ -62,7 +61,7 @@ export const UserAbout = styled.div`
     padding-bottom: 3%;
   }
 
-  p{
+  p {
     font-size: 17px;
     color: #b6b6c4;
   }
@@ -76,10 +75,10 @@ export const Follows = styled.div`
   border-radius: 5px;
   margin-bottom: 5%;
   box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.267);
- 
+
   h3 {
-  color: #fff;
-  font-size: 20px;
+    color: #fff;
+    font-size: 20px;
   }
 `;
 
@@ -127,7 +126,7 @@ export const Case = styled.div`
   border: #5400d9;
   box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.267);
 
-  h3{
+  h3 {
     font-size: 55px;
     color: #fff;
     margin: 0;
@@ -137,7 +136,7 @@ export const Case = styled.div`
     box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.267);
   }
 
-  p{
+  p {
     padding-left: 5%;
     color: #fff;
   }

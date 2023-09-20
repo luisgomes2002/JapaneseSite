@@ -30,7 +30,6 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
   }
 
   const posts = await postRepositories.findAllPostsRepository(offset, limit);
-  console.log(posts)
 
   const total = await postRepositories.countPosts();
 
@@ -40,7 +39,7 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
   const previous = offset - limit < 0 ? null : offset - limit;
   const previousUrl = previous != null ? `${currentUrl}?limit=${limit}&offset=${previous}` : null;
 
-  //posts.shift();
+  posts.shift();
 
   return {
     nextUrl,
@@ -153,14 +152,16 @@ const updatePostService = async (id, title, banner, text, userId) => {
   await postRepositories.updatePostRepository(id, title, banner, text);
 }
 
-const deletePostService = async (id, userId) => {
-  const post = await postService.findPostByIdService(id);
+const deletePostService = async (id, userId, permission) => {
+  const post = await postRepositories.findPostByIdRepository(id);
 
   if (!post) throw new Error("Post not found");
 
-  if (post.user._id != userId) throw new Error("You didn't create this post");
-
-  await postRepositories.deletePostRepository(id);
+  if (post.user._id == userId || permission === true) {
+    await postRepositories.deletePostRepository(id);
+  }else {
+    throw new Error("You didn't create this post");
+  }
 }
 
 const likePostService = async (id, userId) => {

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import userRepositories from "../repositories/user.repositories.js";
 
-export function validId(req, res, next) {
+export async function validId(req, res, next) {
   let idParam;
   if (!req.params.id) {
     req.params.id = req.userId;
@@ -9,8 +10,10 @@ export function validId(req, res, next) {
     idParam = req.params.id;
   }
 
-  if (!mongoose.Types.ObjectId.isValid(idParam)) {
-    return res.status(400).send({ message: "ID Inválido!" });
+  const userFullPermission = await userRepositories.findByIdUserRepository(idParam);
+
+  if (!mongoose.Types.ObjectId.isValid(idParam) ||  userFullPermission.fullPermission !== true) {
+    return res.status(400).send({ message: "ID Inválido ou Sem permissão!" });
   }
   next();
 }

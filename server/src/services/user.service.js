@@ -84,12 +84,16 @@ const deleteUserByIdService = async (userId) => {
 };
 
 const followUserService = async (id, idName, userId, userIdName) => {
-  const userFollow = await userRepositories.followUserRepository(id, userId, userIdName);
-  const userFollowed = await userRepositories.followedUserRepository(id, userId, idName);
+  const [userFollow, userFollowed] = await Promise.all([
+    userRepositories.followUserRepository(id, userId, userIdName),
+    userRepositories.followedUserRepository(id, userId, idName)
+  ]);
 
   if (userFollow.lastErrorObject.n === 0 && userFollowed.lastErrorObject.n === 0) {
-    await userRepositories.deletefollowUserRepository(id, userId);
-    await userRepositories.deletefollowedUserRepository(id, userId);
+    await Promise.all([
+      userRepositories.deletefollowUserRepository(id, userId),
+      userRepositories.deletefollowedUserRepository(id, userId)
+    ]);
     return { message: "Follow successfully removed" };
   }
 

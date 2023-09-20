@@ -1,4 +1,5 @@
 import postService from "../services/posts.service.js";
+import userRepositories from "../repositories/user.repositories.js";
 
 async function createPostController(req, res) {
   const { title, banner, text } = req.body;
@@ -25,7 +26,6 @@ async function findAllPostsController(req, res) {
       offset,
       currentUrl
     );
-    console.log(posts);
     return res.send(posts);
   } catch (e) {
     res.status(500).send(e.message);
@@ -91,11 +91,13 @@ async function updatePostController(req, res) {
 async function deletePostController(req, res) {
   const { id } = req.params;
   const userId = req.userId;
-
+  const userFullPermission = await userRepositories.findByIdUserRepository(userId);
+  const permission = userFullPermission.fullPermission;
+  
   try {
-    await postService.deletePostService(id, userId);
+    await postService.deletePostService(id, userId, permission);
     return res.send({ message: "Post deleted successfully" });
-  } catch (err) {
+  } catch (e) {
     return res.status(500).send(e.message);
   }
 }
