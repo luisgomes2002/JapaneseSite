@@ -42,6 +42,11 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  fullPermission: {
+    type: Boolean,
+    default: false,
+    require: true,
+  }
 });
 
 UserSchema.pre("save", async function (next) {
