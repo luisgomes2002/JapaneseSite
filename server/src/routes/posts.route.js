@@ -20,9 +20,6 @@ postRouter.patch("/update/:id", postController.updatePostController);
 postRouter.delete("/delete/:id", postController.deletePostController);
 postRouter.patch("/:id/like", postController.likePostController);
 postRouter.patch("/:id/comment", postController.commentPostController);
-postRouter.patch(
-  "/:id/:idComment/comment",
-  postController.commentDeletePostController
-);
+postRouter.patch("/:id/:idComment/comment", postController.commentDeletePostController);
 
 export default postRouter;

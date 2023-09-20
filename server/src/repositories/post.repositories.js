@@ -5,11 +5,7 @@ const createPostRepository = (title, banner, text, userId) => {
 }
 
 const findAllPostsRepository = (offset, limit) => {
-  return Post.find()
-    .sort({ likes: -1 })
-    .skip(offset)
-    .limit(limit)
-    .populate("user");
+  return Post.find().sort({ likes: -1 }).skip(offset).limit(limit).populate("user");
 }
 
 const topPostsRepository = () => {
@@ -28,7 +24,7 @@ const searchPostRepository = (title) => {
   return Post.find({
     title: { $regex: `${title || ""}`, $options: "i" },
   })
-    .sort({ _likes: -1 })
+    .sort({ likes: -1 })
     .populate("user");
 }
 

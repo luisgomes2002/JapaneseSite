@@ -1,113 +1,72 @@
-import React, { useState, useEffect, Component } from "react";
-import { Scrollbars } from "react-custom-scrollbars-2";
+import React from "react";
 import NavBar from "../nav/NavBar";
-import "./User.css";
-import Baka from "../../assets/baka/background/background.jpg";
-import axios from "axios";
-import { videoAbout } from "../pages/videos/JlptVideosEx";
-import { Link } from "react-router-dom";
+import {
+  UserInfomationsArea,
+  TotalSpace,
+  UserInformation,
+  GifArea,
+  UserAbout,
+  Follows,
+  CadsAndAchievements,
+  Card,
+  Achievementsiv,
+  Case,
+} from "./UserStyle";
+import baka from "../../assets/baka/channelBaka.jpg";
+import cyberpunk from "../../assets/cyberpunk/img.gif";
 
-class Loop extends Component {
-  render() {
-    return (
-      <div>
-        {videoAbout.map((dados) => (
-          <div className="posts-space">
-            <div></div>
-            <div className="link-count">
-              <i className="fa-solid fa-heart fa-xl"></i>
-              <p>0</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-}
-
-const UserPage = ({ post, emptyHeading }) => {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  //const [gender, setGender] = useState('')
-  const [id, setId] = useState("");
-  const [profileImage, setProfileImage] = useState(null);
-
-  useEffect(() => {
-    getUsers();
-  }, []);
-
-  const handleProfileImageChange = (event) => {
-    const file = event.target.files[0];
-    setProfileImage(URL.createObjectURL(file));
-  };
-
-  const getUsers = () => {
-    axios.get("http://localhost:3001/login").then((response) => {
-      if (response.data.loggedIn === true) {
-        setName(response.data.user.user_name);
-        setAge(response.data.user.user_age);
-        setId(response.data.user.user_id);
-        //setGender(response.data.user.user_name)
-        //setJapLevel(response.data.user.user_name)
-      }
-    });
-  };
-
-  post = videoAbout.length;
-  const count = post;
-  let heading = emptyHeading;
-  if (count > 0) {
-    const noun = count > 1 ? "Posts" : "Post";
-    heading = count + " " + noun;
-  }
-
+const UserPage = () => {
   return (
-    <div>
-      <nav>
-        <NavBar />
-      </nav>
-      <div className="profile-user">
-        <div className="user-info">
-          <div className="user-img">
-            <img src={profileImage ? profileImage : Baka} />
-            <input type="file" id="file" onChange={handleProfileImageChange} />
-            <label htmlFor="file">
-              <i className="fa-solid fa-image"></i>
-            </label>
-          </div>
-          <div className="user-info-base">
-            <div className="button-edit">
-              <Link to={`/update/${id}`}>
-                <i className="fa-solid fa-pen-to-square"></i>
-              </Link>
+    <TotalSpace style={{ backgroundColor: "#121214" }}>
+      <NavBar />
+      <GifArea style={{ backgroundImage: `url(${cyberpunk})` }}>
+        <UserInfomationsArea>
+          <UserInformation>
+            <div>
+              <img src={baka} alt="img" />
+              <h2>Luis Gustavo</h2>
+              <h3>UserName</h3>
+              <p>JLPT: N2</p>
             </div>
-            <p>Name: {name}</p>
-            <p>Age: {age ? age : "Nada informado"}</p>
-            <p>Gender: {/*{gender ? gender : 'Nada informado'} */}</p>
-            <p>
-              Japanese level: {/*{JapLevel ? JapLevel : 'Nada informado'} */}
-            </p>
-            <p>Self-introduction:</p>
-          </div>
-        </div>
-        <div className="user-post">
-          <div className="user-info-num">
-            <p>{heading}</p>
-            <p>0 Seguidores</p>
-            <p>0 Seguindo</p>
-          </div>
-          <div className="posts-area">
+            <div>
+              <Follows>
+                <h3>10 Posts</h3>
+                <h3>10 Seguidores</h3>
+                <h3>10 Seguindo</h3>
+              </Follows>
+              <UserAbout>
+                <h1>Sobre mim</h1>
+                <p>
+                  Olá! Seja bem-vindo ao MURASAKI, o site definitivo para todos
+                  aqueles que desejam embarcar na emocionante jornada de
+                  aprender japonês. Sou Luis Gomes, o criador deste projeto
+                  apaixonante, e estou entusiasmado em compartilhar com você
+                  tudo o que o MURASAKI tem a oferecer. Junte-se a nós no
+                  MURASAKI e comece sua jornada de aprendizado do japonês hoje
+                  mesmo. Vamos explorar juntos as maravilhas deste idioma único
+                  e desbloquear um mundo de oportunidades!
+                </p>
+              </UserAbout>
+            </div>
+          </UserInformation>
+          <CadsAndAchievements>
             <section>
-              <div className="posts-container">
-                <Scrollbars style={{ height: 640 }}>
-                  <Loop />
-                </Scrollbars>
-              </div>
+              <h1 style={{ paddingLeft: "7%" }}>Posts</h1>
+              <Card></Card>
             </section>
-          </div>
-        </div>
-      </div>
-    </div>
+            <section>
+              <h1 style={{ textAlign: "center" }}>Conquistas</h1>
+              <Achievementsiv>
+                <Case>
+                  <h3>7</h3>
+                  <p>Anos Murasaki</p>
+                </Case>
+              </Achievementsiv>
+            </section>
+          </CadsAndAchievements>
+        </UserInfomationsArea>
+      </GifArea>
+    </TotalSpace>
   );
 };
 

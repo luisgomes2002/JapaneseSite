@@ -7,7 +7,7 @@ import JapaneseLearner from "./pages/japanese/japaneseLearner/JapaneseLearner";
 import Register from "./login/Register";
 import Login from "./login/LoginPage";
 import UserPage from "./user/User";
-import Update from "./user/UserUpdate";
+// import Update from "./user/User";
 import ErroPage from "./ErroPage";
 import AdminPage from "./user/Admin";
 import Categories from "./pages/categories/Categories";
@@ -27,7 +27,7 @@ function Router() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/userpage" element={<UserPage />} />
-      <Route path="/update/:id" element={<Update />} />
+      {/* <Route path="/update/:id" element={<Update />} /> */}
       <Route path="/adminpage" element={<AdminPage />} />
       <Route path="/categorias" element={<Categories />} />
       <Route path="/portfolio" element={<Portfolio />} />

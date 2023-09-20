@@ -25,6 +25,7 @@ async function findAllPostsController(req, res) {
       offset,
       currentUrl
     );
+    console.log(posts);
     return res.send(posts);
   } catch (e) {
     res.status(500).send(e.message);

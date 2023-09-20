@@ -30,18 +30,17 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
   }
 
   const posts = await postRepositories.findAllPostsRepository(offset, limit);
+  console.log(posts)
 
   const total = await postRepositories.countPosts();
 
   const next = offset + limit;
-  const nextUrl =
-    next < total ? `${currentUrl}?limit=${limit}&offset=${next}` : null;
+  const nextUrl = next < total ? `${currentUrl}?limit=${limit}&offset=${next}` : null;
 
   const previous = offset - limit < 0 ? null : offset - limit;
-  const previousUrl =
-    previous != null ? `${currentUrl}?limit=${limit}&offset=${previous}` : null;
+  const previousUrl = previous != null ? `${currentUrl}?limit=${limit}&offset=${previous}` : null;
 
-  posts.shift();
+  //posts.shift();
 
   return {
     nextUrl,
@@ -63,8 +62,6 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
     })),
   };
 }
-
-//const countPosts = () => Posts.countDocuments();
 
 const topPostsService = async () => {
   const post = await postRepositories.topPostsRepository();

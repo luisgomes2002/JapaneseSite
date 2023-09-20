@@ -5,24 +5,29 @@ import {
   CardContainerBody,
   CardContainerCommunity,
   CardBodyCommunity,
-  CardIconsCommunity,
   UsersPostsAreaCommunity,
 } from "./CommunityStyled";
 import NavBar from "../../nav/NavBar";
-import Card from "./Card";
-import { getAllPosts } from "../../../services/postsServices";
-import { TextLimit } from "../../textLimit/TextLimit";
+import { Card } from "./Card";
+import { getAllPosts, getTopPost } from "../../../services/postsServices";
 
 const UsersPostsArea = () => {
   const [posts, setPosts] = useState([]);
+  const [topPost, setTopPost] = useState({});
 
   const findAllPosts = async () => {
-    const response = await getAllPosts();
-    setPosts(response.data.results);
+    const postResponse = await getAllPosts();
+    setPosts(postResponse.data.results);
+  };
+
+  const findTopPost = async () => {
+    const topPostResponse = await getTopPost();
+    setTopPost(topPostResponse.data.post);
   };
 
   useEffect(() => {
     findAllPosts();
+    findTopPost();
   }, []);
 
   return (
@@ -47,42 +52,29 @@ const UsersPostsArea = () => {
         </SearchArea>
         <CardContainerCommunity>
           <CardBodyCommunity>
-            <div>
-              {posts.length > 0 ? (
-                <>
-                  <h2>{posts[0].title}</h2>
-                  <TextLimit text={posts[0].text} limit={280} />
-                  <CardIconsCommunity>
-                    <div>
-                      <i className="fa-regular fa-heart"></i>
-                      <span>{posts[0].likes ? posts[0].likes.length : 0}</span>
-                    </div>
-                    <div>
-                      <i className="fa-regular fa-message"></i>
-                      <span>
-                        {posts[0].comments ? posts[0].comments.length : 0}
-                      </span>
-                    </div>
-                  </CardIconsCommunity>
-                </>
-              ) : (
-                <h3>Nenhuma postagem disponível</h3>
-              )}
-            </div>
+            <Card
+              top={true}
+              title={topPost.title}
+              text={topPost.text}
+              banner={topPost.banner}
+              likes={topPost.likes}
+              comments={topPost.comments}
+            />
           </CardBodyCommunity>
-          <img src={posts.length > 0 ? posts[0].banner : ""} alt="banner" />
+          <img src={topPost.banner} alt="banner" />
         </CardContainerCommunity>
       </IntroSpaceCommunity>
       <CardContainerBody>
         {posts.map((item) => {
           return (
             <Card
+              top={false}
               key={item.id}
               title={item.title}
               text={item.text}
               banner={item.banner}
-              likes={item.likes ? item.likes.length : 0}
-              comments={item.comments ? item.comments.length : 0}
+              likes={item.likes}
+              comments={item.comments}
             />
           );
         })}
