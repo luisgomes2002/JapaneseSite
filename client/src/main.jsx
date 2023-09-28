@@ -5,6 +5,8 @@ import HomePage from "./components/home/HomePage.jsx";
 import { GlobalStyled } from "./GlobalStyled.jsx";
 import ErroPage from "./components/ErroPage.jsx";
 import Community from "./components/pages/community/Community.jsx";
+import Search from "./components/pages/community/Search.jsx";
+import Footer from "./components/template/Footer.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/community",
     element: <Community />,
+  },
+  {
+    path: "community/search/:title",
+    element: <Search />,
   },
 ]);
 

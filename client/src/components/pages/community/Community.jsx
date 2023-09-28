@@ -68,7 +68,6 @@ const UsersPostsArea = () => {
         {posts.map((item) => {
           return (
             <Card
-              top={false}
               key={item.id}
               title={item.title}
               text={item.text}

@@ -1,6 +1,6 @@
-// import NavBar from "../../nav/NavBar";
-// import { Card } from "./Card";
-// import { getAllPosts, getTopPost } from "../../../services/postsServices";
+import NavBar from "../../nav/NavBar";
+import { Card } from "./Card";
+import { getAllPosts, getTopPost } from "../../../services/postsServices";
 import { useParams } from "react-router";
 
 const Search = () => {
