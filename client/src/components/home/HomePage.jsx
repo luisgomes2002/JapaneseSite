@@ -1,4 +1,3 @@
-import React from "react";
 import NavBar from "../nav/NavBar";
 import "./HomePage.scss";
 import "./Services.css";
@@ -174,7 +173,7 @@ function HomePage() {
       <Home />
       <Services />
       <About />
-      {/* <Novidades /> */}
+      <Novidades />
       <Vantagens />
     </>
   );

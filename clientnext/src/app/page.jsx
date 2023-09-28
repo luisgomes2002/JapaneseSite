@@ -1,9 +1,7 @@
-
-
 export default function Home() {
   return (
     <main>
-      <h1>Murasaki</h1>
+      <h1>Ola</h1>
     </main>
-  )
+  );
 }

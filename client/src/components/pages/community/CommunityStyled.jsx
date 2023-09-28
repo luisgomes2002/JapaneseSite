@@ -1,14 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components"
 
 export const UsersPostsAreaCommunity = styled.div`
- background-color: var(--background-color);
-`;
+  background-color: var(--background-color);
+`
 
 export const IntroSpaceCommunity = styled.div`
   display: grid;
   grid-template-columns: 30% 1fr;
   margin: 0 10% 5% 10%;
-`;
+`
 
 export const SearchArea = styled.div`
   padding: 10%;
@@ -20,11 +20,11 @@ export const SearchArea = styled.div`
     color: var(--second-main-color);
   }
 
-  p{
+  p {
     color: var(--main-color);
   }
 
-  input{
+  input {
     border: solid 1px rgba(0, 0, 0, 0.349);
     border-radius: 25px;
     padding-left: 5%;
@@ -35,10 +35,10 @@ export const SearchArea = styled.div`
     color: var(--main-color);
   }
 
-  input{
+  input {
     background-color: var(--card-color);
   }
-`;
+`
 
 export const CardContainerBody = styled.section`
   display: grid;
@@ -47,7 +47,7 @@ export const CardContainerBody = styled.section`
   margin: 0 auto;
   width: 80%;
   padding-bottom: 5%;
-`;
+`
 
 export const CardContainerCommunity = styled.section`
   display: grid;
@@ -57,21 +57,21 @@ export const CardContainerCommunity = styled.section`
   background-color: var(--card-color);
 
   img {
-   width: 100%;
-   height: 400px;
-   max-height: 400px;
-   object-fit: cover;
-   object-position: center;
-   border-radius: 0px 25px 25px 0px;
- }
-`;
+    width: 100%;
+    height: 400px;
+    max-height: 400px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0px 25px 25px 0px;
+  }
+`
 
 export const CardBodyCommunity = styled.article`
   display: flex;
   align-items: center;
   text-align: left;
 
-  h2{
+  h2 {
     padding: 3% 8%;
     color: var(--second-main-color);
   }
@@ -81,24 +81,24 @@ export const CardBodyCommunity = styled.article`
     font-size: 20px;
     color: var(--second-main-color);
   }
-  
-  p{
+
+  p {
     padding: 0 8%;
     color: var(--main-color);
   }
-  
-  i{
+
+  i {
     color: var(--main-color);
   }
 
-  span{ 
+  span {
     padding: 0 10%;
     color: var(--main-color);
   }
-`;
+`
 
 export const CardIconsCommunity = styled.article`
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 0 35%;
-`;
+`

@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import {
   IntroSpaceCommunity,
   SearchArea,
@@ -10,6 +9,7 @@ import {
 import NavBar from "../../nav/NavBar";
 import { Card } from "./Card";
 import { getAllPosts, getTopPost } from "../../../services/postsServices";
+import { useState, useEffect } from "react";
 
 const UsersPostsArea = () => {
   const [posts, setPosts] = useState([]);

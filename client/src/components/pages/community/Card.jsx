@@ -1,5 +1,9 @@
-import React from "react";
-import { CardContainer, CardBody, CardIcons,CardIconsCommunity } from "./CardStyle";
+import {
+  CardContainer,
+  CardBody,
+  CardIcons,
+  CardIconsCommunity,
+} from "./CardStyle";
 import { TextLimit } from "../../textLimit/TextLimit";
 
 const Card = (props) => {
@@ -43,6 +47,6 @@ const Card = (props) => {
       </CardContainer>
     );
   }
-}
+};
 
-export {Card};
+export { Card };

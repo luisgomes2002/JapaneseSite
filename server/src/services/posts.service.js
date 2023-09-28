@@ -155,12 +155,12 @@ const updatePostService = async (id, title, banner, text, userId) => {
 const deletePostService = async (id, userId, permission) => {
   const post = await postRepositories.findPostByIdRepository(id);
 
-  if (!post) throw new Error("Post not found");
+  if (!post) throw new Error("Post não encontrado");
 
   if (post.user._id == userId || permission === true) {
     await postRepositories.deletePostRepository(id);
   }else {
-    throw new Error("You didn't create this post");
+    throw new Error("Você não criou esta post");
   }
 }
 

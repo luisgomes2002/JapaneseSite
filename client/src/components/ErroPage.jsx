@@ -1,13 +1,10 @@
-import React, { useState } from "react";
 import NavBar from "./nav/NavBar";
-import "./ErroPage.css";
 import { Link } from "react-router-dom";
+import { useRouteError } from "react-router-dom";
+import "./ErroPage.css";
 
 const Erro = () => {
-  const [numErro, setNumerro] = useState("");
-  const [titleErro, setTitleErro] = useState("");
-  const [textErro, setTextErro] = useState("");
-
+  const error = useRouteError();
   //Página não encontrada
 
   // Ops! Parece que você encontrou uma menor perdida no ciberespaço.
@@ -15,17 +12,18 @@ const Erro = () => {
   // Recomendamos que você verifique novamente as informações inseridas ou tente pesquisar por algo diferente.
 
   return (
-    <div>
+    <div id="error-page">
       <nav>
         <NavBar />
       </nav>
       <div className="erroPage-area">
-        <h2>Erro {numErro}</h2>
-        <h1>{titleErro}</h1>
-        <h3>{textErro}</h3>
+        <h2>Erro</h2>
+        <h1>titleErro</h1>
+        <h3>textErro</h3>
         <Link to="/">
           <button>Voltar</button>
         </Link>
+        <i>{error.statusText || error.message}</i>
       </div>
     </div>
   );
