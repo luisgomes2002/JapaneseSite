@@ -10,8 +10,33 @@ import NavBar from "../../nav/NavBar";
 import { Card } from "./Card";
 import { getAllPosts, getTopPost } from "../../../services/postsServices";
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const searchSchema = z.object({
+  title: z
+    .string()
+    .nonempty({ message: "Digite algo valido" })
+    .refine((value) => !/^\s*$/.test(value), { message: "Digite algo valido" }),
+});
 
 const UsersPostsArea = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(searchSchema),
+  });
+  const navigate = useNavigate();
+
+  function onSearch(data) {
+    const { title } = data;
+    navigate(`/search/${title}`);
+  }
+
   const [posts, setPosts] = useState([]);
   const [topPost, setTopPost] = useState({});
 
@@ -45,10 +70,18 @@ const UsersPostsArea = () => {
             e enriqueça nossa comunidade com seus insights e perspectivas
             únicas.
           </p>
-          <div>
-            <i className="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Pequise aqui" />
-          </div>
+          <form onSubmit={handleSubmit(onSearch)}>
+            <div>
+              {/*transform in button*/}
+              <i className="fa-solid fa-magnifying-glass"></i>
+              <input
+                {...register("title")}
+                type="text"
+                placeholder="Pequise aqui"
+              />
+            </div>
+            {errors.title && <span>{errors.title.message}</span>}
+          </form>
         </SearchArea>
         <CardContainerCommunity>
           <CardBodyCommunity>

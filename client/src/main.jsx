@@ -17,10 +17,12 @@ const router = createBrowserRouter([
   {
     path: "/community",
     element: <Community />,
+    errorElement: <ErroPage />,
   },
   {
-    path: "community/search/:title",
+    path: "search/:title",
     element: <Search />,
+    errorElement: <ErroPage />,
   },
 ]);
 

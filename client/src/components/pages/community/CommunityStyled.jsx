@@ -11,7 +11,7 @@ export const IntroSpaceCommunity = styled.div`
 `;
 
 export const SearchArea = styled.div`
-  padding: 10%;
+  padding: 0 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,7 +24,7 @@ export const SearchArea = styled.div`
   p {
     color: var(--main-color);
     font-size: 20px;
-    margin: auto 0;
+    margin: 10% 0;
   }
 
   input {
@@ -41,6 +41,12 @@ export const SearchArea = styled.div`
 
   input {
     background-color: var(--card-color);
+  }
+
+  span {
+    padding: 10%;
+    color: #ff0000;
+    font-size: 13px;
   }
 `;
 
