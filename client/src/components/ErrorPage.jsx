@@ -1,9 +1,9 @@
 import NavBar from "./nav/NavBar";
 import { Link } from "react-router-dom";
 import { useRouteError } from "react-router-dom";
-import "./ErroPage.css";
+import "./ErrorPage.css";
 
-const Erro = () => {
+const Error = () => {
   const error = useRouteError();
   //Página não encontrada
 
@@ -29,4 +29,4 @@ const Erro = () => {
   );
 };
 
-export default Erro;
+export default Error;
