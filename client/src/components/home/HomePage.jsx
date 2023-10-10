@@ -100,14 +100,14 @@ function Home() {
             <p className="card-text">
               Olá! Seja bem-vindo ao MURASAKI, o site definitivo para todos
               aqueles que desejam embarcar na emocionante jornada de aprender
-              japonês. Sou Luis Gomes, o criador deste projeto apaixonante, e
-              estou entusiasmado em compartilhar com você tudo o que o MURASAKI
-              tem a oferecer. Junte-se a nós no MURASAKI e comece sua jornada de
+              japonês. Sou Luis, o criador deste projeto apaixonante, e estou
+              entusiasmado em compartilhar com você tudo o que o MURASAKI tem a
+              oferecer. Junte-se a nós no MURASAKI e comece sua jornada de
               aprendizado do japonês hoje mesmo. Vamos explorar juntos as
               maravilhas deste idioma único e desbloquear um mundo de
               oportunidades!
             </p>
-            <p className="card-text">Luis Gomes</p>
+            <p className="card-text">Luis</p>
             <p className="card-text">Fundador da MURASAKI</p>
           </div>
         </AboutBox>
