@@ -7,6 +7,7 @@ export const Benefits = styled.section`
   padding: 2%;
   justify-items: center;
   align-items: center;
+
   img {
     border-radius: 15%;
     object-fit: cover;

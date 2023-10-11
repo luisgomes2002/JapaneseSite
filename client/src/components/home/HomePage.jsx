@@ -1,5 +1,10 @@
 import NavBar from "../nav/NavBar";
-import "./HomePage.scss";
+import {
+  HomePage,
+  HomeContainer,
+  HomeInfoText,
+  HomeBtn,
+} from "./HomePageStyle.jsx";
 import "./Services.css";
 import { About, AboutBox } from "./AboutStyle";
 import { PostsHome, AllPosts } from "./PostsStyle.jsx";
@@ -9,6 +14,7 @@ import Founder from "../../assets/eu/eu.jpeg";
 import { useState, useEffect } from "react";
 import { Card } from "../pages/community/Card";
 import { getAllPosts } from "../../services/postsServices";
+import homeImage from "../../assets/baka/background/background.jpg";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -24,19 +30,19 @@ function Home() {
 
   return (
     <>
-      <div className="home" id="home">
-        <div className="home-container">
+      <HomePage style={{ backgroundImage: `url(${homeImage})` }}>
+        <HomeContainer>
           <NavBar />
-          <div className="home-imag">
+          <HomeInfoText>
             <h1 className="home-heading">Gosta da Cultura Japonesa?</h1>
             <p className="home-description">Qual é o seu interesse?</p>
-            <button className="home-btn">
+            <HomeBtn>
               <Link to="">Explore</Link>
-            </button>
+            </HomeBtn>
             {/* Criar um pagina com todos os serviços */}
-          </div>
-        </div>
-      </div>
+          </HomeInfoText>
+        </HomeContainer>
+      </HomePage>
       <div className="categorias" id="categorias">
         <div className="categorias-wrapper">
           <div className="categorias-card">
@@ -136,13 +142,13 @@ function Home() {
         </div>
         <BenefitsInfo>
           <BenefitsInfoCard>
-            <dic>
+            <div>
               <h3>Murasaki</h3>
               <p>
                 Site criado para ensinar japonês gratuitamente a qualquer
                 pessoa.
               </p>
-            </dic>
+            </div>
           </BenefitsInfoCard>
           <BenefitsInfoCard>
             <div>
