@@ -12,15 +12,8 @@ import { getAllPosts, getTopPost } from "../../../services/postsServices";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-const searchSchema = z.object({
-  title: z
-    .string()
-    .nonempty({ message: "Digite algo valido" })
-    .refine((value) => !/^\s*$/.test(value), { message: "Digite algo valido" }),
-});
+import { searchSchema } from "../../searchSchema.jsx";
 
 const UsersPostsArea = () => {
   const {
@@ -35,6 +28,7 @@ const UsersPostsArea = () => {
   function onSearch(data) {
     const { title } = data;
     navigate(`/search/${title}`);
+    searchSchema();
   }
 
   const [posts, setPosts] = useState([]);

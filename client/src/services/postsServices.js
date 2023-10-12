@@ -11,3 +11,8 @@ export const getTopPost = () => {
   const response = axios.get(`${baseUrl}/posts/top`)
   return response;
 }
+
+export const getSearchPost = (title) => {
+  const response = axios.get(`${baseUrl}/posts/search?title=${title}`) 
+  return response
+}
