@@ -32,15 +32,12 @@ export const SearchArea = styled.div`
     border-radius: 25px;
     padding: 2% 5%;
     color: #fff;
+    background-color: var(--card-color);
   }
 
   i {
     margin-right: 2%;
     color: var(--main-color);
-  }
-
-  input {
-    background-color: var(--card-color);
   }
 
   span {

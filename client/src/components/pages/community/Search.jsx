@@ -3,11 +3,17 @@ import { Card } from "./Card";
 import { getSearchPost } from "../../../services/postsServices";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
-import { CardContainerBody } from "./CommunityStyled";
+import { CardContainerBody, SearchArea } from "./CommunityStyled";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { searchSchema } from "../../searchSchema.jsx";
+import {
+  SearchBack,
+  TextResults,
+  TextInput,
+  SearchInputArea,
+} from "./SearchStyle";
 
 const Search = () => {
   const { title } = useParams();
@@ -44,23 +50,33 @@ const Search = () => {
   }, [title]);
 
   return (
-    <>
+    <SearchBack>
       <nav>
         <NavBar />
       </nav>
-      <form onSubmit={handleSubmit(onSearch)}>
-        <div>
-          {/*transform in button*/}
-          <i className="fa-solid fa-magnifying-glass"></i>
-          <input
-            {...register("title")}
-            type="text"
-            placeholder="Pequise aqui"
-          />
-        </div>
-        {errors.title && <span>{errors.title.message}</span>}
-      </form>
-      <h1>{title}</h1>
+      <SearchInputArea>
+        <form onSubmit={handleSubmit(onSearch)}>
+          <TextInput>
+            {/*transform in button*/}
+            <i className="fa-solid fa-magnifying-glass"></i>
+            <input
+              {...register("title")}
+              type="text"
+              placeholder="Pequise aqui"
+            />
+          </TextInput>
+          {errors.title && <span>{errors.title.message}</span>}
+        </form>
+      </SearchInputArea>
+      <TextResults>
+        <span>
+          {posts.length
+            ? `Resultado da pesquisa: ${posts.length} ${
+                posts.length > 1 ? "Encontrados" : "Encontrado"
+              } para: ${title} `
+            : `Nenhum resultado encontrado para: ${title}`}
+        </span>
+      </TextResults>
       <CardContainerBody>
         {posts.map((item) => {
           return (
@@ -75,7 +91,7 @@ const Search = () => {
           );
         })}
       </CardContainerBody>
-    </>
+    </SearchBack>
   );
 };
 
