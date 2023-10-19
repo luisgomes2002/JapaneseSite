@@ -1,5 +1,6 @@
 import userRepositories from "../repositories/user.repositories.js";
 import authService from "../services/auth.service.js"
+import postRepositories from "../repositories/post.repositories.js";
 import bcrypt from 'bcrypt';
 
 const createUserService = async ({ name, username, email, password, avatar, background }) => {
@@ -100,6 +101,41 @@ const followUserService = async (id, idName, userId, userIdName) => {
   return { message: "Follow done successfully" };
 };
 
+const totalPointsUserService = async (userIdParam, userIdLogged) => {
+  let idParam;
+
+  if (!userIdParam) {
+    userIdParam = userIdLogged;
+    idParam = userIdParam;
+  } else {
+    idParam = userIdParam;
+  }
+
+  if (!idParam) throw new Error("Envie um id nos parâmetros para procurar o usuário");
+
+  const user = await userRepositories.findByIdUserRepository(idParam);
+  const userPosts = await postRepositories.findPostsByUserIdRepository(user)
+
+  if (!user) throw new Error("Usuário não encontrado");
+
+  let userPoints = 0;
+  for(let i = 0; i < userPosts.length; i++){
+    userPoints += 10;
+    const post = userPosts[i];
+    const numLikes = post.likes.length;
+    const numComments = post.comments.length;
+    userPoints += numComments * 2 + numLikes;
+  }
+
+  await userRepositories.pointCountUserRepository(user, userPoints);
+
+  user.points = userPoints;
+  console.log(userPoints);
+
+  return user.points.toString();
+};
+
+
 export default {
   createUserService,
   findAllUserService,
@@ -107,4 +143,5 @@ export default {
   updateUserService,
   deleteUserByIdService,
   followUserService,
+  totalPointsUserService,
 };

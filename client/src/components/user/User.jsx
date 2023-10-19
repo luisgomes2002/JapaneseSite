@@ -11,6 +11,7 @@ import {
   Card,
   Achievementsiv,
   Case,
+  UserInfoPostsFollows,
 } from "./UserStyle";
 import baka from "../../assets/baka/channelBaka.jpg";
 import cyberpunk from "../../assets/cyberpunk/img.gif";
@@ -29,11 +30,6 @@ const UserPage = () => {
               <p>JLPT: N2</p>
             </div>
             <div>
-              <Follows>
-                <h3>10 Posts</h3>
-                <h3>10 Seguidores</h3>
-                <h3>10 Seguindo</h3>
-              </Follows>
               <UserAbout>
                 <h1>Sobre mim</h1>
                 <p>
@@ -47,21 +43,30 @@ const UserPage = () => {
                   e desbloquear um mundo de oportunidades!
                 </p>
               </UserAbout>
+              <Follows>
+                <UserInfoPostsFollows>
+                  <p>Posts</p>
+                  <h3>0</h3>
+                </UserInfoPostsFollows>
+                <UserInfoPostsFollows>
+                  <p>Seguindo</p>
+                  <h3>0</h3>
+                </UserInfoPostsFollows>
+                <UserInfoPostsFollows>
+                  <p>Seguidores</p>
+                  <h3>0</h3>
+                </UserInfoPostsFollows>
+                <UserInfoPostsFollows>
+                  <p>Algo</p>
+                  <h3>0</h3>
+                </UserInfoPostsFollows>
+              </Follows>
             </div>
           </UserInformation>
           <CadsAndAchievements>
             <section>
               <h1 style={{ paddingLeft: "7%" }}>Posts</h1>
               <Card></Card>
-            </section>
-            <section>
-              <h1 style={{ textAlign: "center" }}>Conquistas</h1>
-              <Achievementsiv>
-                <Case>
-                  <h3>7</h3>
-                  <p>Anos Murasaki</p>
-                </Case>
-              </Achievementsiv>
             </section>
           </CadsAndAchievements>
         </UserInfomationsArea>

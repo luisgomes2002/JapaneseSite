@@ -80,6 +80,14 @@ const deletefollowedUserRepository = (id, userId) => {
   )
 };
 
+const pointCountUserRepository = (id, points) => {
+  User.findOneAndUpdate(
+    { _id: id },
+    { points },
+    { rawResult: true, }
+  ).exec();
+};
+
 export default {
   findByEmailUserRepository,
   createUserRepository,
@@ -91,5 +99,6 @@ export default {
   followUserRepository,
   deletefollowUserRepository,
   followedUserRepository,
-  deletefollowedUserRepository
+  deletefollowedUserRepository,
+  pointCountUserRepository,
 };

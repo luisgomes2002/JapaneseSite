@@ -30,23 +30,28 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  fullPermission: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
+  points:{
+    type: Number,
+    default: 0,
+    required: true,
+  },
   follows: {
     type: Array,
     required: true,
   },
   followed: {
     type: Array,
-    require: true,
+    required: true,
   },
   createdAt: {
     type: Date,
     default: Date.now(),
   },
-  fullPermission: {
-    type: Boolean,
-    default: false,
-    require: true,
-  }
 });
 
 UserSchema.pre("save", async function (next) {

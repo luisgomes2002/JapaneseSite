@@ -15,7 +15,7 @@ export const GifArea = styled.div`
 
 export const UserInfomationsArea = styled.div`
   margin: 0 20%;
-  background-color: #232325e4;
+  background-color: #232325f0;
   height: 100%;
 `;
 
@@ -50,10 +50,10 @@ export const UserInformation = styled.div`
 `;
 
 export const UserAbout = styled.div`
-  background-color: #202024c2;
+  background-color: #202024;
   border-radius: 5px;
   padding: 5%;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.267);
+  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
 
   h1 {
     color: #fff;
@@ -69,23 +69,35 @@ export const UserAbout = styled.div`
 
 export const Follows = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   text-align: center;
-  background-color: #202024c2;
-  border-radius: 5px;
-  margin-bottom: 5%;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.267);
+  margin-top: 5%;
+`;
 
+export const UserInfoPostsFollows = styled.div`
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  margin: 5% 5% 0 5%;
+  border-radius: 5px;
+  background-color: #202024;
+  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
+
+  p {
+    font-size: 17px;
+    color: #b6b6c4;
+    padding: 0;
+    margin-left: 10%;
+  }
   h3 {
     color: #fff;
-    font-size: 20px;
+    font-size: 30px;
+    margin-right: 10%;
   }
 `;
 
 export const CadsAndAchievements = styled.div`
   padding: 0 5%;
-  display: grid;
-  grid-template-columns: 1fr 25%;
   padding-bottom: 5%;
 
   h1 {
@@ -95,14 +107,14 @@ export const CadsAndAchievements = styled.div`
 
 export const Card = styled.div`
   margin-right: 5%;
-  background-color: #202024c2;
+  background-color: #202024;
   border-radius: 5px;
   padding: 0 5%;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.267);
+  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
 `;
 
 export const Achievementsiv = styled.div`
-  background-color: #202024c2;
+  background-color: #202024;
   border-radius: 5px;
   padding: 5%;
   display: flex;
@@ -110,13 +122,13 @@ export const Achievementsiv = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.267);
+  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
 `;
 
 export const Case = styled.div`
   display: grid;
   grid-template-columns: 40% 1fr;
-  background-color: #202024c2;
+  background-color: #202024;
   border-radius: 5px;
   align-items: center;
   justify-content: center;
@@ -124,16 +136,16 @@ export const Case = styled.div`
   padding: 3% 10% 3% 5%;
   width: 200px;
   border: #5400d9;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.267);
+  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
 
   h3 {
     font-size: 55px;
     color: #fff;
     margin: 0;
-    background-color: #202024c2;
+    background-color: #202024;
     border-radius: 50%;
     border: #5400d9;
-    box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.267);
+    box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
   }
 
   p {

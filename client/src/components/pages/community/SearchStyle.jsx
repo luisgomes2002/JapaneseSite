@@ -19,7 +19,7 @@ export const TextResults = styled.div`
     height: 100px;
     width: 80%;
     border-radius: 25px;
-    color: #fff;
+    color: #6f00ff;
     font-size: 40px;
   }
 `;

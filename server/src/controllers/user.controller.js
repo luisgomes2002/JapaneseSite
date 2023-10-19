@@ -84,6 +84,21 @@ const followUserController = async (req, res) => {
   }
 };
 
+const totalPointsUserController = async (req, res) => {
+  try {
+    const { id: userId } = req.params;
+    const userIdLogged = req.userId;
+
+    const user = await userService.totalPointsUserService(
+      userId,
+      userIdLogged
+    )
+    return res.send(user);
+  } catch (e) {
+    return res.status(400).send(e.message);
+  }
+}
+
 export default {
   createUserController,
   findAllUserController,
@@ -91,4 +106,5 @@ export default {
   updateUserController,
   deleteUserByIdController,
   followUserController,
+  totalPointsUserController,
 };

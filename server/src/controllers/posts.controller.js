@@ -1,7 +1,7 @@
 import postService from "../services/posts.service.js";
 import userRepositories from "../repositories/user.repositories.js";
 
- const createPostController = async(req, res) => {
+const createPostController = async(req, res) => {
   const { title, banner, text } = req.body;
   const userId = req.userId;
 
@@ -16,7 +16,7 @@ import userRepositories from "../repositories/user.repositories.js";
   }
 }
 
- const findAllPostsController = async(req, res) => {
+const findAllPostsController = async(req, res) => {
   const { limit, offset } = req.query;
   const currentUrl = req.baseUrl;
 
@@ -32,7 +32,7 @@ import userRepositories from "../repositories/user.repositories.js";
   }
 }
 
- const topPostsController = async(req, res) => {
+const topPostsController = async(req, res) => {
   try {
     const post = await postService.topPostsService();
     return res.send(post);
@@ -52,7 +52,7 @@ import userRepositories from "../repositories/user.repositories.js";
   }
 }
 
- const searchPostController = async(req, res) => {
+const searchPostController = async(req, res) => {
   const { title } = req.query;
 
   try {
@@ -64,7 +64,7 @@ import userRepositories from "../repositories/user.repositories.js";
   }
 }
 
- const findPostsByUserIdController = async(req, res) => {
+const findPostsByUserIdController = async(req, res) => {
   const id = req.userId;
   try {
     const posts = await postService.findPostsByUserIdService(id);
@@ -74,7 +74,7 @@ import userRepositories from "../repositories/user.repositories.js";
   }
 }
 
- const updatePostController = async(req, res) => {
+const updatePostController = async(req, res) => {
   const { title, banner, text } = req.body;
   const { id } = req.params;
   const userId = req.userId;
@@ -88,7 +88,7 @@ import userRepositories from "../repositories/user.repositories.js";
   }
 }
 
- const deletePostController = async(req, res) =>  {
+const deletePostController = async(req, res) =>  {
   const { id } = req.params;
   const userId = req.userId;
   const userFullPermission = await userRepositories.findByIdUserRepository(userId);
@@ -102,7 +102,7 @@ import userRepositories from "../repositories/user.repositories.js";
   }
 }
 
- const likePostController = async(req, res)  => {
+const likePostController = async(req, res)  => {
   const { id } = req.params;
   const userId = req.userId;
 
@@ -131,7 +131,7 @@ import userRepositories from "../repositories/user.repositories.js";
   }
 }
 
- const commentDeletePostController = async(req, res) => {
+const commentDeletePostController = async(req, res) => {
   const { id: postId, idComment } = req.params;
   const userId = req.userId;
 

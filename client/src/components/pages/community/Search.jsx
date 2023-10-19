@@ -71,10 +71,12 @@ const Search = () => {
       <TextResults>
         <span>
           {posts.length
-            ? `Resultado da pesquisa: ${posts.length} ${
-                posts.length > 1 ? "Encontrados" : "Encontrado"
-              } para: ${title} `
-            : `Nenhum resultado encontrado para: ${title}`}
+            ? `${posts.length} ${
+                posts.length > 1
+                  ? "resultados encontrados"
+                  : "resultado encontrado"
+              } para pesquisa "${title}" `
+            : `Nenhum resultado encontrado para "${title}"`}
         </span>
       </TextResults>
       <CardContainerBody>
