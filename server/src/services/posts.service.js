@@ -1,4 +1,5 @@
 import postRepositories from "../repositories/post.repositories.js";
+import userService from "./user.service.js";
 
 const createPostService = async ({ title, banner, text }, userId) => {
   if (!title || !banner || !text)
@@ -94,6 +95,7 @@ const findPostByIdService = async (id) => {
     text: post.text,
     likes: post.likes,
     comments: post.comments,
+    postUserId: post.user._id,
     name: post.user.name,
     username: post.user.username,
     avatar: post.user.avatar,
@@ -166,12 +168,15 @@ const deletePostService = async (id, userId, permission) => {
 
 const likePostService = async (id, userId) => {
   const postLiked = await postRepositories.likesRepository(id, userId);
+  const { postUserId } = await findPostByIdService(id);
 
   if (postLiked.lastErrorObject.n === 0) {
     await postRepositories.likesDeleteRepository(id, userId);
+    await userService.totalPointsUserService(postUserId);
     return { message: "Like successfully removed" };
   }
 
+  await userService.totalPointsUserService(postUserId);
   return { message: "Like done successfully" };
 }
 
@@ -179,18 +184,22 @@ const commentPostService = async (postId, message, userId) => {
   if (!message) throw new Error("Write a message to comment");
 
   const post = await postRepositories.findPostByIdRepository(postId);
+  const { postUserId } = await findPostByIdService(postId);
 
   if (!post) throw new Error("Post not found");
 
   await postRepositories.commentsRepository(postId, message, userId);
+  await userService.totalPointsUserService(postUserId);
 }
 
 const commentDeletePostService = async (postId, userId, idComment) => {
   const post = await postRepositories.findPostByIdRepository(postId);
+  const { postUserId } = await findPostByIdService(postId);
 
   if (!post) throw new Error("Post not found");
 
   await postRepositories.commentsDeleteRepository(postId, userId, idComment);
+  await userService.totalPointsUserService(postUserId);
 }
 
 export default {

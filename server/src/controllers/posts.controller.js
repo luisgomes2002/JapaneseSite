@@ -109,7 +109,7 @@ const likePostController = async(req, res)  => {
   try {
     const response = await postService.likePostService(id, userId);
 
-    return res.send(response);
+   return res.send(response);  
   } catch (e) {
     return res.status(500).send(e.message);
   }
