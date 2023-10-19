@@ -12,6 +12,8 @@ const createPostService = async ({ title, banner, text }, userId) => {
     userId
   );
 
+  await userService.totalPointsUserService(userId);
+
   return {
     message: "Post created successfully!",
     post: { id, title, banner, text },
