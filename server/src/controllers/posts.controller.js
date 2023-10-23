@@ -115,7 +115,7 @@ const likePostController = async(req, res)  => {
   }
 }
 
- const commentPostController = async(req, res) => {
+const commentPostController = async(req, res) => {
   const { id: postId } = req.params;
   const { message } = req.body;
   const userId = req.userId;

@@ -18,10 +18,21 @@ import homeImage from "../../assets/baka/background/background.jpg";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const findAllPosts = async () => {
     const postResponse = await getAllPosts();
     setPosts(postResponse.data.results);
+  };
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % posts.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? posts.length - 1 : prevIndex - 1
+    );
   };
 
   useEffect(() => {

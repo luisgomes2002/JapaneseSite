@@ -1,8 +1,13 @@
 import { Nav, NavBarLogo, NavBarCategories } from "./NavBarStyle";
-// import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const navigate = useNavigate();
+
+  const goAuth = () => {
+    navigate("/auth");
+  };
+
   return (
     <Nav>
       <NavBarLogo>
@@ -13,9 +18,9 @@ function NavBar() {
           <Link to="/categorias">Categorias</Link>
           <Link to="/">Sobre</Link>
           <Link to="/community">Comunidade</Link>
-          <Link to="/login">
+          <button onClick={goAuth}>
             <i className="fa-regular fa-user"></i>
-          </Link>
+          </button>
         </NavBarCategories>
       </NavBarLogo>
     </Nav>

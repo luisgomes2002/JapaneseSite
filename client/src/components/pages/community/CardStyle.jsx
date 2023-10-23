@@ -59,7 +59,7 @@ export const CardIconsCommunity = styled.article`
 `;
 
 export const CardHomeBody = styled.section`
-  margin-right: 10%;
+  margin-right: 5%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   background-color: #202024;

@@ -8,6 +8,7 @@ import Community from "./components/pages/community/Community.jsx";
 import Search from "./components/pages/community/Search.jsx";
 import Footer from "./components/template/Footer.jsx";
 import UserPage from "./components/user/User.jsx";
+import LoginPage from "./components/authentication/LoginPage.jsx";
 
 const Layout = () => {
   return (
@@ -36,8 +37,12 @@ const router = createBrowserRouter([
         element: <Search />,
       },
       {
-        path: "user",
+        path: "/user",
         element: <UserPage />,
+      },
+      {
+        path: "/auth",
+        element: <LoginPage />,
       },
     ],
   },

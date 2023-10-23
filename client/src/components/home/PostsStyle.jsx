@@ -19,6 +19,5 @@ export const PostsHome = styled.section`
 `;
 
 export const AllPosts = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
 `;
