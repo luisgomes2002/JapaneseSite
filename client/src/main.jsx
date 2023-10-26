@@ -9,6 +9,7 @@ import Search from "./components/pages/community/Search.jsx";
 import Footer from "./components/template/Footer.jsx";
 import UserPage from "./components/user/User.jsx";
 import LoginPage from "./components/authentication/LoginPage.jsx";
+import Register from "./components/Authentication/Register.jsx";
 
 const Layout = () => {
   return (
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/auth",
         element: <LoginPage />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },
