@@ -43,6 +43,7 @@
 }
 
 .presentation-area h1 {
+  font-size: 40px;
   color: var(--second-color);
   font-family: var(--second-font);
 }

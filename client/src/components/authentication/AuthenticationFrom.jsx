@@ -32,6 +32,7 @@ export const Section = styled.section`
   }
 
   button {
+    margin-top: 10px;
     background-color: black;
     border: none;
     color: #fff;
@@ -43,5 +44,10 @@ export const Section = styled.section`
 
   a {
     text-decoration: none;
+  }
+
+  span {
+    color: #ff0000;
+    font-size: 13px;
   }
 `;

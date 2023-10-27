@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { searchSchema } from "../../searchSchema.jsx";
+import { searchSchema } from "../../schemas/searchSchema";
 
 const UsersPostsArea = () => {
   const {
@@ -25,11 +25,11 @@ const UsersPostsArea = () => {
   });
   const navigate = useNavigate();
 
-  function onSearch(data) {
+  const onSearch = (data) => {
     const { title } = data;
     navigate(`/search/${title}`);
     searchSchema();
-  }
+  };
 
   const [posts, setPosts] = useState([]);
   const [topPost, setTopPost] = useState({});

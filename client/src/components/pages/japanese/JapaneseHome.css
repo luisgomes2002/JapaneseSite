@@ -58,6 +58,7 @@
   transition: 0.3s ease-in-out;
   color: var(--second-main-color);
   background-color: #fff;
+  cursor: pointer;
 }
 
 .title button:hover {

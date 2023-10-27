@@ -10,6 +10,7 @@ import Footer from "./components/template/Footer.jsx";
 import UserPage from "./components/user/User.jsx";
 import LoginPage from "./components/authentication/LoginPage.jsx";
 import Register from "./components/Authentication/Register.jsx";
+import Japanese from "./components/pages/japanese/JapaneseHome.jsx";
 
 const Layout = () => {
   return (
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/japanese",
+        element: <Japanese />,
       },
     ],
   },

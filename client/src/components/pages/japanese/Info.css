@@ -20,6 +20,7 @@
   background-color: var(--main-color);
   transition: 0.3s ease-in-out;
   color: var(--second-main-color);
+  cursor: pointer;
 }
 
 .main h3 {

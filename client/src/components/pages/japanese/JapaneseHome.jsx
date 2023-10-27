@@ -63,7 +63,7 @@ const Presentation = () => {
     <section className="grid-presentation">
       <div className="presentation-area">
         <h2>MERGULHE DE CABEÇA NO IDIOMA</h2>
-        <h1>A oportunidade de estudar no Japão nunca esteve tão acessível</h1>
+        <h1>A oportunidade de estudar Japonês nunca esteve tão acessível</h1>
         <p>
           Neste espaço, você terá acesso a um conhecimento abrangente sobre os
           exames de proficiência em língua japonesa, bem como informações
@@ -122,7 +122,7 @@ function TabsJlpt() {
           </div>
         ))}
       </div>
-      <Link>
+      <Link to="/register">
         <button>Cadastre-se</button>
       </Link>
     </div>

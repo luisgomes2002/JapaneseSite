@@ -1,4 +1,3 @@
-import React from "react";
 import "./Jlpt.css";
 import NavBar from "../../../nav/NavBar";
 import Table from "react-bootstrap/Table";

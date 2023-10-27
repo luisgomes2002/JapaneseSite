@@ -7,7 +7,7 @@ import { CardContainerBody, SearchArea } from "./CommunityStyled";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { searchSchema } from "../../searchSchema.jsx";
+import { searchSchema } from "../../schemas/searchSchema";
 import {
   SearchBack,
   TextResults,
@@ -23,7 +23,6 @@ const Search = () => {
     try {
       const postResponse = await getSearchPost(title);
       setPosts(postResponse.data.foundPosts);
-      console.log(postResponse.data.foundPosts);
     } catch (err) {
       console.log(err);
       setPosts([]);
