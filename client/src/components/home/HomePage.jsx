@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import { Card } from "../pages/community/Card";
 import { getAllPosts } from "../../services/postsServices";
 import homeImage from "../../assets/baka/background/background.jpg";
+import Cookies from "js-cookie";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -31,7 +32,7 @@ function Home() {
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? posts.length - 1 : prevIndex - 1
+      prevIndex === 0 ? posts.length - 1 : prevIndex - 1,
     );
   };
 

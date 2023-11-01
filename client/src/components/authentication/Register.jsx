@@ -1,12 +1,13 @@
 import { useState } from "react";
 import NavBar from "../nav/NavBar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContainer, Section } from "./AuthenticationFrom.jsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { signupSchema } from "../schemas/signupSchema";
 import { signup } from "../../services/userServices";
+import Cookies from "js-cookie";
 
 const Register = () => {
   const {
@@ -17,9 +18,13 @@ const Register = () => {
     resolver: zodResolver(signupSchema),
   });
 
+  const navigate = useNavigate();
+
   const onRegister = async (data) => {
     try {
       const response = await signup(data);
+      Cookies.set("token", response.data, { expires: 5 });
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
