@@ -5,6 +5,8 @@ import axios from "axios";
 import { AuthContainer, Section } from "./AuthenticationFrom.jsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { signupSchema } from "../schemas/signupSchema";
+import { signup } from "../../services/userServices";
 
 const Register = () => {
   const {
@@ -12,13 +14,15 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    // resolver: zodResolver(signupSchema),
+    resolver: zodResolver(signupSchema),
   });
 
   const onRegister = async (data) => {
-    const { email, password } = data;
-    console.log(data);
-    // signupSchema();
+    try {
+      const response = await signup(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -36,24 +40,30 @@ const Register = () => {
               placeholder="Nome"
               name="name"
             />
+            {errors.name && <span>{errors.name.message}</span>}
             <input
               {...register("email")}
               type="email"
               placeholder="E-mail"
               name="email"
             />
+            {errors.email && <span>{errors.email.message}</span>}
             <input
               {...register("password")}
               type="password"
               placeholder="Senha"
               name="password"
             />
+            {errors.password && <span>{errors.password.message}</span>}
             <input
-              {...register("passwordConfimation")}
+              {...register("confirmPassword")}
               type="password"
               placeholder="Confirmar Senha"
-              name="password"
+              name="confirmPassword"
             />
+            {errors.confirmPassword && (
+              <span>{errors.confirmPassword.message}</span>
+            )}
             <button type="submit">Entrar</button>
           </form>
           <Link to="/auth">Logar ・ </Link>

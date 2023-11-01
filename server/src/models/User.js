@@ -9,7 +9,6 @@ const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true,
   },
   email: {
     type: String,
@@ -33,20 +32,16 @@ const UserSchema = new mongoose.Schema({
   fullPermission: {
     type: Boolean,
     default: false,
-    required: true,
   },
-  points:{
+  points: {
     type: Number,
     default: 0,
-    required: true,
   },
   follows: {
     type: Array,
-    required: true,
   },
   followed: {
     type: Array,
-    required: true,
   },
   createdAt: {
     type: Date,
