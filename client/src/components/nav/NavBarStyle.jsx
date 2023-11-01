@@ -59,4 +59,10 @@ export const NavBarCategories = styled.div`
     color: var(--main-color);
     padding: 5%;
   }
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
 `;

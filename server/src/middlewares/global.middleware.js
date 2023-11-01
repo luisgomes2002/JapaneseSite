@@ -10,9 +10,12 @@ export async function validId(req, res, next) {
     idParam = req.params.id;
   }
 
-  const userFullPermission = await userRepositories.findByIdUserRepository(idParam);
+  // const userFullPermission = await userRepositories.findByIdUserRepository(
+  //   idParam,
+  // );
 
-  if (!mongoose.Types.ObjectId.isValid(idParam) ||  userFullPermission.fullPermission !== true) {
+  // || userFullPermission.fullPermission !== true
+  if (!mongoose.Types.ObjectId.isValid(idParam)) {
     return res.status(400).send({ message: "ID Inválido ou Sem permissão!" });
   }
   next();

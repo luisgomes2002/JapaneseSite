@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import NavBar from "../nav/NavBar";
 import {
   UserInfomationsArea,
@@ -15,8 +15,24 @@ import {
 } from "./UserStyle";
 import baka from "../../assets/baka/channelBaka.jpg";
 import cyberpunk from "../../assets/cyberpunk/img.gif";
+import Cookies from "js-cookie";
+import { userLogged } from "../../services/userServices";
 
 const UserPage = () => {
+  const [user, setUser] = useState({});
+
+  const findUserLogged = async () => {
+    try {
+      const response = await userLogged();
+      setUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    if (Cookies.get("token")) findUserLogged();
+  }, []);
+
   return (
     <TotalSpace style={{ backgroundColor: "#121214" }}>
       <NavBar />
@@ -24,23 +40,18 @@ const UserPage = () => {
         <UserInfomationsArea>
           <UserInformation>
             <div>
-              <img src={baka} alt="img" />
-              <h2>Luis Gustavo</h2>
-              <h3>UserName</h3>
+              <img src={user.avatar} alt="img" />
+              <h2>{user.name}</h2>
+              <h3>{user.username}</h3>
               <p>JLPT: N2</p>
             </div>
             <div>
               <UserAbout>
                 <h1>Sobre mim</h1>
                 <p>
-                  Olá! Seja bem-vindo ao MURASAKI, o site definitivo para todos
-                  aqueles que desejam embarcar na emocionante jornada de
-                  aprender japonês. Sou Luis Gomes, o criador deste projeto
-                  apaixonante, e estou entusiasmado em compartilhar com você
-                  tudo o que o MURASAKI tem a oferecer. Junte-se a nós no
-                  MURASAKI e comece sua jornada de aprendizado do japonês hoje
-                  mesmo. Vamos explorar juntos as maravilhas deste idioma único
-                  e desbloquear um mundo de oportunidades!
+                  {user.about
+                    ? user.about
+                    : "Até agora " + user.name + " não incluiu uma introdução."}
                 </p>
               </UserAbout>
               <Follows>
@@ -50,15 +61,15 @@ const UserPage = () => {
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
                   <p>Seguindo</p>
-                  <h3>0</h3>
+                  <h3>{user.followed.length}</h3>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
                   <p>Seguidores</p>
-                  <h3>0</h3>
+                  <h3>{user.follows.length}</h3>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
-                  <p>Algo</p>
-                  <h3>0</h3>
+                  <p>Pontos</p>
+                  <h3>{user.points}</h3>
                 </UserInfoPostsFollows>
               </Follows>
             </div>

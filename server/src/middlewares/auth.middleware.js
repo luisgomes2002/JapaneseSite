@@ -7,7 +7,7 @@ const authMiddleware = (req, res, next) => {
   if (!authHeader)
     return res.status(401).send({ message: "O token não foi informado!" });
 
-  const parts = authHeader.split(" "); /* ["Bearer", "asdasdasdadsadasd"] */
+  const parts = authHeader.split(" ");
   if (parts.length !== 2)
     return res.status(401).send({ message: "Token inválido!" });
 
@@ -27,6 +27,6 @@ const authMiddleware = (req, res, next) => {
 
     return next();
   });
-}
+};
 
 export default authMiddleware;
