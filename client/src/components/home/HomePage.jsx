@@ -38,6 +38,7 @@ function Home() {
 
   useEffect(() => {
     findAllPosts();
+    console.log(Cookies.get("token"));
   }, []);
 
   return (

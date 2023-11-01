@@ -15,6 +15,11 @@ export const signup = (data) => {
   return response;
 };
 
+export const signin = (data) => {
+  const response = axios.post(`${baseUrl}/auth/login`, data);
+  return response;
+};
+
 const generateUserName = (name) => {
   const nameLowerWithoutSpaces = name.replace(/\s/g, "").toLowerCase();
   const randomNumber = Math.floor(Math.random() * 1000);

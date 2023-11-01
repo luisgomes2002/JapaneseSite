@@ -6,6 +6,8 @@ import { AuthContainer, Section } from "./AuthenticationFrom.jsx";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signinSchema } from "../schemas/signinSchema";
+import { signin } from "../../services/userServices";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const {
@@ -16,10 +18,16 @@ const Login = () => {
     resolver: zodResolver(signinSchema),
   });
 
+  const navigate = useNavigate();
+
   const onLogin = async (data) => {
-    const { email, password } = data;
-    console.log(data);
-    // signupSchema();
+    try {
+      const response = await signin(data);
+      Cookies.set("token", response.data, { expires: 5 });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
