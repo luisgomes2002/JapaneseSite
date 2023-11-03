@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import NavBar from "../nav/NavBar";
 import {
   UserInfomationsArea,
@@ -13,30 +13,15 @@ import {
   Case,
   UserInfoPostsFollows,
 } from "./UserStyle";
-import baka from "../../assets/baka/channelBaka.jpg";
-import cyberpunk from "../../assets/cyberpunk/img.gif";
-import Cookies from "js-cookie";
-import { userLogged } from "../../services/userServices";
+import { UserContext } from "../context/UserContext";
 
 const UserPage = () => {
-  const [user, setUser] = useState({});
-
-  const findUserLogged = async () => {
-    try {
-      const response = await userLogged();
-      setUser(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    if (Cookies.get("token")) findUserLogged();
-  }, []);
+  const { user } = useContext(UserContext);
 
   return (
     <TotalSpace style={{ backgroundColor: "#121214" }}>
       <NavBar />
-      <GifArea style={{ backgroundImage: `url(${cyberpunk})` }}>
+      <GifArea style={{ backgroundImage: `url(${user.background})` }}>
         <UserInfomationsArea>
           <UserInformation>
             <div>
@@ -61,11 +46,11 @@ const UserPage = () => {
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
                   <p>Seguindo</p>
-                  <h3>{user.followed.length}</h3>
+                  <h3>{user.followed}</h3>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
                   <p>Seguidores</p>
-                  <h3>{user.follows.length}</h3>
+                  <h3>{user.follows}</h3>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
                   <p>Pontos</p>

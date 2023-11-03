@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { userLogged } from "../../services/userServices";
 import { Nav, NavBarLogo, NavBarCategories } from "./NavBarStyle";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { UserContext } from "../context/UserContext";
 
 function NavBar() {
-  const [user, setUser] = useState({});
+  const { user, setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -17,7 +18,11 @@ function NavBar() {
     navigate("/user");
   };
 
-  const signout = () => {};
+  const signout = () => {
+    Cookies.remove("token");
+    setUser(undefined);
+    navigate("/");
+  };
 
   const findUserLogged = async () => {
     try {
@@ -47,6 +52,7 @@ function NavBar() {
               <button onClick={goUserPage}>
                 <img src={user.avatar} alt="" />
               </button>
+
               <button onClick={signout}>
                 <i className="fa-solid fa-right-from-bracket"></i>
               </button>

@@ -11,6 +11,7 @@ import UserPage from "./components/user/User.jsx";
 import LoginPage from "./components/authentication/LoginPage.jsx";
 import Register from "./components/Authentication/Register.jsx";
 import Japanese from "./components/pages/japanese/JapaneseHome.jsx";
+import UserProvider from "./components/context/UserContext";
 
 const Layout = () => {
   return (
@@ -61,6 +62,8 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <GlobalStyled />
-    <RouterProvider router={router} />
-  </React.StrictMode>
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
+  </React.StrictMode>,
 );
