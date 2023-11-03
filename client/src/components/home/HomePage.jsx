@@ -12,7 +12,7 @@ import { Benefits, BenefitsInfo, BenefitsInfoCard } from "./VantagensStyle.jsx";
 import { Link } from "react-router-dom";
 import Founder from "../../assets/eu/eu.jpeg";
 import { useState, useEffect } from "react";
-import { Card } from "../pages/community/Card";
+import { Card } from "../cards/Card.jsx";
 import { getAllPosts } from "../../services/postsServices";
 import homeImage from "../../assets/baka/background/background.jpg";
 import Cookies from "js-cookie";
@@ -143,6 +143,7 @@ function Home() {
                 banner={item.banner}
                 likes={item.likes}
                 comments={item.comments}
+                username={item.username}
               />
             );
           })}

@@ -7,7 +7,7 @@ import ErrorPage from "./components/ErrorPage.jsx";
 import Community from "./components/pages/community/Community.jsx";
 import Search from "./components/pages/community/Search.jsx";
 import Footer from "./components/template/Footer.jsx";
-import UserPage from "./components/user/User.jsx";
+import UserPage from "./components/perfil/User.jsx";
 import LoginPage from "./components/authentication/LoginPage.jsx";
 import Register from "./components/Authentication/Register.jsx";
 import Japanese from "./components/pages/japanese/JapaneseHome.jsx";

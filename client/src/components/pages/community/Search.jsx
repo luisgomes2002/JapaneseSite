@@ -1,5 +1,5 @@
 import NavBar from "../../nav/NavBar";
-import { Card } from "./Card";
+import { Card } from "../../cards/Card";
 import { getSearchPost } from "../../../services/postsServices";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";

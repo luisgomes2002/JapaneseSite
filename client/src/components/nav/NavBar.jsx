@@ -52,7 +52,6 @@ function NavBar() {
               <button onClick={goUserPage}>
                 <img src={user.avatar} alt="" />
               </button>
-
               <button onClick={signout}>
                 <i className="fa-solid fa-right-from-bracket"></i>
               </button>

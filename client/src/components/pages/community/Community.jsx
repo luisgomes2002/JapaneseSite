@@ -7,7 +7,7 @@ import {
   UsersPostsAreaCommunity,
 } from "./CommunityStyled";
 import NavBar from "../../nav/NavBar";
-import { Card } from "./Card";
+import { Card } from "../../cards/Card";
 import { getAllPosts, getTopPost } from "../../../services/postsServices";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -86,6 +86,7 @@ const UsersPostsArea = () => {
               banner={topPost.banner}
               likes={topPost.likes}
               comments={topPost.comments}
+              username={topPost.username}
             />
           </CardBodyCommunity>
           <img src={topPost.banner} alt="banner" />
@@ -101,6 +102,7 @@ const UsersPostsArea = () => {
               banner={item.banner}
               likes={item.likes}
               comments={item.comments}
+              username={item.username}
             />
           );
         })}

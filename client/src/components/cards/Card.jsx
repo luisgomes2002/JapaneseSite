@@ -5,15 +5,19 @@ import {
   CardIconsCommunity,
   CardHomeBody,
   IconsArea,
+  UserPagePostArea,
+  InfoPostsBody,
+  CardBodyTop,
 } from "./CardStyle";
-import { TextLimit } from "../../textLimit/TextLimit";
+import { TextLimit } from "../textLimit/TextLimit";
 
 const Card = (props) => {
   if (props.top) {
     return (
-      <div>
+      <CardBodyTop>
         <h2>{props.title}</h2>
         <TextLimit text={props.text} limit={280} />
+        <h1>@{props.username}</h1>
         <CardIconsCommunity>
           <div>
             <i className="fa-regular fa-heart"></i>
@@ -24,7 +28,7 @@ const Card = (props) => {
             <span>{props.comments?.length}</span>
           </div>
         </CardIconsCommunity>
-      </div>
+      </CardBodyTop>
     );
   } else if (props.home) {
     return (
@@ -33,6 +37,7 @@ const Card = (props) => {
           <div>
             <h2>{props.title}</h2>
             <TextLimit text={props.text} limit={150} />
+            <h3>@{props.username}</h3>
           </div>
           <IconsArea>
             <div>
@@ -48,6 +53,27 @@ const Card = (props) => {
         <img src={props.banner} alt="banner" />
       </CardHomeBody>
     );
+  } else if (props.perfil) {
+    return (
+      <UserPagePostArea>
+        <InfoPostsBody>
+          <h2>{props.title}</h2>
+          <TextLimit text={props.text} limit={210} />
+          <h3>@{props.username}</h3>
+          <CardIcons>
+            <div>
+              <i className="fa-regular fa-heart"></i>
+              <span>{props.likes?.length}</span>
+            </div>
+            <div>
+              <i className="fa-regular fa-message"></i>
+              <span>{props.comments?.length}</span>
+            </div>
+          </CardIcons>
+        </InfoPostsBody>
+        <img src={props.banner} alt="banner" />
+      </UserPagePostArea>
+    );
   } else {
     return (
       <CardContainer>
@@ -56,7 +82,8 @@ const Card = (props) => {
         </CardBody>
         <div>
           <h2>{props.title}</h2>
-          <TextLimit text={props.text} limit={150} />
+          <TextLimit text={props.text} limit={140} />
+          <h3>@{props.username}</h3>
         </div>
         <CardIcons>
           <div>

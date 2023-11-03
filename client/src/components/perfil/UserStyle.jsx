@@ -8,7 +8,6 @@ export const TotalSpace = styled.div`
 
 export const GifArea = styled.div`
   background-size: cover;
-  background-color: black;
   background-position: center center;
   background-attachment: fixed;
 `;
@@ -46,6 +45,17 @@ export const UserInformation = styled.div`
     color: #fff;
     font-size: 20px;
     padding-bottom: 5%;
+  }
+
+  button {
+    color: #6c6c72;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    color: #fff;
   }
 `;
 
@@ -97,19 +107,42 @@ export const UserInfoPostsFollows = styled.div`
 `;
 
 export const CadsAndAchievements = styled.div`
-  padding: 0 5%;
+  padding: 0 10%;
   padding-bottom: 5%;
 
   h1 {
     color: #fff;
   }
+
+  button {
+    padding-left: 10px;
+    border: none;
+    background-color: transparent;
+    font-size: 30px;
+    color: var(--second-main-color);
+    cursor: pointer;
+  }
+
+  button:hover {
+    color: #ffffff;
+  }
 `;
 
-export const Card = styled.div`
-  margin-right: 5%;
+export const PostsByUser = styled.div`
+  margin-top: 40px;
   background-color: #202024;
   border-radius: 5px;
-  padding: 0 5%;
+  height: 250px;
+  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
+`;
+
+export const CardEmpty = styled.div`
+  margin-top: 40px;
+  background-color: #202024;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  height: 250px;
   box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
 `;
 

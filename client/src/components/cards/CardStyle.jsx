@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const CardBodyTop = styled.div`
+  h1 {
+    padding: 15px 30px;
+    color: #6c6c72;
+    font-size: 15px;
+  }
+`;
+
 export const CardContainer = styled.section`
   display: flex;
   flex-direction: column;
@@ -13,6 +21,12 @@ export const CardContainer = styled.section`
   h2 {
     padding: 3% 5%;
     color: var(--second-main-color);
+  }
+
+  h3 {
+    padding-top: 10px;
+    color: #6c6c72;
+    font-size: 15px;
   }
 
   p {
@@ -96,5 +110,34 @@ export const IconsArea = styled.div`
 
   span {
     color: #fff;
+  }
+`;
+
+export const UserPagePostArea = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 46%;
+  color: #fff;
+
+  img {
+    border-radius: 0px 5px 5px 0px;
+    height: 250px;
+  }
+`;
+
+export const InfoPostsBody = styled.div`
+  margin: 5%;
+
+  h2 {
+    color: var(--second-main-color);
+  }
+
+  h3 {
+    padding-top: 30px;
+    color: #b6b6c4;
+    font-size: 15px;
+  }
+
+  p {
+    padding-top: 10px;
   }
 `;

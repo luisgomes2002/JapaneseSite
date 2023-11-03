@@ -8,7 +8,8 @@ export const signup = (data) => {
   const body = {
     ...data,
     username: generateUserName(data.name),
-    avatar: "https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png",
+    avatar:
+      "https://2.bp.blogspot.com/-0nuFe-aYvcw/XOWesruC4tI/AAAAAAAAcTc/Sfv7yxfULJ40g2Uczlp-RO6HJmkVfCEwwCLcBGAs/s1600/kawaii-cute-fofo-anime-gif%2B%25289%2529.gif",
     background:
       "https://i.pinimg.com/originals/09/24/4c/09244c7f7dd4d17b0484370f32db6641.gif",
   };
@@ -33,5 +34,5 @@ export const userLogged = () => {
 const generateUserName = (name) => {
   const nameLowerWithoutSpaces = name.replace(/\s/g, "").toLowerCase();
   const randomNumber = Math.floor(Math.random() * 1000);
-  return `${nameLowerWithoutSpaces}-${randomNumber}`;
+  return `${nameLowerWithoutSpaces}${randomNumber}`;
 };
