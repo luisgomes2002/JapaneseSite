@@ -26,3 +26,12 @@ export const getAllPostsByUser = () => {
   });
   return response;
 };
+
+export const getByIdPost = (postId) => {
+  const response = axios.get(`${baseUrl}/posts/byIdPost/${postId}`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+};

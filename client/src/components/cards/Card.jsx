@@ -10,8 +10,15 @@ import {
   CardBodyTop,
 } from "./CardStyle";
 import { TextLimit } from "../textLimit/TextLimit";
+import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
+  const navigate = useNavigate();
+
+  const goHome = () => {
+    navigate(`/profile/${props.username}`);
+  };
+
   if (props.top) {
     return (
       <CardBodyTop>
@@ -83,7 +90,9 @@ const Card = (props) => {
         <div>
           <h2>{props.title}</h2>
           <TextLimit text={props.text} limit={140} />
-          <h3>@{props.username}</h3>
+          <button onClick={goHome}>
+            <h3>@{props.username}</h3>
+          </button>
         </div>
         <CardIcons>
           <div>

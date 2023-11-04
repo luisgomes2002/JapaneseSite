@@ -1,4 +1,4 @@
-import userService from '../services/user.service.js'
+import userService from "../services/user.service.js";
 
 const createUserController = async (req, res) => {
   const { name, username, email, password, avatar, background } = req.body;
@@ -16,7 +16,7 @@ const createUserController = async (req, res) => {
   } catch (e) {
     return res.status(400).send(e.message);
   }
-}
+};
 
 const findAllUserController = async (req, res) => {
   try {
@@ -25,19 +25,29 @@ const findAllUserController = async (req, res) => {
   } catch (e) {
     return res.status(404).send(e.message);
   }
-}
+};
+
+const findUserByUsernameController = async (req, res) => {
+  try {
+    const username = req.params.username;
+    const user = await userService.findUserByUsernameService(username);
+    return res.send(user);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
 
 const findUserByIdController = async (req, res) => {
   try {
     const user = await userService.findUserByIdService(
       req.params.id,
-      req.userId
+      req.userId,
     );
     return res.send(user);
   } catch (e) {
     return res.status(400).send(e.message);
   }
-}
+};
 
 const updateUserController = async (req, res) => {
   try {
@@ -48,14 +58,14 @@ const updateUserController = async (req, res) => {
     const response = await userService.updateUserService(
       { name, username, email, password, avatar, background },
       userId,
-      userIdLogged
+      userIdLogged,
     );
 
     return res.send(response);
   } catch (e) {
     res.status(400).send(e.message);
   }
-}
+};
 
 const deleteUserByIdController = async (req, res) => {
   try {
@@ -66,7 +76,7 @@ const deleteUserByIdController = async (req, res) => {
     return res.send(response);
   } catch (e) {
     res.status(400).send(e.message);
-  };
+  }
 };
 
 const followUserController = async (req, res) => {
@@ -76,7 +86,12 @@ const followUserController = async (req, res) => {
   const userIdName = await userService.findUserByIdService(req.userId);
 
   try {
-    const response = await userService.followUserService(id, idName.username, userId, userIdName.username);
+    const response = await userService.followUserService(
+      id,
+      idName.username,
+      userId,
+      userIdName.username,
+    );
 
     return res.send(response);
   } catch (e) {
@@ -89,19 +104,17 @@ const totalPointsUserController = async (req, res) => {
     const { id: userId } = req.params;
     const userIdLogged = req.userId;
 
-    const user = await userService.totalPointsUserService(
-      userId,
-      userIdLogged
-    )
+    const user = await userService.totalPointsUserService(userId, userIdLogged);
     return res.send(user);
   } catch (e) {
     return res.status(400).send(e.message);
   }
-}
+};
 
 export default {
   createUserController,
   findAllUserController,
+  findUserByUsernameController,
   findUserByIdController,
   updateUserController,
   deleteUserByIdController,

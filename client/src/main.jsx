@@ -12,6 +12,8 @@ import LoginPage from "./components/authentication/LoginPage.jsx";
 import Register from "./components/Authentication/Register.jsx";
 import Japanese from "./components/pages/japanese/JapaneseHome.jsx";
 import UserProvider from "./components/context/UserContext";
+import OtherProfiles from "./components/perfil/OtherProfiles.jsx";
+import Post from "./components/pages/Posts/Posts.jsx";
 
 const Layout = () => {
   return (
@@ -39,9 +41,14 @@ const router = createBrowserRouter([
         path: "search/:title",
         element: <Search />,
       },
+
       {
-        path: "/user",
+        path: "/myprofile/:username",
         element: <UserPage />,
+      },
+      {
+        path: "/profile/:username",
+        element: <OtherProfiles />,
       },
       {
         path: "/auth",
@@ -54,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/japanese",
         element: <Japanese />,
+      },
+      {
+        path: "/post/:id",
+        element: <Post />,
       },
     ],
   },

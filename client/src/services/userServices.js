@@ -31,6 +31,15 @@ export const userLogged = () => {
   return response;
 };
 
+export const findUser = (username) => {
+  const response = axios.get(`${baseUrl}/user/findByUsername/${username}`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+};
+
 const generateUserName = (name) => {
   const nameLowerWithoutSpaces = name.replace(/\s/g, "").toLowerCase();
   const randomNumber = Math.floor(Math.random() * 1000);

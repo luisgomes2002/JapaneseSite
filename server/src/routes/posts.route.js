@@ -12,14 +12,17 @@ postRouter.get("/search", postController.searchPostController);
 
 postRouter.use(authMiddleware);
 postRouter.post("/create", postController.createPostController);
+postRouter.get("/byIdPost/:id", postController.findPostByIdController);
 
 postRouter.use(validId);
-postRouter.get("/byIdPost/:id", postController.findPostByIdController);
 postRouter.get("/byUserId", postController.findPostsByUserIdController);
 postRouter.patch("/update/:id", postController.updatePostController);
 postRouter.delete("/delete/:id", postController.deletePostController);
 postRouter.patch("/:id/like", postController.likePostController);
 postRouter.patch("/:id/comment", postController.commentPostController);
-postRouter.patch("/:id/:idComment/comment", postController.commentDeletePostController);
+postRouter.patch(
+  "/:id/:idComment/comment",
+  postController.commentDeletePostController,
+);
 
 export default postRouter;

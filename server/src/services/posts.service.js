@@ -9,7 +9,7 @@ const createPostService = async ({ title, banner, text }, userId) => {
     title,
     banner,
     text,
-    userId
+    userId,
   );
 
   await userService.totalPointsUserService(userId);
@@ -18,7 +18,7 @@ const createPostService = async ({ title, banner, text }, userId) => {
     message: "Post created successfully!",
     post: { id, title, banner, text },
   };
-}
+};
 
 const findAllPostsService = async (limit, offset, currentUrl) => {
   limit = Number(limit);
@@ -37,10 +37,12 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
   const total = await postRepositories.countPosts();
 
   const next = offset + limit;
-  const nextUrl = next < total ? `${currentUrl}?limit=${limit}&offset=${next}` : null;
+  const nextUrl =
+    next < total ? `${currentUrl}?limit=${limit}&offset=${next}` : null;
 
   const previous = offset - limit < 0 ? null : offset - limit;
-  const previousUrl = previous != null ? `${currentUrl}?limit=${limit}&offset=${previous}` : null;
+  const previousUrl =
+    previous != null ? `${currentUrl}?limit=${limit}&offset=${previous}` : null;
 
   posts.shift();
 
@@ -63,7 +65,7 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
       avatar: post.user.avatar,
     })),
   };
-}
+};
 
 const topPostsService = async () => {
   const post = await postRepositories.topPostsRepository();
@@ -83,7 +85,7 @@ const topPostsService = async () => {
       avatar: post.user.avatar,
     },
   };
-}
+};
 
 const findPostByIdService = async (id) => {
   const post = await postRepositories.findPostByIdRepository(id);
@@ -102,7 +104,7 @@ const findPostByIdService = async (id) => {
     username: post.user.username,
     avatar: post.user.avatar,
   };
-}
+};
 
 const searchPostService = async (title) => {
   const foundPosts = await postRepositories.searchPostRepository(title);
@@ -123,7 +125,7 @@ const searchPostService = async (title) => {
       avatar: post.user.avatar,
     })),
   };
-}
+};
 
 const findPostsByUserIdService = async (id) => {
   const posts = await postRepositories.findPostsByUserIdRepository(id);
@@ -141,7 +143,7 @@ const findPostsByUserIdService = async (id) => {
       avatar: post.user.avatar,
     })),
   };
-}
+};
 
 const updatePostService = async (id, title, banner, text, userId) => {
   if (!title && !banner && !text)
@@ -154,7 +156,7 @@ const updatePostService = async (id, title, banner, text, userId) => {
   if (post.user._id != userId) throw new Error("You didn't create this post");
 
   await postRepositories.updatePostRepository(id, title, banner, text);
-}
+};
 
 const deletePostService = async (id, userId, permission) => {
   const post = await postRepositories.findPostByIdRepository(id);
@@ -163,10 +165,10 @@ const deletePostService = async (id, userId, permission) => {
 
   if (post.user._id == userId || permission === true) {
     await postRepositories.deletePostRepository(id);
-  }else {
+  } else {
     throw new Error("Você não criou esta post");
   }
-}
+};
 
 const likePostService = async (id, userId) => {
   const postLiked = await postRepositories.likesRepository(id, userId);
@@ -180,7 +182,7 @@ const likePostService = async (id, userId) => {
 
   await userService.totalPointsUserService(postUserId);
   return { message: "Like done successfully" };
-}
+};
 
 const commentPostService = async (postId, message, userId) => {
   if (!message) throw new Error("Write a message to comment");
@@ -192,7 +194,7 @@ const commentPostService = async (postId, message, userId) => {
 
   await postRepositories.commentsRepository(postId, message, userId);
   await userService.totalPointsUserService(postUserId);
-}
+};
 
 const commentDeletePostService = async (postId, userId, idComment) => {
   const post = await postRepositories.findPostByIdRepository(postId);
@@ -202,7 +204,7 @@ const commentDeletePostService = async (postId, userId, idComment) => {
 
   await postRepositories.commentsDeleteRepository(postId, userId, idComment);
   await userService.totalPointsUserService(postUserId);
-}
+};
 
 export default {
   createPostService,

@@ -10,6 +10,10 @@ userRouter.post("/create", userController.createUserController);
 
 userRouter.use(authMiddleware);
 userRouter.get("/", userController.findAllUserController);
+userRouter.get(
+  "/findByUsername/:username",
+  userController.findUserByUsernameController,
+);
 
 userRouter.use(validId);
 userRouter.get("/findById/:id?", userController.findUserByIdController);

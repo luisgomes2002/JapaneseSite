@@ -1,18 +1,30 @@
-import User from '../models/User.js'
+import User from "../models/User.js";
 
 const findByEmailUserRepository = (email) => User.findOne({ email: email });
 
+const findByUsernameRepository = (username) =>
+  User.findOne({ username: username });
+
 const createUserRepository = (body) => User.create(body);
 
-const findAllUserRepository = (offset, limit) => User.find().sort({ _id: 1 }).skip(offset).limit(limit); //fazer uma paginação
+const findAllUserRepository = (offset, limit) =>
+  User.find().sort({ _id: 1 }).skip(offset).limit(limit); //fazer uma paginação
 
 const findByIdUserRepository = (idUser) => User.findById(idUser);
 
-const updateUserRepository = (id, name, username, email, password, avatar, background) => {
+const updateUserRepository = (
+  id,
+  name,
+  username,
+  email,
+  password,
+  avatar,
+  background,
+) => {
   User.findOneAndUpdate(
     { _id: id },
     { name, username, email, password, avatar, background },
-    { rawResult: true, }
+    { rawResult: true },
   );
 };
 
@@ -33,7 +45,7 @@ const followUserRepository = (id, userId, userIdName) => {
     },
     {
       rawResult: true,
-    }
+    },
   );
 };
 
@@ -44,9 +56,9 @@ const deletefollowUserRepository = (id, userId) => {
     },
     {
       $pull: {
-        follows: { userId: userId, },
+        follows: { userId: userId },
       },
-    }
+    },
   );
 };
 
@@ -58,13 +70,13 @@ const followedUserRepository = (id, userId, idName) => {
     },
     {
       $push: {
-        followed: { id, idName, created: new Date() }
-      }
+        followed: { id, idName, created: new Date() },
+      },
     },
     {
       rawResult: true,
-    }
-  )
+    },
+  );
 };
 
 const deletefollowedUserRepository = (id, userId) => {
@@ -74,22 +86,19 @@ const deletefollowedUserRepository = (id, userId) => {
     },
     {
       $pull: {
-        followed: { id: id, },
-      }
-    }
-  )
+        followed: { id: id },
+      },
+    },
+  );
 };
 
 const pointCountUserRepository = (id, points) => {
-  User.findOneAndUpdate(
-    { _id: id },
-    { points },
-    { rawResult: true, }
-  ).exec();
+  User.findOneAndUpdate({ _id: id }, { points }, { rawResult: true }).exec();
 };
 
 export default {
   findByEmailUserRepository,
+  findByUsernameRepository,
   createUserRepository,
   findAllUserRepository,
   findByIdUserRepository,

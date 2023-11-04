@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { UserContext } from "../context/UserContext";
 
-function NavBar() {
+const NavBar = () => {
   const { user, setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ function NavBar() {
   };
 
   const goUserPage = () => {
-    navigate("/user");
+    navigate(`/myprofile/${user.username}`);
   };
 
   const signout = () => {
@@ -45,7 +45,7 @@ function NavBar() {
         </Link>
         <NavBarCategories>
           <Link to="/categorias">Categorias</Link>
-          <Link to="/">Sobre</Link>
+          <Link to="/post">Sobre</Link>
           <Link to="/community">Comunidade</Link>
           {user ? (
             <>
@@ -65,6 +65,6 @@ function NavBar() {
       </NavBarLogo>
     </Nav>
   );
-}
+};
 
 export default NavBar;
