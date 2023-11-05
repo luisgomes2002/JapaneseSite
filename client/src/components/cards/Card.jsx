@@ -8,6 +8,7 @@ import {
   UserPagePostArea,
   InfoPostsBody,
   CardBodyTop,
+  PostsByUser,
 } from "./CardStyle";
 import { TextLimit } from "../textLimit/TextLimit";
 import { useNavigate } from "react-router-dom";
@@ -62,24 +63,26 @@ const Card = (props) => {
     );
   } else if (props.perfil) {
     return (
-      <UserPagePostArea>
-        <InfoPostsBody>
-          <h2>{props.title}</h2>
-          <TextLimit text={props.text} limit={210} />
-          <h3>@{props.username}</h3>
-          <CardIcons>
-            <div>
-              <i className="fa-regular fa-heart"></i>
-              <span>{props.likes?.length}</span>
-            </div>
-            <div>
-              <i className="fa-regular fa-message"></i>
-              <span>{props.comments?.length}</span>
-            </div>
-          </CardIcons>
-        </InfoPostsBody>
-        <img src={props.banner} alt="banner" />
-      </UserPagePostArea>
+      <PostsByUser>
+        <UserPagePostArea>
+          <InfoPostsBody>
+            <h2>{props.title}</h2>
+            <TextLimit text={props.text} limit={210} />
+            <h3>@{props.username}</h3>
+            <CardIcons>
+              <div>
+                <i className="fa-regular fa-heart"></i>
+                <span>{props.likes?.length}</span>
+              </div>
+              <div>
+                <i className="fa-regular fa-message"></i>
+                <span>{props.comments?.length}</span>
+              </div>
+            </CardIcons>
+          </InfoPostsBody>
+          <img src={props.banner} alt="banner" />
+        </UserPagePostArea>
+      </PostsByUser>
     );
   } else {
     return (

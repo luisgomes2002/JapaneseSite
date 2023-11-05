@@ -18,8 +18,8 @@ export const getSearchPost = (title) => {
   return response;
 };
 
-export const getAllPostsByUser = () => {
-  const response = axios.get(`${baseUrl}/posts/byUserId`, {
+export const getAllPostsByUser = (username) => {
+  const response = axios.get(`${baseUrl}/posts/byUserUsername/${username}`, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
     },

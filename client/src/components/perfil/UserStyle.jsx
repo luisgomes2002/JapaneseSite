@@ -63,7 +63,7 @@ export const UserAbout = styled.div`
   background-color: #202024;
   border-radius: 5px;
   padding: 5%;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
+  box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.096);
 
   h1 {
     color: #fff;
@@ -91,7 +91,7 @@ export const UserInfoPostsFollows = styled.div`
   margin: 5% 5% 0 5%;
   border-radius: 5px;
   background-color: #202024;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
+  box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.096);
 
   p {
     font-size: 17px;
@@ -115,7 +115,6 @@ export const CadsAndAchievements = styled.div`
   }
 
   button {
-    padding-left: 10px;
     border: none;
     background-color: transparent;
     font-size: 30px;
@@ -128,22 +127,15 @@ export const CadsAndAchievements = styled.div`
   }
 `;
 
-export const PostsByUser = styled.div`
-  margin-top: 40px;
-  background-color: #202024;
-  border-radius: 5px;
-  height: 250px;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
-`;
-
 export const CardEmpty = styled.div`
   margin-top: 40px;
   background-color: #202024;
   border-radius: 5px;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 250px;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
+  box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.096);
 `;
 
 export const Achievementsiv = styled.div`
@@ -155,7 +147,7 @@ export const Achievementsiv = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
+  box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.096);
 `;
 
 export const Case = styled.div`
@@ -169,7 +161,7 @@ export const Case = styled.div`
   padding: 3% 10% 3% 5%;
   width: 200px;
   border: #5400d9;
-  box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
+  box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.096);
 
   h3 {
     font-size: 55px;
@@ -178,7 +170,7 @@ export const Case = styled.div`
     background-color: #202024;
     border-radius: 50%;
     border: #5400d9;
-    box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.096);
+    box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.096);
   }
 
   p {

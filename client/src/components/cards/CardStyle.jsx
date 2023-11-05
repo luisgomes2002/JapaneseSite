@@ -44,6 +44,14 @@ export const CardContainer = styled.section`
   }
 `;
 
+export const PostsByUser = styled.div`
+  margin-top: 40px;
+  border-radius: 5px;
+  background-color: #202024;
+  box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.096);
+  height: 250px;
+`;
+
 export const CardBody = styled.article`
   display: flex;
   flex-direction: column;

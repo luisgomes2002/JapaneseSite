@@ -1,4 +1,5 @@
 import postRepositories from "../repositories/post.repositories.js";
+import userRepositories from "../repositories/user.repositories.js";
 import userService from "./user.service.js";
 
 const createPostService = async ({ title, banner, text }, userId) => {
@@ -25,7 +26,7 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
   offset = Number(offset);
 
   if (!limit) {
-    limit = 7;
+    limit = 50;
   }
 
   if (!offset) {
@@ -127,8 +128,9 @@ const searchPostService = async (title) => {
   };
 };
 
-const findPostsByUserIdService = async (id) => {
-  const posts = await postRepositories.findPostsByUserIdRepository(id);
+const findPostsByUserUsernameService = async (username) => {
+  const user = await userRepositories.findByUsernameRepository(username);
+  const posts = await postRepositories.findPostsByUserIdRepository(user.id);
 
   return {
     postsByUser: posts.map((post) => ({
@@ -212,7 +214,7 @@ export default {
   topPostsService,
   searchPostService,
   findPostByIdService,
-  findPostsByUserIdService,
+  findPostsByUserUsernameService,
   updatePostService,
   deletePostService,
   likePostService,

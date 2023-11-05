@@ -64,10 +64,10 @@ const searchPostController = async (req, res) => {
   }
 };
 
-const findPostsByUserIdController = async (req, res) => {
-  const id = req.userId;
+const findPostsByUserUsernameController = async (req, res) => {
   try {
-    const posts = await postService.findPostsByUserIdService(id);
+    const username = req.params.username;
+    const posts = await postService.findPostsByUserUsernameService(username);
     return res.send(posts);
   } catch (e) {
     return res.status(500).send(e.message);
@@ -152,7 +152,7 @@ export default {
   topPostsController,
   searchPostController,
   findPostByIdController,
-  findPostsByUserIdController,
+  findPostsByUserUsernameController,
   updatePostController,
   deletePostController,
   likePostController,

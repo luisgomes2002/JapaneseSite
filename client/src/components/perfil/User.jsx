@@ -8,22 +8,21 @@ import {
   UserAbout,
   Follows,
   CadsAndAchievements,
-  Achievementsiv,
-  Case,
   UserInfoPostsFollows,
   CardEmpty,
-  PostsByUser,
 } from "./UserStyle";
 import { UserContext } from "../context/UserContext";
 import { getAllPostsByUser } from "../../services/postsServices";
 import { Card } from "../cards/Card";
+import { useParams } from "react-router-dom";
 
 const UserPage = () => {
   const { user } = useContext(UserContext);
+  const { username } = useParams();
   const [posts, setPostsd] = useState([]);
 
   const findAllPostsByUser = async () => {
-    const postsResponse = await getAllPostsByUser();
+    const postsResponse = await getAllPostsByUser(username);
     setPostsd(postsResponse.data.postsByUser);
   };
 
@@ -91,7 +90,7 @@ const UserPage = () => {
           <CadsAndAchievements>
             <section>
               <h1>Posts</h1>
-              <PostsByUser>
+              <div>
                 {posts.map((item) => {
                   return (
                     <Card
@@ -106,7 +105,7 @@ const UserPage = () => {
                     />
                   );
                 })}
-              </PostsByUser>
+              </div>
               <CardEmpty>
                 <button>
                   <i className="fa-solid fa-circle-plus"></i>

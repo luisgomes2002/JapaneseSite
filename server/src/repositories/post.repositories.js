@@ -2,23 +2,27 @@ import Post from "../models/Posts.js";
 
 const createPostRepository = (title, banner, text, userId) => {
   return Post.create({ title, banner, text, user: userId });
-}
+};
 
 const findAllPostsRepository = (offset, limit) => {
-  return Post.find().sort({ likes: -1 }).skip(offset).limit(limit).populate("user");
-}
+  return Post.find()
+    .sort({ likes: -1 })
+    .skip(offset)
+    .limit(limit)
+    .populate("user");
+};
 
 const topPostsRepository = () => {
   return Post.findOne().sort({ likes: -1 }).populate("user");
-}
+};
 
 const findPostByIdRepository = (id) => {
   return Post.findById(id).populate("user");
-}
+};
 
 const countPosts = () => {
   return Post.countDocuments();
-}
+};
 
 const searchPostRepository = (title) => {
   return Post.find({
@@ -26,15 +30,15 @@ const searchPostRepository = (title) => {
   })
     .sort({ likes: -1 })
     .populate("user");
-}
+};
 
 const findPostsByUserIdRepository = (id) => {
   return Post.find({
     user: id,
   })
-    .sort({ _id: -1 })
+    .sort({ likes: -1 })
     .populate("user");
-}
+};
 
 const updatePostRepository = (id, title, banner, text) => {
   return Post.findOneAndUpdate(
@@ -48,13 +52,13 @@ const updatePostRepository = (id, title, banner, text) => {
     },
     {
       rawResult: true,
-    }
+    },
   );
-}
+};
 
 const deletePostRepository = (id) => {
   return Post.findOneAndDelete({ _id: id });
-}
+};
 
 const likesRepository = (id, userId) => {
   return Post.findOneAndUpdate(
@@ -69,9 +73,9 @@ const likesRepository = (id, userId) => {
     },
     {
       rawResult: true,
-    }
+    },
   );
-}
+};
 
 const likesDeleteRepository = (id, userId) => {
   return Post.findOneAndUpdate(
@@ -84,9 +88,9 @@ const likesDeleteRepository = (id, userId) => {
           userId: userId,
         },
       },
-    }
+    },
   );
-}
+};
 
 const commentsRepository = (id, message, userId) => {
   let idComment = Math.floor(Date.now() * Math.random()).toString(36);
@@ -101,9 +105,9 @@ const commentsRepository = (id, message, userId) => {
     },
     {
       rawResult: true,
-    }
+    },
   );
-}
+};
 
 const commentsDeleteRepository = (id, userId, idComment) => {
   return Post.findOneAndUpdate(
@@ -117,9 +121,9 @@ const commentsDeleteRepository = (id, userId, idComment) => {
           userId: userId,
         },
       },
-    }
+    },
   );
-}
+};
 
 export default {
   createPostRepository,
