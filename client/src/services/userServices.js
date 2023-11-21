@@ -40,6 +40,19 @@ export const findUser = (username) => {
   return response;
 };
 
+export const followUser = (username) => {
+  const response = axios.patch(
+    `${baseUrl}/user/follow/${username}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    },
+  );
+  return response;
+};
+
 const generateUserName = (name) => {
   const nameLowerWithoutSpaces = name.replace(/\s/g, "").toLowerCase();
   const randomNumber = Math.floor(Math.random() * 1000);

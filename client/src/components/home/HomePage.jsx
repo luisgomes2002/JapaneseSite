@@ -135,16 +135,18 @@ function Home() {
         <AllPosts>
           {posts.map((item) => {
             return (
-              <Card
-                home={true}
-                key={item.id}
-                title={item.title}
-                text={item.text}
-                banner={item.banner}
-                likes={item.likes}
-                comments={item.comments}
-                username={item.username}
-              />
+              <Link to={`/post/${item.id}`} key={item.id}>
+                <Card
+                  home={true}
+                  key={item.id}
+                  title={item.title}
+                  text={item.text}
+                  banner={item.banner}
+                  likes={item.likes}
+                  comments={item.comments}
+                  username={item.username}
+                />
+              </Link>
             );
           })}
         </AllPosts>

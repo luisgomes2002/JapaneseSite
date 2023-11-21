@@ -79,15 +79,17 @@ const UsersPostsArea = () => {
         </SearchArea>
         <CardContainerCommunity>
           <CardBodyCommunity>
-            <Card
-              top={true}
-              title={topPost.title}
-              text={topPost.text}
-              banner={topPost.banner}
-              likes={topPost.likes}
-              comments={topPost.comments}
-              username={topPost.username}
-            />
+            <Link to={`/post/${topPost.id}`} key={topPost.id}>
+              <Card
+                top={true}
+                title={topPost.title}
+                text={topPost.text}
+                banner={topPost.banner}
+                likes={topPost.likes}
+                comments={topPost.comments}
+                username={topPost.username}
+              />
+            </Link>
           </CardBodyCommunity>
           <img src={topPost.banner} alt="banner" />
         </CardContainerCommunity>

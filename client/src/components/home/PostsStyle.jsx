@@ -20,4 +20,8 @@ export const PostsHome = styled.section`
 
 export const AllPosts = styled.div`
   display: flex;
+
+  a {
+    text-decoration: none;
+  }
 `;

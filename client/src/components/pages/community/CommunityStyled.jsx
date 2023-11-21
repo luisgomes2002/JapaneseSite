@@ -54,6 +54,10 @@ export const CardContainerBody = styled.section`
   margin: 0 auto;
   width: 80%;
   padding-bottom: 5%;
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const CardContainerCommunity = styled.section`
@@ -77,6 +81,10 @@ export const CardBodyCommunity = styled.article`
   display: flex;
   align-items: center;
   text-align: left;
+
+  a {
+    text-decoration: none;
+  }
 
   h2 {
     padding: 3% 8%;

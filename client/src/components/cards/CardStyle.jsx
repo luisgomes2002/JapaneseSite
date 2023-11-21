@@ -18,6 +18,12 @@ export const CardContainer = styled.section`
   text-align: center;
   background-color: var(--card-color);
 
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
   h2 {
     padding: 3% 5%;
     color: var(--second-main-color);

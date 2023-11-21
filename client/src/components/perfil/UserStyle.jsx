@@ -27,7 +27,7 @@ export const UserInformation = styled.div`
     border: 1px solid #fff;
     height: 200px;
     width: 200px;
-    margin-bottom: 20%;
+    margin-bottom: 5%;
   }
 
   h2 {
@@ -110,6 +110,10 @@ export const CadsAndAchievements = styled.div`
   padding: 0 10%;
   padding-bottom: 5%;
 
+  a {
+    text-decoration: none;
+  }
+
   h1 {
     color: #fff;
   }
@@ -176,5 +180,20 @@ export const Case = styled.div`
   p {
     padding-left: 5%;
     color: #fff;
+  }
+`;
+
+export const BasicInfoUser = styled.div`
+  button {
+    background-color: #101011;
+    box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.096);
+    padding: 5px 10px;
+    border-radius: 25px;
+    color: white;
+    margin: 5% 0;
+  }
+
+  button:hover {
+    background-color: #1a1a1b;
   }
 `;

@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { CardContainerBody, SearchArea } from "./CommunityStyled";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { searchSchema } from "../../schemas/searchSchema";
 import {
@@ -81,14 +81,16 @@ const Search = () => {
       <CardContainerBody>
         {posts.map((item) => {
           return (
-            <Card
-              key={item.id}
-              title={item.title}
-              text={item.text}
-              banner={item.banner}
-              likes={item.likes}
-              comments={item.comments}
-            />
+            <Link to={`/post/${item.id}`} key={item.id}>
+              <Card
+                title={item.title}
+                text={item.text}
+                banner={item.banner}
+                likes={item.likes}
+                comments={item.comments}
+                username={item.username}
+              />
+            </Link>
           );
         })}
       </CardContainerBody>

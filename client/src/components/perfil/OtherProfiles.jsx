@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { findUser } from "../../services/userServices";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { findUser, followUser } from "../../services/userServices";
 import {
   UserInfomationsArea,
   TotalSpace,
@@ -11,6 +11,7 @@ import {
   CadsAndAchievements,
   UserInfoPostsFollows,
   CardEmpty,
+  BasicInfoUser,
 } from "./UserStyle";
 import NavBar from "../nav/NavBar";
 import { getAllPostsByUser } from "../../services/postsServices";
@@ -21,7 +22,8 @@ const Profile = () => {
   const { user } = useContext(UserContext);
   const [profileInfo, setProfileInfo] = useState({});
   const { username } = useParams();
-  const [posts, setPostsd] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [followBtn, setFollowBtn] = useState(false);
 
   const navigate = useNavigate();
   if (username === user.username) {
@@ -33,15 +35,24 @@ const Profile = () => {
       const response = await findUser(username);
       setProfileInfo(response.data);
       const postsResponse = await getAllPostsByUser(username);
-      setPostsd(postsResponse.data.postsByUser);
+      setPosts(postsResponse.data.postsByUser);
     } catch (e) {
       console.log(e.message);
     }
   };
 
+  const follow = async () => {
+    try {
+      await followUser(username);
+      followBtn === true ? setFollowBtn(false) : setFollowBtn(true);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     getProfile();
-  }, [username]);
+  }, [profileInfo.follows, user.username]);
 
   const backgroundStyle = {
     backgroundImage:
@@ -62,9 +73,14 @@ const Profile = () => {
           <UserInformation>
             <div>
               <img src={profileInfo.avatar} alt="img" />
-              <h2>{profileInfo.name} </h2>
-              <h3>{profileInfo.username}</h3>
-              <p>JLPT: N2</p>
+              <BasicInfoUser>
+                <button onClick={follow}>
+                  {followBtn === true ? "Seguindo" : "Seguir"}
+                </button>
+                <h2>{profileInfo.name} </h2>
+                <h3>{profileInfo.username}</h3>
+                <p>JLPT: N2</p>
+              </BasicInfoUser>
             </div>
             <div>
               <UserAbout>
@@ -104,16 +120,18 @@ const Profile = () => {
                 <div>
                   {posts.map((item) => {
                     return (
-                      <Card
-                        perfil={true}
-                        key={item.id}
-                        title={item.title}
-                        text={item.text}
-                        banner={item.banner}
-                        likes={item.likes}
-                        comments={item.comments}
-                        username={item.username}
-                      />
+                      <Link to={`/post/${item.id}`} key={item.id}>
+                        <Card
+                          perfil={true}
+                          key={item.id}
+                          title={item.title}
+                          text={item.text}
+                          banner={item.banner}
+                          likes={item.likes}
+                          comments={item.comments}
+                          username={item.username}
+                        />
+                      </Link>
                     );
                   })}
                 </div>

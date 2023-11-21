@@ -14,7 +14,7 @@ import {
 import { UserContext } from "../context/UserContext";
 import { getAllPostsByUser } from "../../services/postsServices";
 import { Card } from "../cards/Card";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const UserPage = () => {
   const { user } = useContext(UserContext);
@@ -24,6 +24,11 @@ const UserPage = () => {
   const findAllPostsByUser = async () => {
     const postsResponse = await getAllPostsByUser(username);
     setPostsd(postsResponse.data.postsByUser);
+  };
+
+  const showFollowed = () => {
+    const userFollowed = user.followed;
+    console.log(userFollowed);
   };
 
   useEffect(() => {
@@ -73,8 +78,10 @@ const UserPage = () => {
                   <h3>{posts?.length}</h3>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
-                  <p>Seguindo</p>
-                  <h3>{user.followed?.length}</h3>
+                  <button onClick={showFollowed}>
+                    <p>Seguindo</p>
+                    <h3>{user.followed?.length}</h3>
+                  </button>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
                   <p>Seguidores</p>
@@ -93,16 +100,18 @@ const UserPage = () => {
               <div>
                 {posts.map((item) => {
                   return (
-                    <Card
-                      perfil={true}
-                      key={item.id}
-                      title={item.title}
-                      text={item.text}
-                      banner={item.banner}
-                      likes={item.likes}
-                      comments={item.comments}
-                      username={item.username}
-                    />
+                    <Link to={`/post/${item.id}`} key={item.id}>
+                      <Card
+                        perfil={true}
+                        key={item.id}
+                        title={item.title}
+                        text={item.text}
+                        banner={item.banner}
+                        likes={item.likes}
+                        comments={item.comments}
+                        username={item.username}
+                      />
+                    </Link>
                   );
                 })}
               </div>

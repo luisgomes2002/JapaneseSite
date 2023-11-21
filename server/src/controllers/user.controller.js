@@ -80,19 +80,16 @@ const deleteUserByIdController = async (req, res) => {
 };
 
 const followUserController = async (req, res) => {
-  const { id } = req.params;
+  const { username } = req.params;
   const userId = req.userId;
-  const idName = await userService.findUserByIdService(id);
-  const userIdName = await userService.findUserByIdService(req.userId);
+  const userIdName = await userService.findUserByIdService(userId);
 
   try {
     const response = await userService.followUserService(
-      id,
-      idName.username,
+      username,
       userId,
       userIdName.username,
     );
-
     return res.send(response);
   } catch (e) {
     return res.status(500).send(e.message);
