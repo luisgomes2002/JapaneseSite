@@ -46,8 +46,10 @@ The following tools were used in the project's construction:
 - Depois que entrar na pasta do client inicie o programa
 npm run dev 
 ```
+
 ### Para iniciar o backend
 
+```
 - Digite no terminal
  cd .\server\ ou digite cd e aperte tab até aparecer o ".\server\"
 
@@ -56,7 +58,6 @@ npm run dev
 ```
 
 ### Author
----
 
 <table>
   <tr>
