@@ -36,8 +36,28 @@ The following tools were used in the project's construction:
 - [MongoDB](https://www.mongodb.com/)
 - [Styled-components](https://styled-components.com/)
 
+## ☕ Usando MURASAKI
+### Para iniciar o frontend
+
+```
+- Digite no terminal
+ cd .\client\ ou digite cd e aperte tab até aparecer o ".\client\"
+
+- Depois que entrar na pasta do client inicie o programa
+npm run dev 
+```
+
+### Para iniciar o backend
+
+```
+- Digite no terminal
+ cd .\server\ ou digite cd e aperte tab até aparecer o ".\server\"
+
+- Depois que entrar na pasta do server inicie o programa
+npm run dev 
+```
+
 ### Author
----
 
 <table>
   <tr>
