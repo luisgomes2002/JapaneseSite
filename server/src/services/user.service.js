@@ -103,13 +103,32 @@ const deleteUserByIdService = async (userId) => {
   return { message: "Usuário deletado om sucesso!" };
 };
 
-const followUserService = async (username, userId, userIdUsername) => {
+const followUserService = async (
+  username,
+  userIdAvatar,
+  userIdBackground,
+  userId,
+  userIdUsername,
+) => {
   const user = await userRepositories.findByUsernameRepository(username);
-  console.log("followUserService: " + username);
 
   const [userFollow, userFollowed] = await Promise.all([
-    userRepositories.followUserRepository(user._id, userId, userIdUsername),
-    userRepositories.followedUserRepository(user._id, userId, username),
+    userRepositories.followUserRepository(
+      //User para seguir
+      user._id,
+      //User logado
+      userId,
+      userIdUsername,
+    ),
+    userRepositories.followedUserRepository(
+      //User para seguir
+      user._id,
+      username,
+      userIdAvatar,
+      userIdBackground,
+      //User logado
+      userId,
+    ),
   ]);
 
   if (

@@ -23,6 +23,7 @@ const UsersPostsArea = () => {
   } = useForm({
     resolver: zodResolver(searchSchema),
   });
+
   const navigate = useNavigate();
 
   const onSearch = (data) => {
