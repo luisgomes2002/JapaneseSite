@@ -3,35 +3,47 @@ import { ModalArea, Overlay, InfoModalUser } from "./ModalStyle";
 import { useEffect, useState } from "react";
 import { findUser } from "../../services/userServices";
 
-const Modal = (props) => {
-  const [users, setUser] = useState([]);
+const Modal = ({ users: initialUsers }) => {
+  const [users, setUsers] = useState(initialUsers);
+  const [loading, setLoading] = useState(true);
 
-  const findUserByUsername = async () => {
-    const details = [];
-    for (let i = 0; i < props.users.length; i++) {
-      const postsResponse = await findUser(props.users[i].idName);
-      details.push(postsResponse.data);
+  const findUsersByUsername = async () => {
+    try {
+      const userDetails = await Promise.all(
+        initialUsers.map(async (user) => {
+          const response = await findUser(user.idName);
+          return response.data;
+        }),
+      );
+      setUsers(userDetails);
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    } finally {
+      setLoading(false);
     }
-    setUser(details);
   };
 
   useEffect(() => {
-    findUserByUsername();
+    findUsersByUsername();
   }, []);
 
   return (
     <>
       <Overlay />
       <ModalArea>
-        {users.map((itens) => (
-          <Link to={`/profile/${itens.username}`} key={itens._id}>
-            <img src={itens.background} alt="background" />
-            <InfoModalUser>
-              <h2>{itens.username}</h2>
-              <img src={itens.avatar} alt="avatar" />
-            </InfoModalUser>
-          </Link>
-        ))}
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          users.map((user) => (
+            <Link to={`/profile/${user.username}`} key={user._id}>
+              <img src={user.background} alt="background" />
+              <InfoModalUser>
+                <h2>{user.username}</h2>
+                <img src={user.avatar} alt="avatar" />
+              </InfoModalUser>
+            </Link>
+          ))
+        )}
       </ModalArea>
     </>
   );
