@@ -62,7 +62,7 @@ const deletefollowUserRepository = (id, userId) => {
   );
 };
 
-const followedUserRepository = (id, idName, idAvatar, idBackground, userId) => {
+const followedUserRepository = (id, idName, userId) => {
   return User.findOneAndUpdate(
     {
       _id: userId,
@@ -70,7 +70,7 @@ const followedUserRepository = (id, idName, idAvatar, idBackground, userId) => {
     },
     {
       $push: {
-        followed: { id, idName, idAvatar, idBackground },
+        followed: { id, idName },
       },
     },
     {

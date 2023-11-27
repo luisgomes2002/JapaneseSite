@@ -83,16 +83,11 @@ const followUserController = async (req, res) => {
   const { username } = req.params;
   const userId = req.userId;
   const userIdName = await userService.findUserByIdService(userId);
-  const Userwhowillfollow = await userService.findUserByUsernameService(
-    username,
-  );
 
   try {
     const response = await userService.followUserService(
       //User para seguir
       username,
-      Userwhowillfollow.avatar,
-      Userwhowillfollow.background,
       //User logado
       userId,
       userIdName.username,

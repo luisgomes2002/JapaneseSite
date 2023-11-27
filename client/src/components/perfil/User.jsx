@@ -22,7 +22,6 @@ const UserPage = () => {
   const { username } = useParams();
   const [posts, setPostsd] = useState([]);
   const [openModal, setOpenModa] = useState(false);
-  console.log(user.followed);
 
   const findAllPostsByUser = async () => {
     const postsResponse = await getAllPostsByUser(username);

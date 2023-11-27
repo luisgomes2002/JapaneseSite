@@ -13,6 +13,22 @@ export const ModalArea = styled.div`
   h1 {
     color: black;
   }
+
+  img {
+    width: 500px;
+    height: 50px;
+    object-fit: cover;
+  }
+`;
+
+export const InfoModalUser = styled.div`
+  display: flex;
+
+  img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 export const Overlay = styled.div`
