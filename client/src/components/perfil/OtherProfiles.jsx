@@ -42,6 +42,13 @@ const Profile = () => {
     }
   };
 
+  const checkIfFollowed = () => {
+    if (user.followed) {
+      return user.followed.some((users) => users.idName.includes(username));
+    }
+    return false;
+  };
+
   const follow = async () => {
     try {
       await followUser(username);
@@ -51,24 +58,17 @@ const Profile = () => {
     }
   };
 
-  const followed = async () => {
-    if (user.followed) {
-      user.followed.map((users) => {
-        if (users.idName.includes(username)) {
-          setFollowBtn(true);
-        }
-      });
-    }
-  };
-
   useEffect(() => {
     if (username === user.username) {
       navigate(`/myprofile/${user.username}`);
     } else {
       getProfile();
-      followed();
     }
-  }, [followBtn, profileInfo.follows, user.username, username, navigate]);
+  }, [profileInfo.follows, user.username, username, navigate]);
+
+  useEffect(() => {
+    setFollowBtn(checkIfFollowed());
+  }, [user.followed, username]);
 
   const backgroundStyle = {
     backgroundImage:
