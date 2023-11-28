@@ -40,7 +40,17 @@ const Modal = ({ users: initialUsers }) => {
       <Overlay />
       <ModalArea>
         {loading ? (
-          <h2>Loading...</h2>
+          <h2
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+              margin: 0,
+            }}
+          >
+            Loading...
+          </h2>
         ) : users.length === 0 ? (
           <h2
             style={{

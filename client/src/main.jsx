@@ -14,6 +14,7 @@ import Japanese from "./components/pages/japanese/JapaneseHome.jsx";
 import UserProvider from "./components/context/UserContext";
 import OtherProfiles from "./components/perfil/OtherProfiles.jsx";
 import Post from "./components/pages/Posts/Posts.jsx";
+import NavBar from "./components/nav/NavBar.jsx";
 
 const Layout = () => {
   return (

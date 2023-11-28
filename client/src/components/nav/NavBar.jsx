@@ -47,7 +47,7 @@ const NavBar = () => {
           <Link to="/categorias">Categorias</Link>
           <Link to="/post">Sobre</Link>
           <Link to="/community">Comunidade</Link>
-          {user ? (
+          {user && Object.keys(user).length > 0 ? (
             <>
               <button onClick={goUserPage}>
                 <img src={user.avatar} alt="" />
