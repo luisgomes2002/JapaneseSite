@@ -12,11 +12,13 @@ import {
   UserInfoPostsFollows,
   CardEmpty,
   BasicInfoUser,
+  ButtonSpaceArea,
 } from "./UserStyle";
 import NavBar from "../nav/NavBar";
 import { getAllPostsByUser } from "../../services/postsServices";
 import { Card } from "../cards/Card";
 import { UserContext } from "../context/UserContext";
+import Modal from "../modal/Modal";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
@@ -24,6 +26,8 @@ const Profile = () => {
   const { username } = useParams();
   const [posts, setPosts] = useState([]);
   const [followBtn, setFollowBtn] = useState(false);
+  const [openFollowersModal, setOpenFollowersModal] = useState(false);
+  const [openFollowedModal, setOpenFollowedModal] = useState(false);
 
   const navigate = useNavigate();
   if (username === user.username) {
@@ -44,15 +48,18 @@ const Profile = () => {
   const follow = async () => {
     try {
       await followUser(username);
-      followBtn === true ? setFollowBtn(false) : setFollowBtn(true);
+      setFollowBtn(!followBtn);
     } catch (e) {
       console.log(e);
     }
   };
-
   useEffect(() => {
-    getProfile();
-  }, [profileInfo.follows, user.username]);
+    if (username === user.username) {
+      navigate(`/myprofile/${user.username}`);
+    } else {
+      getProfile();
+    }
+  }, [profileInfo.follows, user.username, username, navigate]);
 
   const backgroundStyle = {
     backgroundImage:
@@ -99,12 +106,30 @@ const Profile = () => {
                   <h3>{posts?.length}</h3>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
-                  <p>Seguindo</p>
-                  <h3>{profileInfo.followed?.length}</h3>
+                  <button
+                    onClick={() => setOpenFollowedModal(!openFollowedModal)}
+                  >
+                    {openFollowedModal && (
+                      <Modal users={profileInfo.followed} />
+                    )}
+                    <ButtonSpaceArea>
+                      <p>Seguindo</p>
+                      <h3>{profileInfo.followed?.length}</h3>
+                    </ButtonSpaceArea>
+                  </button>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
-                  <p>Seguidores</p>
-                  <h3>{profileInfo.follows?.length}</h3>
+                  <button
+                    onClick={() => setOpenFollowersModal(!openFollowersModal)}
+                  >
+                    {openFollowersModal && (
+                      <Modal users={profileInfo.follows} />
+                    )}
+                    <ButtonSpaceArea>
+                      <p>Seguidores</p>
+                      <h3>{profileInfo.follows?.length}</h3>
+                    </ButtonSpaceArea>
+                  </button>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
                   <p>Pontos</p>

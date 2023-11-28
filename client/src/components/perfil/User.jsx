@@ -10,6 +10,7 @@ import {
   CadsAndAchievements,
   UserInfoPostsFollows,
   CardEmpty,
+  ButtonSpaceArea,
 } from "./UserStyle";
 import { UserContext } from "../context/UserContext";
 import { getAllPostsByUser } from "../../services/postsServices";
@@ -21,7 +22,8 @@ const UserPage = () => {
   const { user } = useContext(UserContext);
   const { username } = useParams();
   const [posts, setPostsd] = useState([]);
-  const [openModal, setOpenModa] = useState(false);
+  const [openFollowersModal, setOpenFollowersModal] = useState(false);
+  const [openFollowedModal, setOpenFollowedModal] = useState(false);
 
   const findAllPostsByUser = async () => {
     const postsResponse = await getAllPostsByUser(username);
@@ -52,7 +54,7 @@ const UserPage = () => {
             <div>
               <img src={user.avatar} alt="img" />
               <h2>
-                {user.name}
+                {user.name}{" "}
                 <button>
                   <i className="fa-solid fa-pen-to-square"></i>
                 </button>
@@ -75,15 +77,26 @@ const UserPage = () => {
                   <h3>{posts?.length}</h3>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
-                  <button onClick={() => setOpenModa(!openModal)}>
-                    {openModal && <Modal users={user.followed} />}
-                    <p>Seguindo</p>
-                    <h3>{user.followed?.length}</h3>
+                  <button
+                    onClick={() => setOpenFollowedModal(!openFollowedModal)}
+                  >
+                    {openFollowedModal && <Modal users={user.followed} />}
+                    <ButtonSpaceArea>
+                      <p>Seguindo</p>
+                      <h3>{user.followed?.length}</h3>
+                    </ButtonSpaceArea>
                   </button>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
-                  <p>Seguidores</p>
-                  <h3>{user.follows?.length}</h3>
+                  <button
+                    onClick={() => setOpenFollowersModal(!openFollowersModal)}
+                  >
+                    {openFollowersModal && <Modal users={user.follows} />}
+                    <ButtonSpaceArea>
+                      <p>Seguidores</p>
+                      <h3>{user.follows?.length}</h3>
+                    </ButtonSpaceArea>
+                  </button>
                 </UserInfoPostsFollows>
                 <UserInfoPostsFollows>
                   <p>Pontos</p>

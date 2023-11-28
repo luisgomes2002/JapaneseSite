@@ -99,11 +99,22 @@ export const UserInfoPostsFollows = styled.div`
     padding: 0;
     margin-left: 10%;
   }
+
   h3 {
     color: #fff;
     font-size: 30px;
     margin-right: 10%;
   }
+
+  button {
+    width: 100%;
+  }
+`;
+
+export const ButtonSpaceArea = styled.div`
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
 `;
 
 export const CadsAndAchievements = styled.div`
