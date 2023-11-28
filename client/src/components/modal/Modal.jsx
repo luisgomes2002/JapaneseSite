@@ -8,6 +8,7 @@ import {
 } from "./ModalStyle";
 import { useEffect, useState } from "react";
 import { findUser } from "../../services/userServices";
+import Black from "../../assets/AllBlack.png";
 
 const Modal = ({ users: initialUsers }) => {
   const [users, setUsers] = useState(initialUsers);
@@ -67,7 +68,10 @@ const Modal = ({ users: initialUsers }) => {
           users.map((user) => (
             <ShowUsers key={user._id}>
               <Link to={`/profile/${user.username}`}>
-                <img src={user.background} alt="background" />
+                <img
+                  src={user.background === null ? Black : user.background}
+                  alt="background"
+                />
                 <InfoModalUser>
                   <img src={user.avatar} alt="avatar" />
                   <NameUser>

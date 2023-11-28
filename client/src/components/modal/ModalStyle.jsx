@@ -61,6 +61,7 @@ export const NameUser = styled.div`
 export const InfoModalUser = styled.div`
   display: flex;
   padding: 2% 5%;
+  justify-content: space-between;
 
   img {
     border-radius: 50%;
@@ -71,7 +72,6 @@ export const InfoModalUser = styled.div`
   h2 {
     color: #444444;
     font-size: 15px;
-    margin-left: 35%;
   }
 `;
 

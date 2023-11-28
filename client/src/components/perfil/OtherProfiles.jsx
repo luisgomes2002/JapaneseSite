@@ -64,11 +64,11 @@ const Profile = () => {
     } else {
       getProfile();
     }
-  }, [profileInfo.follows, user.username, username, navigate]);
+  }, [user.username, username, navigate]);
 
   useEffect(() => {
     setFollowBtn(checkIfFollowed());
-  }, [user.followed, username]);
+  }, [user.followed, username, profileInfo.follows]);
 
   const backgroundStyle = {
     backgroundImage:

@@ -11,7 +11,7 @@ export const signup = (data) => {
     avatar:
       "https://2.bp.blogspot.com/-0nuFe-aYvcw/XOWesruC4tI/AAAAAAAAcTc/Sfv7yxfULJ40g2Uczlp-RO6HJmkVfCEwwCLcBGAs/s1600/kawaii-cute-fofo-anime-gif%2B%25289%2529.gif",
     background:
-      "https://i.pinimg.com/originals/09/24/4c/09244c7f7dd4d17b0484370f32db6641.gif",
+      "https://78.media.tumblr.com/20d4f088033d5693b7a619db690c08c7/tumblr_pafkz5PdMk1qkz08qo1_540.gif",
   };
   const response = axios.post(`${baseUrl}/user/create`, body);
   return response;
