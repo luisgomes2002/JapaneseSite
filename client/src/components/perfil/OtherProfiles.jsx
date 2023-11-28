@@ -30,9 +30,6 @@ const Profile = () => {
   const [openFollowedModal, setOpenFollowedModal] = useState(false);
 
   const navigate = useNavigate();
-  if (username === user.username) {
-    navigate(`/myprofile/${user.username}`);
-  }
 
   const getProfile = async () => {
     try {
@@ -53,13 +50,25 @@ const Profile = () => {
       console.log(e);
     }
   };
+
+  const followed = async () => {
+    if (user.followed) {
+      user.followed.map((users) => {
+        if (users.idName.includes(username)) {
+          setFollowBtn(true);
+        }
+      });
+    }
+  };
+
   useEffect(() => {
     if (username === user.username) {
       navigate(`/myprofile/${user.username}`);
     } else {
       getProfile();
+      followed();
     }
-  }, [profileInfo.follows, user.username, username, navigate]);
+  }, [followBtn, profileInfo.follows, user.username, username, navigate]);
 
   const backgroundStyle = {
     backgroundImage:
