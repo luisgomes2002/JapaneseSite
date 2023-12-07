@@ -4,6 +4,10 @@ export const TotalSpace = styled.div`
   p {
     margin: 0;
   }
+
+  a {
+    color: #6c6c72;
+  }
 `;
 
 export const GifArea = styled.div`

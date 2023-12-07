@@ -14,7 +14,7 @@ import Japanese from "./components/pages/japanese/JapaneseHome.jsx";
 import UserProvider from "./components/context/UserContext";
 import OtherProfiles from "./components/perfil/OtherProfiles.jsx";
 import Post from "./components/pages/Posts/Posts.jsx";
-import NavBar from "./components/nav/NavBar.jsx";
+import UserUpdate from "./components/perfil/UserUpdate.jsx";
 
 const Layout = () => {
   return (
@@ -45,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/myprofile/:username",
         element: <UserPage />,
+      },
+      {
+        path: "/update/:username",
+        element: <UserUpdate />,
       },
       {
         path: "/profile/:username",

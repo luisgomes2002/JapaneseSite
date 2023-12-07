@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
 import NavBar from "../nav/NavBar";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AuthContainer, Section } from "./AuthenticationFrom.jsx";
+import { AuthContainer, Section } from "./AuthenticationFromStyle.jsx";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signinSchema } from "../schemas/signinSchema";

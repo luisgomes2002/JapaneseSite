@@ -55,9 +55,9 @@ const UserPage = () => {
               <img src={user.avatar} alt="img" />
               <h2>
                 {user.name}{" "}
-                <button>
+                <Link to={`/update/${user.username}`}>
                   <i className="fa-solid fa-pen-to-square"></i>
-                </button>
+                </Link>
               </h2>
               <h3>{user.username}</h3>
               <p>JLPT: N2</p>
