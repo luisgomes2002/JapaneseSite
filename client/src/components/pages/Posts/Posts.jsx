@@ -22,9 +22,14 @@ const Post = () => {
   return (
     <>
       <h1>{post.name}</h1>
-      <Link to={`/profile/${post.username}`}>
-        <p>@{post.username}</p>
-      </Link>
+      {post.username == "Conta Deletada" ? (
+        <p>@CONTA DELETADA</p>
+      ) : (
+        <Link to={`/profile/${post.username}`}>
+          <p>@{post.username}</p>
+        </Link>
+      )}
+
       <img src={post.banner} alt="" />
       <h2>{post.text}</h2>
     </>

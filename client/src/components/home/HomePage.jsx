@@ -15,7 +15,6 @@ import { useState, useEffect } from "react";
 import { Card } from "../cards/Card.jsx";
 import { getAllPosts } from "../../services/postsServices";
 import homeImage from "../../assets/baka/background/background.jpg";
-import Cookies from "js-cookie";
 
 function Home() {
   const [posts, setPosts] = useState([]);

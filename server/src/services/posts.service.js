@@ -61,9 +61,9 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
       text: post.text,
       likes: post.likes,
       comments: post.comments,
-      name: post.user.name,
-      username: post.user.username,
-      avatar: post.user.avatar,
+      name: post.user ? post.user.name : "Conta Deletada",
+      username: post.user ? post.user.username : "Conta Deletada",
+      avatar: post.user ? post.user.avatar : "Conta Deletada",
     })),
   };
 };
@@ -81,9 +81,9 @@ const topPostsService = async () => {
       text: post.text,
       likes: post.likes,
       comments: post.comments,
-      name: post.user.name,
-      username: post.user.username,
-      avatar: post.user.avatar,
+      name: post.user ? post.user.name : "Conta Deletada",
+      username: post.user ? post.user.username : "Conta Deletada",
+      avatar: post.user ? post.user.avatar : "Conta Deletada",
     },
   };
 };
@@ -100,10 +100,10 @@ const findPostByIdService = async (id) => {
     text: post.text,
     likes: post.likes,
     comments: post.comments,
-    postUserId: post.user._id,
-    name: post.user.name,
-    username: post.user.username,
-    avatar: post.user.avatar,
+    // postUserId: post.user._id,
+    name: post.user ? post.user.name : "Conta Deletada",
+    username: post.user ? post.user.username : "Conta Deletada",
+    avatar: post.user ? post.user.avatar : "Conta Deletada",
   };
 };
 
@@ -121,9 +121,9 @@ const searchPostService = async (title) => {
       text: post.text,
       likes: post.likes,
       comments: post.comments,
-      name: post.user.name,
-      username: post.user.username,
-      avatar: post.user.avatar,
+      name: post.user ? post.user.name : "Conta Deletada",
+      username: post.user ? post.user.username : "Conta Deletada",
+      avatar: post.user ? post.user.avatar : "Conta Deletada",
     })),
   };
 };

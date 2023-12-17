@@ -53,6 +53,15 @@ export const followUser = (username) => {
   return response;
 };
 
+export const deleteUser = (userId) => {
+  const response = axios.delete(`${baseUrl}/user/delete/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+};
+
 const generateUserName = (name) => {
   const nameLowerWithoutSpaces = name.replace(/\s/g, "").toLowerCase();
   const randomNumber = Math.floor(Math.random() * 1000);
