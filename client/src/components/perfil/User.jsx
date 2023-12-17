@@ -80,7 +80,9 @@ const UserPage = () => {
                   <button
                     onClick={() => setOpenFollowedModal(!openFollowedModal)}
                   >
-                    {openFollowedModal && <Modal users={user.followed} />}
+                    {openFollowedModal && (
+                      <Modal users={user.followed} type={"Seguindo"} />
+                    )}
                     <ButtonSpaceArea>
                       <p>Seguindo</p>
                       <h3>{user.followed?.length}</h3>
@@ -91,7 +93,9 @@ const UserPage = () => {
                   <button
                     onClick={() => setOpenFollowersModal(!openFollowersModal)}
                   >
-                    {openFollowersModal && <Modal users={user.follows} />}
+                    {openFollowersModal && (
+                      <Modal users={user.follows} type={"Seguidores"} />
+                    )}
                     <ButtonSpaceArea>
                       <p>Seguidores</p>
                       <h3>{user.follows?.length}</h3>

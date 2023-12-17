@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { findUser } from "../../services/userServices";
 import Black from "../../assets/AllBlack.png";
 
-const Modal = ({ users: initialUsers }) => {
+const Modal = ({ users: initialUsers, type }) => {
   const [users, setUsers] = useState(initialUsers);
   const [loading, setLoading] = useState(true);
 
@@ -40,47 +40,64 @@ const Modal = ({ users: initialUsers }) => {
     <>
       <Overlay />
       <ModalArea>
+        <h3>{type}</h3>
         {loading ? (
-          <h2
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100%",
-              margin: 0,
-            }}
-          >
-            Loading...
-          </h2>
+          <h2>Loading...</h2>
         ) : users.length === 0 ? (
-          <h2
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100%",
-              margin: 0,
-            }}
-          >
-            Nenhum usuário encontrado.
-          </h2>
+          <h2>Nenhum usuário encontrado.</h2>
         ) : (
           users.map((user) => (
             <ShowUsers key={user._id}>
-              <Link to={`/profile/${user.username}`}>
-                <img
-                  src={user.background === null ? Black : user.background}
-                  alt="background"
-                />
-                <InfoModalUser>
-                  <img src={user.avatar} alt="avatar" />
-                  <NameUser>
-                    <h1>{user.username}</h1>
-                    <h3>{user.name}</h3>
-                  </NameUser>
-                  <h2>Pontos: {user.points}</h2>
-                </InfoModalUser>
-              </Link>
+              {user.name === undefined ? (
+                <div style={{ cursor: "auto" }}>
+                  <img
+                    src={user.background == null ? null : user.background}
+                    alt="background"
+                  />
+                  <InfoModalUser>
+                    <img
+                      src={user.avatar == null ? null : user.avatar}
+                      alt="avatar"
+                    />
+                    <NameUser>
+                      {user.username == undefined ? (
+                        <h1>Conta Deletada</h1>
+                      ) : (
+                        <h1>{user.username}</h1>
+                      )}
+                      {user.name == undefined ? (
+                        <h3>Conta Deletada</h3>
+                      ) : (
+                        <h3>{user.name}</h3>
+                      )}
+                    </NameUser>
+                    <h2>Pontos: {user.points}</h2>
+                  </InfoModalUser>
+                </div>
+              ) : (
+                <Link to={`/profile/${user.username}`}>
+                  <img
+                    src={user.background === null ? Black : user.background}
+                    alt="background"
+                  />
+                  <InfoModalUser>
+                    <img src={user.avatar} alt="avatar" />
+                    <NameUser>
+                      {user.username == undefined ? (
+                        <h1>Conta Deletada</h1>
+                      ) : (
+                        <h1>{user.username}</h1>
+                      )}
+                      {user.name == undefined ? (
+                        <h3>Conta Deletada</h3>
+                      ) : (
+                        <h3>{user.name}</h3>
+                      )}
+                    </NameUser>
+                    <h2>Pontos: {user.points}</h2>
+                  </InfoModalUser>
+                </Link>
+              )}
             </ShowUsers>
           ))
         )}

@@ -12,17 +12,6 @@ const UpdateUser = () => {
     await deleteUser(user._id);
   };
 
-  //<-------------------------------------------------------------------->
-  // Erro:
-  //Quando o usuario exclui a conta os posts ficam mas ficam sem usuario,
-  //e da um erro na hora de aparecer.
-  //<-------------------------------------------------------------------->
-  // Solucao:
-  //Colocar quando um usuario excluir a conta
-  //fazer o link do post dele para um novo usuario(adm)
-  //ou colocar usuario "usuario excluido"
-  //<-------------------------------------------------------------------->
-
   return (
     <>
       <NavBar />

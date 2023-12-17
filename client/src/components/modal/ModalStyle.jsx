@@ -15,6 +15,19 @@ export const ModalArea = styled.div`
     color: black;
   }
 
+  h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+  }
+
+  h3 {
+    color: black;
+    margin: 0;
+    font-size: 20px;
+  }
   a {
     text-decoration: none;
   }
