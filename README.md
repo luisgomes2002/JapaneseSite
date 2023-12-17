@@ -55,20 +55,20 @@ The following tools were used in the project's construction:
 ### Para iniciar o frontend
 
 ```
-- Digite no terminal
- cd .\client\ ou digite cd e aperte tab até aparecer o ".\client\"
+- Type in the terminal:
+ cd .\client\ or type cd and press tab until ".\client" appears.
 
-- Depois que entrar na pasta do client inicie o programa
+- Once you're inside the client folder, start the program:
 npm run dev 
 ```
 
 ### Para iniciar o backend
 
 ```
-- Digite no terminal
- cd .\server\ ou digite cd e aperte tab até aparecer o ".\server\"
+- Type in the terminal:
+ cd .\server\ or type cd and press tab until" .\server\" appears.
 
-- Depois que entrar na pasta do server inicie o programa
+- Once you're inside the server folder, start the program:
 npm run dev 
 ```
 
