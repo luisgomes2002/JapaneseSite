@@ -15,7 +15,22 @@ You can choose your specific area of interest about Japan! Explore the Japanese 
 
 We offer account creation for individuals interested in sharing tips and knowledge about foreign language study.
 
-![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/e2d16820-91e7-4d08-be1f-528a120f0dfc)
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/9626886e-6f83-496a-94ab-138f1bc1011d)
+
+We provide a customizable experience, allowing users to tailor their profiles according to their preferences. Additionally, we offer the opportunity to follow new people, expanding connections and enhancing content diversity on the platform. Our ranking system is based on the user's level of interaction, recognizing and valuing active participation within the community.
+
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/c5d20a7f-27d4-4494-a8b6-bd2da3d8bcea)
+
+Finding posts from other users can be a valuable way to get assistance with your studies.
+
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/6c0c4cd0-3322-47ff-86bc-4dd5864ceb8a)
+
+If you liked a post, you can easily find it by its title.
+
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/3ca69a53-b879-4c79-9f7d-a6436227196f)
+
+
+
 
 ### Features
 
