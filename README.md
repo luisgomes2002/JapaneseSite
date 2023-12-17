@@ -7,7 +7,7 @@
 
 Discover a website dedicated to people who want to learn Japanese, explore Japanese culture, and share their study experiences!
 
-![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/e1dc9434-a734-40d9-a95e-4b8dbbde299a)
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/9dabbfe8-d017-411b-b90c-0c2c1099a4b3)
 
 You can choose your specific area of interest about Japan! Explore the Japanese language, immerse yourself in the culture, and share your study experiences in your favorite field.
 
