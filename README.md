@@ -7,7 +7,7 @@
 
 Discover a website dedicated to people who want to learn Japanese, explore Japanese culture, and share their study experiences!
 
-![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/e1dc9434-a734-40d9-a95e-4b8dbbde299a)
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/9dabbfe8-d017-411b-b90c-0c2c1099a4b3)
 
 You can choose your specific area of interest about Japan! Explore the Japanese language, immerse yourself in the culture, and share your study experiences in your favorite field.
 
@@ -19,7 +19,8 @@ We offer account creation for individuals interested in sharing tips and knowled
 
 We provide a customizable experience, allowing users to tailor their profiles according to their preferences. Additionally, we offer the opportunity to follow new people, expanding connections and enhancing content diversity on the platform. Our ranking system is based on the user's level of interaction, recognizing and valuing active participation within the community.
 
-![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/c5d20a7f-27d4-4494-a8b6-bd2da3d8bcea)
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/6b446287-9a20-4cd4-ad58-6087a12c5b3a)
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/af7ad272-516c-41d1-9971-ffe2ad726625)
 
 Finding posts from other users can be a valuable way to get assistance with your studies.
 
