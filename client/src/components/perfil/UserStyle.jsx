@@ -4,10 +4,6 @@ export const TotalSpace = styled.div`
   p {
     margin: 0;
   }
-
-  a {
-    color: #6c6c72;
-  }
 `;
 
 export const GifArea = styled.div`
@@ -49,6 +45,10 @@ export const UserInformation = styled.div`
     color: #fff;
     font-size: 20px;
     padding-bottom: 5%;
+  }
+
+  a {
+    color: #6c6c72;
   }
 
   button {

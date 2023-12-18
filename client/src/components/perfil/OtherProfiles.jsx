@@ -119,7 +119,7 @@ const Profile = () => {
                     onClick={() => setOpenFollowedModal(!openFollowedModal)}
                   >
                     {openFollowedModal && (
-                      <Modal users={profileInfo.followed} />
+                      <Modal users={profileInfo.followed} type={"Seguindo"} />
                     )}
                     <ButtonSpaceArea>
                       <p>Seguindo</p>
@@ -132,7 +132,7 @@ const Profile = () => {
                     onClick={() => setOpenFollowersModal(!openFollowersModal)}
                   >
                     {openFollowersModal && (
-                      <Modal users={profileInfo.follows} />
+                      <Modal users={profileInfo.follows} type={"Seguidores"} />
                     )}
                     <ButtonSpaceArea>
                       <p>Seguidores</p>
