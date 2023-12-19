@@ -59,11 +59,13 @@ const ModalPerfil = ({ top, left, onMouseEnter, onMouseLeave, username }) => {
     >
       <AdjustArea>
         <BaseInfo>
-          <img src={profileInfo.avatar} alt="img" />
-          <div>
-            <h3>{profileInfo.username}</h3>
-            <h2>{profileInfo.name} </h2>
-          </div>
+          <Link to={`/profile/${profileInfo.username}`}>
+            <img src={profileInfo.avatar} alt="img" />
+            <div>
+              <h3>{profileInfo.username}</h3>
+              <h2>{profileInfo.name} </h2>
+            </div>
+          </Link>
         </BaseInfo>
         <FollowPosts>
           <div>

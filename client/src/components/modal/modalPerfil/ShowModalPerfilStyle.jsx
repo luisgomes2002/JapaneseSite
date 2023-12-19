@@ -24,6 +24,10 @@ export const BaseInfo = styled.div`
   margin: 0 10px;
   text-align: left;
 
+  a {
+    display: flex;
+  }
+
   img {
     width: 56px;
     height: 56px;
@@ -56,11 +60,14 @@ export const FollowPosts = styled.div`
 
 export const PostsImg = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(props) =>
+    props.children.length === 3 ? "space-between" : "flex-start"};
+
   img {
     width: 120px;
     height: 120px;
     object-fit: cover;
+    margin-right: ${(props) => (props.children.length === 2 ? "3px" : "0")};
   }
 `;
 

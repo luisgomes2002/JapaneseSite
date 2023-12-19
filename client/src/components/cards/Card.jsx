@@ -13,6 +13,7 @@ import {
 import { TextLimit } from "../textLimit/TextLimit";
 import { useState, useEffect, useRef } from "react";
 import ModalPerfil from "../modal/modalPerfil/ShowModalPerfil";
+import { Link } from "react-router-dom";
 
 const Card = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -108,30 +109,32 @@ const Card = (props) => {
   } else {
     return (
       <CardContainer>
-        <CardBody>
-          <img src={props.banner} alt="banner" />
-        </CardBody>
-        <div>
-          <h2>{props.title}</h2>
-          <TextLimit text={props.text} limit={140} />
-          <h3
-            ref={usernameRef}
-            onMouseEnter={openModal}
-            onMouseLeave={closeModal}
-          >
-            @{props.username}
-          </h3>
-        </div>
-        <CardIcons>
+        <Link to={`/post/${props.postId}`}>
+          <CardBody>
+            <img src={props.banner} alt="banner" />
+          </CardBody>
           <div>
-            <i className="fa-regular fa-heart"></i>
-            <span>{props.likes?.length}</span>
+            <h2>{props.title}</h2>
+            <TextLimit text={props.text} limit={140} />
+            <h3
+              ref={usernameRef}
+              onMouseEnter={openModal}
+              onMouseLeave={closeModal}
+            >
+              @{props.username}
+            </h3>
           </div>
-          <div>
-            <i className="fa-regular fa-message"></i>
-            <span>{props.comments?.length}</span>
-          </div>
-        </CardIcons>
+          <CardIcons>
+            <div>
+              <i className="fa-regular fa-heart"></i>
+              <span>{props.likes?.length}</span>
+            </div>
+            <div>
+              <i className="fa-regular fa-message"></i>
+              <span>{props.comments?.length}</span>
+            </div>
+          </CardIcons>
+        </Link>
         {isModalOpen && (
           <ModalPerfil
             top={usernamePosition.top}
