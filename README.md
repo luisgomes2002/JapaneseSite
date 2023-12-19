@@ -25,6 +25,7 @@ We provide a customizable experience, allowing users to tailor their profiles ac
 Finding posts from other users can be a valuable way to get assistance with your studies.
 
 ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/6c0c4cd0-3322-47ff-86bc-4dd5864ceb8a)
+![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/2ecf5bbb-ede8-4134-997a-15dfe02050e8)
 
 If you liked a post, you can easily find it by its title.
 
