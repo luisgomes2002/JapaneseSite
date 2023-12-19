@@ -20,11 +20,13 @@ We offer account creation for individuals interested in sharing tips and knowled
 We provide a customizable experience, allowing users to tailor their profiles according to their preferences. Additionally, we offer the opportunity to follow new people, expanding connections and enhancing content diversity on the platform. Our ranking system is based on the user's level of interaction, recognizing and valuing active participation within the community.
 
 ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/6b446287-9a20-4cd4-ad58-6087a12c5b3a)
+-
 ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/af7ad272-516c-41d1-9971-ffe2ad726625)
 
 Finding posts from other users can be a valuable way to get assistance with your studies.
 
 ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/6c0c4cd0-3322-47ff-86bc-4dd5864ceb8a)
+-
 ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/2ecf5bbb-ede8-4134-997a-15dfe02050e8)
 
 If you liked a post, you can easily find it by its title.
