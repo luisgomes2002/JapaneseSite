@@ -9,6 +9,7 @@ export const ModalTotalArea = styled.div`
   max-width: 366px;
   max-height: 336px;
   border-radius: 10px;
+  box-shadow: var(--black-shadow);
 `;
 
 export const AdjustArea = styled.div`
