@@ -5,10 +5,9 @@ import {
   InfoModalUser,
   ShowUsers,
   NameUser,
-} from "./ModalStyle";
+} from "./ModalStyleFollow";
 import { useEffect, useState } from "react";
-import { findUser } from "../../services/userServices";
-import Black from "../../assets/AllBlack.png";
+import { findUser } from "../../../services/userServices";
 
 const Modal = ({ users: initialUsers, type }) => {
   const [users, setUsers] = useState(initialUsers);

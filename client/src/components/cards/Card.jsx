@@ -11,8 +11,36 @@ import {
   PostsByUser,
 } from "./CardStyle";
 import { TextLimit } from "../textLimit/TextLimit";
+import { useState, useEffect, useRef } from "react";
+import ModalPerfil from "../modal/modalPerfil/ShowModalPerfil";
 
 const Card = (props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [usernamePosition, setUsernamePosition] = useState({ top: 0, left: 0 });
+  const usernameRef = useRef(null);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const updateUsernamePosition = () => {
+    if (usernameRef.current) {
+      const rect = usernameRef.current.getBoundingClientRect();
+      setUsernamePosition({
+        top: rect.bottom + window.scrollY,
+        left: rect.left + window.scrollX,
+      });
+    }
+  };
+
+  useEffect(() => {
+    updateUsernamePosition();
+  }, []);
+
   if (props.top) {
     return (
       <CardBodyTop>
@@ -86,7 +114,13 @@ const Card = (props) => {
         <div>
           <h2>{props.title}</h2>
           <TextLimit text={props.text} limit={140} />
-          <h3>@{props.username}</h3>
+          <h3
+            ref={usernameRef}
+            onMouseEnter={openModal}
+            onMouseLeave={closeModal}
+          >
+            @{props.username}
+          </h3>
         </div>
         <CardIcons>
           <div>
@@ -98,6 +132,15 @@ const Card = (props) => {
             <span>{props.comments?.length}</span>
           </div>
         </CardIcons>
+        {isModalOpen && (
+          <ModalPerfil
+            top={usernamePosition.top}
+            left={usernamePosition.left + 150}
+            onMouseEnter={openModal}
+            onMouseLeave={closeModal}
+            username={props.username}
+          ></ModalPerfil>
+        )}
       </CardContainer>
     );
   }

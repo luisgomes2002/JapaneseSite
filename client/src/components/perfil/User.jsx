@@ -16,7 +16,7 @@ import { UserContext } from "../context/UserContext";
 import { getAllPostsByUser } from "../../services/postsServices";
 import { Card } from "../cards/Card";
 import { Link, useParams } from "react-router-dom";
-import Modal from "../modal/Modal";
+import Modal from "../modal/modalFollow/ModalFollow";
 
 const UserPage = () => {
   const { user } = useContext(UserContext);

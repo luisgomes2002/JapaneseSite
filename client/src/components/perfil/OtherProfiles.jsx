@@ -18,7 +18,7 @@ import NavBar from "../nav/NavBar";
 import { getAllPostsByUser } from "../../services/postsServices";
 import { Card } from "../cards/Card";
 import { UserContext } from "../context/UserContext";
-import Modal from "../modal/Modal";
+import Modal from "../modal/modalFollow/ModalFollow";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
