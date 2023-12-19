@@ -26,4 +26,10 @@ export const categoriesItens = [
     subTitle: "Aprender Japonês",
     img: baka2,
   },
+  {
+    id: 5,
+    title: "Comunidade",
+    subTitle: "Posts",
+    img: baka2,
+  },
 ];

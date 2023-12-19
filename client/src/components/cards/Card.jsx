@@ -138,7 +138,7 @@ const Card = (props) => {
         {isModalOpen && (
           <ModalPerfil
             top={usernamePosition.top}
-            left={usernamePosition.left + 150}
+            left={usernamePosition.left}
             onMouseEnter={openModal}
             onMouseLeave={closeModal}
             username={props.username}

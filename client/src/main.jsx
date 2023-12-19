@@ -15,6 +15,7 @@ import UserProvider from "./components/context/UserContext";
 import OtherProfiles from "./components/perfil/OtherProfiles.jsx";
 import Post from "./components/pages/Posts/Posts.jsx";
 import UserUpdate from "./components/perfil/UserUpdate.jsx";
+import Categories from "./components/pages/categories/Categories.jsx";
 
 const Layout = () => {
   return (
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "/post/:id",
         element: <Post />,
+      },
+      {
+        path: "/categories",
+        element: <Categories />,
       },
     ],
   },
