@@ -7,7 +7,14 @@ import {
 } from "./HomePageStyle.jsx";
 import "./Services.css";
 import { About, AboutBox } from "./AboutStyle";
-import { PostsHome, AllPosts } from "./PostsStyle.jsx";
+import {
+  PostsHome,
+  CarouselItem,
+  CarouselWrapper,
+  CarouselContainer,
+  CarouselButton,
+  ButtonArea,
+} from "./PostsStyle.jsx";
 import { Benefits, BenefitsInfo, BenefitsInfoCard } from "./VantagensStyle.jsx";
 import { Link } from "react-router-dom";
 import Founder from "../../assets/eu/eu.jpeg";
@@ -21,8 +28,12 @@ function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const findAllPosts = async () => {
-    const postResponse = await getAllPosts();
-    setPosts(postResponse.data.results);
+    try {
+      const postResponse = await getAllPosts();
+      setPosts(postResponse.data.results);
+    } catch (error) {
+      console.error("Erro ao obter os posts:", error);
+    }
   };
 
   const nextSlide = () => {
@@ -38,6 +49,15 @@ function Home() {
   useEffect(() => {
     findAllPosts();
   }, []);
+
+  useEffect(() => {
+    if (posts.length > 0) {
+      const intervalId = setInterval(() => {
+        nextSlide();
+      }, 5000);
+      return () => clearInterval(intervalId);
+    }
+  }, [posts.length]);
 
   return (
     <>
@@ -131,24 +151,37 @@ function Home() {
       </About>
       <PostsHome>
         <h1>Top Posts</h1>
-        <AllPosts>
-          {posts.map((item) => {
-            return (
-              <Link to={`/post/${item.id}`} key={item.id}>
-                <Card
-                  home={true}
-                  key={item.id}
-                  title={item.title}
-                  text={item.text}
-                  banner={item.banner}
-                  likes={item.likes}
-                  comments={item.comments}
-                  username={item.username}
-                />
-              </Link>
-            );
-          })}
-        </AllPosts>
+        <CarouselWrapper>
+          <CarouselContainer
+            style={{
+              transform: `translateX(${-currentIndex * (500 + 120)}px)`,
+            }}
+          >
+            {posts.map((item) => (
+              <CarouselItem key={item.id}>
+                <Link to={`/post/${item.id}`}>
+                  <Card
+                    home={true}
+                    title={item.title}
+                    text={item.text}
+                    banner={item.banner}
+                    likes={item.likes}
+                    comments={item.comments}
+                    username={item.username}
+                  />
+                </Link>
+              </CarouselItem>
+            ))}
+          </CarouselContainer>
+        </CarouselWrapper>
+        <ButtonArea>
+          <CarouselButton onClick={prevSlide}>
+            <i className="fa-solid fa-arrow-left"></i>
+          </CarouselButton>
+          <CarouselButton onClick={nextSlide}>
+            <i className="fa-solid fa-arrow-right"></i>
+          </CarouselButton>
+        </ButtonArea>
       </PostsHome>
       <Benefits>
         <div>

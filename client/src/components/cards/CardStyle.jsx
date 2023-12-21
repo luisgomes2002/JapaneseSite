@@ -90,12 +90,12 @@ export const CardIconsCommunity = styled.article`
 `;
 
 export const CardHomeBody = styled.section`
-  margin-right: 5%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 44%;
   background-color: #202024;
   border-radius: 25px;
   height: 250px;
+  width: 900px;
 
   img {
     border-radius: 0px 25px 25px 0px;
@@ -107,10 +107,21 @@ export const CardHomeBody = styled.section`
     color: #6f00ff;
     text-align: center;
     padding-top: 5%;
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 17px;
+    margin: 0 20px;
+    color: #585858;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   p {
-    font-size: 20px;
+    font-size: 17px;
   }
 `;
 

@@ -47,7 +47,13 @@ const Card = (props) => {
       <CardBodyTop>
         <h2>{props.title}</h2>
         <TextLimit text={props.text} limit={280} />
-        <h1>@{props.username}</h1>
+        <h1
+          ref={usernameRef}
+          onMouseEnter={openModal}
+          onMouseLeave={closeModal}
+        >
+          @{props.username}
+        </h1>
         <CardIconsCommunity>
           <div>
             <i className="fa-regular fa-heart"></i>
@@ -58,30 +64,56 @@ const Card = (props) => {
             <span>{props.comments?.length}</span>
           </div>
         </CardIconsCommunity>
+        {isModalOpen && (
+          <ModalPerfil
+            top={usernamePosition.top}
+            left={usernamePosition.left}
+            onMouseEnter={openModal}
+            onMouseLeave={closeModal}
+            username={props.username}
+          ></ModalPerfil>
+        )}
       </CardBodyTop>
     );
   } else if (props.home) {
     return (
-      <CardHomeBody>
-        <div>
+      <>
+        <CardHomeBody>
           <div>
-            <h2>{props.title}</h2>
-            <TextLimit text={props.text} limit={150} />
-            <h3>@{props.username}</h3>
+            <div>
+              <h2>{props.title}</h2>
+              <TextLimit text={props.text} limit={210} />
+              <h3
+                ref={usernameRef}
+                onMouseEnter={openModal}
+                onMouseLeave={closeModal}
+              >
+                @{props.username}
+              </h3>
+            </div>
+            <IconsArea>
+              <div>
+                <i className="fa-regular fa-heart"></i>
+                <span>{props.likes?.length}</span>
+              </div>
+              <div>
+                <i className="fa-regular fa-message"></i>
+                <span>{props.comments?.length}</span>
+              </div>
+            </IconsArea>
           </div>
-          <IconsArea>
-            <div>
-              <i className="fa-regular fa-heart"></i>
-              <span>{props.likes?.length}</span>
-            </div>
-            <div>
-              <i className="fa-regular fa-message"></i>
-              <span>{props.comments?.length}</span>
-            </div>
-          </IconsArea>
-        </div>
-        <img src={props.banner} alt="banner" />
-      </CardHomeBody>
+          <img src={props.banner} alt="banner" />
+        </CardHomeBody>
+        {isModalOpen && (
+          <ModalPerfil
+            top={usernamePosition.top}
+            left={usernamePosition.left}
+            onMouseEnter={openModal}
+            onMouseLeave={closeModal}
+            username={props.username}
+          ></ModalPerfil>
+        )}
+      </>
     );
   } else if (props.perfil) {
     return (

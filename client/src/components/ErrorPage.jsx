@@ -1,31 +1,36 @@
 import NavBar from "./nav/NavBar";
 import { Link } from "react-router-dom";
 import { useRouteError } from "react-router-dom";
-import "./ErrorPage.css";
+import { ErrorPage } from "./ErrorPageStyle";
 
 const Error = () => {
   const error = useRouteError();
-  //Página não encontrada
-
-  // Ops! Parece que você encontrou uma menor perdida no ciberespaço.
-  // Infelizmente, não podemos ajudar a localizá - la aqui.
-  // Recomendamos que você verifique novamente as informações inseridas ou tente pesquisar por algo diferente.
 
   return (
-    <div id="error-page">
-      <nav>
+    <>
+      <nav style={{ backgroundColor: "#121214" }}>
         <NavBar />
       </nav>
-      <div className="erroPage-area">
-        <h2>Erro</h2>
-        <h1>titleErro</h1>
-        <h3>textErro</h3>
+      <ErrorPage>
+        <h1>Erro {error.status}</h1>
+        <h2>
+          {error.statusText} <i className="fa-solid fa-exclamation"></i>
+        </h2>
+        <h3>{error.message}</h3>
+        <p>
+          Desculpe, ocorreu um erro inesperado. Por favor, tente novamente mais
+          tarde.
+        </p>
+        <ul>
+          <li>Verifique sua conexão com a internet.</li>
+          <li>Atualize a página e tente novamente.</li>
+          <li>Entre em contato com o suporte se o problema persistir.</li>
+        </ul>
         <Link to="/">
           <button>Voltar</button>
         </Link>
-        <i>{error.statusText || error.message}</i>
-      </div>
-    </div>
+      </ErrorPage>
+    </>
   );
 };
 
