@@ -111,7 +111,12 @@ const UserPage = () => {
           </UserInformation>
           <CadsAndAchievements>
             <section>
-              <h1>Posts</h1>
+              <h1>
+                Posts{" "}
+                <button>
+                  <i className="fa-solid fa-circle-plus"></i>
+                </button>
+              </h1>
               <div>
                 {posts.map((item) => {
                   return (

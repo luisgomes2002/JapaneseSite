@@ -40,6 +40,15 @@ export const findUser = (username) => {
   return response;
 };
 
+export const getAllUsers = () => {
+  const response = axios.get(`${baseUrl}/user/`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+};
+
 export const followUser = (username) => {
   const response = axios.patch(
     `${baseUrl}/user/follow/${username}`,

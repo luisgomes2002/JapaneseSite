@@ -3,15 +3,12 @@ import NavBar from "../nav/NavBar";
 import { UserContext } from "../context/UserContext";
 import { InfoUpdate, UserUpdateArea } from "./UserUpdateStyle";
 import { ButtonSpaceArea } from "./UserStyle";
-import { deleteUser } from "../../services/userServices";
+import ModalDelete from "../modal/modalDelete/ModalDelete";
 
 const UpdateUser = () => {
   const { user } = useContext(UserContext);
   const [color, setColor] = useState("");
-
-  const deleteAccount = async () => {
-    await deleteUser(user._id);
-  };
+  const [openModal, setOpenModal] = useState(false);
 
   const selectColor = (e) => {
     setColor(e.target.value);
@@ -19,7 +16,9 @@ const UpdateUser = () => {
 
   return (
     <>
-      <NavBar />
+      <nav style={{ backgroundColor: "#121214" }}>
+        <NavBar />
+      </nav>
       <UserUpdateArea>
         <InfoUpdate>
           <h1>Alterar informações da conta {user.username}</h1>
@@ -59,9 +58,10 @@ const UpdateUser = () => {
         <ButtonSpaceArea>
           <button>Alterar</button>
           <button
-            onClick={deleteAccount}
+            onClick={() => setOpenModal(!openModal)}
             style={{ backgroundColor: "#aa2525" }}
           >
+            {openModal && <ModalDelete />}
             Deletar Conta
           </button>
         </ButtonSpaceArea>

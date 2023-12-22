@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getByIdPost } from "../../../services/postsServices";
 import { Link, useParams } from "react-router-dom";
+import NavBar from "../../nav/NavBar";
 
 const Post = () => {
   const [post, setPost] = useState([]);
@@ -21,6 +22,9 @@ const Post = () => {
 
   return (
     <>
+      <nav style={{ backgroundColor: "#121214" }}>
+        <NavBar />
+      </nav>
       <h1>{post.name}</h1>
       {post.username == "Conta Deletada" ? (
         <p>@CONTA DELETADA</p>
@@ -29,7 +33,6 @@ const Post = () => {
           <p>@{post.username}</p>
         </Link>
       )}
-
       <img src={post.banner} alt="" />
       <h2>{post.text}</h2>
     </>

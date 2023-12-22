@@ -44,9 +44,21 @@ const NavBar = () => {
           <h1>MURASAKI</h1>
         </Link>
         <NavBarCategories>
-          <Link to="/categories">Categorias</Link>
-          <Link to="/post">Sobre</Link>
-          <Link to="/community">Comunidade</Link>
+          {user.fullPermission ? (
+            <>
+              <Link to="/categories">Categorias</Link>
+              <Link to="/post">Sobre</Link>
+              <Link to="/community">Comunidade</Link>
+              <Link to="/adm">Adm</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/categories">Categorias</Link>
+              <Link to="/post">Sobre</Link>
+              <Link to="/community">Comunidade</Link>
+            </>
+          )}
+
           {user && Object.keys(user).length > 0 ? (
             <>
               <button onClick={goUserPage}>

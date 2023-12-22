@@ -16,6 +16,9 @@ import OtherProfiles from "./components/perfil/OtherProfiles.jsx";
 import Post from "./components/pages/Posts/Posts.jsx";
 import UserUpdate from "./components/perfil/UserUpdate.jsx";
 import Categories from "./components/pages/categories/Categories.jsx";
+import CreditsPage from "./components/creditsPage/CreditsPage.jsx";
+import Portfolio from "./components/portfolio/Portfolio.jsx";
+import Administration from "./components/pages/administration/Administration.jsx";
 
 const Layout = () => {
   return (
@@ -48,6 +51,10 @@ const router = createBrowserRouter([
         element: <UserPage />,
       },
       {
+        path: "/adm",
+        element: <Administration />,
+      },
+      {
         path: "/update/:username",
         element: <UserUpdate />,
       },
@@ -74,6 +81,14 @@ const router = createBrowserRouter([
       {
         path: "/categories",
         element: <Categories />,
+      },
+      {
+        path: "/CreditsPage",
+        element: <CreditsPage />,
+      },
+      {
+        path: "/portfolio",
+        element: <Portfolio />,
       },
     ],
   },
