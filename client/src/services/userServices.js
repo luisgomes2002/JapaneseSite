@@ -62,10 +62,13 @@ export const followUser = (username) => {
   return response;
 };
 
-export const deleteUser = (userId) => {
-  const response = axios.delete(`${baseUrl}/user/delete/${userId}`, {
+export const deleteUser = (userAccountId) => {
+  const response = axios.delete(`${baseUrl}/user/delete/${userAccountId}`, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+    data: {
+      userAccountId: userAccountId,
     },
   });
   return response;

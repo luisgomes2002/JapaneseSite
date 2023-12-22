@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../../../services/userServices";
+import { deleteUser, getAllUsers } from "../../../services/userServices";
 import { AllUsersInfo, Pagination } from "./AdministrationStyle";
 import NavBar from "../../nav/NavBar";
 import { TextLimit } from "../../textLimit/TextLimit";
@@ -13,6 +13,11 @@ const Administration = () => {
   const fetchUsers = async () => {
     const usersResponse = await getAllUsers();
     setUsersInfo(usersResponse.data);
+  };
+
+  const deleteAccount = async (userAccountId) => {
+    console.log(userAccountId);
+    await deleteUser(userAccountId);
   };
 
   useEffect(() => {
@@ -76,7 +81,7 @@ const Administration = () => {
                   {user.fullPermission ? "True" : "False"}
                 </td>
 
-                <button>Deletar</button>
+                <button onClick={() => deleteAccount(user._id)}>Deletar</button>
               </tr>
             ))}
           </tbody>

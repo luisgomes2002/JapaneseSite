@@ -14,7 +14,8 @@ export async function validId(req, res, next) {
   //   idParam,
   // );
 
-  // || userFullPermission.fullPermission !== true
+  // || userFullPermission.fullPermission === false
+
   if (!mongoose.Types.ObjectId.isValid(idParam)) {
     return res.status(400).send({ message: "ID Inválido ou Sem permissão!" });
   }
