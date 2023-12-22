@@ -70,7 +70,6 @@ const updateUserController = async (req, res) => {
 const deleteUserByIdController = async (req, res) => {
   try {
     const { userAccountId } = req.body;
-    console.log(userAccountId);
 
     const response = await userService.deleteUserByIdService(userAccountId);
 

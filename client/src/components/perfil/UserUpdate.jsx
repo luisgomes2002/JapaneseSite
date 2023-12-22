@@ -1,7 +1,12 @@
 import { useContext, useState } from "react";
 import NavBar from "../nav/NavBar";
 import { UserContext } from "../context/UserContext";
-import { InfoUpdate, UserUpdateArea } from "./UserUpdateStyle";
+import {
+  ChooseColor,
+  ChooseColorArea,
+  InfoUpdate,
+  UserUpdateArea,
+} from "./UserUpdateStyle";
 import { ButtonSpaceArea } from "./UserStyle";
 import ModalDelete from "../modal/modalDelete/ModalDelete";
 
@@ -32,14 +37,13 @@ const UpdateUser = () => {
             <p>Estilo do perfil:</p>
             <input type="text" placeholder="Foto de perfil" />
             <input type="text" placeholder="Plano de fundo" />
-            <div>
+            <ChooseColor>
               <p>Selecione a cor de fundo:</p>
-              <div style={{ backgroundColor: color }}>
-                <label>Escolha a cor: {color}</label>
-              </div>
-
+              <ChooseColorArea style={{ backgroundColor: color }}>
+                <label>Cor escolhida: {color}</label>
+              </ChooseColorArea>
               <input type="color" value={color} onChange={selectColor} />
-            </div>
+            </ChooseColor>
             <p>Informações do perfil:</p>
             <textarea placeholder="Texto de apresentação" />
             <div>

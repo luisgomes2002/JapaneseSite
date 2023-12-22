@@ -16,7 +16,6 @@ const Administration = () => {
   };
 
   const deleteAccount = async (userAccountId) => {
-    console.log(userAccountId);
     await deleteUser(userAccountId);
   };
 

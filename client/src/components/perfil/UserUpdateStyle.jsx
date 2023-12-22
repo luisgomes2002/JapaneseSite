@@ -34,3 +34,24 @@ export const InfoUpdate = styled.div`
     font-size: 18px;
   }
 `;
+
+export const ChooseColor = styled.div`
+  input {
+    width: 70px;
+    height: 30px;
+    padding: 0;
+    border-radius: 5px;
+  }
+`;
+
+export const ChooseColorArea = styled.div`
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 25px;
+  border: 2px solid #bababa;
+`;
