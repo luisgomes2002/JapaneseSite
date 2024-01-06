@@ -51,6 +51,13 @@ const UserSchema = new mongoose.Schema({
   about: {
     type: String,
   },
+  backgroundColor: {
+    type: String,
+    default: "#121214",
+  },
+  jlptLevel: {
+    type: String,
+  },
 });
 
 UserSchema.pre("save", async function (next) {

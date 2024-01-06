@@ -18,7 +18,7 @@ import { Card } from "../cards/Card";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Modal from "../modal/modalFollow/ModalFollow";
 
-const UserPage = () => {
+export const UserPage = () => {
   const { user } = useContext(UserContext);
   const { username } = useParams();
   const [posts, setPostsd] = useState([]);
@@ -38,9 +38,9 @@ const UserPage = () => {
   };
 
   useEffect(() => {
-    userLoggedIn();
+    // userLoggedIn();
     findAllPostsByUser();
-  }, []);
+  }, [user]);
 
   const backgroundStyle = {
     backgroundImage:
@@ -155,5 +155,3 @@ const UserPage = () => {
     </TotalSpace>
   );
 };
-
-export default UserPage;

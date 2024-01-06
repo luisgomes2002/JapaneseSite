@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NavBar from "../nav/NavBar";
 import { UserContext } from "../context/UserContext";
 import {
@@ -9,15 +9,28 @@ import {
 } from "./UserUpdateStyle";
 import { ButtonSpaceArea } from "./UserStyle";
 import ModalDelete from "../modal/modalDelete/ModalDelete";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateUser = () => {
   const { user } = useContext(UserContext);
+  const { username } = useParams();
   const [color, setColor] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const navegate = useNavigate();
+
+  const userLoggedIn = () => {
+    if (user.username !== username) {
+      navegate("/");
+    }
+  };
 
   const selectColor = (e) => {
     setColor(e.target.value);
   };
+
+  useEffect(() => {
+    userLoggedIn();
+  }, [user]);
 
   return (
     <>

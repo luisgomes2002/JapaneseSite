@@ -77,7 +77,7 @@ const updateUserService = async (
 
   const user = await userRepositories.findByIdUserRepository(userId);
 
-  if (user._id != userIdLogged)
+  if (user._id != userIdLogged || user.fullPermission !== false)
     throw new Error("Você não pode atualizar este usuário");
 
   if (password) password = await bcrypt.hash(password, 10);
@@ -95,12 +95,25 @@ const updateUserService = async (
   return { message: "Usuário atualizado com sucesso!" };
 };
 
-const deleteUserByIdService = async (userId) => {
-  const user = await userRepositories.deleteUserRepository(userId);
+const deleteUserByIdService = async (userId, userIdLogged) => {
+  const userWithPermission = await userRepositories.findByIdUserRepository(
+    userIdLogged,
+  );
 
-  if (!user) throw new Error("Usuário não encontrado");
+  if (
+    userWithPermission ||
+    userId === userIdLogged ||
+    userWithPermission.fullPermission === true
+  ) {
+    const user = await userRepositories.deleteUserRepository(userId);
 
-  return { message: "Usuário deletado om sucesso!" };
+    if (!user) throw new Error("Usuário não encontrado");
+
+    return { message: "Usuário deletado om sucesso!" };
+  }
+
+  console.log("Você não pode deletar este usuário");
+  return { message: "Você não pode deletar este usuário" };
 };
 
 const followUserService = async (username, userId, userIdUsername) => {

@@ -1,14 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { deleteUser, getAllUsers } from "../../../services/userServices";
 import { AllUsersInfo, Pagination } from "./AdministrationStyle";
 import NavBar from "../../nav/NavBar";
 import { TextLimit } from "../../textLimit/TextLimit";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const Administration = () => {
+  const { user } = useContext(UserContext);
   const [usersInfo, setUsersInfo] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(15);
+  const navigate = useNavigate();
+
+  const checkPermission = () => {
+    if (user && user.fullPermission !== true) navigate("/");
+  };
 
   const fetchUsers = async () => {
     const usersResponse = await getAllUsers();
@@ -20,8 +27,9 @@ const Administration = () => {
   };
 
   useEffect(() => {
+    checkPermission();
     fetchUsers();
-  }, []);
+  }, [usersInfo]);
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
