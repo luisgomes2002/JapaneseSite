@@ -48,6 +48,7 @@ If you liked a post, you can easily find it by its title.
 
 The following tools were used in the project's construction:
 
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [React-Vite](https://vitejs.dev/guide/)
 - [Bootstrap](https://react-bootstrap.github.io/)
 - [Express](https://expressjs.com/pt-br/)
