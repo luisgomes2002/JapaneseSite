@@ -1,8 +1,9 @@
-import express from 'express';
+import express from "express";
 import "dotenv/config";
-import cors from 'cors';
-import connectDatabase from './src/database/db.js';
-import router from './src/routes/index.js';
+import cors from "cors";
+import connectDatabase from "./src/database/db.js";
+import router from "./src/routes/index.js";
+export * from "colors";
 
 const app = express();
 

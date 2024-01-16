@@ -5,7 +5,7 @@ import userRepositories from "../repositories/user.repositories.js";
 
 const generateToken = (id) => {
   return jwt.sign({ id: id }, process.env.SECRET, { expiresIn: 86400 });
-}
+};
 
 const loginService = async ({ email, password }) => {
   const user = await userRepositories.findByEmailUserRepository(email);
