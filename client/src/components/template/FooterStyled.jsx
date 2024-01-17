@@ -37,15 +37,15 @@ export const SocialMediaWrap = styled.div`
   padding: 0 40%;
   padding-top: 40px;
 
-  p {
-    color: #fff;
-    padding-top: 14px;
-  }
-
   a {
     text-decoration: none;
     color: #fff;
     font-size: 30px;
+  }
+
+  p {
+    color: #fff;
+    padding-top: 14px;
   }
 `;
 
