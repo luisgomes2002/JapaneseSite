@@ -1,4 +1,4 @@
-import NavBar from "./nav/NavBar";
+import NavBar from "../nav/NavBar";
 import { Link } from "react-router-dom";
 import { useRouteError } from "react-router-dom";
 import { ErrorPage } from "./ErrorPageStyle";
