@@ -19,6 +19,12 @@ const Footer = () => {
               <i className="fa-brands fa-instagram"></i>
             </Link>
             <Link
+              to="https://twitter.com/SAiForaMalucoXD"
+              target="react/jsx-no-target-blank"
+            >
+              <i className="fa-brands fa-x-twitter"></i>
+            </Link>
+            <Link
               to="https://www.linkedin.com/in/luis-gomes-8462b321a/"
               target="react/jsx-no-target-blank"
             >
@@ -29,12 +35,6 @@ const Footer = () => {
               target="react/jsx-no-target-blank"
             >
               <i className="fa-brands fa-github"></i>
-            </Link>
-            <Link
-              to="https://twitter.com/SAiForaMalucoXD"
-              target="react/jsx-no-target-blank"
-            >
-              <i className="fa-brands fa-x-twitter"></i>
             </Link>
           </SocialIcons>
           <SocialMediaWrap>
