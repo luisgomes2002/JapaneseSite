@@ -148,7 +148,7 @@ const Card = (props) => {
           </CardBody>
           <div>
             <h2>{props.title}</h2>
-            <TextLimit text={props.text} limit={250} />
+            <TextLimit text={props.text} limit={200} />
             <CardIcons>
               <div>
                 <i className="fa-regular fa-heart"></i>

@@ -5,6 +5,8 @@ import {
   CardContainerCommunity,
   CardBodyCommunity,
   UsersPostsAreaCommunity,
+  CardContainerBodyInfo,
+  PostsInfoTop,
 } from "./CommunityStyled";
 import NavBar from "../../nav/NavBar";
 import { Card } from "../../cards/Card";
@@ -85,7 +87,6 @@ const UsersPostsArea = () => {
                 top={true}
                 title={topPost.title}
                 text={topPost.text}
-                banner={topPost.banner}
                 likes={topPost.likes}
                 comments={topPost.comments}
                 username={topPost.username}
@@ -95,22 +96,27 @@ const UsersPostsArea = () => {
           <img src={topPost.banner} alt="banner" />
         </CardContainerCommunity>
       </IntroSpaceCommunity>
-      <CardContainerBody>
-        {posts.map((item) => {
-          return (
-            <Card
-              key={item.id}
-              postId={item.id}
-              title={item.title}
-              text={item.text}
-              banner={item.banner}
-              likes={item.likes}
-              comments={item.comments}
-              username={item.username}
-            />
-          );
-        })}
-      </CardContainerBody>
+      <CardContainerBodyInfo>
+        <CardContainerBody>
+          {posts.map((item) => {
+            return (
+              <Card
+                key={item.id}
+                postId={item.id}
+                title={item.title}
+                text={item.text}
+                banner={item.banner}
+                likes={item.likes}
+                comments={item.comments}
+                username={item.username}
+              />
+            );
+          })}
+        </CardContainerBody>
+        <PostsInfoTop>
+          <h1>Criar top Post topicos</h1>
+        </PostsInfoTop>
+      </CardContainerBodyInfo>
     </UsersPostsAreaCommunity>
   );
 };

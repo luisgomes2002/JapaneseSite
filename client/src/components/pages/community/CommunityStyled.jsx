@@ -7,7 +7,7 @@ export const UsersPostsAreaCommunity = styled.div`
 export const IntroSpaceCommunity = styled.div`
   display: grid;
   grid-template-columns: 30% 1fr;
-  margin: 0 10% 5% 10%;
+  margin: 0 8% 5% 8%;
 `;
 
 export const SearchArea = styled.div`
@@ -47,15 +47,29 @@ export const SearchArea = styled.div`
   }
 `;
 
+export const CardContainerBodyInfo = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 35%;
+`;
+
 export const CardContainerBody = styled.section`
-  grid-gap: 5rem;
-  margin: 0 auto;
-  width: 80%;
+  margin: 0 0 5% 15%;
+  width: 90%;
   padding-bottom: 5%;
+  overflow-y: auto;
+  height: 1000px;
 
   a {
     text-decoration: none;
   }
+`;
+
+export const PostsInfoTop = styled.div`
+  margin: 0 90px;
+  height: 500px;
+  width: 65%;
+  background-color: #474545;
+  border-radius: 5%;
 `;
 
 export const CardContainerCommunity = styled.section`

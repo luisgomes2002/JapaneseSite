@@ -9,12 +9,10 @@ export const CardBodyTop = styled.div`
 `;
 
 export const CardContainer = styled.section`
-  margin: 2% 0;
-  padding: 1%;
+  margin: 0 0 2% 0;
   border-radius: 25px;
   background-color: var(--card-color);
-  width: 100%;
-  height: 280px;
+  width: 95%;
 
   button {
     background-color: transparent;
@@ -24,7 +22,7 @@ export const CardContainer = styled.section`
 
   h2 {
     font-size: 35px;
-    padding: 2% 8%;
+    padding: 2% 3%;
     color: var(--second-main-color);
   }
 
@@ -37,7 +35,7 @@ export const CardContainer = styled.section`
 
   p {
     font-size: 18px;
-    padding: 0 8%;
+    padding: 0 3%;
     color: var(--main-color);
   }
 
@@ -52,7 +50,7 @@ export const CardContainer = styled.section`
 
   a {
     display: grid;
-    grid-template-columns: 25% 1fr 3%;
+    grid-template-columns: 30% 1fr 5%;
   }
 `;
 
@@ -65,20 +63,25 @@ export const PostsByUser = styled.div`
 `;
 
 export const CardBody = styled.article`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5% 0;
+
   img {
-    width: 400px;
-    height: 300px;
-    max-height: 250px;
+    width: 310px;
+    height: 220px;
+    max-height: 220px;
     object-fit: cover;
-    border-radius: 25px 25px 25px 25px;
+    border-radius: 20px 20px 20px 20px;
   }
 `;
 
 export const CardIcons = styled.article`
   display: flex;
   flex-direction: column;
-  width: 10%;
-  margin: 2% 8%;
+  width: 15%;
+  margin: 2% 3%;
 `;
 
 export const CardIconsCommunity = styled.article`
@@ -170,7 +173,6 @@ export const InfoPostsBody = styled.div`
 
 export const LikeButton = styled.div`
   z-index: 900;
-
   i {
     font-size: 23px;
     border-radius: 50%;
