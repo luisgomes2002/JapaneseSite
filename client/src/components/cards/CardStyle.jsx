@@ -9,14 +9,12 @@ export const CardBodyTop = styled.div`
 `;
 
 export const CardContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  height: 100%;
+  margin: 2% 0;
+  padding: 1%;
   border-radius: 25px;
-  text-align: center;
   background-color: var(--card-color);
+  width: 100%;
+  height: 280px;
 
   button {
     background-color: transparent;
@@ -25,7 +23,8 @@ export const CardContainer = styled.section`
   }
 
   h2 {
-    padding: 3% 5%;
+    font-size: 35px;
+    padding: 2% 8%;
     color: var(--second-main-color);
   }
 
@@ -33,12 +32,11 @@ export const CardContainer = styled.section`
     padding-top: 10px;
     color: #6c6c72;
     font-size: 15px;
-    width: 100px;
-    text-align: center;
-    margin: 0 auto;
+    width: 400px;
   }
 
   p {
+    font-size: 18px;
     padding: 0 8%;
     color: var(--main-color);
   }
@@ -51,6 +49,11 @@ export const CardContainer = styled.section`
     padding: 0 10%;
     color: var(--main-color);
   }
+
+  a {
+    display: grid;
+    grid-template-columns: 25% 1fr 3%;
+  }
 `;
 
 export const PostsByUser = styled.div`
@@ -62,25 +65,20 @@ export const PostsByUser = styled.div`
 `;
 
 export const CardBody = styled.article`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-
   img {
-    width: 100%;
-    height: 250px;
+    width: 400px;
+    height: 300px;
     max-height: 250px;
     object-fit: cover;
-    border-radius: 25px 25px 0px 0px;
+    border-radius: 25px 25px 25px 25px;
   }
 `;
 
 export const CardIcons = styled.article`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 3% 35%;
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  margin: 2% 8%;
 `;
 
 export const CardIconsCommunity = styled.article`
@@ -167,5 +165,16 @@ export const InfoPostsBody = styled.div`
 
   p {
     padding-top: 10px;
+  }
+`;
+
+export const LikeButton = styled.div`
+  z-index: 900;
+
+  i {
+    font-size: 23px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    padding: 10px;
   }
 `;

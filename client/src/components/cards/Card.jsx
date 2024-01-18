@@ -9,6 +9,7 @@ import {
   InfoPostsBody,
   CardBodyTop,
   PostsByUser,
+  LikeButton,
 } from "./CardStyle";
 import { TextLimit } from "../textLimit/TextLimit";
 import { useState, useEffect, useRef } from "react";
@@ -147,25 +148,29 @@ const Card = (props) => {
           </CardBody>
           <div>
             <h2>{props.title}</h2>
-            <TextLimit text={props.text} limit={140} />
-            <h3
-              ref={usernameRef}
-              onMouseEnter={openModal}
-              onMouseLeave={closeModal}
-            >
-              @{props.username}
-            </h3>
+            <TextLimit text={props.text} limit={250} />
+            <CardIcons>
+              <div>
+                <i className="fa-regular fa-heart"></i>
+                <span>{props.likes?.length}</span>
+
+                <i className="fa-regular fa-message"></i>
+                <span>{props.comments?.length}</span>
+              </div>
+              <h3
+                ref={usernameRef}
+                onMouseEnter={openModal}
+                onMouseLeave={closeModal}
+              >
+                @{props.username}
+              </h3>
+            </CardIcons>
           </div>
-          <CardIcons>
-            <div>
+          <LikeButton>
+            <button>
               <i className="fa-regular fa-heart"></i>
-              <span>{props.likes?.length}</span>
-            </div>
-            <div>
-              <i className="fa-regular fa-message"></i>
-              <span>{props.comments?.length}</span>
-            </div>
-          </CardIcons>
+            </button>
+          </LikeButton>
         </Link>
         {isModalOpen && (
           <ModalPerfil
