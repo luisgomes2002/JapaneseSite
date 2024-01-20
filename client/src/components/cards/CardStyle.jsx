@@ -30,7 +30,7 @@ export const CardContainer = styled.section`
     padding-top: 10px;
     color: #6c6c72;
     font-size: 15px;
-    width: 400px;
+    width: 120px;
   }
 
   p {
