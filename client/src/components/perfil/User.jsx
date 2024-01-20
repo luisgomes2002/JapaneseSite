@@ -60,7 +60,7 @@ const UserPage = () => {
         <UserInfomationsArea>
           <UserInformation>
             <div>
-              <img src={user.avatar} alt="img" />
+              <img src={user.avatar} alt="avatar" />
               <h2>
                 {user.name}{" "}
                 <Link to={`/update/${user.username}`}>

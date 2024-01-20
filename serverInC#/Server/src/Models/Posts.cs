@@ -26,7 +26,7 @@ public class Posts
 	public List<string> Likes { get; set; }
 
 	[BsonRequired]
-	public List<Comment> Comments { get; set; }
+	// public List<Comment> Comments { get; set; }
 
 	[BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
 	[BsonDefaultValue(typeof(DateTime))]

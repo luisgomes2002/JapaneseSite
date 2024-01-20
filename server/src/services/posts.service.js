@@ -100,7 +100,7 @@ const findPostByIdService = async (id) => {
     text: post.text,
     likes: post.likes,
     comments: post.comments,
-    // postUserId: post.user._id,
+    postUserId: post.user._id,
     name: post.user ? post.user.name : "Conta Deletada",
     username: post.user ? post.user.username : "Conta Deletada",
     avatar: post.user ? post.user.avatar : "Conta Deletada",
@@ -186,7 +186,14 @@ const likePostService = async (id, userId) => {
   return { message: "Like done successfully" };
 };
 
-const commentPostService = async (postId, message, userId) => {
+const commentPostService = async (
+  postId,
+  message,
+  userId,
+  userIdName,
+  userIdUsername,
+  userIdAvatar,
+) => {
   if (!message) throw new Error("Write a message to comment");
 
   const post = await postRepositories.findPostByIdRepository(postId);
@@ -194,7 +201,14 @@ const commentPostService = async (postId, message, userId) => {
 
   if (!post) throw new Error("Post not found");
 
-  await postRepositories.commentsRepository(postId, message, userId);
+  await postRepositories.commentsRepository(
+    postId,
+    message,
+    userId,
+    userIdName,
+    userIdUsername,
+    userIdAvatar,
+  );
   await userService.totalPointsUserService(postUserId);
 };
 

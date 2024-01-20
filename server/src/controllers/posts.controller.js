@@ -1,5 +1,6 @@
 import postService from "../services/posts.service.js";
 import userRepositories from "../repositories/user.repositories.js";
+import userService from "../services/user.service.js";
 
 const createPostController = async (req, res) => {
   const { title, banner, text } = req.body;
@@ -121,9 +122,20 @@ const commentPostController = async (req, res) => {
   const { id: postId } = req.params;
   const { message } = req.body;
   const userId = req.userId;
+  const { name, username, avatar } = await userService.findUserByIdService(
+    undefined,
+    req.userId,
+  );
 
   try {
-    await postService.commentPostService(postId, message, userId);
+    await postService.commentPostService(
+      postId,
+      message,
+      userId,
+      name,
+      username,
+      avatar,
+    );
 
     return res.send({
       message: "Comment successfully completed!",

@@ -15,11 +15,9 @@ public class User
 	public string Name { get; set; }
 
 	[BsonElement("username")]
-	[BsonUnique]
 	public string Username { get; set; }
 
 	[BsonElement("email")]
-	[BsonUnique]
 	public string Email { get; set; }
 
 	[BsonElement("password")]

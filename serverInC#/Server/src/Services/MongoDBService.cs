@@ -18,3 +18,6 @@ public class MongoDBService
 		_user = database.GetCollection<User>(mongoDBSettings.Value.CollectionName);
 	}
 }
+
+//17:20
+//https://www.youtube.com/watch?v=jJK9alBkzU0
