@@ -68,7 +68,7 @@ export const PostsInfoTop = styled.div`
   margin: 0 90px;
   height: 500px;
   width: 65%;
-  background-color: #474545;
+  background-color: #202024;
   border-radius: 5%;
 `;
 
