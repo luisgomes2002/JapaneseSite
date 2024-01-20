@@ -9,7 +9,6 @@ import {
   InfoPostsBody,
   CardBodyTop,
   PostsByUser,
-  LikeButton,
 } from "./CardStyle";
 import { TextLimit } from "../textLimit/TextLimit";
 import { useState, useEffect, useRef } from "react";
@@ -166,11 +165,6 @@ const Card = (props) => {
               </h3>
             </CardIcons>
           </div>
-          <LikeButton>
-            <button>
-              <i className="fa-regular fa-heart"></i>
-            </button>
-          </LikeButton>
         </Link>
         {isModalOpen && (
           <ModalPerfil

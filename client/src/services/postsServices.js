@@ -35,3 +35,16 @@ export const getByIdPost = (postId) => {
   });
   return response;
 };
+
+export const likeFunction = (id) => {
+  const response = axios.patch(
+    `${baseUrl}/posts/${id}/like`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    },
+  );
+  return response;
+};

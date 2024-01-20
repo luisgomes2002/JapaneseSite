@@ -50,7 +50,7 @@ export const CardContainer = styled.section`
 
   a {
     display: grid;
-    grid-template-columns: 30% 1fr 5%;
+    grid-template-columns: 32% 1fr;
   }
 `;
 
@@ -168,15 +168,5 @@ export const InfoPostsBody = styled.div`
 
   p {
     padding-top: 10px;
-  }
-`;
-
-export const LikeButton = styled.div`
-  z-index: 900;
-  i {
-    font-size: 23px;
-    border-radius: 50%;
-    border: 1px solid #fff;
-    padding: 10px;
   }
 `;

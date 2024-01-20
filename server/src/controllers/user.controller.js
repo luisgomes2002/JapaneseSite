@@ -31,6 +31,7 @@ const findUserByUsernameController = async (req, res) => {
   try {
     const username = req.params.username;
     const user = await userService.findUserByUsernameService(username);
+    //user retornando a senha TIRAR!!!
     return res.send(user);
   } catch (e) {
     console.log(e.message);
