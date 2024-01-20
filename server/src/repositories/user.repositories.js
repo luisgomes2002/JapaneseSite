@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Post from "../models/Posts.js";
 
 const findByEmailUserRepository = (email) => User.findOne({ email: email });
 
@@ -96,6 +97,21 @@ const pointCountUserRepository = (id, points) => {
   User.findOneAndUpdate({ _id: id }, { points }, { rawResult: true }).exec();
 };
 
+const transferPostsToAnotherUserRepository = async (
+  sourceUserId,
+  destinationUserId,
+) => {
+  const postsToTransfer = await Post.find({ user: sourceUserId });
+  await Promise.all(
+    postsToTransfer.map(async (post) => {
+      await Post.findOneAndUpdate(
+        { _id: post._id },
+        { user: destinationUserId },
+      );
+    }),
+  );
+};
+
 export default {
   findByEmailUserRepository,
   findByUsernameRepository,
@@ -110,4 +126,5 @@ export default {
   followedUserRepository,
   deletefollowedUserRepository,
   pointCountUserRepository,
+  transferPostsToAnotherUserRepository,
 };

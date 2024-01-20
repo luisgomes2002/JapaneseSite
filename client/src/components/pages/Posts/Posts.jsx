@@ -17,7 +17,6 @@ const Post = () => {
   const [post, setPost] = useState([]);
   const [postUser, setPostUser] = useState({});
   const { id } = useParams();
-  console.log(post);
 
   const { user } = useContext(UserContext);
   const [hasLiked, setHasLiked] = useState(false);
@@ -99,12 +98,14 @@ const Post = () => {
           <p>{post.text}</p>
         </div>
         <FollowAndLike>
-          <button
-            onClick={follow}
-            style={{ backgroundColor: followBtn ? "#6f00ff" : "#2c2a2a" }}
-          >
-            {followBtn === true ? "Seguindo" : "Seguir"}
-          </button>
+          {user.username === post.username ? null : (
+            <button
+              onClick={follow}
+              style={{ backgroundColor: followBtn ? "#6f00ff" : "#2c2a2a" }}
+            >
+              {followBtn === true ? "Seguindo" : "Seguir"}
+            </button>
+          )}
           <button
             onClick={like}
             style={{ backgroundColor: hasLiked ? "red" : "#2c2a2a" }}
