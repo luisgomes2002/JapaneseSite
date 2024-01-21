@@ -8,16 +8,20 @@ import {
   CardContainerBodyInfo,
   PostsInfoTop,
 } from "./CommunityStyled";
-import NavBar from "../../nav/NavBar";
 import { Card } from "../../cards/Card";
 import { getAllPosts, getTopPost } from "../../../services/postsServices";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { searchSchema } from "../../schemas/searchSchema";
 
 const UsersPostsArea = () => {
+  const [posts, setPosts] = useState([]);
+  const [topPost, setTopPost] = useState({});
+
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -26,16 +30,11 @@ const UsersPostsArea = () => {
     resolver: zodResolver(searchSchema),
   });
 
-  const navigate = useNavigate();
-
   const onSearch = (data) => {
     const { title } = data;
     navigate(`/search/${title}`);
     searchSchema();
   };
-
-  const [posts, setPosts] = useState([]);
-  const [topPost, setTopPost] = useState({});
 
   const findAllPosts = async () => {
     const postResponse = await getAllPosts();
@@ -54,9 +53,6 @@ const UsersPostsArea = () => {
 
   return (
     <UsersPostsAreaCommunity>
-      <nav>
-        <NavBar />
-      </nav>
       <IntroSpaceCommunity>
         <SearchArea>
           <h1>Comunidade Murasaki</h1>

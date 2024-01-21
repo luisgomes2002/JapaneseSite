@@ -16,7 +16,7 @@ export const HomeContainer = styled.div`
 
 export const HomeInfoText = styled.div`
   margin-bottom: 70px;
-  padding: 40px;
+  padding: 75px;
 
   h1 {
     color: aliceblue;

@@ -1,5 +1,4 @@
-import NavBar from "../nav/NavBar";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContainer, Section } from "./AuthenticationFromStyle.jsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -16,13 +15,11 @@ const Register = () => {
     resolver: zodResolver(signupSchema),
   });
 
-  const navigate = useNavigate();
-
   const onRegister = async (data) => {
     try {
       const response = await signup(data);
       Cookies.set("token", response.data, { expires: 5 });
-      navigate("/");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -30,9 +27,6 @@ const Register = () => {
 
   return (
     <>
-      <nav style={{ backgroundColor: "#121214" }}>
-        <NavBar />
-      </nav>
       <AuthContainer>
         <Section type="signup">
           <h2>Register</h2>

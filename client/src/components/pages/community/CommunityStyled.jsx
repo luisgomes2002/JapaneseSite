@@ -7,7 +7,7 @@ export const UsersPostsAreaCommunity = styled.div`
 export const IntroSpaceCommunity = styled.div`
   display: grid;
   grid-template-columns: 30% 1fr;
-  margin: 0 8% 5% 8%;
+  margin: 5% 8% 5% 8%;
 `;
 
 export const SearchArea = styled.div`

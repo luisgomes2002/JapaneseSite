@@ -111,7 +111,7 @@ const Post = () => {
             style={{ backgroundColor: hasLiked ? "red" : "#2c2a2a" }}
           >
             {hasLiked ? (
-              <i class="fa-solid fa-heart"></i>
+              <i className="fa-solid fa-heart"></i>
             ) : (
               <i className="fa-regular fa-heart"></i>
             )}

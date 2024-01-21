@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "../nav/NavBar";
 import "../portfolio/Portfolio.css";
 import "./CreditsPage.css";
 import { Link } from "react-router-dom";
@@ -28,9 +27,6 @@ const CreditsPage = () => {
 
   return (
     <div>
-      <nav>
-        <NavBar />
-      </nav>
       <div className="title-name">
         <h1>Crédito das imagens</h1>
         <p style={{ textAlign: "center" }}>Imagens usadas no Site</p>

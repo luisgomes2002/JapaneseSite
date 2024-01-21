@@ -1,15 +1,11 @@
 import React from "react";
 import "./Portfolio.css";
-import NavBar from "../nav/NavBar";
 import { itens } from "./PortfolioItens";
 import { Link } from "react-router-dom";
 
 const Portfolio = () => {
   return (
     <div>
-      <nav>
-        <NavBar />
-      </nav>
       <div className="title-name">
         <h1>Murasaki Products</h1>
         <p style={{ textAlign: "center" }}>All services provided by Murasaki</p>

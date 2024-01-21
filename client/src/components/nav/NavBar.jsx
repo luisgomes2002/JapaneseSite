@@ -15,12 +15,13 @@ const NavBar = () => {
   };
 
   const goUserPage = () => {
-    navigate(`/myprofile/${user.username}`);
+    navigate(`/profile/${user.username}`);
   };
 
   const signout = () => {
     Cookies.remove("token");
     setUser(undefined);
+    window.location.reload();
     navigate("/");
   };
 

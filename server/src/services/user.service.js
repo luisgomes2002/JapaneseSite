@@ -184,7 +184,6 @@ const totalPointsUserService = async (userIdParam, userIdLogged) => {
   await userRepositories.pointCountUserRepository(user, userPoints);
 
   user.points = userPoints;
-  console.log(userPoints);
 
   return user.points.toString();
 };

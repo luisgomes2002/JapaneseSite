@@ -7,6 +7,8 @@ export const About = styled.div`
     padding-top: 50px;
     color: black;
   }
+
+  background-color: #fff;
 `;
 
 export const AboutBox = styled.div`

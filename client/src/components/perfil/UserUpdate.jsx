@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import NavBar from "../nav/NavBar";
 import { UserContext } from "../context/UserContext";
 import {
   ChooseColor,
@@ -7,7 +6,7 @@ import {
   InfoUpdate,
   UserUpdateArea,
 } from "./UserUpdateStyle";
-import { ButtonSpaceArea } from "./UserStyle";
+import { ButtonSpaceArea } from "./UserPageStyle";
 import ModalDelete from "../modal/modalDelete/ModalDelete";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -34,9 +33,6 @@ const UpdateUser = () => {
 
   return (
     <>
-      <nav style={{ backgroundColor: "#121214" }}>
-        <NavBar />
-      </nav>
       <UserUpdateArea>
         <InfoUpdate>
           <h1>Alterar informações da conta {user.username}</h1>

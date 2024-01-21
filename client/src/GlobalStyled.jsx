@@ -7,6 +7,7 @@ export const GlobalStyled = createGlobalStyle`
     padding: 0;
     font-family: 'Kumbh Sans', sans-serif;
     scroll-behavior: smooth;
+    
 
   ::-webkit-scrollbar {
     width: 10px;
@@ -25,6 +26,10 @@ export const GlobalStyled = createGlobalStyle`
     background: #555;
   }
 
+  body {
+    background-color: #121214;
+  }
+  
   }
 
   :root {

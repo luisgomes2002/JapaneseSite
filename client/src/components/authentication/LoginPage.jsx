@@ -1,5 +1,4 @@
-import NavBar from "../nav/NavBar";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContainer, Section } from "./AuthenticationFromStyle.jsx";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,13 +15,11 @@ const Login = () => {
     resolver: zodResolver(signinSchema),
   });
 
-  const navigate = useNavigate();
-
   const onLogin = async (data) => {
     try {
       const response = await signin(data);
       Cookies.set("token", response.data, { expires: 5 });
-      navigate("/");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -30,9 +27,6 @@ const Login = () => {
 
   return (
     <>
-      <nav style={{ backgroundColor: "#121214" }}>
-        <NavBar />
-      </nav>
       <AuthContainer>
         <Section type="signin">
           <h2>Login</h2>

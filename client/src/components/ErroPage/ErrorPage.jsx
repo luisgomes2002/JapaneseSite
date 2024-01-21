@@ -1,4 +1,3 @@
-import NavBar from "../nav/NavBar";
 import { Link } from "react-router-dom";
 import { useRouteError } from "react-router-dom";
 import { ErrorPage } from "./ErrorPageStyle";
@@ -7,10 +6,7 @@ const Error = () => {
   const error = useRouteError();
 
   return (
-    <>
-      <nav style={{ backgroundColor: "#121214" }}>
-        <NavBar />
-      </nav>
+    <div>
       <ErrorPage>
         <h1>Erro {error.status}</h1>
         <h2>
@@ -30,7 +26,7 @@ const Error = () => {
           <button>Voltar</button>
         </Link>
       </ErrorPage>
-    </>
+    </div>
   );
 };
 

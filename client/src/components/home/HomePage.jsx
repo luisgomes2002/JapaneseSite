@@ -1,4 +1,3 @@
-import NavBar from "../nav/NavBar";
 import {
   HomePage,
   HomeContainer,
@@ -7,63 +6,15 @@ import {
 } from "./HomePageStyle.jsx";
 import "./Services.css";
 import { About, AboutBox } from "./AboutStyle";
-import {
-  PostsHome,
-  CarouselItem,
-  CarouselWrapper,
-  CarouselContainer,
-  CarouselButton,
-  ButtonArea,
-} from "./PostsStyle.jsx";
 import { Benefits, BenefitsInfo, BenefitsInfoCard } from "./VantagensStyle.jsx";
 import { Link } from "react-router-dom";
-import Founder from "../../assets/eu/eu.jpeg";
-import { useState, useEffect } from "react";
-import { Card } from "../cards/Card.jsx";
-import { getAllPosts } from "../../services/postsServices";
 import homeImage from "../../assets/baka/background/background.jpg";
 
 function Home() {
-  const [posts, setPosts] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const findAllPosts = async () => {
-    try {
-      const postResponse = await getAllPosts();
-      setPosts(postResponse.data.results);
-    } catch (error) {
-      console.error("Erro ao obter os posts:", error);
-    }
-  };
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % posts.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? posts.length - 1 : prevIndex - 1,
-    );
-  };
-
-  useEffect(() => {
-    findAllPosts();
-  }, []);
-
-  useEffect(() => {
-    if (posts.length > 0) {
-      const intervalId = setInterval(() => {
-        nextSlide();
-      }, 5000);
-      return () => clearInterval(intervalId);
-    }
-  }, [posts.length]);
-
   return (
     <>
       <HomePage style={{ backgroundImage: `url(${homeImage})` }}>
         <HomeContainer>
-          <NavBar />
           <HomeInfoText>
             <h1 className="home-heading">Gosta da Cultura Japonesa?</h1>
             <p className="home-description">Qual é o seu interesse?</p>
@@ -131,7 +82,7 @@ function Home() {
       <About>
         <h1>SOBRE</h1>
         <AboutBox>
-          <img src={Founder} />
+          <img src="" />
           <div>
             <p className="card-title">Sobre Murasaki</p>
             <p className="card-text">
@@ -144,45 +95,10 @@ function Home() {
               maravilhas deste idioma único e desbloquear um mundo de
               oportunidades!
             </p>
-            <p className="card-text">Luis</p>
             <p className="card-text">Fundador da MURASAKI</p>
           </div>
         </AboutBox>
       </About>
-      <PostsHome>
-        <h1>Top Posts</h1>
-        <CarouselWrapper>
-          <CarouselContainer
-            style={{
-              transform: `translateX(${-currentIndex * (500 + 120)}px)`,
-            }}
-          >
-            {posts.map((item) => (
-              <CarouselItem key={item.id}>
-                <Link to={`/post/${item.id}`}>
-                  <Card
-                    home={true}
-                    title={item.title}
-                    text={item.text}
-                    banner={item.banner}
-                    likes={item.likes}
-                    comments={item.comments}
-                    username={item.username}
-                  />
-                </Link>
-              </CarouselItem>
-            ))}
-          </CarouselContainer>
-        </CarouselWrapper>
-        <ButtonArea>
-          <CarouselButton onClick={prevSlide}>
-            <i className="fa-solid fa-arrow-left"></i>
-          </CarouselButton>
-          <CarouselButton onClick={nextSlide}>
-            <i className="fa-solid fa-arrow-right"></i>
-          </CarouselButton>
-        </ButtonArea>
-      </PostsHome>
       <Benefits>
         <div>
           <img src="" />

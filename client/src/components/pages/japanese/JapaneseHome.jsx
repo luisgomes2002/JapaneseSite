@@ -46,7 +46,6 @@ function Home() {
   return (
     <div className="hero-japanese" id="home">
       <div className="hero-container">
-        <NavBar />
         <h1 className="hero-heading">
           Interessado em aprender <span>JAPONÊS?</span>
         </h1>

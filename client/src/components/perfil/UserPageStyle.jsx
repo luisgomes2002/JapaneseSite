@@ -4,6 +4,7 @@ export const TotalSpace = styled.div`
   p {
     margin: 0;
   }
+  margin-top: 5%;
 `;
 
 export const GifArea = styled.div`

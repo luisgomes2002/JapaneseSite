@@ -3,26 +3,29 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import HomePage from "./components/home/HomePage.jsx";
 import { GlobalStyled } from "./GlobalStyled.jsx";
-import ErrorPage from "./components/ErroPage/ErrorPage.jsx";
+import ErrorPage from "./components/erroPage/ErrorPage.jsx";
 import Community from "./components/pages/community/Community.jsx";
 import Search from "./components/pages/community/Search.jsx";
-import Footer from "./components/Footer/Footer.jsx";
-import UserPage from "./components/perfil/User.jsx";
+import Footer from "./components/footer/Footer.jsx";
+import UserPage from "./components/perfil/UserPage.jsx";
 import LoginPage from "./components/authentication/LoginPage.jsx";
-import Register from "./components/Authentication/Register.jsx";
+import Register from "./components/authentication/Register.jsx";
 import Japanese from "./components/pages/japanese/JapaneseHome.jsx";
 import UserProvider from "./components/context/UserContext";
-import OtherProfiles from "./components/perfil/OtherProfiles.jsx";
 import Post from "./components/pages/Posts/Posts.jsx";
 import UserUpdate from "./components/perfil/UserUpdate.jsx";
 import Categories from "./components/pages/categories/Categories.jsx";
 import CreditsPage from "./components/creditsPage/CreditsPage.jsx";
 import Portfolio from "./components/portfolio/Portfolio.jsx";
 import Administration from "./components/pages/administration/Administration.jsx";
+import NavBar from "./components/nav/NavBar.jsx";
+import ProtectiveRoutesNotLoggedIn from "./components/protectiveRoutes/ProtectiveRoutesNotLoggedIn.jsx";
+import ProtectiveRoutesLogged from "./components/protectiveRoutes/ProtectiveRoutesLogged.jsx";
 
 const Layout = () => {
   return (
     <>
+      <NavBar />
       <Outlet />
       <Footer />
     </>
@@ -40,35 +43,59 @@ const router = createBrowserRouter([
       },
       {
         path: "/community",
-        element: <Community />,
+        element: (
+          <ProtectiveRoutesNotLoggedIn>
+            <Community />
+          </ProtectiveRoutesNotLoggedIn>
+        ),
       },
       {
         path: "search/:title",
-        element: <Search />,
-      },
-      {
-        path: "/myprofile/:username",
-        element: <UserPage />,
-      },
-      {
-        path: "/adm",
-        element: <Administration />,
-      },
-      {
-        path: "/update/:username",
-        element: <UserUpdate />,
+        element: (
+          <ProtectiveRoutesNotLoggedIn>
+            <Search />
+          </ProtectiveRoutesNotLoggedIn>
+        ),
       },
       {
         path: "/profile/:username",
-        element: <OtherProfiles />,
+        element: (
+          <ProtectiveRoutesNotLoggedIn>
+            <UserPage />
+          </ProtectiveRoutesNotLoggedIn>
+        ),
+      },
+      {
+        path: "/adm",
+        element: (
+          <ProtectiveRoutesNotLoggedIn>
+            <Administration />
+          </ProtectiveRoutesNotLoggedIn>
+        ),
+      },
+      {
+        path: "/update/:username",
+        element: (
+          <ProtectiveRoutesNotLoggedIn>
+            <UserUpdate />
+          </ProtectiveRoutesNotLoggedIn>
+        ),
       },
       {
         path: "/auth",
-        element: <LoginPage />,
+        element: (
+          <ProtectiveRoutesLogged>
+            <LoginPage />
+          </ProtectiveRoutesLogged>
+        ),
       },
       {
         path: "/register",
-        element: <Register />,
+        element: (
+          <ProtectiveRoutesLogged>
+            <Register />
+          </ProtectiveRoutesLogged>
+        ),
       },
       {
         path: "/japanese",
@@ -76,7 +103,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/post/:id",
-        element: <Post />,
+        element: (
+          <ProtectiveRoutesNotLoggedIn>
+            <Post />
+          </ProtectiveRoutesNotLoggedIn>
+        ),
       },
       {
         path: "/categories",
