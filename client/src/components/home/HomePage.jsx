@@ -8,7 +8,7 @@ import "./Services.css";
 import { About, AboutBox } from "./AboutStyle";
 import { Benefits, BenefitsInfo, BenefitsInfoCard } from "./VantagensStyle.jsx";
 import { Link } from "react-router-dom";
-import homeImage from "../../assets/baka/background/background.jpg";
+import homeImage from "../../assets/baka/background/backgroundHome2.jpg";
 
 function Home() {
   return (
@@ -16,10 +16,17 @@ function Home() {
       <HomePage style={{ backgroundImage: `url(${homeImage})` }}>
         <HomeContainer>
           <HomeInfoText>
-            <h1 className="home-heading">Gosta da Cultura Japonesa?</h1>
-            <p className="home-description">Qual é o seu interesse?</p>
+            <h1 className="home-heading">MURASAKI</h1>
+            <p className="home-description">
+              Conheça um site dedicado a pessoas que querem aprender japonês,
+              explorar a cultura japonesa e compartilhar suas experiências de
+              estudo!
+            </p>
             <HomeBtn>
-              <Link to="">Explore</Link>
+              <button>
+                Comece uma jornada
+                <i className="fa-solid fa-caret-right"></i>
+              </button>
             </HomeBtn>
             {/* Criar um pagina com todos os serviços */}
           </HomeInfoText>

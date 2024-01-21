@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { userLogged } from "../../services/userServices";
-import { Nav, NavBarLogo, NavBarCategories } from "./NavBarStyle";
+import { Nav, NavBarLogo, NavBarCategories, GoAuth } from "./NavBarStyle";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { UserContext } from "../context/UserContext";
@@ -70,9 +70,9 @@ const NavBar = () => {
               </button>
             </>
           ) : (
-            <button onClick={goAuth}>
-              <i className="fa-regular fa-user"></i>
-            </button>
+            <GoAuth>
+              <button onClick={goAuth}>Entrar</button>
+            </GoAuth>
           )}
         </NavBarCategories>
       </NavBarLogo>

@@ -66,3 +66,22 @@ export const NavBarCategories = styled.div`
     border-radius: 50%;
   }
 `;
+
+export const GoAuth = styled.div`
+  display: flex;
+  align-items: center;
+
+  button {
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 120px;
+    height: 45px;
+    transition: all 0.2s ease-in;
+  }
+
+  button:hover {
+    transition: all 0.2s ease-in;
+    color: black;
+    background-color: #fff;
+  }
+`;

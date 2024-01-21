@@ -10,30 +10,69 @@ export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  align-items: left;
 `;
 
 export const HomeInfoText = styled.div`
-  margin-bottom: 70px;
-  padding: 75px;
+  margin: 0 0 70px 80px;
 
   h1 {
     color: aliceblue;
-    font-size: 50px;
-    padding-top: 76%;
-    text-shadow: 1px 1px 2px rgba(34, 34, 34, 0.5);
+    font-size: 150px;
+    width: 40%;
+    padding-top: 25%;
+    text-shadow: 1px 1px 20px rgba(34, 34, 34, 0.5);
   }
 
   p {
-    font-size: 30px;
+    width: 30%;
+    font-size: 23px;
     color: var(--main-color);
-    text-shadow: 1px 1px 2px rgba(34, 34, 34, 0.5);
+    text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
   }
 `;
 
 export const HomeBtn = styled.div`
-  font-size: 1.8rem;
+  button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    background: linear-gradient(
+      to right,
+      white 0%,
+      white 50%,
+      #0a0a0a 50%,
+      #0a0a0a 100%
+    );
+    background-size: 200% 100%;
+    transition: background-position 1s;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    width: 300px;
+    height: 50px;
+    padding: 0 30px;
+    border-radius: 2px;
+    margin: 30px 0;
+
+    i {
+      font-size: 20px;
+      color: black;
+    }
+  }
+
+  button:hover {
+    background-position: -100% 0;
+    color: #fff;
+    i {
+      color: #fff;
+    }
+  }
+
+  /* font-size: 1.8rem;
   padding: 20px 60px;
   box-shadow: none;
   border-radius: 4px;
@@ -52,15 +91,7 @@ export const HomeBtn = styled.div`
     transition: 0.3s ease-in;
     cursor: pointer;
   }
-
-  a {
-    position: relative;
-    z-index: 2;
-    color: var(--main-color);
-    text-decoration: none;
-  }
-
   &:hover a {
     color: #000000;
-  }
+  } */
 `;
