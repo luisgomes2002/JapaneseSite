@@ -40,15 +40,7 @@ export const HomeBtn = styled.div`
     padding: 10px 20px;
     text-decoration: none;
     color: black;
-    background: linear-gradient(
-      to right,
-      white 0%,
-      white 50%,
-      #0a0a0a 50%,
-      #0a0a0a 100%
-    );
     background-size: 200% 100%;
-    transition: background-position 1s;
     border: none;
     cursor: pointer;
     font-size: 20px;
@@ -58,40 +50,13 @@ export const HomeBtn = styled.div`
     border-radius: 2px;
     margin: 30px 0;
 
+    h2 {
+      font-size: 20px;
+    }
+
     i {
       font-size: 20px;
       color: black;
     }
   }
-
-  button:hover {
-    background-position: -100% 0;
-    color: #fff;
-    i {
-      color: #fff;
-    }
-  }
-
-  /* font-size: 1.8rem;
-  padding: 20px 60px;
-  box-shadow: none;
-  border-radius: 4px;
-  margin-top: 2rem;
-  position: relative;
-  outline: none;
-  background-color: transparent;
-  color: var(--main-color);
-  border: 1px solid var(--main-color);
-  transition: all 0.3s ease-out;
-
-  &:hover {
-    color: #000000;
-    background-color: var(--main-color);
-    transform: scale(1.075);
-    transition: 0.3s ease-in;
-    cursor: pointer;
-  }
-  &:hover a {
-    color: #000000;
-  } */
 `;

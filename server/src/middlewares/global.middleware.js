@@ -12,7 +12,7 @@ export async function validId(req, res, next) {
   const isInvalidId = !mongoose.Types.ObjectId.isValid(idParam);
 
   if (isInvalidId) {
-    return res.status(400).send({ message: "ID Inválido ou Sem permissão!" });
+    return res.status(400).send({ message: "ID Inválido!" });
   }
   next();
 }

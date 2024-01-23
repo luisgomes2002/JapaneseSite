@@ -66,10 +66,10 @@ export const CardBody = styled.article`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5% 0;
+  margin: 2% 0;
 
   img {
-    width: 310px;
+    width: 320px;
     height: 220px;
     max-height: 220px;
     object-fit: cover;

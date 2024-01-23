@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { useRouteError } from "react-router-dom";
-import { ErrorPage } from "./ErrorPageStyle";
+import { ErroArea, ErrorPage } from "./ErrorPageStyle";
+import NavBar from "../nav/NavBar";
+import Footer from "../footer/Footer";
 
 const Error = () => {
   const error = useRouteError();
 
   return (
-    <div>
+    <ErroArea>
+      <NavBar />
       <ErrorPage>
         <h1>Erro {error.status}</h1>
         <h2>
@@ -26,7 +29,8 @@ const Error = () => {
           <button>Voltar</button>
         </Link>
       </ErrorPage>
-    </div>
+      <Footer />
+    </ErroArea>
   );
 };
 

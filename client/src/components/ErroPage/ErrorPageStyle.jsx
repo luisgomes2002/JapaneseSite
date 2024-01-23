@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
+export const ErroArea = styled.div`
+  background-color: #ffffff;
+`;
+
 export const ErrorPage = styled.div`
-  border-radius: 10px;
-  box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.267);
-  margin: 100px 600px 100px 300px;
-  padding: 20px;
+  margin: 5% 600px 100px 9%;
+  padding: 3%;
+  background-color: #ffffff;
 
   h1 {
     color: #020202;

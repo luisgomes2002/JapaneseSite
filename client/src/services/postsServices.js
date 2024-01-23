@@ -48,3 +48,29 @@ export const likeFunction = (id) => {
   );
   return response;
 };
+
+export const commentCreate = (id, userMessage) => {
+  const response = axios.patch(
+    `${baseUrl}/posts/${id}/comment`,
+    { message: userMessage },
+    {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    },
+  );
+  return response;
+};
+
+export const commentsDelete = (id, idComment) => {
+  const response = axios.patch(
+    `${baseUrl}/posts/${id}/${idComment}/comment`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    },
+  );
+  return response;
+};

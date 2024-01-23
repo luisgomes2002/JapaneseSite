@@ -116,7 +116,6 @@ const deleteUserByIdService = async (userId, userIdLogged) => {
     return { message: "Usuário deletado om sucesso!" };
   }
 
-  console.log("Você não pode deletar este usuário");
   return { message: "Você não pode deletar este usuário" };
 };
 

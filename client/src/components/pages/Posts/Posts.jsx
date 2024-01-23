@@ -1,14 +1,20 @@
 import { useContext, useEffect, useState } from "react";
-import { getByIdPost, likeFunction } from "../../../services/postsServices";
+import {
+  commentCreate,
+  commentsDelete,
+  getByIdPost,
+  likeFunction,
+} from "../../../services/postsServices";
 import { Link, useParams } from "react-router-dom";
-import NavBar from "../../nav/NavBar";
 import {
   CommentBox,
   Comments,
   CommentsArea,
   FollowAndLike,
+  LinksRef,
   OnlyPostArea,
   PostCreatorInfo,
+  TextEdit,
 } from "./PostsStyle";
 import { UserContext } from "../../context/UserContext";
 import { findUser, followUser } from "../../../services/userServices";
@@ -17,10 +23,10 @@ const Post = () => {
   const [post, setPost] = useState([]);
   const [postUser, setPostUser] = useState({});
   const { id } = useParams();
-
   const { user } = useContext(UserContext);
   const [hasLiked, setHasLiked] = useState(false);
   const [followBtn, setFollowBtn] = useState(false);
+  const [message, setMessage] = useState("");
 
   const getPost = async () => {
     try {
@@ -31,6 +37,17 @@ const Post = () => {
     } catch (error) {
       console.error("Erro ao buscar o post:", error.message);
     }
+  };
+
+  const createComment = async () => {
+    event.preventDefault();
+    const response = await commentCreate(id, message);
+    return response;
+  };
+
+  const deleteComment = async (idComment) => {
+    const response = await commentsDelete(id, idComment);
+    return response;
   };
 
   const checkIfFollowed = () => {
@@ -74,9 +91,6 @@ const Post = () => {
 
   return (
     <div style={{ backgroundColor: "#121214" }}>
-      <nav>
-        <NavBar />
-      </nav>
       <OnlyPostArea>
         <img src={post.banner} alt="banner" />
         <div>Outros posts</div>
@@ -106,6 +120,7 @@ const Post = () => {
               {followBtn === true ? "Seguindo" : "Seguir"}
             </button>
           )}
+
           <button
             onClick={like}
             style={{ backgroundColor: hasLiked ? "red" : "#2c2a2a" }}
@@ -116,6 +131,13 @@ const Post = () => {
               <i className="fa-regular fa-heart"></i>
             )}
           </button>
+          <LinksRef>
+            <p>Links de referencia: https://www.instagram.com/_gomesluis/ </p>
+            <p>Links de redes sociais: https://www.instagram.com/_gomesluis/</p>
+            <p>Links de redes sociais: https://www.instagram.com/_gomesluis/</p>
+            <p>Links de redes sociais: https://www.instagram.com/_gomesluis/</p>
+            <p>Links de redes sociais: https://www.instagram.com/_gomesluis/</p>
+          </LinksRef>
         </FollowAndLike>
       </OnlyPostArea>
       <Comments>
@@ -131,10 +153,28 @@ const Post = () => {
                 <Link to={`/profile/${comment.userIdUsername}`}>
                   <h2>@{comment.userIdUsername}</h2>
                 </Link>
-                <p>{comment.message}</p>
+                <TextEdit>
+                  <p>{comment.message}</p>
+                  <button onClick={() => deleteComment(comment.idComment)}>
+                    Edit
+                  </button>
+                </TextEdit>
               </CommentBox>
             </CommentsArea>
           ))}
+        <CommentsArea>
+          <img src={user.avatar} alt="avatar" />
+          <CommentBox>
+            <form onSubmit={createComment}>
+              <textarea
+                placeholder="Adicione um comentario"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              <button type="submit">Comment</button>
+            </form>
+          </CommentBox>
+        </CommentsArea>
       </Comments>
     </div>
   );

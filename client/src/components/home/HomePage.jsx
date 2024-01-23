@@ -24,7 +24,7 @@ function Home() {
             </p>
             <HomeBtn>
               <button>
-                Comece uma jornada
+                <h2>Comece uma jornada</h2>
                 <i className="fa-solid fa-caret-right"></i>
               </button>
             </HomeBtn>

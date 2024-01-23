@@ -215,11 +215,14 @@ const commentPostService = async (
 const commentDeletePostService = async (postId, userId, idComment) => {
   const post = await postRepositories.findPostByIdRepository(postId);
   const { postUserId } = await findPostByIdService(postId);
+  const user = await userService.findUserByIdService(userId);
 
   if (!post) throw new Error("Post not found");
 
-  await postRepositories.commentsDeleteRepository(postId, userId, idComment);
-  await userService.totalPointsUserService(postUserId);
+  if (userId.fullPermission === true || post.user.username === user.username) {
+    await postRepositories.commentsDeleteRepository(postId, userId, idComment);
+    await userService.totalPointsUserService(postUserId);
+  }
 };
 
 export default {

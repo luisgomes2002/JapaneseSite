@@ -57,17 +57,21 @@ const NavBar = () => {
               <Link to="/categories">Categorias</Link>
               <Link to="/post">Sobre</Link>
               <Link to="/community">Comunidade</Link>
-              <Link to="/adm">Adm</Link>
+              {/* <Link to="/adm">Adm</Link> */}
             </>
           )}
           {user && Object.keys(user).length > 0 ? (
             <>
-              <button onClick={goUserPage}>
-                <img src={user.avatar} alt="" />
-              </button>
-              <button onClick={signout}>
-                <i className="fa-solid fa-right-from-bracket"></i>
-              </button>
+              <GoAuth>
+                <button onClick={goUserPage}>
+                  {/* <img src={user.avatar} alt="avatar" /> */}
+                  Perfil
+                </button>
+              </GoAuth>
+
+              <GoAuth>
+                <button onClick={signout}>Sair</button>
+              </GoAuth>
             </>
           ) : (
             <GoAuth>

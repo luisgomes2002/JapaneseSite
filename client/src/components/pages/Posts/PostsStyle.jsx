@@ -4,13 +4,14 @@ export const OnlyPostArea = styled.div`
   display: grid;
   grid-template-columns: 1fr 30%;
   color: #fff;
-  margin: 0 5%;
+  margin: 6% 5%;
 
   img {
     border-radius: 25px;
   }
 
   p {
+    margin-top: 2%;
     color: #b9b6b6;
   }
 `;
@@ -72,15 +73,29 @@ export const CommentsArea = styled.div`
 `;
 
 export const CommentBox = styled.section`
-  width: 100%;
+  h2 {
+    width: 5%;
+  }
+
+  textArea {
+    width: 1400px;
+    height: 30px;
+    resize: none;
+    overflow: auto;
+  }
+`;
+
+export const TextEdit = styled.div`
+  display: grid;
+
+  grid-template-columns: 1fr 3%;
 `;
 
 export const FollowAndLike = styled.div`
-  display: flex;
-  justify-content: center;
+  text-align: center;
 
   button {
-    margin: 10px;
+    margin: 20px;
     width: 150px;
     height: 60px;
     background-color: #2c2a2a;
@@ -93,5 +108,16 @@ export const FollowAndLike = styled.div`
 
   i {
     font-size: 32px;
+  }
+`;
+
+export const LinksRef = styled.div`
+  margin: 5% 18%;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+
+  p {
+    margin-bottom: 10px;
   }
 `;

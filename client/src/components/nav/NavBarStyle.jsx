@@ -4,10 +4,9 @@ export const Nav = styled.nav`
   background-color: transparent;
   width: 100%;
   position: absolute;
-  height: 100px;
   top: 0;
   z-index: 1;
-  padding: 1% 10%;
+  padding: 10px 10%;
 `;
 
 export const NavBarLogo = styled.div`
@@ -15,7 +14,7 @@ export const NavBarLogo = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
-  padding: 0 10%;
+  padding: 0 5%;
 
   a {
     text-decoration: none;
@@ -57,7 +56,7 @@ export const NavBarCategories = styled.div`
 
   a {
     color: var(--main-color);
-    padding: 5%;
+    padding: 5% 3%;
   }
 
   img {

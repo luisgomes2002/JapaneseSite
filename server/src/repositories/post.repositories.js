@@ -93,7 +93,7 @@ const likesDeleteRepository = (id, userId) => {
 };
 
 const commentsRepository = (
-  id,
+  postId,
   message,
   userId,
   userIdName,
@@ -103,7 +103,7 @@ const commentsRepository = (
   let idComment = Math.floor(Date.now() * Math.random()).toString(36);
   return Post.findOneAndUpdate(
     {
-      _id: id,
+      _id: postId,
     },
     {
       $push: {
@@ -124,10 +124,10 @@ const commentsRepository = (
   );
 };
 
-const commentsDeleteRepository = (id, userId, idComment) => {
+const commentsDeleteRepository = (postId, userId, idComment) => {
   return Post.findOneAndUpdate(
     {
-      _id: id,
+      _id: postId,
     },
     {
       $pull: {
