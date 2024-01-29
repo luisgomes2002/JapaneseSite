@@ -13,7 +13,9 @@ const createPostService = async ({ title, banner, text }, userId) => {
     userId,
   );
 
-  await userService.totalPointsUserService(userId);
+  const createPostUser = await userService.findUserByIdService(null, userId);
+
+  await createNotificationService(createPostUser.follows, id, title);
 
   return {
     message: "Post created successfully!",
@@ -218,10 +220,26 @@ const commentDeletePostService = async (postId, userId, idComment) => {
   const user = await userService.findUserByIdService(userId);
 
   if (!post) throw new Error("Post not found");
-
-  if (userId.fullPermission === true || post.user.username === user.username) {
+  if (
+    user.fullPermission ||
+    post.user.username === user.username ||
+    post.comments.some((comment) => comment.userIdUsername === user.username)
+  ) {
     await postRepositories.commentsDeleteRepository(postId, userId, idComment);
     await userService.totalPointsUserService(postUserId);
+
+    return { message: "Comentario deletado" };
+  }
+  return { message: "Comentario não deletado" };
+};
+
+const createNotificationService = async (userFollows, postId, postTitle) => {
+  for (let i = 0; i < userFollows.length; i++) {
+    await userRepositories.userGetNotificarionRepository(
+      userFollows[i].userId,
+      postId,
+      postTitle,
+    );
   }
 };
 

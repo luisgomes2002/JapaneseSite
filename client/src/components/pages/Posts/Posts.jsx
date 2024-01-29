@@ -41,7 +41,7 @@ const Post = () => {
 
   const createComment = async () => {
     event.preventDefault();
-    const response = await commentCreate(id, message);
+    const response = await commentCreate(id, message.trim());
     return response;
   };
 
@@ -87,7 +87,7 @@ const Post = () => {
     getPost();
     setFollowBtn(checkIfFollowed());
     setHasLiked(checkIfLiked());
-  }, [id, post.username, user._id]);
+  }, [id, post.username, user._id, post.comments]);
 
   return (
     <div style={{ backgroundColor: "#121214" }}>

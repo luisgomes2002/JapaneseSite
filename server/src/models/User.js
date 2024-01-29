@@ -58,6 +58,9 @@ const UserSchema = new mongoose.Schema({
   jlptLevel: {
     type: String,
   },
+  notification: {
+    type: Array,
+  },
 });
 
 UserSchema.pre("save", async function (next) {

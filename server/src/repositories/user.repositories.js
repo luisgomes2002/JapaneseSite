@@ -112,6 +112,26 @@ const transferPostsToAnotherUserRepository = async (
   );
 };
 
+const userGetNotificarionRepository = (userId, postId, postTitle) => {
+  return User.findOneAndUpdate(
+    {
+      _id: userId,
+    },
+    {
+      $push: {
+        notification: {
+          postId,
+          postTitle,
+          createdAt: new Date(),
+        },
+      },
+    },
+    {
+      rawResult: true,
+    },
+  );
+};
+
 export default {
   findByEmailUserRepository,
   findByUsernameRepository,
@@ -127,4 +147,5 @@ export default {
   deletefollowedUserRepository,
   pointCountUserRepository,
   transferPostsToAnotherUserRepository,
+  userGetNotificarionRepository,
 };

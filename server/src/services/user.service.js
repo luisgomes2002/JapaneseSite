@@ -100,11 +100,7 @@ const deleteUserByIdService = async (userId, userIdLogged) => {
     userIdLogged,
   );
 
-  if (
-    userWithPermission ||
-    userId === userIdLogged ||
-    userWithPermission.fullPermission === true
-  ) {
+  if (userId === userIdLogged || userWithPermission.fullPermission) {
     await userRepositories.transferPostsToAnotherUserRepository(
       userId,
       "65850feb367493f6c2cc649e", //trocar para ID conta MOD

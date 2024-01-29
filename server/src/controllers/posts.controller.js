@@ -151,7 +151,6 @@ const commentDeletePostController = async (req, res) => {
 
   try {
     await postService.commentDeletePostService(postId, userId, idComment);
-
     return res.send({ message: "Comment successfully removed" });
   } catch (e) {
     return res.status(500).send(e.message);
