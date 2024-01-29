@@ -1,4 +1,4 @@
-<h1 align="center">Murasaki 
+<h1 align="center">Murasaki
 
 <h4 align="center"> 
 	🚧  React Select 🚀 Building  🚧
@@ -19,28 +19,29 @@ We offer account creation for individuals interested in sharing tips and knowled
 
 We provide a customizable experience, allowing users to tailor their profiles according to their preferences. Additionally, we offer the opportunity to follow new people, expanding connections and enhancing content diversity on the platform. Our ranking system is based on the user's level of interaction, recognizing and valuing active participation within the community.
 
-![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/6b446287-9a20-4cd4-ad58-6087a12c5b3a)
--
+## ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/6b446287-9a20-4cd4-ad58-6087a12c5b3a)
+
 ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/af7ad272-516c-41d1-9971-ffe2ad726625)
 
 Finding posts from other users can be a valuable way to get assistance with your studies.
 
-![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/6c0c4cd0-3322-47ff-86bc-4dd5864ceb8a)
--
+## ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/6c0c4cd0-3322-47ff-86bc-4dd5864ceb8a)
+
 ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/2ecf5bbb-ede8-4134-997a-15dfe02050e8)
 
 If you liked a post, you can easily find it by its title.
 
 ![image](https://github.com/luisgomes2002/Japanese-site/assets/85139913/3ca69a53-b879-4c79-9f7d-a6436227196f)
 
-
-
-
 ### Features
 
 - [x] User registration
+- [x] Create Posts
+- [x] Notifications
+- [x] Follow
+- [x] Likes
+- [x] Comments
 - [ ] Japanese language teaching (text)
-- [x] Sharing experiences
 - [ ] Private chat
 - [ ] Paid Japanese course (video)
 
@@ -50,13 +51,13 @@ The following tools were used in the project's construction:
 
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [React-Vite](https://vitejs.dev/guide/)
-- [Bootstrap](https://react-bootstrap.github.io/)
 - [Express](https://expressjs.com/pt-br/)
 - [Node.js](https://nodejs.org/en/)
 - [MongoDB](https://www.mongodb.com/)
 - [Styled-components](https://styled-components.com/)
 
 ## ☕ Usando MURASAKI
+
 ### Para iniciar o frontend
 
 ```
@@ -64,7 +65,7 @@ The following tools were used in the project's construction:
  cd .\client\ or type cd and press tab until ".\client" appears.
 
 - Once you're inside the client folder, start the program:
-npm run dev 
+npm run dev
 ```
 
 ### Para iniciar o backend
@@ -74,7 +75,7 @@ npm run dev
  cd .\server\ or type cd and press tab until" .\server\" appears.
 
 - Once you're inside the server folder, start the program:
-npm run dev 
+npm run dev
 ```
 
 ### Author
