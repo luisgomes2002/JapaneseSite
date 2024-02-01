@@ -112,22 +112,38 @@ const transferPostsToAnotherUserRepository = async (
   );
 };
 
-const userGetNotificarionRepository = (userId, postId, postTitle) => {
+const userGetNotificarionRepository = (userId, id, title) => {
   return User.findOneAndUpdate(
     {
       _id: userId,
+      "notification.id": { $nin: [id] },
     },
     {
       $push: {
         notification: {
-          postId,
-          postTitle,
+          id,
+          title,
           createdAt: new Date(),
         },
       },
     },
     {
       rawResult: true,
+    },
+  );
+};
+
+const userDeleteNotificarionRepository = (userId) => {
+  return findOneAndUpdate(
+    {
+      _id: userId,
+    },
+    {
+      $pull: {
+        notification: {
+          id: userId,
+        },
+      },
     },
   );
 };
@@ -148,4 +164,5 @@ export default {
   pointCountUserRepository,
   transferPostsToAnotherUserRepository,
   userGetNotificarionRepository,
+  userDeleteNotificarionRepository,
 };

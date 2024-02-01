@@ -133,6 +133,11 @@ const followUserService = async (username, userId, userIdUsername) => {
       //User logado
       userId,
     ),
+    userRepositories.userGetNotificarionRepository(
+      user._id,
+      userId,
+      "Começou a seguir você",
+    ),
   ]);
 
   if (

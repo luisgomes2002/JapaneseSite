@@ -14,7 +14,6 @@ const createPostService = async ({ title, banner, text }, userId) => {
   );
 
   const createPostUser = await userService.findUserByIdService(null, userId);
-
   await createNotificationService(createPostUser.follows, id, title);
 
   return {
@@ -233,12 +232,12 @@ const commentDeletePostService = async (postId, userId, idComment) => {
   return { message: "Comentario não deletado" };
 };
 
-const createNotificationService = async (userFollows, postId, postTitle) => {
+const createNotificationService = async (userFollows, id, title) => {
   for (let i = 0; i < userFollows.length; i++) {
     await userRepositories.userGetNotificarionRepository(
       userFollows[i].userId,
-      postId,
-      postTitle,
+      id, //post
+      title,
     );
   }
 };
