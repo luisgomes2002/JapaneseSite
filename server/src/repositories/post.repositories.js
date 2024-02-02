@@ -1,7 +1,7 @@
 import Post from "../models/Posts.js";
 
-const createPostRepository = (title, banner, text, userId) => {
-  return Post.create({ title, banner, text, user: userId });
+const createPostRepository = (title, banner, text, tag, userId) => {
+  return Post.create({ title, banner, text, tag, user: userId });
 };
 
 const findAllPostsRepository = (offset, limit) => {

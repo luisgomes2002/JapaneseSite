@@ -2,14 +2,15 @@ import postRepositories from "../repositories/post.repositories.js";
 import userRepositories from "../repositories/user.repositories.js";
 import userService from "./user.service.js";
 
-const createPostService = async ({ title, banner, text }, userId) => {
-  if (!title || !banner || !text)
+const createPostService = async ({ title, banner, text, tag }, userId) => {
+  if (!title || !banner || !text || !tag)
     throw new Error("Submit all fields for registration");
 
   const { id } = await postRepositories.createPostRepository(
     title,
     banner,
     text,
+    tag,
     userId,
   );
 
@@ -18,7 +19,7 @@ const createPostService = async ({ title, banner, text }, userId) => {
 
   return {
     message: "Post created successfully!",
-    post: { id, title, banner, text },
+    post: { id, title, banner, text, tag },
   };
 };
 
@@ -62,6 +63,8 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
       text: post.text,
       likes: post.likes,
       comments: post.comments,
+      tags: post.tag,
+      date: post.createdAt,
       name: post.user.name,
       username: post.user.username,
       avatar: post.user.avatar,
@@ -82,6 +85,8 @@ const topPostsService = async () => {
       text: post.text,
       likes: post.likes,
       comments: post.comments,
+      tags: post.tag,
+      date: post.createdAt,
       name: post.user.name,
       username: post.user.username,
       avatar: post.user.avatar,
@@ -101,7 +106,8 @@ const findPostByIdService = async (id) => {
     text: post.text,
     likes: post.likes,
     comments: post.comments,
-    postUserId: post.user._id,
+    tags: post.tag,
+    date: post.createdAt,
     name: post.user.name,
     username: post.user.username,
     avatar: post.user.avatar,
@@ -122,6 +128,8 @@ const searchPostService = async (title) => {
       text: post.text,
       likes: post.likes,
       comments: post.comments,
+      tags: post.tag,
+      date: post.createdAt,
       name: post.user.name,
       username: post.user.username,
       avatar: post.user.avatar,
@@ -141,6 +149,8 @@ const findPostsByUserUsernameService = async (username) => {
       text: post.text,
       likes: post.likes,
       comments: post.comments,
+      tags: post.tag,
+      date: post.createdAt,
       name: post.user.name,
       username: post.user.username,
       avatar: post.user.avatar,

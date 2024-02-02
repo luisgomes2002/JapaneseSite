@@ -3,12 +3,12 @@ import userRepositories from "../repositories/user.repositories.js";
 import userService from "../services/user.service.js";
 
 const createPostController = async (req, res) => {
-  const { title, banner, text } = req.body;
+  const { title, banner, text, tag } = req.body;
   const userId = req.userId;
 
   try {
     const post = await postService.createPostService(
-      { title, banner, text },
+      { title, banner, text, tag },
       userId,
     );
     return res.status(201).send(post);
