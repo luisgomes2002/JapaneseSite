@@ -50,7 +50,9 @@ If you liked a post, you can easily find it by its title.
 The following tools were used in the project's construction:
 
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Python](https://www.python.org/)
 - [React-Vite](https://vitejs.dev/guide/)
+- [Flask](https://flask.palletsprojects.com/en/3.0.x/)
 - [Express](https://expressjs.com/pt-br/)
 - [Node.js](https://nodejs.org/en/)
 - [MongoDB](https://www.mongodb.com/)
