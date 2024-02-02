@@ -48,10 +48,12 @@ const findUserByUsernameService = async (username) => {
 };
 
 const findUserByIdService = async (userIdParam, userIdLogged) => {
-  const idParam = userIdParam || userIdLogged;
+  const idParam = userIdParam ? userIdParam : userIdLogged;
 
   if (!idParam)
-    throw new Error("Envie um id nos parâmetros para procurar o usuário");
+    throw new Error(
+      "findUserByIdService: Envie um id nos parâmetros para procurar o usuário",
+    );
 
   const user = await userRepositories.findByIdUserRepository(idParam);
 
@@ -148,10 +150,12 @@ const followUserService = async (username, userId, userIdUsername) => {
 };
 
 const totalPointsUserService = async (userIdParam, userIdLogged) => {
-  const idParam = userIdParam || userIdLogged;
+  const idParam = userIdParam ? userIdParam : userIdLogged;
 
   if (!idParam)
-    throw new Error("Envie um id nos parâmetros para procurar o usuário");
+    throw new Error(
+      "totalPointsUserService: Envie um id nos parâmetros para procurar o usuário",
+    );
 
   const user = await userRepositories.findByIdUserRepository(idParam);
   const userPosts = await postRepositories.findPostsByUserIdRepository(user);

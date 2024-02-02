@@ -123,7 +123,6 @@ const commentPostController = async (req, res) => {
   const { message } = req.body;
   const userId = req.userId;
   const { name, username, avatar } = await userService.findUserByIdService(
-    undefined,
     req.userId,
   );
 
@@ -153,7 +152,7 @@ const commentDeletePostController = async (req, res) => {
     await postService.commentDeletePostService(postId, userId, idComment);
     return res.send({ message: "Comment successfully removed" });
   } catch (e) {
-    return res.status(500).send(e.message);
+    return res.status(500).send(`commentDeletePostController: ${e.message}`);
   }
 };
 

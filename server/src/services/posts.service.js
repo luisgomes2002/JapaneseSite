@@ -208,7 +208,8 @@ const commentPostService = async (
   if (!message) throw new Error("Write a message to comment");
 
   const post = await postRepositories.findPostByIdRepository(postId);
-  const { postUserId } = await findPostByIdService(postId);
+  const { username } = await findPostByIdService(postId);
+  const postUserId = await userService.findUserByUsernameService(username);
 
   if (!post) throw new Error("Post not found");
 
@@ -225,10 +226,12 @@ const commentPostService = async (
 
 const commentDeletePostService = async (postId, userId, idComment) => {
   const post = await postRepositories.findPostByIdRepository(postId);
-  const { postUserId } = await findPostByIdService(postId);
+  const { username } = await findPostByIdService(postId);
+  const postUserId = await userService.findUserByUsernameService(username);
   const user = await userService.findUserByIdService(userId);
 
   if (!post) throw new Error("Post not found");
+
   if (
     user.fullPermission ||
     post.user.username === user.username ||
@@ -236,7 +239,6 @@ const commentDeletePostService = async (postId, userId, idComment) => {
   ) {
     await postRepositories.commentsDeleteRepository(postId, userId, idComment);
     await userService.totalPointsUserService(postUserId);
-
     return { message: "Comentario deletado" };
   }
   return { message: "Comentario não deletado" };
