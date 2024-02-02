@@ -133,16 +133,14 @@ const userGetNotificarionRepository = (userId, id, title) => {
   );
 };
 
-const userDeleteNotificarionRepository = (userId) => {
+const userDeleteNotificarionRepository = (userId, id) => {
   return findOneAndUpdate(
     {
       _id: userId,
     },
     {
       $pull: {
-        notification: {
-          id: userId,
-        },
+        notification: { id: id },
       },
     },
   );

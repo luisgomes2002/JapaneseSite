@@ -1,3 +1,4 @@
+import userRepositories from "../repositories/user.repositories.js";
 import userService from "../services/user.service.js";
 
 const createUserController = async (req, res) => {
@@ -112,6 +113,20 @@ const totalPointsUserController = async (req, res) => {
   }
 };
 
+const userDeleteNotificarionController = async (req, res) => {
+  const { userId, id } = req.params;
+
+  try {
+    const response = await userRepositories.userDeleteNotificarionService(
+      userId,
+      id,
+    );
+    return res.send(response);
+  } catch (e) {
+    return res.status(400).send(e.message);
+  }
+};
+
 export default {
   createUserController,
   findAllUserController,
@@ -121,4 +136,5 @@ export default {
   deleteUserByIdController,
   followUserController,
   totalPointsUserController,
+  userDeleteNotificarionController,
 };

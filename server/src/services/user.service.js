@@ -188,6 +188,11 @@ const totalPointsUserService = async (userIdParam, userIdLogged) => {
   return user.points.toString();
 };
 
+const userDeleteNotificarionService = async (userId, id) => {
+  await userRepositories.userDeleteNotificarionRepository(userId, id);
+  return { message: "Notification deleted" };
+};
+
 export default {
   createUserService,
   findAllUserService,
@@ -197,4 +202,5 @@ export default {
   deleteUserByIdService,
   followUserService,
   totalPointsUserService,
+  userDeleteNotificarionService,
 };
