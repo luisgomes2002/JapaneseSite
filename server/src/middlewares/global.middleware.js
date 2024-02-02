@@ -1,13 +1,7 @@
 import mongoose from "mongoose";
 
 export async function validId(req, res, next) {
-  let idParam;
-  if (!req.params.id) {
-    req.params.id = req.userId;
-    idParam = req.params.id;
-  } else {
-    idParam = req.params.id;
-  }
+  const idParam = req.params.id ? req.params.id : req.userId;
 
   const isInvalidId = !mongoose.Types.ObjectId.isValid(idParam);
 

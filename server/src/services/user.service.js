@@ -48,14 +48,7 @@ const findUserByUsernameService = async (username) => {
 };
 
 const findUserByIdService = async (userIdParam, userIdLogged) => {
-  let idParam;
-
-  if (!userIdParam) {
-    userIdParam = userIdLogged;
-    idParam = userIdParam;
-  } else {
-    idParam = userIdParam;
-  }
+  const idParam = userIdParam || userIdLogged;
 
   if (!idParam)
     throw new Error("Envie um id nos parâmetros para procurar o usuário");
@@ -155,14 +148,7 @@ const followUserService = async (username, userId, userIdUsername) => {
 };
 
 const totalPointsUserService = async (userIdParam, userIdLogged) => {
-  let idParam;
-
-  if (!userIdParam) {
-    userIdParam = userIdLogged;
-    idParam = userIdParam;
-  } else {
-    idParam = userIdParam;
-  }
+  const idParam = userIdParam || userIdLogged;
 
   if (!idParam)
     throw new Error("Envie um id nos parâmetros para procurar o usuário");
@@ -181,7 +167,7 @@ const totalPointsUserService = async (userIdParam, userIdLogged) => {
     userPoints += numComments * 2 + numLikes;
   }
 
-  await userRepositories.pointCountUserRepository(user, userPoints);
+  userRepositories.pointCountUserRepository(user, userPoints);
 
   user.points = userPoints;
 
