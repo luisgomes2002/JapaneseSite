@@ -65,6 +65,7 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
       comments: post.comments,
       tags: post.tag,
       date: post.createdAt,
+      links: post.links,
       name: post.user.name,
       username: post.user.username,
       avatar: post.user.avatar,
@@ -87,6 +88,7 @@ const topPostsService = async () => {
       comments: post.comments,
       tags: post.tag,
       date: post.createdAt,
+      links: post.links,
       name: post.user.name,
       username: post.user.username,
       avatar: post.user.avatar,
@@ -108,6 +110,7 @@ const findPostByIdService = async (id) => {
     comments: post.comments,
     tags: post.tag,
     date: post.createdAt,
+    links: post.links,
     name: post.user.name,
     username: post.user.username,
     avatar: post.user.avatar,
@@ -130,6 +133,7 @@ const searchPostService = async (title) => {
       comments: post.comments,
       tags: post.tag,
       date: post.createdAt,
+      links: post.links,
       name: post.user.name,
       username: post.user.username,
       avatar: post.user.avatar,
@@ -151,6 +155,7 @@ const findPostsByUserUsernameService = async (username) => {
       comments: post.comments,
       tags: post.tag,
       date: post.createdAt,
+      links: post.links,
       name: post.user.name,
       username: post.user.username,
       avatar: post.user.avatar,
@@ -158,8 +163,16 @@ const findPostsByUserUsernameService = async (username) => {
   };
 };
 
-const updatePostService = async (id, title, banner, text, userId) => {
-  if (!title && !banner && !text)
+const updatePostService = async (
+  id,
+  title,
+  banner,
+  text,
+  tags,
+  links,
+  userId,
+) => {
+  if (!title && !banner && !text && !tags && !links)
     throw new Error("Submit at least one field to update the post");
 
   const post = await postRepositories.findPostByIdRepository(id);
@@ -168,7 +181,14 @@ const updatePostService = async (id, title, banner, text, userId) => {
 
   if (post.user._id != userId) throw new Error("You didn't create this post");
 
-  await postRepositories.updatePostRepository(id, title, banner, text);
+  await postRepositories.updatePostRepository(
+    id,
+    title,
+    banner,
+    text,
+    tags,
+    links,
+  );
 };
 
 const deletePostService = async (id, userId, permission) => {
