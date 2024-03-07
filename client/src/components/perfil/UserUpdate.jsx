@@ -5,6 +5,7 @@ import {
   ChooseColorArea,
   InfoUpdate,
   UserUpdateArea,
+  UpdateAreaMargin,
 } from "./UserUpdateStyle";
 import { ButtonSpaceArea } from "./UserPageStyle";
 import ModalDelete from "../modal/modalDelete/ModalDelete";
@@ -32,7 +33,7 @@ const UpdateUser = () => {
   }, [user]);
 
   return (
-    <>
+    <UpdateAreaMargin>
       <UserUpdateArea>
         <InfoUpdate>
           <h1>Alterar informações da conta {user.username}</h1>
@@ -79,7 +80,7 @@ const UpdateUser = () => {
           </button>
         </ButtonSpaceArea>
       </UserUpdateArea>
-    </>
+    </UpdateAreaMargin>
   );
 };
 

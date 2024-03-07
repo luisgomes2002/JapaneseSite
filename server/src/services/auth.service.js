@@ -1,14 +1,15 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import "dotenv/config";
-import userRepositories from "../repositories/user.repositories.js";
+// import userRepositories from "../repositories/user.repositories.js";
+import authRepositories from "../repositories/auth.repositories.js";
 
 const generateToken = (id) => {
   return jwt.sign({ id: id }, process.env.SECRET_JWT, { expiresIn: 432000 });
 };
 
 const loginService = async ({ email, password }) => {
-  const user = await userRepositories.findByEmailUserRepository(email);
+  const user = await authRepositories.loginRepository(email);
 
   if (!user) throw new Error("Senha ou nome de usuário errados");
 

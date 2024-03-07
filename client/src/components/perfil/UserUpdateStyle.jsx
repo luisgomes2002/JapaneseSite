@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const UpdateAreaMargin = styled.div`
+  margin: 5% 0;
+  background-color: white;
+`;
+
 export const UserUpdateArea = styled.div`
   margin: 20px 200px;
 

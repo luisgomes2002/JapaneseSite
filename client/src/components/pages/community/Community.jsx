@@ -10,7 +10,7 @@ import {
 } from "./CommunityStyled";
 import { Card } from "../../cards/Card";
 import { getAllPosts, getTopPost } from "../../../services/postsServices";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";

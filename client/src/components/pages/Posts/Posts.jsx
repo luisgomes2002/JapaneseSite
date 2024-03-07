@@ -142,6 +142,19 @@ const Post = () => {
       </OnlyPostArea>
       <Comments>
         <h1>{post.comments?.length} Comentarios</h1>
+        <CommentsArea>
+          <img src={user.avatar} alt="avatar" />
+          <CommentBox>
+            <form onSubmit={createComment}>
+              <textarea
+                placeholder="Adicione um comentario"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              <button type="submit">Comment</button>
+            </form>
+          </CommentBox>
+        </CommentsArea>
         {post.comments &&
           post.comments.map((comment) => (
             <CommentsArea key={comment.idComment}>
@@ -162,19 +175,6 @@ const Post = () => {
               </CommentBox>
             </CommentsArea>
           ))}
-        <CommentsArea>
-          <img src={user.avatar} alt="avatar" />
-          <CommentBox>
-            <form onSubmit={createComment}>
-              <textarea
-                placeholder="Adicione um comentario"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              />
-              <button type="submit">Comment</button>
-            </form>
-          </CommentBox>
-        </CommentsArea>
       </Comments>
     </div>
   );
