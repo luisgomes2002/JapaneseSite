@@ -49,7 +49,7 @@ If you liked a post, you can easily find it by its title.
 
 The following tools were used in the project's construction:
 
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [JavaScript](https://262.ecma-international.org/14.0/?_gl=1*gbg6y0*_ga*MzM5MTQ2NzUwLjE3MDg0ODQ2MjA.*_ga_TDCK4DWEPP*MTcwOTA5MDQ4Ny4zLjAuMTcwOTA5MDQ4Ny4wLjAuMA..)
 - [Python](https://www.python.org/)
 - [React-Vite](https://vitejs.dev/guide/)
 - [Flask](https://flask.palletsprojects.com/en/3.0.x/)
