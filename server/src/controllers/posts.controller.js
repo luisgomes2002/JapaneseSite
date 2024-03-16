@@ -76,12 +76,20 @@ const findPostsByUserUsernameController = async (req, res) => {
 };
 
 const updatePostController = async (req, res) => {
-  const { title, banner, text } = req.body;
+  const { title, banner, text, tag, links } = req.body;
   const { id } = req.params;
   const userId = req.userId;
 
   try {
-    await postService.updatePostService(id, title, banner, text, userId);
+    await postService.updatePostService(
+      id,
+      title,
+      banner,
+      text,
+      tag,
+      links,
+      userId,
+    );
 
     return res.send({ message: "Post successfully updated!" });
   } catch (e) {
@@ -120,21 +128,30 @@ const likePostController = async (req, res) => {
 
 const commentPostController = async (req, res) => {
   const { id: postId } = req.params;
-  const { message } = req.body;
-  const userId = req.userId;
-  const { name, username, avatar } = await userService.findUserByIdService(
+  const { message, parentId } = req.body;
+  const { username, avatar } = await userService.findUserByIdService(
     req.userId,
   );
 
   try {
-    await postService.commentPostService(
-      postId,
-      message,
-      userId,
-      name,
-      username,
-      avatar,
-    );
+    if (parentId) {
+      await postService.replyToCommentService(
+        postId,
+        parentId,
+        message,
+        username,
+        avatar,
+        req.userId,
+      );
+    } else {
+      await postService.commentPostService(
+        postId,
+        message,
+        username,
+        avatar,
+        req.userId,
+      );
+    }
 
     return res.send({
       message: "Comment successfully completed!",

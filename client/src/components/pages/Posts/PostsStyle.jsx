@@ -1,40 +1,42 @@
 import styled from "styled-components";
 
-export const OnlyPostArea = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 30%;
-  color: #fff;
-  margin: 6% 5%;
-
-  img {
-    border-radius: 25px;
-  }
-
-  p {
-    margin-top: 2%;
-    color: #b9b6b6;
-  }
-`;
-
-export const PostCreatorInfo = styled.section`
+export const PostIntroduction = styled.div`
+  background-color: black;
   display: flex;
+  justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 100px;
-  color: #585858;
+  margin-top: 5%;
 
   img {
-    margin-right: 4%;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-  }
-
-  a {
-    color: #585858;
-    text-decoration: none;
+    margin: 2% 0;
+    width: 90%;
+    object-fit: cover;
+    max-height: 700px;
   }
 `;
+
+export const UserAndPostInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-left: 15%;
+  height: 40%;
+  width: 100%;
+  float: left;
+  position: absolute;
+
+  h1 {
+    color: white;
+  }
+`;
+
+export const OtherPosts = styled.div``;
+
+export const OnlyPostArea = styled.div``;
+
+export const PostCreatorInfo = styled.section``;
+
+export const PostText = styled.div``;
 
 export const Comments = styled.div`
   margin: 2% 5%;
@@ -47,7 +49,6 @@ export const Comments = styled.div`
 export const CommentsArea = styled.div`
   display: flex;
   margin: 3% 0;
-  /* background-color: #202024; */
   color: #fff;
   border-radius: 5px;
   width: 100%;
@@ -73,22 +74,56 @@ export const CommentsArea = styled.div`
 `;
 
 export const CommentBox = styled.section`
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    margin: 5px;
+    width: 100px;
+    height: 36px;
+    border-radius: 25px;
+    border: none;
+    background-color: #00000058;
+    color: white;
+    float: right;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
   h2 {
     width: 5%;
   }
 
   textArea {
     width: 1400px;
-    height: 30px;
+    height: 40px;
     resize: none;
     overflow: auto;
+    background-color: #121214;
+    border: none;
+    font-size: 16px;
+    color: white;
+    outline: none;
+    margin-left: 15px;
+  }
+
+  textarea:focus {
+    border: none;
+    border-bottom: 2px solid white;
   }
 `;
 
 export const TextEdit = styled.div`
   display: grid;
-
   grid-template-columns: 1fr 3%;
+
+  button {
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+  }
 `;
 
 export const FollowAndLike = styled.div`
@@ -97,7 +132,7 @@ export const FollowAndLike = styled.div`
   button {
     margin: 20px;
     width: 150px;
-    height: 60px;
+    height: 100px;
     background-color: #2c2a2a;
     border: none;
     border-radius: 15px;

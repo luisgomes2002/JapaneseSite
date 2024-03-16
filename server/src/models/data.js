@@ -21,6 +21,10 @@ const DataSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  otherGender: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Data = mongoose.model("Data", DataSchema);

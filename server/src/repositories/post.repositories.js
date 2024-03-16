@@ -40,7 +40,7 @@ const findPostsByUserIdRepository = (id) => {
     .populate("user");
 };
 
-const updatePostRepository = (id, title, banner, text) => {
+const updatePostRepository = (id, title, banner, text, tag, links) => {
   return Post.findOneAndUpdate(
     {
       _id: id,
@@ -49,6 +49,8 @@ const updatePostRepository = (id, title, banner, text) => {
       title,
       banner,
       text,
+      tag,
+      links,
     },
     {
       rawResult: true,
@@ -95,12 +97,10 @@ const likesDeleteRepository = (id, userId) => {
 const commentsRepository = (
   postId,
   message,
-  userId,
-  userIdName,
   userIdUsername,
-  userIdAvatar,
+  userIdIcon,
+  userId,
 ) => {
-  let idComment = Math.floor(Date.now() * Math.random()).toString(36);
   return Post.findOneAndUpdate(
     {
       _id: postId,
@@ -108,17 +108,46 @@ const commentsRepository = (
     {
       $push: {
         comments: {
-          idComment,
-          userId,
-          message,
-          userIdName,
-          userIdUsername,
-          userIdAvatar,
+          message: message,
+          username: userIdUsername,
+          icon: userIdIcon,
+          userId: userId,
           createdAt: new Date(),
         },
       },
     },
     {
+      rawResult: true,
+    },
+  );
+};
+
+const replyToCommentsRepository = (
+  postId,
+  parentId,
+  message,
+  userIdUsername,
+  userIdIcon,
+  userId,
+) => {
+  return Post.findOneAndUpdate(
+    {
+      _id: postId,
+      "comments._id": parentId,
+    },
+    {
+      $push: {
+        "comments.$.replies": {
+          message: message,
+          username: userIdUsername,
+          icon: userIdIcon,
+          userId: userId,
+          createdAt: new Date(),
+        },
+      },
+    },
+    {
+      new: true,
       rawResult: true,
     },
   );
@@ -137,6 +166,7 @@ const commentsDeleteRepository = (postId, userId, idComment) => {
         },
       },
     },
+    { new: true },
   );
 };
 
@@ -152,6 +182,7 @@ export default {
   likesRepository,
   likesDeleteRepository,
   commentsRepository,
+  replyToCommentsRepository,
   commentsDeleteRepository,
   countPosts,
 };

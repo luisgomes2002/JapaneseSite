@@ -13,8 +13,12 @@ import {
   FollowAndLike,
   LinksRef,
   OnlyPostArea,
+  OtherPosts,
   PostCreatorInfo,
+  PostIntroduction,
+  PostText,
   TextEdit,
+  UserAndPostInfo,
 } from "./PostsStyle";
 import { UserContext } from "../../context/UserContext";
 import { findUser, followUser } from "../../../services/userServices";
@@ -91,12 +95,19 @@ const Post = () => {
 
   return (
     <div style={{ backgroundColor: "#121214" }}>
-      <OnlyPostArea>
+      <PostIntroduction>
         <img src={post.banner} alt="banner" />
-        <div>Outros posts</div>
+        <UserAndPostInfo>
+          <div>
+            <h1>{post.name}</h1>
+            <h1>{post.title}</h1>
+          </div>
+          <OtherPosts>Outros posts</OtherPosts>
+        </UserAndPostInfo>
+      </PostIntroduction>
+      <OnlyPostArea>
         <div>
           <PostCreatorInfo>
-            <img src={post.avatar} alt="avatar" />
             <div>
               <h1>{post.name}</h1>
               {post.username == "Conta Deletada" ? (
@@ -108,8 +119,9 @@ const Post = () => {
               )}
             </div>
           </PostCreatorInfo>
-          <h1>{post.title}</h1>
-          <p>{post.text}</p>
+          <PostText>
+            <p>{post.text}</p>
+          </PostText>
         </div>
         <FollowAndLike>
           {user.username === post.username ? null : (
@@ -132,11 +144,12 @@ const Post = () => {
             )}
           </button>
           <LinksRef>
-            <p>Links de referencia: https://www.instagram.com/_gomesluis/ </p>
-            <p>Links de redes sociais: https://www.instagram.com/_gomesluis/</p>
-            <p>Links de redes sociais: https://www.instagram.com/_gomesluis/</p>
-            <p>Links de redes sociais: https://www.instagram.com/_gomesluis/</p>
-            <p>Links de redes sociais: https://www.instagram.com/_gomesluis/</p>
+            {post.links &&
+              post.links.map((link) => (
+                <>
+                  <a href={link}>Instagram</a>
+                </>
+              ))}
           </LinksRef>
         </FollowAndLike>
       </OnlyPostArea>
@@ -151,7 +164,10 @@ const Post = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <button type="submit">Comment</button>
+              <div>
+                <button type="submit">Comment</button>
+                <button>Cancel</button>
+              </div>
             </form>
           </CommentBox>
         </CommentsArea>

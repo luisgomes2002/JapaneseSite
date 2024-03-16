@@ -220,10 +220,9 @@ const likePostService = async (id, userId) => {
 const commentPostService = async (
   postId,
   message,
-  userId,
-  userIdName,
   userIdUsername,
-  userIdAvatar,
+  userIdIcon,
+  userId,
 ) => {
   if (!message) throw new Error("Write a message to comment");
 
@@ -236,32 +235,63 @@ const commentPostService = async (
   await postRepositories.commentsRepository(
     postId,
     message,
-    userId,
-    userIdName,
     userIdUsername,
-    userIdAvatar,
+    userIdIcon,
+    userId,
+  );
+  await userService.totalPointsUserService(postUserId);
+};
+
+const replyToCommentService = async (
+  postId,
+  parentId,
+  message,
+  userIdUsername,
+  userIdIcon,
+  userId,
+) => {
+  if (!message) throw new Error("Write a message to comment");
+
+  const post = await postRepositories.findPostByIdRepository(postId);
+  const { username } = await findPostByIdService(postId);
+  const postUserId = await userService.findUserByUsernameService(username);
+
+  if (!post) throw new Error("Post not found");
+
+  await postRepositories.replyToCommentsRepository(
+    postId,
+    parentId,
+    message,
+    userIdUsername,
+    userIdIcon,
+    userId,
   );
   await userService.totalPointsUserService(postUserId);
 };
 
 const commentDeletePostService = async (postId, userId, idComment) => {
   const post = await postRepositories.findPostByIdRepository(postId);
-  const { username } = await findPostByIdService(postId);
-  const postUserId = await userService.findUserByUsernameService(username);
-  const user = await userService.findUserByIdService(userId);
-
   if (!post) throw new Error("Post not found");
 
-  if (
-    user.fullPermission ||
-    post.user.username === user.username ||
-    post.comments.some((comment) => comment.userIdUsername === user.username)
-  ) {
+  const postUserId = post.user;
+
+  const user = await userService.findUserByIdService(userId);
+  if (!user) throw new Error("User not found");
+
+  let commentCreator = post.comments.some(
+    (comment) => comment.idComment == idComment && comment.userId == userId,
+  );
+
+  const isPostOwner = postUserId === userId;
+  const isAdmin = user.fullPermission;
+
+  if (isAdmin || isPostOwner || commentCreator) {
     await postRepositories.commentsDeleteRepository(postId, userId, idComment);
     await userService.totalPointsUserService(postUserId);
-    return { message: "Comentario deletado" };
+    return { message: "Comentário deletado" };
+  } else {
+    return { message: "Comentário não deletado - Permissão negada" };
   }
-  return { message: "Comentario não deletado" };
 };
 
 const createNotificationService = async (userFollows, id, title) => {
@@ -285,5 +315,6 @@ export default {
   deletePostService,
   likePostService,
   commentPostService,
+  replyToCommentService,
   commentDeletePostService,
 };

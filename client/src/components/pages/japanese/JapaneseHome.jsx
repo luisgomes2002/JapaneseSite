@@ -92,7 +92,7 @@ function Info() {
       <div className="main-container">
         {InfoContents.map((items, i) => (
           <div className="main-content" key={i}>
-            <i class="fa-solid fa-circle-info"></i>
+            <i className="fa-solid fa-circle-info"></i>
             <h2>{items.h2}</h2>
             <p>{items.text}</p>
           </div>
