@@ -14,6 +14,9 @@ const CommentSchema = new mongoose.Schema({
   userId: {
     type: String,
   },
+  parentId: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -47,7 +50,7 @@ const PostSchema = new mongoose.Schema({
     required: true,
   },
   comments: [CommentSchema],
-  tag: {
+  tags: {
     type: Array,
     default: [],
     required: true,

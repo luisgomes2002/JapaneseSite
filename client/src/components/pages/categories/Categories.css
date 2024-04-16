@@ -6,8 +6,9 @@
 }
 
 .section-categories {
-  margin: 150px 0;
+  margin-top: 5%;
   cursor: pointer;
+  background-color: white;
 }
 
 .categories {

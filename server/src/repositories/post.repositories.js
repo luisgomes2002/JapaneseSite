@@ -1,7 +1,7 @@
 import Post from "../models/Posts.js";
 
-const createPostRepository = (title, banner, text, tag, userId) => {
-  return Post.create({ title, banner, text, tag, user: userId });
+const createPostRepository = (title, banner, text, tags, links, userId) => {
+  return Post.create({ title, banner, text, tags, links, user: userId });
 };
 
 const findAllPostsRepository = (offset, limit) => {
@@ -40,7 +40,7 @@ const findPostsByUserIdRepository = (id) => {
     .populate("user");
 };
 
-const updatePostRepository = (id, title, banner, text, tag, links) => {
+const updatePostRepository = (id, title, banner, text, tags, links) => {
   return Post.findOneAndUpdate(
     {
       _id: id,
@@ -49,7 +49,7 @@ const updatePostRepository = (id, title, banner, text, tag, links) => {
       title,
       banner,
       text,
-      tag,
+      tags,
       links,
     },
     {
@@ -100,26 +100,48 @@ const commentsRepository = (
   userIdUsername,
   userIdIcon,
   userId,
+  parentId = null,
 ) => {
-  return Post.findOneAndUpdate(
-    {
-      _id: postId,
-    },
-    {
-      $push: {
-        comments: {
-          message: message,
-          username: userIdUsername,
-          icon: userIdIcon,
-          userId: userId,
-          createdAt: new Date(),
+  const comment = {
+    message: message,
+    username: userIdUsername,
+    icon: userIdIcon,
+    userId: userId,
+    parentId: parentId,
+    createdAt: new Date(),
+  };
+
+  if (parentId) {
+    return Post.findOneAndUpdate(
+      {
+        _id: postId,
+        "comments._id": parentId,
+      },
+      {
+        $push: {
+          "comments.$.replies": comment,
         },
       },
-    },
-    {
-      rawResult: true,
-    },
-  );
+      {
+        new: true,
+        rawResult: true,
+      },
+    );
+  } else {
+    return Post.findOneAndUpdate(
+      {
+        _id: postId,
+      },
+      {
+        $push: {
+          comments: comment,
+        },
+      },
+      {
+        rawResult: true,
+      },
+    );
+  }
 };
 
 const replyToCommentsRepository = (
@@ -130,26 +152,13 @@ const replyToCommentsRepository = (
   userIdIcon,
   userId,
 ) => {
-  return Post.findOneAndUpdate(
-    {
-      _id: postId,
-      "comments._id": parentId,
-    },
-    {
-      $push: {
-        "comments.$.replies": {
-          message: message,
-          username: userIdUsername,
-          icon: userIdIcon,
-          userId: userId,
-          createdAt: new Date(),
-        },
-      },
-    },
-    {
-      new: true,
-      rawResult: true,
-    },
+  return commentsRepository(
+    postId,
+    message,
+    userIdUsername,
+    userIdIcon,
+    userId,
+    parentId,
   );
 };
 

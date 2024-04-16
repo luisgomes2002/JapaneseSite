@@ -2,15 +2,19 @@ import postRepositories from "../repositories/post.repositories.js";
 import userRepositories from "../repositories/user.repositories.js";
 import userService from "./user.service.js";
 
-const createPostService = async ({ title, banner, text, tag }, userId) => {
-  if (!title || !banner || !text || !tag)
+const createPostService = async (
+  { title, banner, text, tags, links },
+  userId,
+) => {
+  if (!title || !banner || !text || !tags)
     throw new Error("Submit all fields for registration");
 
   const { id } = await postRepositories.createPostRepository(
     title,
     banner,
     text,
-    tag,
+    tags,
+    links,
     userId,
   );
 
@@ -19,7 +23,7 @@ const createPostService = async ({ title, banner, text, tag }, userId) => {
 
   return {
     message: "Post created successfully!",
-    post: { id, title, banner, text, tag },
+    post: { id, title, banner, text, tags, links },
   };
 };
 
@@ -172,7 +176,7 @@ const updatePostService = async (
   links,
   userId,
 ) => {
-  if (!title && !banner && !text && !tags && !links)
+  if (!title && !banner && !text && !tags)
     throw new Error("Submit at least one field to update the post");
 
   const post = await postRepositories.findPostByIdRepository(id);
@@ -223,6 +227,7 @@ const commentPostService = async (
   userIdUsername,
   userIdIcon,
   userId,
+  parentId = null,
 ) => {
   if (!message) throw new Error("Write a message to comment");
 
@@ -238,6 +243,7 @@ const commentPostService = async (
     userIdUsername,
     userIdIcon,
     userId,
+    parentId,
   );
   await userService.totalPointsUserService(postUserId);
 };
@@ -250,23 +256,14 @@ const replyToCommentService = async (
   userIdIcon,
   userId,
 ) => {
-  if (!message) throw new Error("Write a message to comment");
-
-  const post = await postRepositories.findPostByIdRepository(postId);
-  const { username } = await findPostByIdService(postId);
-  const postUserId = await userService.findUserByUsernameService(username);
-
-  if (!post) throw new Error("Post not found");
-
-  await postRepositories.replyToCommentsRepository(
+  await commentPostService(
     postId,
-    parentId,
     message,
     userIdUsername,
     userIdIcon,
     userId,
+    parentId,
   );
-  await userService.totalPointsUserService(postUserId);
 };
 
 const commentDeletePostService = async (postId, userId, idComment) => {

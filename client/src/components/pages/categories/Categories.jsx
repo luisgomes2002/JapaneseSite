@@ -35,9 +35,7 @@ const Categories = () => {
 
   return (
     <>
-      <nav style={{ backgroundColor: "#121214" }}>
-        <Nav />
-      </nav>
+      <Nav />
       <section className="section-categories" onMouseMove={handleMouseMove}>
         {categoriesItens.map((info, key) => (
           <div className="categories" key={key}>

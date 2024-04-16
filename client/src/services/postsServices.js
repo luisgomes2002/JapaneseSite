@@ -74,3 +74,12 @@ export const commentsDelete = (id, idComment) => {
   );
   return response;
 };
+
+export const createPost = (body) => {
+  const response = axios.post(`${baseUrl}/posts/create`, body, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+};

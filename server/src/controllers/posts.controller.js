@@ -3,12 +3,12 @@ import userRepositories from "../repositories/user.repositories.js";
 import userService from "../services/user.service.js";
 
 const createPostController = async (req, res) => {
-  const { title, banner, text, tag } = req.body;
+  const { title, banner, text, tags, links } = req.body;
   const userId = req.userId;
 
   try {
     const post = await postService.createPostService(
-      { title, banner, text, tag },
+      { title, banner, text, tags, links },
       userId,
     );
     return res.status(201).send(post);
@@ -76,7 +76,7 @@ const findPostsByUserUsernameController = async (req, res) => {
 };
 
 const updatePostController = async (req, res) => {
-  const { title, banner, text, tag, links } = req.body;
+  const { title, banner, text, tags, links } = req.body;
   const { id } = req.params;
   const userId = req.userId;
 
@@ -86,7 +86,7 @@ const updatePostController = async (req, res) => {
       title,
       banner,
       text,
-      tag,
+      tags,
       links,
       userId,
     );
@@ -150,6 +150,7 @@ const commentPostController = async (req, res) => {
         username,
         avatar,
         req.userId,
+        parentId,
       );
     }
 

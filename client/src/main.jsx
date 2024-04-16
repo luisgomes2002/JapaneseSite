@@ -11,6 +11,7 @@ import UserPage from "./components/perfil/UserPage.jsx";
 import LoginPage from "./components/authentication/LoginPage.jsx";
 import Register from "./components/authentication/Register.jsx";
 import Japanese from "./components/pages/japanese/JapaneseHome.jsx";
+import JLPT from "./components/pages/japanese/jlpt/Jlpt.jsx";
 import UserProvider from "./components/context/UserContext";
 import Post from "./components/pages/Posts/Posts.jsx";
 import UserUpdate from "./components/perfil/UserUpdate.jsx";
@@ -21,6 +22,7 @@ import Administration from "./components/pages/administration/Administration.jsx
 import NavBar from "./components/nav/NavBar.jsx";
 import ProtectiveRoutesNotLoggedIn from "./components/protectiveRoutes/ProtectiveRoutesNotLoggedIn.jsx";
 import ProtectiveRoutesLogged from "./components/protectiveRoutes/ProtectiveRoutesLogged.jsx";
+import ManagePosts from "./components/perfil/ManagePosts.jsx";
 
 const Layout = () => {
   return (
@@ -102,6 +104,10 @@ const router = createBrowserRouter([
         element: <Japanese />,
       },
       {
+        path: "/jlpt",
+        element: <JLPT />,
+      },
+      {
         path: "/post/:id",
         element: (
           <ProtectiveRoutesNotLoggedIn>
@@ -120,6 +126,10 @@ const router = createBrowserRouter([
       {
         path: "/portfolio",
         element: <Portfolio />,
+      },
+      {
+        path: "/managePosts/:action",
+        element: <ManagePosts />,
       },
     ],
   },

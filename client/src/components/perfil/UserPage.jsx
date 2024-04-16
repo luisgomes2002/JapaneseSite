@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-// import NavBar from "../nav/NavBar";
 import {
   UserInfomationsArea,
   TotalSpace,
@@ -164,9 +163,11 @@ const UserPage = () => {
               <section>
                 <h1>
                   Posts{" "}
-                  <button>
-                    <i className="fa-solid fa-circle-plus"></i>
-                  </button>
+                  <Link to="/managePosts/add">
+                    <button>
+                      <i className="fa-solid fa-circle-plus"></i>
+                    </button>
+                  </Link>
                 </h1>
                 <div>
                   {posts.map((item) => {
@@ -187,9 +188,11 @@ const UserPage = () => {
                   })}
                 </div>
                 <CardEmpty>
-                  <button>
-                    <i className="fa-solid fa-circle-plus"></i>
-                  </button>
+                  <Link to="/managePosts/add">
+                    <button>
+                      <i className="fa-solid fa-circle-plus"></i>
+                    </button>
+                  </Link>
                 </CardEmpty>
               </section>
             </CadsAndAchievements>
