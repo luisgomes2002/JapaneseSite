@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const AddPostsContainer = styled.div`
   padding: 5%;
+  text-align: center;
 
   h2 {
+    color: white;
     margin-left: 2%;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
+    font-size: 40px;
+    padding-bottom: 2%;
+    color: #6f00ff;
   }
 
   input {
@@ -17,23 +17,38 @@ export const AddPostsContainer = styled.div`
     width: 500px;
     height: 40px;
     margin: 1%;
+    background-color: #202024;
+    color: white;
+    border: none;
+    border-radius: 5px;
   }
+
   textarea {
-    padding-left: 1%;
-    width: 500px;
-    height: 200px;
+    padding: 1%;
+    width: 100%;
+    height: 300px;
     margin: 1%;
+    background-color: #202024;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    resize: none;
   }
+
   button {
-    color: black;
+    color: white;
     cursor: pointer;
-    width: 100px;
-    height: 40px;
+    width: 200px;
+    height: 60px;
+    background-color: #6f00ff;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
   }
 
   span {
     color: #ff0000;
-    font-size: 13px;
+    font-size: 18px;
   }
 `;
 
@@ -71,8 +86,14 @@ export const ShowPost = styled.div`
   h2 {
     display: flex;
     justify-content: center;
-    margin: 42px 0;
+    margin: 17% 0;
     font-size: 15px;
     color: white;
   }
+`;
+
+export const SpanErrors = styled.div`
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
 `;

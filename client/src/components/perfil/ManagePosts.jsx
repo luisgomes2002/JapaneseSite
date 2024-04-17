@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AddPostsContainer, ShowPost } from "./ManagePostsStyle";
+import { AddPostsContainer, ShowPost, SpanErrors } from "./ManagePostsStyle";
 import { postsSchema } from "../schemas/postsSchema";
 import { createPost } from "../../services/postsServices";
 import { useState } from "react";
@@ -16,7 +16,7 @@ const ManagePosts = () => {
   const [link1, setLink1] = useState("");
   const [link2, setLink2] = useState("");
   const [link3, setLink3] = useState("");
-  const [link4, setLink4] = useState("");
+  // const [link4, setLink4] = useState("");
   const [text, setText] = useState("");
 
   const {
@@ -52,7 +52,7 @@ const ManagePosts = () => {
           <img src={imageLink || "Img"} alt="" />
         </div>
         <div>
-          <h1>{title || "Tags"}</h1>
+          <h1>{title || "Title"}</h1>
           <TextLimit text={text || "Text"} limit={860} />
           <h3>{tags || "Tags"}</h3>
         </div>
@@ -60,7 +60,7 @@ const ManagePosts = () => {
           <h2>{link1 || "Link 1"}</h2>
           <h2>{link2 || "Link 2"}</h2>
           <h2>{link3 || "Link 3"}</h2>
-          <h2>{link4 || "Link 4"}</h2>
+          {/* <h2>{link4 || "Link 4"}</h2> */}
         </div>
       </ShowPost>
       <AddPostsContainer>
@@ -79,7 +79,6 @@ const ManagePosts = () => {
             {...register("title")}
             onChange={(e) => setTitle(e.target.value)}
           />
-          {errors.title && <span>{errors.title.message}</span>}
 
           <input
             type="text"
@@ -88,7 +87,6 @@ const ManagePosts = () => {
             {...register("banner")}
             onChange={(e) => setImageLink(e.target.value)}
           />
-          {errors.banner && <span>{errors.banner.message}</span>}
 
           <input
             type="text"
@@ -97,7 +95,6 @@ const ManagePosts = () => {
             {...register("tags")}
             onChange={(e) => setTags(e.target.value)}
           />
-          {errors.tag && <span>{errors.tag.message}</span>}
 
           <input
             type="text"
@@ -107,7 +104,7 @@ const ManagePosts = () => {
             onChange={(e) => setLink1(e.target.value)}
           />
 
-          {/* <input
+          <input
             type="text"
             placeholder="Link 2"
             name="links"
@@ -123,7 +120,7 @@ const ManagePosts = () => {
             onChange={(e) => setLink3(e.target.value)}
           />
 
-          <input
+          {/* <input
             type="text"
             placeholder="Link 4"
             name="links"
@@ -138,7 +135,6 @@ const ManagePosts = () => {
             {...register("text")}
             onChange={(e) => setText(e.target.value)}
           />
-          {errors.text && <span>{errors.text.message}</span>}
 
           <button
             type="submit"
@@ -150,8 +146,18 @@ const ManagePosts = () => {
                 : "Apagar"
             }
           >
-            {action}
+            {action === "add"
+              ? "Adicionar"
+              : action === "edit"
+              ? "Atualizar"
+              : "Apagar"}
           </button>
+          <SpanErrors>
+            {errors.title && <span>{errors.title.message}</span>}
+            {errors.banner && <span>{errors.banner.message}</span>}
+            {errors.tags && <span>{errors.tags.message}</span>}
+            {errors.text && <span>{errors.text.message}</span>}
+          </SpanErrors>
         </form>
       </AddPostsContainer>
     </>
