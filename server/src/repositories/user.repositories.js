@@ -112,7 +112,7 @@ const transferPostsToAnotherUserRepository = async (
   );
 };
 
-const userGetNotificarionRepository = (userId, id, title) => {
+const userGetNotificarionRepository = (userId, id, title, username) => {
   return User.findOneAndUpdate(
     {
       _id: userId,
@@ -123,6 +123,7 @@ const userGetNotificarionRepository = (userId, id, title) => {
         notification: {
           id,
           title,
+          username,
           createdAt: new Date(),
         },
       },

@@ -19,7 +19,12 @@ const createPostService = async (
   );
 
   const createPostUser = await userService.findUserByIdService(null, userId);
-  await createNotificationService(createPostUser.follows, id, title);
+  await createNotificationService(
+    createPostUser.follows,
+    id,
+    title,
+    createPostUser.username,
+  );
 
   return {
     message: "Post created successfully!",
@@ -227,7 +232,6 @@ const commentPostService = async (
   userIdUsername,
   userIdIcon,
   userId,
-  parentId = null,
 ) => {
   if (!message) throw new Error("Write a message to comment");
 
@@ -243,7 +247,6 @@ const commentPostService = async (
     userIdUsername,
     userIdIcon,
     userId,
-    parentId,
   );
   await userService.totalPointsUserService(postUserId);
 };
@@ -291,12 +294,19 @@ const commentDeletePostService = async (postId, userId, idComment) => {
   }
 };
 
-const createNotificationService = async (userFollows, id, title) => {
+//chamada ao criar um post, curtir e comentar
+const createNotificationService = async (
+  userFollows,
+  id,
+  title,
+  userUsername,
+) => {
   for (let i = 0; i < userFollows.length; i++) {
     await userRepositories.userGetNotificarionRepository(
       userFollows[i].userId,
       id, //post
       title,
+      userUsername,
     );
   }
 };

@@ -110,6 +110,11 @@ const deleteUserByIdService = async (userId, userIdLogged) => {
 
 const followUserService = async (username, userId, userIdUsername) => {
   const user = await userRepositories.findByUsernameRepository(username);
+  const userUsernameLogged = await userRepositories.findByIdUserRepository(
+    userId,
+  );
+
+  console.log(userUsernameLogged);
 
   const [userFollow, userFollowed] = await Promise.all([
     userRepositories.followUserRepository(
@@ -130,6 +135,7 @@ const followUserService = async (username, userId, userIdUsername) => {
       user._id,
       userId,
       "Começou a seguir você",
+      userUsernameLogged.username,
     ),
   ]);
 

@@ -1,6 +1,13 @@
 import { useContext, useEffect } from "react";
 import { userLogged } from "../../services/userServices";
-import { Nav, NavBarLogo, NavBarCategories, GoAuth } from "./NavBarStyle";
+import {
+  Nav,
+  NavBarLogo,
+  NavBarCategories,
+  GoAuth,
+  Notifications,
+  ForEachNotification,
+} from "./NavBarStyle";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { UserContext } from "../context/UserContext";
@@ -57,6 +64,24 @@ const NavBar = () => {
               <Link to="/categories">Categorias</Link>
               <Link to="/post">Sobre</Link>
               <Link to="/community">Comunidade</Link>
+              <button>
+                <i class="fa-solid fa-bell"></i>
+                <Notifications>
+                  {user.notification.map((notifications) => {
+                    return (
+                      <ForEachNotification key={notifications.id}>
+                        <Link to={`/profile/${notifications.username}`}>
+                          <h2>{notifications.username || "Deletado"}</h2>
+                          <p>{notifications.title}</p>
+                        </Link>
+                        <button>
+                          <i className="fa-solid fa-x"></i>
+                        </button>
+                      </ForEachNotification>
+                    );
+                  })}
+                </Notifications>
+              </button>
               {/* <Link to="/adm">Adm</Link> */}
             </>
           )}

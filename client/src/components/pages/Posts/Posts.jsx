@@ -17,6 +17,8 @@ import {
   PostCreatorInfo,
   PostIntroduction,
   PostText,
+  ReplayBox,
+  ReplayComment,
   TextEdit,
   UserAndPostInfo,
 } from "./PostsStyle";
@@ -31,6 +33,7 @@ const Post = () => {
   const [hasLiked, setHasLiked] = useState(false);
   const [followBtn, setFollowBtn] = useState(false);
   const [message, setMessage] = useState("");
+  const [replay, setReplay] = useState("");
 
   const getPost = async () => {
     try {
@@ -48,6 +51,8 @@ const Post = () => {
     const response = await commentCreate(id, message.trim());
     return response;
   };
+
+  const replayComment = async () => {};
 
   const deleteComment = async (idComment) => {
     const response = await commentsDelete(id, idComment);
@@ -156,7 +161,7 @@ const Post = () => {
       <Comments>
         <h1>{post.comments?.length} Comentarios</h1>
         <CommentsArea>
-          <img src={user.avatar} alt="avatar" />
+          <img src={user.avatar} alt="icon" />
           <CommentBox>
             <form onSubmit={createComment}>
               <textarea
@@ -173,23 +178,44 @@ const Post = () => {
         </CommentsArea>
         {post.comments &&
           post.comments.map((comment) => (
-            <CommentsArea key={comment.idComment}>
-              <Link to={`/profile/${comment.userIdUsername}`}>
-                <img src={comment.userIdAvatar} alt="avatar" />
-              </Link>
-              <CommentBox>
-                {/* <h1>{comment.userIdName}</h1> */}
-                <Link to={`/profile/${comment.userIdUsername}`}>
-                  <h2>@{comment.userIdUsername}</h2>
+            <>
+              <CommentsArea key={comment.idComment}>
+                <Link to={`/profile/${comment.username}`}>
+                  <img src={comment.icon} alt="icon" />
                 </Link>
-                <TextEdit>
-                  <p>{comment.message}</p>
-                  <button onClick={() => deleteComment(comment.idComment)}>
-                    Edit
-                  </button>
-                </TextEdit>
-              </CommentBox>
-            </CommentsArea>
+                <CommentBox>
+                  {/* <h1>{comment.userIdName}</h1> */}
+                  <Link to={`/profile/${comment.username}`}>
+                    <h2>@{comment.username}</h2>
+                  </Link>
+                  <TextEdit>
+                    <p>{comment.message}</p>
+                    <div>
+                      <button onClick={() => deleteComment(comment.idComment)}>
+                        Edit
+                      </button>
+                      <button>Comment</button>
+                    </div>
+                  </TextEdit>
+                </CommentBox>
+              </CommentsArea>
+              <ReplayComment>
+                <img src={user.avatar} alt="icon" />
+                <ReplayBox>
+                  <form onSubmit={replayComment}>
+                    <textarea
+                      placeholder="Adicione um comentario"
+                      value={replay}
+                      onChange={(e) => setReplay(e.target.value)}
+                    />
+                    <div>
+                      <button type="submit">Comment</button>
+                      <button>Cancel</button>
+                    </div>
+                  </form>
+                </ReplayBox>
+              </ReplayComment>
+            </>
           ))}
       </Comments>
     </div>

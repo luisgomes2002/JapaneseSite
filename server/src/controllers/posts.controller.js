@@ -128,32 +128,19 @@ const likePostController = async (req, res) => {
 
 const commentPostController = async (req, res) => {
   const { id: postId } = req.params;
-  const { message, parentId } = req.body;
+  const { message } = req.body;
   const { username, avatar } = await userService.findUserByIdService(
     req.userId,
   );
 
   try {
-    if (parentId) {
-      await postService.replyToCommentService(
-        postId,
-        parentId,
-        message,
-        username,
-        avatar,
-        req.userId,
-      );
-    } else {
-      await postService.commentPostService(
-        postId,
-        message,
-        username,
-        avatar,
-        req.userId,
-        parentId,
-      );
-    }
-
+    await postService.commentPostService(
+      postId,
+      message,
+      username,
+      avatar,
+      req.userId,
+    );
     return res.send({
       message: "Comment successfully completed!",
     });

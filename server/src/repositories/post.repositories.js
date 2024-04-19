@@ -100,48 +100,28 @@ const commentsRepository = (
   userIdUsername,
   userIdIcon,
   userId,
-  parentId = null,
 ) => {
   const comment = {
     message: message,
     username: userIdUsername,
     icon: userIdIcon,
     userId: userId,
-    parentId: parentId,
     createdAt: new Date(),
   };
 
-  if (parentId) {
-    return Post.findOneAndUpdate(
-      {
-        _id: postId,
-        "comments._id": parentId,
+  return Post.findOneAndUpdate(
+    {
+      _id: postId,
+    },
+    {
+      $push: {
+        comments: comment,
       },
-      {
-        $push: {
-          "comments.$.replies": comment,
-        },
-      },
-      {
-        new: true,
-        rawResult: true,
-      },
-    );
-  } else {
-    return Post.findOneAndUpdate(
-      {
-        _id: postId,
-      },
-      {
-        $push: {
-          comments: comment,
-        },
-      },
-      {
-        rawResult: true,
-      },
-    );
-  }
+    },
+    {
+      rawResult: true,
+    },
+  );
 };
 
 const replyToCommentsRepository = (

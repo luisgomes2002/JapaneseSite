@@ -73,6 +73,32 @@ export const CommentsArea = styled.div`
   }
 `;
 
+export const ReplayComment = styled.div`
+  display: flex;
+  margin: 3%;
+  color: #fff;
+  border-radius: 5px;
+
+  a {
+    padding-right: 1%;
+    height: 0;
+  }
+
+  img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 15px;
+  }
+`;
+
 export const CommentBox = styled.section`
   form {
     display: flex;
@@ -98,6 +124,48 @@ export const CommentBox = styled.section`
 
   textArea {
     width: 1400px;
+    height: 40px;
+    resize: none;
+    overflow: auto;
+    background-color: #121214;
+    border: none;
+    font-size: 16px;
+    color: white;
+    outline: none;
+    margin-left: 15px;
+  }
+
+  textarea:focus {
+    border: none;
+    border-bottom: 2px solid white;
+  }
+`;
+
+export const ReplayBox = styled.div`
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    margin: 5px;
+    width: 100px;
+    height: 36px;
+    border-radius: 25px;
+    border: none;
+    background-color: #00000058;
+    color: white;
+    float: right;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  h2 {
+    width: 5%;
+  }
+
+  textArea {
+    width: 1360px;
     height: 40px;
     resize: none;
     overflow: auto;
