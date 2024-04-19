@@ -114,8 +114,6 @@ const followUserService = async (username, userId, userIdUsername) => {
     userId,
   );
 
-  console.log(userUsernameLogged);
-
   const [userFollow, userFollowed] = await Promise.all([
     userRepositories.followUserRepository(
       //User para seguir
@@ -131,7 +129,7 @@ const followUserService = async (username, userId, userIdUsername) => {
       //User logado
       userId,
     ),
-    userRepositories.userGetNotificarionRepository(
+    userRepositories.userGetNotificationRepository(
       user._id,
       userId,
       "Começou a seguir você",
@@ -180,8 +178,8 @@ const totalPointsUserService = async (userIdParam, userIdLogged) => {
   return user.points.toString();
 };
 
-const userDeleteNotificarionService = async (userId, id) => {
-  await userRepositories.userDeleteNotificarionRepository(userId, id);
+const userDeleteNotificationService = async (userId, id) => {
+  await userRepositories.userDeleteNotificationRepository(userId, id);
   return { message: "Notification deleted" };
 };
 
@@ -194,5 +192,5 @@ export default {
   deleteUserByIdService,
   followUserService,
   totalPointsUserService,
-  userDeleteNotificarionService,
+  userDeleteNotificationService,
 };

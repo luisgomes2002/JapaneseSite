@@ -302,7 +302,7 @@ const createNotificationService = async (
   userUsername,
 ) => {
   for (let i = 0; i < userFollows.length; i++) {
-    await userRepositories.userGetNotificarionRepository(
+    await userRepositories.userGetNotificationRepository(
       userFollows[i].userId,
       id, //post
       title,

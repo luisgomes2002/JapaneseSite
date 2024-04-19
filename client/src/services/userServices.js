@@ -79,6 +79,19 @@ export const deleteUser = (userAccountId) => {
   return response;
 };
 
+export const deleteNotification = (userId, id) => {
+  const response = axios.patch(
+    `${baseUrl}/user/deleteNotification/${userId}/${id}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    },
+  );
+  return response;
+};
+
 const generateUserName = (name) => {
   const nameLowerWithoutSpaces = name.replace(/\s/g, "").toLowerCase();
   const randomNumber = Math.floor(Math.random() * 1000);

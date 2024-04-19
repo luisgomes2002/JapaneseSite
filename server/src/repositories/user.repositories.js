@@ -112,7 +112,7 @@ const transferPostsToAnotherUserRepository = async (
   );
 };
 
-const userGetNotificarionRepository = (userId, id, title, username) => {
+const userGetNotificationRepository = (userId, id, title, username) => {
   return User.findOneAndUpdate(
     {
       _id: userId,
@@ -134,8 +134,8 @@ const userGetNotificarionRepository = (userId, id, title, username) => {
   );
 };
 
-const userDeleteNotificarionRepository = (userId, id) => {
-  return findOneAndUpdate(
+const userDeleteNotificationRepository = (userId, id) => {
+  return User.findOneAndUpdate(
     {
       _id: userId,
     },
@@ -162,6 +162,6 @@ export default {
   deletefollowedUserRepository,
   pointCountUserRepository,
   transferPostsToAnotherUserRepository,
-  userGetNotificarionRepository,
-  userDeleteNotificarionRepository,
+  userGetNotificationRepository,
+  userDeleteNotificationRepository,
 };

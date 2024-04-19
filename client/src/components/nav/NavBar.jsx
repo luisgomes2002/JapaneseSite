@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { userLogged } from "../../services/userServices";
+import { deleteNotification, userLogged } from "../../services/userServices";
 import {
   Nav,
   NavBarLogo,
@@ -41,9 +41,17 @@ const NavBar = () => {
     }
   };
 
+  const deleteNotificationsNavBar = async (userId, notificationId) => {
+    try {
+      await deleteNotification(userId, notificationId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     if (Cookies.get("token")) findUserLogged();
-  }, []);
+  }, [user.notification]);
 
   return (
     <Nav>
@@ -65,16 +73,23 @@ const NavBar = () => {
               <Link to="/post">Sobre</Link>
               <Link to="/community">Comunidade</Link>
               <button>
-                <i class="fa-solid fa-bell"></i>
+                <i className="fa-solid fa-bell"></i>
                 <Notifications>
                   {user.notification.map((notifications) => {
                     return (
-                      <ForEachNotification key={notifications.id}>
+                      <ForEachNotification key={notifications.username}>
                         <Link to={`/profile/${notifications.username}`}>
-                          <h2>{notifications.username || "Deletado"}</h2>
+                          <h2>{notifications.username || "User Deletado"}</h2>
                           <p>{notifications.title}</p>
                         </Link>
-                        <button>
+                        <button
+                          onClick={() =>
+                            deleteNotificationsNavBar(
+                              user._id,
+                              notifications.id,
+                            )
+                          }
+                        >
                           <i className="fa-solid fa-x"></i>
                         </button>
                       </ForEachNotification>

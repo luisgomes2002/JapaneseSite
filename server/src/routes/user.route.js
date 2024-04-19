@@ -21,8 +21,8 @@ userRouter.get(
 );
 userRouter.patch("/follow/:username", userController.followUserController);
 userRouter.patch(
-  "/userId:/:id",
-  userController.userDeleteNotificarionController,
+  "/deleteNotification/:userId/:id",
+  userController.userDeleteNotificationController,
 );
 
 export default userRouter;
