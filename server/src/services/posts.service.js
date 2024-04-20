@@ -22,7 +22,7 @@ const createPostService = async (
   await createNotificationService(
     createPostUser.follows,
     id,
-    title,
+    "Criou um novo Post",
     createPostUser.username,
   );
 
@@ -249,6 +249,12 @@ const commentPostService = async (
     userIdIcon,
     userId,
   );
+  await userRepositories.userGetNotificationRepository(
+    post.user._id,
+    userId,
+    "Comentou no seu post",
+    userIdUsername,
+  );
   await userService.totalPointsUserService(postUserId);
 };
 
@@ -305,8 +311,8 @@ const createNotificationService = async (
   for (let i = 0; i < userFollows.length; i++) {
     await userRepositories.userGetNotificationRepository(
       userFollows[i].userId,
-      id, //post
-      title,
+      id, //user
+      title, //message
       userUsername,
     );
   }

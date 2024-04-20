@@ -66,6 +66,31 @@ const NavBar = () => {
               <Link to="/categories">Categorias</Link>
               <Link to="/post">Sobre</Link>
               <Link to="/community">Comunidade</Link>
+              <button>
+                <i className="fa-solid fa-bell"></i>
+                <Notifications>
+                  {user.notification?.map((notifications) => {
+                    return (
+                      <ForEachNotification key={notifications._id}>
+                        <Link to={`/profile/${notifications.username}`}>
+                          <h2>{notifications.username || "User Deletado"}</h2>
+                          <p>{notifications.title}</p>
+                        </Link>
+                        <button
+                          onClick={() =>
+                            deleteNotificationsNavBar(
+                              user._id,
+                              notifications.notificationIdCreated,
+                            )
+                          }
+                        >
+                          <i className="fa-solid fa-x"></i>
+                        </button>
+                      </ForEachNotification>
+                    );
+                  })}
+                </Notifications>
+              </button>
             </>
           ) : (
             <>
@@ -75,9 +100,9 @@ const NavBar = () => {
               <button>
                 <i className="fa-solid fa-bell"></i>
                 <Notifications>
-                  {user.notification.map((notifications) => {
+                  {user.notification?.map((notifications) => {
                     return (
-                      <ForEachNotification key={notifications.username}>
+                      <ForEachNotification key={notifications._id}>
                         <Link to={`/profile/${notifications.username}`}>
                           <h2>{notifications.username || "User Deletado"}</h2>
                           <p>{notifications.title}</p>
@@ -86,7 +111,7 @@ const NavBar = () => {
                           onClick={() =>
                             deleteNotificationsNavBar(
                               user._id,
-                              notifications.id,
+                              notifications.notificationIdCreated,
                             )
                           }
                         >

@@ -113,10 +113,11 @@ const transferPostsToAnotherUserRepository = async (
 };
 
 const userGetNotificationRepository = (userId, id, title, username) => {
+  const notificationIdCreated = Math.random().toString(36).substring(2);
   return User.findOneAndUpdate(
     {
       _id: userId,
-      "notification.id": { $nin: [id] },
+      // "notification.id": { $nin: [id] },
     },
     {
       $push: {
@@ -124,6 +125,7 @@ const userGetNotificationRepository = (userId, id, title, username) => {
           id,
           title,
           username,
+          notificationIdCreated,
           createdAt: new Date(),
         },
       },
@@ -141,7 +143,7 @@ const userDeleteNotificationRepository = (userId, id) => {
     },
     {
       $pull: {
-        notification: { id: id },
+        notification: { notificationIdCreated: id },
       },
     },
   );
