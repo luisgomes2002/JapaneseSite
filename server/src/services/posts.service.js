@@ -72,7 +72,7 @@ const findAllPostsService = async (limit, offset, currentUrl) => {
       text: post.text,
       likes: post.likes,
       comments: post.comments,
-      tags: post.tag,
+      tags: post.tags,
       date: post.createdAt,
       links: post.links,
       name: post.user.name,
@@ -95,7 +95,7 @@ const topPostsService = async () => {
       text: post.text,
       likes: post.likes,
       comments: post.comments,
-      tags: post.tag,
+      tags: post.tags,
       date: post.createdAt,
       links: post.links,
       name: post.user.name,
@@ -117,12 +117,13 @@ const findPostByIdService = async (id) => {
     text: post.text,
     likes: post.likes,
     comments: post.comments,
-    tags: post.tag,
+    tags: post.tags,
     date: post.createdAt,
     links: post.links,
     name: post.user.name,
     username: post.user.username,
     avatar: post.user.avatar,
+    postUserId: post.user._id,
   };
 };
 
@@ -140,7 +141,7 @@ const searchPostService = async (title) => {
       text: post.text,
       likes: post.likes,
       comments: post.comments,
-      tags: post.tag,
+      tags: post.tags,
       date: post.createdAt,
       links: post.links,
       name: post.user.name,
@@ -162,7 +163,7 @@ const findPostsByUserUsernameService = async (username) => {
       text: post.text,
       likes: post.likes,
       comments: post.comments,
-      tags: post.tag,
+      tags: post.tags,
       date: post.createdAt,
       links: post.links,
       name: post.user.name,
@@ -212,12 +213,12 @@ const deletePostService = async (id, userId, permission) => {
   }
 };
 
-const likePostService = async (id, userId) => {
-  const postLiked = await postRepositories.likesRepository(id, userId);
-  const { postUserId } = await findPostByIdService(id);
+const likePostService = async (postId, userId) => {
+  const postLiked = await postRepositories.likesRepository(postId, userId);
+  const { postUserId } = await findPostByIdService(postId);
 
   if (postLiked.lastErrorObject.n === 0) {
-    await postRepositories.likesDeleteRepository(id, userId);
+    await postRepositories.likesDeleteRepository(postId, userId);
     await userService.totalPointsUserService(postUserId);
     return { message: "Like successfully removed" };
   }

@@ -73,7 +73,6 @@ const UserPage = () => {
         } else {
           navegate("/");
         }
-        console.log(username);
       } catch (error) {
         console.error("Erro ao carregar dados:", error.message);
       }
