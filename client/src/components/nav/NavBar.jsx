@@ -104,6 +104,7 @@ const NavBar = () => {
             </>
           ) : (
             <>
+              {/* MOD NAV BAR */}
               <Link to="/categories">Categorias</Link>
               <Link to="/post">Sobre</Link>
               <Link to="/community">Comunidade</Link>
