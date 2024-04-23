@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { deleteNotification, userLogged } from "../../services/userServices";
 import {
   Nav,
@@ -14,8 +14,13 @@ import { UserContext } from "../context/UserContext";
 
 const NavBar = () => {
   const { user, setUser } = useContext(UserContext);
-
   const navigate = useNavigate();
+
+  const [showNotifications, setShowNotifications] = useState(false);
+
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
+  };
 
   const goAuth = () => {
     navigate("/auth");
@@ -66,8 +71,13 @@ const NavBar = () => {
               <Link to="/categories">Categorias</Link>
               <Link to="/post">Sobre</Link>
               <Link to="/community">Comunidade</Link>
-              <button>
+              <button onClick={toggleNotifications}>
                 <i className="fa-solid fa-bell"></i>
+                {user.notification && user.notification.length > 0 && (
+                  <span>({user.notification.length})</span>
+                )}
+              </button>
+              {showNotifications && (
                 <Notifications>
                   {user.notification?.map((notifications) => {
                     return (
@@ -90,15 +100,20 @@ const NavBar = () => {
                     );
                   })}
                 </Notifications>
-              </button>
+              )}
             </>
           ) : (
             <>
               <Link to="/categories">Categorias</Link>
               <Link to="/post">Sobre</Link>
               <Link to="/community">Comunidade</Link>
-              <button>
+              <button onClick={toggleNotifications}>
                 <i className="fa-solid fa-bell"></i>
+                {user.notification && user.notification.length > 0 && (
+                  <span>({user.notification.length})</span>
+                )}
+              </button>
+              {showNotifications && (
                 <Notifications>
                   {user.notification?.map((notifications) => {
                     return (
@@ -121,7 +136,7 @@ const NavBar = () => {
                     );
                   })}
                 </Notifications>
-              </button>
+              )}
               {/* <Link to="/adm">Adm</Link> */}
             </>
           )}

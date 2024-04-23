@@ -40,6 +40,7 @@ export const CarouselContainer = styled.div`
   display: flex;
   transition: transform 0.3s ease-in-out;
 `;
+
 export const ButtonArea = styled.button`
   width: 100%;
   display: flex;
