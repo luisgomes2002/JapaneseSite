@@ -1,0 +1,92 @@
+.main {
+  background-color: var(--second-color);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.main button {
+  border-radius: var(--button-border);
+  width: 200px;
+  height: 70px;
+  font-size: var(--size-h1);
+  margin: 5%;
+  background-color: var(--second-main-color);
+  border: none;
+  transition: 0.3s ease-in-out;
+  color: var(--main-color);
+}
+
+.main button:hover {
+  background-color: var(--main-color);
+  transition: 0.3s ease-in-out;
+  color: var(--second-main-color);
+  cursor: pointer;
+}
+
+.main h3 {
+  color: var(--second-main-color);
+  padding-top: 5%;
+  font-size: 1.5rem;
+}
+
+.main h1 {
+  color: var(--main-color);
+  padding: 1% 0 2% 0;
+  font-family: var(--second-font);
+  font-size: 4rem;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+}
+
+.main-container h2 {
+  color: var(--main-color);
+  padding: 2% 0 5% 0;
+}
+
+.main-container p {
+  color: var(--main-color);
+  padding: 0 15%;
+  font-size: var(--size-h3);
+}
+
+.main-content i {
+  padding-top: 10%;
+  color: var(--main-color);
+  font-size: 3rem;
+}
+
+.main-content {
+  width: 400px;
+  height: 400px;
+  background-color: var(--fourth-color);
+  border-radius: var(--border-slim);
+}
+
+.main-content:hover {
+  background-color: var(--second-main-color);
+}
+
+@media screen and (max-width: 480px) {
+  .main-container p {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .main-content h1 {
+    font-size: 2rem;
+    margin-top: 3rem;
+  }
+
+  .main-content h2 {
+    font-size: 3rem;
+  }
+
+  .main-btn {
+    padding: 12px 36px;
+    margin: 2.5rem 0;
+  }
+}

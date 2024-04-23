@@ -1,0 +1,80 @@
+.video-container {
+  width: 100%;
+  padding: 2% 5%;
+}
+
+.video-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+}
+
+.grid-item {
+  padding: 10%;
+}
+
+.video-space a {
+  text-decoration: none;
+}
+
+.video-space p {
+  padding-left: 19%;
+  color: #353535;
+}
+
+.video-space img {
+  border-radius: 20px;
+  height: 174px;
+  width: 310px;
+  margin-bottom: 2%;
+}
+
+.video-space h3 {
+  padding-left: 15%;
+  font-size: 16px;
+  color: #000000;
+}
+
+.image-thumb--channel:hover img {
+  transition: 0.3s ease-in;
+  border-radius: 0;
+}
+
+.image-thumb--channel img{
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+
+.grid-video-space--info {
+  display: grid;
+  grid-template-columns: 5% 1fr;
+  align-items: center;
+  text-align: left;
+  overflow: hidden;
+}
+
+.grid-video-space--info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.grid-video-space--info h3 {
+  margin: 0;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #030303;
+}
+
+.grid-video-space--info h3.multi-line {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.h2-heading h2 {
+  padding: 0 7%;
+}
