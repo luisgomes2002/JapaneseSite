@@ -260,6 +260,12 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 1600px) {
+  .categorias-card {
+    margin: 5px;
+  }
+}
+
 @media screen and (max-width: 1300px) {
   .categorias-wrapper {
     grid-template-columns: 1fr 1fr;
