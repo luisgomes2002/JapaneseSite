@@ -113,6 +113,11 @@ const transferPostsToAnotherUserRepository = async (
 };
 
 const userGetNotificationRepository = (userId, id, title, username) => {
+  //Cada notificacao de comentario precisa de um ID✅
+  //Se o cara curtir e descurtir a notificacao some
+  //Se o cara seguir e para de seguir a notificacao some
+  //Adicionar o link para o post do comentario
+
   const notificationIdCreated = Math.random().toString(36).substring(2);
   return User.findOneAndUpdate(
     {

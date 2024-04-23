@@ -86,6 +86,7 @@ export const GoAuth = styled.div`
 `;
 
 export const Notifications = styled.div`
+  position: static;
   background-color: #202024;
   width: 280px;
   max-height: 500px;
