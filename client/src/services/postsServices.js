@@ -92,3 +92,12 @@ export const editPost = (body, id) => {
   });
   return response;
 };
+
+export const deletePost = (id) => {
+  const response = axios.delete(`${baseUrl}/posts/delete/${id}`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+};
