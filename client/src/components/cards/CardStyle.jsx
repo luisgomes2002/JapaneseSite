@@ -77,11 +77,18 @@ export const CardBody = styled.article`
   }
 `;
 
-export const CardIcons = styled.article`
+export const CardIconsArea = styled.article`
   display: flex;
-  flex-direction: column;
-  width: 15%;
-  margin: 2% 3%;
+  width: 20%;
+  margin: 2% 0;
+`;
+
+export const CardIcons = styled.div`
+  margin-right: 10px;
+
+  i {
+    margin-right: 3px;
+  }
 `;
 
 export const CardIconsCommunity = styled.article`
@@ -155,6 +162,11 @@ export const UserPagePostArea = styled.div`
 
 export const InfoPostsBody = styled.div`
   margin: 5%;
+
+  a {
+    color: #6c6c72;
+    margin-right: 2%;
+  }
 
   h2 {
     color: var(--second-main-color);
