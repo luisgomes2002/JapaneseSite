@@ -128,7 +128,7 @@ const router = createBrowserRouter([
         element: <Portfolio />,
       },
       {
-        path: "/managePosts/:action",
+        path: "/managePosts/:action/:id?",
         element: <ManagePosts />,
       },
     ],
