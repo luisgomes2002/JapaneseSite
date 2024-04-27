@@ -11,11 +11,24 @@ import {
   PostsByUser,
 } from "./CardStyle";
 import { TextLimit } from "../textLimit/TextLimit";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import ModalPerfil from "../modal/modalPerfil/ShowModalPerfil";
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
-const Card = (props) => {
+const Card = ({
+  title,
+  username,
+  likes,
+  comments,
+  banner,
+  text,
+  top,
+  home,
+  perfil,
+  postId,
+}) => {
+  const { user } = useContext(UserContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [usernamePosition, setUsernamePosition] = useState({ top: 0, left: 0 });
   const usernameRef = useRef(null);
@@ -42,26 +55,26 @@ const Card = (props) => {
     updateUsernamePosition();
   }, []);
 
-  if (props.top) {
+  if (top) {
     return (
       <CardBodyTop>
-        <h2>{props.title}</h2>
-        <TextLimit text={props.text} limit={280} />
+        <h2>{title}</h2>
+        <TextLimit text={text} limit={280} />
         <h1
           ref={usernameRef}
           onMouseEnter={openModal}
           onMouseLeave={closeModal}
         >
-          @{props.username}
+          @{username}
         </h1>
         <CardIconsCommunity>
           <div>
             <i className="fa-regular fa-heart"></i>
-            <span>{props.likes?.length}</span>
+            <span>{likes?.length}</span>
           </div>
           <div>
             <i className="fa-regular fa-message"></i>
-            <span>{props.comments?.length}</span>
+            <span>{comments?.length}</span>
           </div>
         </CardIconsCommunity>
         {isModalOpen && (
@@ -70,39 +83,39 @@ const Card = (props) => {
             left={usernamePosition.left}
             onMouseEnter={openModal}
             onMouseLeave={closeModal}
-            username={props.username}
+            username={username}
           ></ModalPerfil>
         )}
       </CardBodyTop>
     );
-  } else if (props.home) {
+  } else if (home) {
     return (
       <>
         <CardHomeBody>
           <div>
             <div>
-              <h2>{props.title}</h2>
-              <TextLimit text={props.text} limit={210} />
+              <h2>{title}</h2>
+              <TextLimit text={text} limit={210} />
               <h3
                 ref={usernameRef}
                 onMouseEnter={openModal}
                 onMouseLeave={closeModal}
               >
-                @{props.username}
+                @{username}
               </h3>
             </div>
             <IconsArea>
               <div>
                 <i className="fa-regular fa-heart"></i>
-                <span>{props.likes?.length}</span>
+                <span>{likes?.length}</span>
               </div>
               <div>
                 <i className="fa-regular fa-message"></i>
-                <span>{props.comments?.length}</span>
+                <span>{comments?.length}</span>
               </div>
             </IconsArea>
           </div>
-          <img src={props.banner} alt="banner" />
+          <img src={banner} alt="banner" />
         </CardHomeBody>
         {isModalOpen && (
           <ModalPerfil
@@ -110,58 +123,66 @@ const Card = (props) => {
             left={usernamePosition.left}
             onMouseEnter={openModal}
             onMouseLeave={closeModal}
-            username={props.username}
+            username={username}
           ></ModalPerfil>
         )}
       </>
     );
-  } else if (props.perfil) {
+  } else if (perfil) {
     return (
       <PostsByUser>
         <UserPagePostArea>
           <InfoPostsBody>
-            <h2>{props.title}</h2>
-            <TextLimit text={props.text} limit={210} />
-            <h3>@{props.username}</h3>
+            <h2>{title}</h2>
+            {username == user.username ? (
+              <Link to={`/managePosts/edit/${postId}`}>
+                <i className="fa-solid fa-pen-to-square"></i>
+              </Link>
+            ) : (
+              ""
+            )}
+
+            <TextLimit text={text} limit={210} />
+            <h3>@{username}</h3>
             <CardIcons>
               <div>
                 <i className="fa-regular fa-heart"></i>
-                <span>{props.likes?.length}</span>
+                <span>{likes?.length}</span>
               </div>
               <div>
                 <i className="fa-regular fa-message"></i>
-                <span>{props.comments?.length}</span>
+                <span>{comments?.length}</span>
               </div>
             </CardIcons>
           </InfoPostsBody>
-          <img src={props.banner} alt="banner" />
+          <img src={banner} alt="banner" />
         </UserPagePostArea>
       </PostsByUser>
     );
   } else {
     return (
       <CardContainer>
-        <Link to={`/post/${props.postId}`}>
+        <Link to={`/post/${postId}`}>
           <CardBody>
-            <img src={props.banner} alt="banner" />
+            <img src={banner} alt="banner" />
           </CardBody>
           <div>
-            <h2>{props.title}</h2>
-            <TextLimit text={props.text} limit={200} />
+            <h2>{title}</h2>
+            <TextLimit text={text} limit={200} />
             <CardIcons>
               <div>
                 <i className="fa-regular fa-heart"></i>
-                <span>{props.likes?.length}</span>
+                <span>{likes?.length}</span>
 
                 <i className="fa-regular fa-message"></i>
-                <span>{props.comments?.length}</span>
+                <span>{comments?.length}</span>
               </div>
               <h3
                 ref={usernameRef}
                 onMouseEnter={openModal}
                 onMouseLeave={closeModal}
               >
-                @{props.username}
+                @{username}
               </h3>
             </CardIcons>
           </div>
@@ -172,7 +193,7 @@ const Card = (props) => {
             left={usernamePosition.left}
             onMouseEnter={openModal}
             onMouseLeave={closeModal}
-            username={props.username}
+            username={username}
           ></ModalPerfil>
         )}
       </CardContainer>

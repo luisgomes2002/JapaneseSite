@@ -175,6 +175,7 @@ const UserPage = () => {
                         <Card
                           perfil={true}
                           key={item.id}
+                          postId={item.id}
                           title={item.title}
                           text={item.text}
                           banner={item.banner}
