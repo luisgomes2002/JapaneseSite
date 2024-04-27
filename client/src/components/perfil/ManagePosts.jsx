@@ -3,12 +3,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AddPostsContainer, ShowPost, SpanErrors } from "./ManagePostsStyle";
 import { postsSchema } from "../schemas/postsSchema";
-import { createPost } from "../../services/postsServices";
-import { useState } from "react";
+import { createPost, getByIdPost } from "../../services/postsServices";
+import { useEffect, useState } from "react";
 import { TextLimit } from "../textLimit/TextLimit";
 
 const ManagePosts = () => {
-  const { action } = useParams();
+  const { action, id } = useParams();
   const navigate = useNavigate();
   const [imageLink, setImageLink] = useState("");
   const [title, setTitle] = useState("");
@@ -23,6 +23,7 @@ const ManagePosts = () => {
     register,
     handleSubmit: handleRegisterPosts,
     formState: { errors },
+    setValue,
   } = useForm({
     resolver: zodResolver(postsSchema),
   });
@@ -44,6 +45,41 @@ const ManagePosts = () => {
     //   console.log(error);
     // }
   };
+
+  const getPost = async (id) => {
+    try {
+      const { data } = await getByIdPost(id);
+      setTitle(data.title);
+      setValue("title", data.title);
+
+      setImageLink(data.banner);
+      setValue("banner", data.banner);
+
+      setTags(data.tags);
+      setValue("tags", data.tags);
+
+      setLink1(data.links);
+      setValue("links", data.links);
+
+      setLink2(data.links);
+      setValue("links", data.links);
+
+      setLink3(data.links);
+      setValue("links", data.links);
+
+      setText(data.text);
+      setValue("text", data.text);
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    if (action === "edit") {
+      getPost(id);
+    }
+  }, []);
 
   return (
     <>
