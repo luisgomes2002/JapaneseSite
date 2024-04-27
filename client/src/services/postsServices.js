@@ -83,3 +83,21 @@ export const createPost = (body) => {
   });
   return response;
 };
+
+export const editPost = (body, id) => {
+  const response = axios.patch(`${baseUrl}/posts/update/${id}`, body, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+};
+
+export const deletePost = (id) => {
+  const response = axios.delete(`${baseUrl}/posts/delete/${id}`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+};
