@@ -163,9 +163,7 @@ const UserPage = () => {
                 <h1>
                   Posts{" "}
                   <Link to="/managePosts/add">
-                    <button>
-                      <i className="fa-solid fa-circle-plus"></i>
-                    </button>
+                    <i className="fa-solid fa-circle-plus"></i>
                   </Link>
                 </h1>
                 <div>

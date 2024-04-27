@@ -9,6 +9,7 @@ import {
   InfoPostsBody,
   CardBodyTop,
   PostsByUser,
+  CardIconsArea,
 } from "./CardStyle";
 import { TextLimit } from "../textLimit/TextLimit";
 import { useState, useEffect, useRef, useContext } from "react";
@@ -135,25 +136,30 @@ const Card = ({
           <InfoPostsBody>
             <h2>{title}</h2>
             {username == user.username ? (
-              <Link to={`/managePosts/edit/${postId}`}>
-                <i className="fa-solid fa-pen-to-square"></i>
-              </Link>
+              <>
+                <Link to={`/managePosts/edit/${postId}`}>
+                  <i className="fa-solid fa-pen-to-square"></i>
+                </Link>
+                <Link to={`/managePosts/delete/${postId}`}>
+                  <i className="fa-solid fa-trash"></i>
+                </Link>
+              </>
             ) : (
               ""
             )}
 
             <TextLimit text={text} limit={210} />
             <h3>@{username}</h3>
-            <CardIcons>
-              <div>
+            <CardIconsArea>
+              <CardIcons>
                 <i className="fa-regular fa-heart"></i>
                 <span>{likes?.length}</span>
-              </div>
-              <div>
+              </CardIcons>
+              <CardIcons>
                 <i className="fa-regular fa-message"></i>
                 <span>{comments?.length}</span>
-              </div>
-            </CardIcons>
+              </CardIcons>
+            </CardIconsArea>
           </InfoPostsBody>
           <img src={banner} alt="banner" />
         </UserPagePostArea>

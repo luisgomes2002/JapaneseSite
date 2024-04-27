@@ -5,6 +5,7 @@ import { AddPostsContainer, ShowPost, SpanErrors } from "./ManagePostsStyle";
 import { postsSchema } from "../schemas/postsSchema";
 import {
   createPost,
+  deletePost,
   editPost,
   getByIdPost,
 } from "../../services/postsServices";
@@ -50,6 +51,15 @@ const ManagePosts = () => {
     }
   };
 
+  const deletePostSubmit = async () => {
+    try {
+      await deletePost(id);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getPost = async (id) => {
     try {
       const { data } = await getByIdPost(id);
@@ -80,7 +90,7 @@ const ManagePosts = () => {
     }
   };
   useEffect(() => {
-    if (action === "edit") {
+    if (action === "edit" || action === "delete") {
       getPost(id);
     }
   }, []);
@@ -104,12 +114,21 @@ const ManagePosts = () => {
         </div>
       </ShowPost>
       <AddPostsContainer>
-        <h2>{action == "add" ? "Adicionar" : "Atualizar"} Post</h2>
+        <h2>
+          {action === "add"
+            ? "Adicionar"
+            : action === "edit"
+            ? "Atualizar"
+            : "Apagar"}{" "}
+          Post
+        </h2>
         <form
           onSubmit={
             action == "add"
               ? handleRegisterPosts(registerPostSubmit)
-              : handleRegisterPosts(editPostSubmit)
+              : action === "edit"
+              ? handleRegisterPosts(editPostSubmit)
+              : handleRegisterPosts(deletePostSubmit)
           }
         >
           <input
