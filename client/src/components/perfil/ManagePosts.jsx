@@ -3,7 +3,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AddPostsContainer, ShowPost, SpanErrors } from "./ManagePostsStyle";
 import { postsSchema } from "../schemas/postsSchema";
-import { createPost, getByIdPost } from "../../services/postsServices";
+import {
+  createPost,
+  editPost,
+  getByIdPost,
+} from "../../services/postsServices";
 import { useEffect, useState } from "react";
 import { TextLimit } from "../textLimit/TextLimit";
 
@@ -38,12 +42,12 @@ const ManagePosts = () => {
   };
 
   const editPostSubmit = async (data) => {
-    // try {
-    //   await editPost(data);
-    //   navigate("/profile/:username");
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      await editPost(data, id);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getPost = async (id) => {
