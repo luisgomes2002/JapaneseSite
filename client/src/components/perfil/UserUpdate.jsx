@@ -6,22 +6,74 @@ import {
   InfoUpdate,
   UserUpdateArea,
   UpdateAreaMargin,
+  UserCard,
 } from "./UserUpdateStyle";
 import { ButtonSpaceArea } from "./UserPageStyle";
 import ModalDelete from "../modal/modalDelete/ModalDelete";
 import { useNavigate, useParams } from "react-router-dom";
+import { updateUser } from "../../services/userServices";
+import { usersSchema } from "../schemas/usersSchema";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { TextLimit } from "../textLimit/TextLimit";
+import { SpanErrors } from "./ManagePostsStyle";
 
-const UpdateUser = () => {
+const UpdateUserFunction = () => {
   const { user } = useContext(UserContext);
   const { username } = useParams();
   const [color, setColor] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  const navegate = useNavigate();
+
+  //user informations
+  const [name, setName] = useState("");
+  const [usernameForms, setUsernameForms] = useState("");
+  const [icon, setIcon] = useState("");
+  const [background, setBackground] = useState("");
+  const [about, setAbout] = useState("");
+
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit: handleSubmitUser,
+    formState: { errors },
+    setValue,
+  } = useForm({
+    resolver: zodResolver(usersSchema),
+  });
 
   const userLoggedIn = () => {
     if (user.username !== username) {
-      navegate("/");
+      navigate("/");
     }
+  };
+
+  const editProfile = async (data) => {
+    try {
+      await updateUser(data, user._id);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const showUserInformations = () => {
+    setName(user.name);
+    setValue("name", user.name);
+
+    setUsernameForms(user.username);
+    setValue("username", user.username);
+
+    setValue("email", user.email);
+
+    setIcon(user.avatar);
+    setValue("avatar", user.avatar);
+
+    setBackground(user.background);
+    setValue("background", user.background);
+
+    setAbout(user.about);
+    setValue("about", user.about);
   };
 
   const selectColor = (e) => {
@@ -30,58 +82,126 @@ const UpdateUser = () => {
 
   useEffect(() => {
     userLoggedIn();
-  }, [user]);
+    showUserInformations();
+  }, []);
 
   return (
     <UpdateAreaMargin>
       <UserUpdateArea>
+        <h1>Alterar informações da conta {user.username}</h1>
         <InfoUpdate>
-          <h1>Alterar informações da conta {user.username}</h1>
-          <form>
+          <form onSubmit={handleSubmitUser(editProfile)}>
             <p>Informações basicas:</p>
-            <input type="text" placeholder="Nome" />
-            <input type="text" placeholder="Username" />
-            <input type="text" placeholder="E-mail" />
-            <input type="text" placeholder="Senha" />
-            <input type="text" placeholder="Confirmar Senha" />
+            <input
+              type="text"
+              name="name"
+              placeholder="Nome"
+              {...register("name")}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              {...register("username")}
+              onChange={(e) => setUsernameForms(e.target.value)}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              {...register("email")}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Senha"
+              {...register("password")}
+            />
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirmar Senha"
+              {...register("confirmPassword")}
+            />
             <p>Estilo do perfil:</p>
-            <input type="text" placeholder="Foto de perfil" />
-            <input type="text" placeholder="Plano de fundo" />
+            <input
+              type="text"
+              name="avatar"
+              placeholder="Foto de perfil"
+              {...register("avatar")}
+              onChange={(e) => setIcon(e.target.value)}
+            />
+            <input
+              type="text"
+              name="background"
+              placeholder="Plano de fundo"
+              {...register("background")}
+              onChange={(e) => setBackground(e.target.value)}
+            />
             <ChooseColor>
-              <p>Selecione a cor de fundo:</p>
-              <ChooseColorArea style={{ backgroundColor: color }}>
-                <label>Cor escolhida: {color}</label>
-              </ChooseColorArea>
-              <input type="color" value={color} onChange={selectColor} />
+              <div>
+                <p>Selecione a cor de fundo:</p>
+                <ChooseColorArea style={{ backgroundColor: color }}>
+                  <label>Cor escolhida: {color}</label>
+                </ChooseColorArea>
+                <input type="color" value={color} onChange={selectColor} />
+              </div>
+              <div>
+                <p>Nivel de japones</p>
+                <select>
+                  <option value="">Selecione uma opcao</option>
+                  <option value="N5">N5</option>
+                  <option value="N4">N4</option>
+                  <option value="N3">N3</option>
+                  <option value="N2">N2</option>
+                  <option value="N1">N1</option>
+                </select>
+              </div>
             </ChooseColor>
             <p>Informações do perfil:</p>
-            <textarea placeholder="Texto de apresentação" />
-            <div>
-              <p>Nivel de japones</p>
-              <select>
-                <option value="">Selecione uma opcao</option>
-                <option value="N5">N5</option>
-                <option value="N4">N4</option>
-                <option value="N3">N3</option>
-                <option value="N2">N2</option>
-                <option value="N1">N1</option>
-              </select>
-            </div>
+            <textarea
+              name="text"
+              laceholder="Texto de apresentação"
+              {...register("about")}
+              onChange={(e) => setAbout(e.target.value)}
+            />
+
+            <ButtonSpaceArea>
+              <button type="submit">Alterar</button>
+              <button
+                onClick={() => setOpenModal(!openModal)}
+                style={{ backgroundColor: "#aa2525" }}
+              >
+                {openModal && <ModalDelete />}
+                Deletar Conta
+              </button>
+              <SpanErrors>
+                {errors.name && <span>{errors.name.message}</span>}
+              </SpanErrors>
+            </ButtonSpaceArea>
           </form>
+          <UserCard>
+            <img src={background} alt="background" />
+            <section>
+              <img src={icon} alt="icon" />
+              <h1>{name}</h1>
+
+              <article>
+                <h2>{usernameForms}</h2>
+                <h2>JLPT: N2</h2>
+              </article>
+
+              <TextLimit
+                text={about || `Até agora ${name} não incluiu uma introdução.`}
+                limit={100}
+              />
+            </section>
+          </UserCard>
         </InfoUpdate>
-        <ButtonSpaceArea>
-          <button>Alterar</button>
-          <button
-            onClick={() => setOpenModal(!openModal)}
-            style={{ backgroundColor: "#aa2525" }}
-          >
-            {openModal && <ModalDelete />}
-            Deletar Conta
-          </button>
-        </ButtonSpaceArea>
       </UserUpdateArea>
     </UpdateAreaMargin>
   );
 };
 
-export default UpdateUser;
+export default UpdateUserFunction;
