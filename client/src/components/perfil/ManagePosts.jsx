@@ -89,6 +89,7 @@ const ManagePosts = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     if (action === "edit" || action === "delete") {
       getPost(id);

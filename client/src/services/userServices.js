@@ -17,8 +17,13 @@ export const signup = (data) => {
   return response;
 };
 
-export const update = (data) => {
-  const response = data;
+export const updateUser = (body, id) => {
+  delete body.confirmPassword;
+  const response = axios.patch(`${baseUrl}/user/update/${id}`, body, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
   return response;
 };
 

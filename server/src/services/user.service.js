@@ -70,7 +70,7 @@ const updateUserService = async (
 
   const user = await userRepositories.findByIdUserRepository(userId);
 
-  if (user._id != userIdLogged || user.fullPermission !== false)
+  if (user._id != userIdLogged || user.fullPermission !== true)
     throw new Error("Você não pode atualizar este usuário");
 
   if (password) password = await bcrypt.hash(password, 10);
