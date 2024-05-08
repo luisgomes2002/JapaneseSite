@@ -4,7 +4,7 @@ export const Nav = styled.nav`
   background-color: transparent;
   width: 100%;
   position: absolute;
-  height: 20px;
+  height: 10px;
   top: 0;
   z-index: 1;
   padding: 10px 15% 0% 10%;

@@ -113,7 +113,7 @@ const UpdateUserFunction = () => {
               placeholder="E-mail"
               {...register("email")}
             />
-            <input
+            {/* <input
               type="password"
               name="password"
               placeholder="Senha"
@@ -124,7 +124,7 @@ const UpdateUserFunction = () => {
               name="confirmPassword"
               placeholder="Confirmar Senha"
               {...register("confirmPassword")}
-            />
+            /> */}
             <p>Estilo do perfil:</p>
             <input
               type="text"
@@ -160,14 +160,13 @@ const UpdateUserFunction = () => {
                 </StyledSelect>
               </div>
             </ChooseColor>
-            <p>Informações do perfil:</p>
+            <p>Informações do perfil: </p>
             <textarea
               name="text"
               laceholder="Texto de apresentação"
               {...register("about")}
               onChange={(e) => setAbout(e.target.value)}
             />
-
             <ButtonSpaceArea>
               <button type="submit">Alterar</button>
               <button

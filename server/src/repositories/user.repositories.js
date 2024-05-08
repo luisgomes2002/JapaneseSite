@@ -13,20 +13,29 @@ const findAllUserRepository = (offset, limit) =>
 
 const findByIdUserRepository = (idUser) => User.findById(idUser);
 
-const updateUserRepository = (
+const updateUserRepository = async (
   id,
   name,
   username,
   email,
-  password,
   avatar,
   background,
 ) => {
-  User.findOneAndUpdate(
+  const result = await User.findOneAndUpdate(
     { _id: id },
-    { name, username, email, password, avatar, background },
-    { rawResult: true },
+    { name, username, email, avatar, background },
+    { new: true, rawResult: true },
   );
+  return result;
+};
+
+const updateUserPasswordRepository = async (id, password) => {
+  const result = await User.findOneAndUpdate(
+    { _id: id },
+    { password },
+    { new: true, rawResult: true },
+  );
+  return result;
 };
 
 const deleteUserRepository = (idUser) => User.deleteOne({ _id: idUser });
@@ -161,6 +170,7 @@ export default {
   findAllUserRepository,
   findByIdUserRepository,
   updateUserRepository,
+  updateUserPasswordRepository,
   deleteUserRepository,
   countRepository,
   followUserRepository,
