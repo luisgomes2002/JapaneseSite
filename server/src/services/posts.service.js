@@ -208,6 +208,7 @@ const deletePostService = async (id, userId, permission) => {
 
   if (post.user._id == userId || permission === true) {
     await postRepositories.deletePostRepository(id);
+    await userService.totalPointsUserService(userId);
   } else {
     throw new Error("Você não criou esta post");
   }

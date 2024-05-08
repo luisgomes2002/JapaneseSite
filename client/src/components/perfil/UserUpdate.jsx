@@ -7,6 +7,7 @@ import {
   UserUpdateArea,
   UpdateAreaMargin,
   UserCard,
+  StyledSelect,
 } from "./UserUpdateStyle";
 import { ButtonSpaceArea } from "./UserPageStyle";
 import ModalDelete from "../modal/modalDelete/ModalDelete";
@@ -149,14 +150,14 @@ const UpdateUserFunction = () => {
               </div>
               <div>
                 <p>Nivel de japones</p>
-                <select>
+                <StyledSelect>
                   <option value="">Selecione uma opcao</option>
                   <option value="N5">N5</option>
                   <option value="N4">N4</option>
                   <option value="N3">N3</option>
                   <option value="N2">N2</option>
                   <option value="N1">N1</option>
-                </select>
+                </StyledSelect>
               </div>
             </ChooseColor>
             <p>Informações do perfil:</p>
