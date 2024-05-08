@@ -133,7 +133,7 @@ export const ChooseColor = styled.div`
 `;
 
 export const ChooseColorArea = styled.div`
-  margin: 1% 0;
+  margin: 2% 0;
   width: 250px;
   height: 250px;
   border-radius: 10px;
@@ -143,4 +143,15 @@ export const ChooseColorArea = styled.div`
   text-align: center;
   font-size: 25px;
   border: 2px solid #bababa;
+`;
+
+export const StyledSelect = styled.select`
+  width: 200px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #333;
+  font-size: 16px;
+  color: #fff;
+  margin: 2% 0;
 `;
