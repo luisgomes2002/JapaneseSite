@@ -138,6 +138,7 @@ const ManagePosts = () => {
             name="title"
             {...register("title")}
             onChange={(e) => setTitle(e.target.value)}
+            disabled={action == "delete"}
           />
 
           <input
@@ -146,6 +147,7 @@ const ManagePosts = () => {
             name="banner"
             {...register("banner")}
             onChange={(e) => setImageLink(e.target.value)}
+            disabled={action === "delete"}
           />
 
           <input
@@ -154,6 +156,7 @@ const ManagePosts = () => {
             name="tag"
             {...register("tags")}
             onChange={(e) => setTags(e.target.value)}
+            disabled={action === "delete"}
           />
 
           <input
@@ -162,6 +165,7 @@ const ManagePosts = () => {
             name="links"
             {...register("links")}
             onChange={(e) => setLink1(e.target.value)}
+            disabled={action === "delete"}
           />
 
           <input
@@ -170,6 +174,7 @@ const ManagePosts = () => {
             name="links"
             {...register("link")}
             onChange={(e) => setLink2(e.target.value)}
+            disabled={action === "delete"}
           />
 
           <input
@@ -178,6 +183,7 @@ const ManagePosts = () => {
             name="links"
             {...register("link")}
             onChange={(e) => setLink3(e.target.value)}
+            disabled={action === "delete"}
           />
 
           {/* <input
@@ -194,6 +200,7 @@ const ManagePosts = () => {
             name="text"
             {...register("text")}
             onChange={(e) => setText(e.target.value)}
+            disabled={action === "delete"}
           />
 
           <button
