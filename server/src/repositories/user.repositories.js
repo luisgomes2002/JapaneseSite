@@ -18,13 +18,21 @@ const updateUserRepository = async (
   name,
   username,
   email,
-  password,
   avatar,
   background,
 ) => {
   const result = await User.findOneAndUpdate(
     { _id: id },
-    { name, username, email, password, avatar, background },
+    { name, username, email, avatar, background },
+    { new: true, rawResult: true },
+  );
+  return result;
+};
+
+const updateUserPasswordRepository = async (id, password) => {
+  const result = await User.findOneAndUpdate(
+    { _id: id },
+    { password },
     { new: true, rawResult: true },
   );
   return result;
@@ -157,6 +165,7 @@ export default {
   findAllUserRepository,
   findByIdUserRepository,
   updateUserRepository,
+  updateUserPasswordRepository,
   deleteUserRepository,
   countRepository,
   followUserRepository,

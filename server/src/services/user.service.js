@@ -61,12 +61,36 @@ const findUserByIdService = async (userIdParam, userIdLogged) => {
 };
 
 const updateUserService = async (
-  { name, username, email, password, avatar, background },
+  { name, username, email, avatar, background },
   userId,
   userIdLogged,
 ) => {
-  if (!name && !username && !email && !password && !avatar && !background)
+  if (!name && !username && !email && !avatar && !background)
     throw new Error("Envie pelo menos um campo para atualizar o usuário");
+
+  const user = await userRepositories.findByIdUserRepository(userId);
+
+  if (user._id != userIdLogged || user.fullPermission !== true) {
+    userRepositories.updateUserRepository(
+      userId,
+      name,
+      username,
+      email,
+      avatar,
+      background,
+    );
+
+    return { message: "Usuário atualizado com sucesso!" };
+  }
+  throw new Error("Você não pode atualizar este usuário");
+};
+
+const updateUserPasswordService = async (
+  { password },
+  userId,
+  userIdLogged,
+) => {
+  if (!password) throw new Error("Envie a senha atualizar o usuário");
 
   const user = await userRepositories.findByIdUserRepository(userId);
 
@@ -75,15 +99,7 @@ const updateUserService = async (
 
   if (password) password = await bcrypt.hash(password, 10);
 
-  /*await*/ userRepositories.updateUserRepository(
-    userId,
-    name,
-    username,
-    email,
-    password,
-    avatar,
-    background,
-  );
+  userRepositories.updateUserPasswordRepository(userId, password);
 
   return { message: "Usuário atualizado com sucesso!" };
 };
@@ -96,7 +112,7 @@ const deleteUserByIdService = async (userId, userIdLogged) => {
   if (userId === userIdLogged || userWithPermission.fullPermission) {
     await userRepositories.transferPostsToAnotherUserRepository(
       userId,
-      "65850feb367493f6c2cc649e", //trocar para ID conta MOD
+      "6622fa42055d3d62264c8804", //trocar para ID conta MOD
     );
     const user = await userRepositories.deleteUserRepository(userId);
 
@@ -189,6 +205,7 @@ export default {
   findUserByUsernameService,
   findUserByIdService,
   updateUserService,
+  updateUserPasswordService,
   deleteUserByIdService,
   followUserService,
   totalPointsUserService,
