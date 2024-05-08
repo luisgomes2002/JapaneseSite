@@ -51,6 +51,7 @@ const UpdateUserFunction = () => {
 
   const editProfile = async (data) => {
     try {
+      console.log(user._id);
       await updateUser(data, user._id);
       navigate("/");
     } catch (error) {

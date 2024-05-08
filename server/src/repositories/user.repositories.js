@@ -13,7 +13,7 @@ const findAllUserRepository = (offset, limit) =>
 
 const findByIdUserRepository = (idUser) => User.findById(idUser);
 
-const updateUserRepository = (
+const updateUserRepository = async (
   id,
   name,
   username,
@@ -22,11 +22,12 @@ const updateUserRepository = (
   avatar,
   background,
 ) => {
-  User.findOneAndUpdate(
+  const result = await User.findOneAndUpdate(
     { _id: id },
     { name, username, email, password, avatar, background },
-    { rawResult: true },
+    { new: true, rawResult: true },
   );
+  return result;
 };
 
 const deleteUserRepository = (idUser) => User.deleteOne({ _id: idUser });
