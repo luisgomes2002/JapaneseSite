@@ -156,7 +156,7 @@ const ManagePosts = () => {
             onChange={(e) => setImageLink(e.target.value)}
             disabled={action === "delete"}
           />
-          <div>
+          <section>
             <input
               type="text"
               placeholder="Tags"
@@ -170,28 +170,53 @@ const ManagePosts = () => {
                 showTags();
               }}
             >
-              Gerar
+              Gerar Tags
             </button>
             {tagsRecommendation && (
               <>
                 {tagsRecommendation.rank1.map((tag, index) => (
-                  <p key={index}>{tag}</p>
+                  <span key={index}>
+                    {tag}
+                    <button>
+                      <i className="fa-solid fa-x"></i>
+                    </button>
+                  </span>
                 ))}
                 {tagsRecommendation.rank2.map((tag, index) => (
-                  <p key={index}>{tag}</p>
+                  <span key={index}>
+                    {tag}
+                    <button>
+                      <i className="fa-solid fa-x"></i>
+                    </button>
+                  </span>
                 ))}
                 {tagsRecommendation.rank3.map((tag, index) => (
-                  <p key={index}>{tag}</p>
+                  <span key={index}>
+                    {tag}
+                    <button>
+                      <i className="fa-solid fa-x"></i>
+                    </button>
+                  </span>
                 ))}
                 {tagsRecommendation.rank4.map((tag, index) => (
-                  <p key={index}>{tag}</p>
+                  <span key={index}>
+                    {tag}
+                    <button>
+                      <i className="fa-solid fa-x"></i>
+                    </button>
+                  </span>
                 ))}
                 {tagsRecommendation.rank5.map((tag, index) => (
-                  <p key={index}>{tag}</p>
+                  <span key={index}>
+                    {tag}
+                    <button>
+                      <i className="fa-solid fa-x"></i>
+                    </button>
+                  </span>
                 ))}
               </>
             )}
-          </div>
+          </section>
           <input
             type="text"
             placeholder="Link 1"
@@ -219,13 +244,13 @@ const ManagePosts = () => {
             disabled={action === "delete"}
           />
 
-          {/* <input
+          <input
             type="text"
             placeholder="Link 4"
             name="links"
             {...register("link")}
             onChange={(e) => setLink4(e.target.value)}
-          /> */}
+          />
 
           <textarea
             type="text"

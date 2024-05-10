@@ -50,6 +50,35 @@ export const AddPostsContainer = styled.div`
     color: #ff0000;
     font-size: 18px;
   }
+
+  section {
+    span {
+      margin: 5px;
+      color: #fff;
+      border-radius: 25px;
+      background-color: #6f00ff;
+      padding: 4px 10px;
+      font-size: 15px;
+
+      button {
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        font-size: 12px;
+      }
+
+      button:hover {
+        background-color: #33076d39;
+      }
+    }
+
+    button {
+      border-radius: 25px;
+      width: 100px;
+      height: 35px;
+      font-size: 18px;
+    }
+  }
 `;
 
 export const ShowPost = styled.div`
