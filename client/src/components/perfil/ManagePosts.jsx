@@ -147,7 +147,6 @@ const ManagePosts = () => {
             onChange={(e) => setTitle(e.target.value)}
             disabled={action == "delete"}
           />
-
           <input
             type="text"
             placeholder="Link da imagem"

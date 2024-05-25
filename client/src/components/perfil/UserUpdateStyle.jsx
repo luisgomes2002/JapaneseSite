@@ -155,3 +155,21 @@ export const StyledSelect = styled.select`
   color: #fff;
   margin: 2% 0;
 `;
+
+export const ChangePassword = styled.div`
+  margin-top: 50%;
+
+  h2 {
+    color: #fff;
+    margin-bottom: 5%;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  form {
+    background-color: #2d2d30;
+    border-radius: 5px;
+  }
+`;
