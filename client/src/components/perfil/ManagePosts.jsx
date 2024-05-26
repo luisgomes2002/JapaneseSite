@@ -11,6 +11,7 @@ import {
 } from "../../services/postsServices";
 import { useEffect, useState } from "react";
 import { TextLimit } from "../textLimit/TextLimit";
+import { TagRecommendation, ignoreSet } from "../textLimit/TagRecommendation";
 
 const ManagePosts = () => {
   const { action, id } = useParams();
@@ -23,6 +24,7 @@ const ManagePosts = () => {
   const [link3, setLink3] = useState("");
   // const [link4, setLink4] = useState("");
   const [text, setText] = useState("");
+  const [tagsRecommendation, setTagsRecommendation] = useState(null);
 
   const {
     register,
@@ -58,6 +60,11 @@ const ManagePosts = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const showTags = () => {
+    const recommendation = TagRecommendation({ text, ignoreSet });
+    setTagsRecommendation(recommendation);
   };
 
   const getPost = async (id) => {
@@ -100,7 +107,7 @@ const ManagePosts = () => {
     <>
       <ShowPost>
         <div>
-          <img src={imageLink || "Img"} alt="" />
+          <img src={imageLink || "Img"} alt="banner" />
         </div>
         <div>
           <h1>{title || "Title"}</h1>
@@ -140,7 +147,6 @@ const ManagePosts = () => {
             onChange={(e) => setTitle(e.target.value)}
             disabled={action == "delete"}
           />
-
           <input
             type="text"
             placeholder="Link da imagem"
@@ -149,16 +155,67 @@ const ManagePosts = () => {
             onChange={(e) => setImageLink(e.target.value)}
             disabled={action === "delete"}
           />
-
-          <input
-            type="text"
-            placeholder="Tags"
-            name="tag"
-            {...register("tags")}
-            onChange={(e) => setTags(e.target.value)}
-            disabled={action === "delete"}
-          />
-
+          <section>
+            <input
+              type="text"
+              placeholder="Tags"
+              name="tag"
+              {...register("tags")}
+              onChange={(e) => setTags(e.target.value)}
+              disabled={action === "delete"}
+            />
+            <button
+              onClick={() => {
+                showTags();
+              }}
+            >
+              Gerar Tags
+            </button>
+            {tagsRecommendation && (
+              <>
+                {tagsRecommendation.rank1.map((tag, index) => (
+                  <span key={index}>
+                    {tag}
+                    <button>
+                      <i className="fa-solid fa-x"></i>
+                    </button>
+                  </span>
+                ))}
+                {tagsRecommendation.rank2.map((tag, index) => (
+                  <span key={index}>
+                    {tag}
+                    <button>
+                      <i className="fa-solid fa-x"></i>
+                    </button>
+                  </span>
+                ))}
+                {tagsRecommendation.rank3.map((tag, index) => (
+                  <span key={index}>
+                    {tag}
+                    <button>
+                      <i className="fa-solid fa-x"></i>
+                    </button>
+                  </span>
+                ))}
+                {tagsRecommendation.rank4.map((tag, index) => (
+                  <span key={index}>
+                    {tag}
+                    <button>
+                      <i className="fa-solid fa-x"></i>
+                    </button>
+                  </span>
+                ))}
+                {tagsRecommendation.rank5.map((tag, index) => (
+                  <span key={index}>
+                    {tag}
+                    <button>
+                      <i className="fa-solid fa-x"></i>
+                    </button>
+                  </span>
+                ))}
+              </>
+            )}
+          </section>
           <input
             type="text"
             placeholder="Link 1"
@@ -186,13 +243,13 @@ const ManagePosts = () => {
             disabled={action === "delete"}
           />
 
-          {/* <input
+          <input
             type="text"
             placeholder="Link 4"
             name="links"
             {...register("link")}
             onChange={(e) => setLink4(e.target.value)}
-          /> */}
+          />
 
           <textarea
             type="text"

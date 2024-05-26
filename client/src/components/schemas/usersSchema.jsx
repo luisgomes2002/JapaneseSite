@@ -21,12 +21,12 @@ export const usersSchema = z.object({
     .refine((value) => !/^\s*$/.test(value), {
       message: "O email não pode ter apenas espaços.",
     }),
-  // password: z.string().refine((value) => !/^\s*$/.test(value), {
-  //   message: "O password não pode ter apenas espaços.",
-  // }),
-  // confirmPassword: z.string().refine((value) => !/^\s*$/.test(value), {
-  //   message: "O confirmPassword não pode ter apenas espaços.",
-  // }),
+  password: z.string().refine((value) => !/^\s*$/.test(value), {
+    message: "O password não pode ter apenas espaços.",
+  }),
+  confirmPassword: z.string().refine((value) => !/^\s*$/.test(value), {
+    message: "O confirmPassword não pode ter apenas espaços.",
+  }),
   avatar: z
     .string()
     .optional()

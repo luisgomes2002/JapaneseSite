@@ -8,11 +8,12 @@ import {
   UpdateAreaMargin,
   UserCard,
   StyledSelect,
+  ChangePassword,
 } from "./UserUpdateStyle";
 import { ButtonSpaceArea } from "./UserPageStyle";
 import ModalDelete from "../modal/modalDelete/ModalDelete";
 import { useNavigate, useParams } from "react-router-dom";
-import { updateUser } from "../../services/userServices";
+import { updatePasswordUser, updateUser } from "../../services/userServices";
 import { usersSchema } from "../schemas/usersSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -31,6 +32,9 @@ const UpdateUserFunction = () => {
   const [icon, setIcon] = useState("");
   const [background, setBackground] = useState("");
   const [about, setAbout] = useState("");
+
+  //password
+  const [showPasswordFields, setShowPasswordFields] = useState(false);
 
   const navigate = useNavigate();
 
@@ -56,6 +60,19 @@ const UpdateUserFunction = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const changePassword = async (data) => {
+    try {
+      await updatePasswordUser(data, user._id);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handlePasswordChange = () => {
+    setShowPasswordFields(!showPasswordFields);
   };
 
   const showUserInformations = () => {
@@ -113,18 +130,6 @@ const UpdateUserFunction = () => {
               placeholder="E-mail"
               {...register("email")}
             />
-            {/* <input
-              type="password"
-              name="password"
-              placeholder="Senha"
-              {...register("password")}
-            />
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirmar Senha"
-              {...register("confirmPassword")}
-            /> */}
             <p>Estilo do perfil:</p>
             <input
               type="text"
@@ -197,6 +202,31 @@ const UpdateUserFunction = () => {
                 limit={100}
               />
             </section>
+            <ChangePassword>
+              <input
+                type="checkbox"
+                onChange={handlePasswordChange}
+                checked={!showPasswordFields}
+              />
+              <h2>Alterar Senha:</h2>
+              <form onSubmit={handleSubmitUser(changePassword)}>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Senha"
+                  disabled={showPasswordFields}
+                  {...register("password")}
+                />
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirmar Senha"
+                  disabled={showPasswordFields}
+                  {...register("confirmPassword")}
+                />
+                <button type="submit">Alterar Senha</button>
+              </form>
+            </ChangePassword>
           </UserCard>
         </InfoUpdate>
       </UserUpdateArea>
