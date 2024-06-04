@@ -9,6 +9,10 @@
   margin-top: 5%;
   cursor: pointer;
   background-color: white;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .categories {

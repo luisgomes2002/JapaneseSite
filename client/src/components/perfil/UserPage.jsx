@@ -126,6 +126,10 @@ const UserPage = () => {
                     <h3>{posts?.length}</h3>
                   </UserInfoPostsFollows>
                   <UserInfoPostsFollows>
+                    <p>Pontos</p>
+                    <h3>{user.points}</h3>
+                  </UserInfoPostsFollows>
+                  <UserInfoPostsFollows>
                     <button
                       onClick={() => setOpenFollowedModal(!openFollowedModal)}
                     >
@@ -150,10 +154,6 @@ const UserPage = () => {
                         <h3>{user.follows?.length}</h3>
                       </ButtonSpaceArea>
                     </button>
-                  </UserInfoPostsFollows>
-                  <UserInfoPostsFollows>
-                    <p>Pontos</p>
-                    <h3>{user.points}</h3>
                   </UserInfoPostsFollows>
                 </Follows>
               </div>
