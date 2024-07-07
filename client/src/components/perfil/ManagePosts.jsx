@@ -64,7 +64,18 @@ const ManagePosts = () => {
 
   const showTags = () => {
     const recommendation = TagRecommendation({ text, ignoreSet });
-    setTagsRecommendation(recommendation);
+    const allTags = Object.values(recommendation).flat();
+
+    if (Array.isArray(allTags)) {
+      allTags.forEach((element) => {
+        setTagsRecommendation(element);
+      });
+    } else {
+      console.error("Unexpected recommendation format:", recommendation);
+    }
+
+    setTags(allTags);
+    setValue("tags", allTags);
   };
 
   const getPost = async (id) => {
@@ -165,56 +176,13 @@ const ManagePosts = () => {
               disabled={action === "delete"}
             />
             <button
+              type="button"
               onClick={() => {
                 showTags();
               }}
             >
               Gerar Tags
             </button>
-            {tagsRecommendation && (
-              <>
-                {tagsRecommendation.rank1.map((tag, index) => (
-                  <span key={index}>
-                    {tag}
-                    <button>
-                      <i className="fa-solid fa-x"></i>
-                    </button>
-                  </span>
-                ))}
-                {tagsRecommendation.rank2.map((tag, index) => (
-                  <span key={index}>
-                    {tag}
-                    <button>
-                      <i className="fa-solid fa-x"></i>
-                    </button>
-                  </span>
-                ))}
-                {tagsRecommendation.rank3.map((tag, index) => (
-                  <span key={index}>
-                    {tag}
-                    <button>
-                      <i className="fa-solid fa-x"></i>
-                    </button>
-                  </span>
-                ))}
-                {tagsRecommendation.rank4.map((tag, index) => (
-                  <span key={index}>
-                    {tag}
-                    <button>
-                      <i className="fa-solid fa-x"></i>
-                    </button>
-                  </span>
-                ))}
-                {tagsRecommendation.rank5.map((tag, index) => (
-                  <span key={index}>
-                    {tag}
-                    <button>
-                      <i className="fa-solid fa-x"></i>
-                    </button>
-                  </span>
-                ))}
-              </>
-            )}
           </section>
           <input
             type="text"

@@ -76,7 +76,9 @@ const Presentation = () => {
           <button className="text-area">More no Japão</button>
           <button className="text-area">Viaje para o Japão</button>
           <button className="text-area">Veja mais</button>
-          <button className="text-area">Compartilhe</button>
+          <Link to="/community">
+            <button className="text-area">Compartilhe</button>
+          </Link>
         </div>
       </section>
     </section>

@@ -2,12 +2,53 @@ import postRepositories from "../repositories/post.repositories.js";
 import userRepositories from "../repositories/user.repositories.js";
 import userService from "./user.service.js";
 
+const verifyText = async (text) => {
+  let takeText = text
+    .toString()
+    .toLowerCase()
+    .replace(/\*\*/g, " ")
+    .replace(/[\n\r]/g, " ");
+
+  let ignoreWords = [];
+
+  let eachWordArray = [];
+  let words = takeText.split(" ");
+  for (let i = 0; i < words.length; i++) {
+    if (
+      words[i].endsWith(",") ||
+      words[i].endsWith(".") ||
+      words[i].endsWith(":") ||
+      words[i].endsWith(";")
+    ) {
+      eachWordArray[i] = words[i].slice(0, -1);
+    } else {
+      eachWordArray[i] = words[i];
+    }
+  }
+
+  for (let i = 0; i < eachWordArray.length; i++) {
+    for (let j = 0; j < ignoreWords.length; j++) {
+      if (eachWordArray[i] === ignoreWords[j]) {
+        return {
+          success: false,
+          message: `Essa palavra: ${ignoreWords[j]} é proibida. Lista de palavras proibidas: ${ignoreWords}`,
+        };
+      }
+    }
+  }
+
+  return true;
+};
+
 const createPostService = async (
   { title, banner, text, tags, links },
   userId,
 ) => {
   if (!title || !banner || !text || !tags)
     throw new Error("Submit all fields for registration");
+
+  let verify = await verifyText(text);
+  if (!verify) return "Post nao criado, PALAVRA PROIBIDA ENCONTRADA";
 
   const { id } = await postRepositories.createPostRepository(
     title,
@@ -184,6 +225,9 @@ const updatePostService = async (
 ) => {
   if (!title && !banner && !text && !tags)
     throw new Error("Submit at least one field to update the post");
+
+  let verify = await verifyText(text);
+  if (!verify) return "Post nao atualizado, PALAVRA PROIBIDA ENCONTRADA";
 
   const post = await postRepositories.findPostByIdRepository(id);
 
