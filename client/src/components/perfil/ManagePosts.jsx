@@ -18,11 +18,8 @@ const ManagePosts = () => {
   const navigate = useNavigate();
   const [imageLink, setImageLink] = useState("");
   const [title, setTitle] = useState("");
-  const [tags, setTags] = useState("");
-  const [link1, setLink1] = useState("");
-  const [link2, setLink2] = useState("");
-  const [link3, setLink3] = useState("");
-  // const [link4, setLink4] = useState("");
+  const [tags, setTags] = useState([]);
+  const [links, setLinks] = useState(["", "", "", ""]);
   const [text, setText] = useState("");
   const [tagsRecommendation, setTagsRecommendation] = useState(null);
 
@@ -34,6 +31,13 @@ const ManagePosts = () => {
   } = useForm({
     resolver: zodResolver(postsSchema),
   });
+
+  const handleLinkChange = (index, value) => {
+    const newLinks = [...links];
+    newLinks[index] = value;
+    setLinks(newLinks);
+    setValue("links", newLinks);
+  };
 
   const registerPostSubmit = async (data) => {
     try {
@@ -64,7 +68,15 @@ const ManagePosts = () => {
 
   const showTags = () => {
     const recommendation = TagRecommendation({ text, ignoreSet });
-    setTagsRecommendation(recommendation);
+    const allTags = Object.values(recommendation).flat();
+
+    if (Array.isArray(allTags)) {
+      setTagsRecommendation(allTags);
+      console.error("Unexpected recommendation format:", recommendation);
+    }
+
+    setTags(allTags);
+    setValue("tags", allTags);
   };
 
   const getPost = async (id) => {
@@ -79,13 +91,7 @@ const ManagePosts = () => {
       setTags(data.tags);
       setValue("tags", data.tags);
 
-      setLink1(data.links);
-      setValue("links", data.links);
-
-      setLink2(data.links);
-      setValue("links", data.links);
-
-      setLink3(data.links);
+      setLinks(data.links);
       setValue("links", data.links);
 
       setText(data.text);
@@ -98,10 +104,14 @@ const ManagePosts = () => {
   };
 
   useEffect(() => {
-    if (action === "edit" || action === "delete") {
-      getPost(id);
-    }
-  }, []);
+    const fetchData = async () => {
+      if (action === "edit" || action === "delete") {
+        await getPost(id);
+      }
+    };
+
+    fetchData();
+  }, [action, id]);
 
   return (
     <>
@@ -115,10 +125,9 @@ const ManagePosts = () => {
           <h3>{tags || "Tags"}</h3>
         </div>
         <div>
-          <h2>{link1 || "Link 1"}</h2>
-          <h2>{link2 || "Link 2"}</h2>
-          <h2>{link3 || "Link 3"}</h2>
-          {/* <h2>{link4 || "Link 4"}</h2> */}
+          {links.map((link, index) => (
+            <h2 key={index}>{link || `Link ${index + 1}`}</h2>
+          ))}
         </div>
       </ShowPost>
       <AddPostsContainer>
@@ -132,7 +141,7 @@ const ManagePosts = () => {
         </h2>
         <form
           onSubmit={
-            action == "add"
+            action === "add"
               ? handleRegisterPosts(registerPostSubmit)
               : action === "edit"
               ? handleRegisterPosts(editPostSubmit)
@@ -161,95 +170,32 @@ const ManagePosts = () => {
               placeholder="Tags"
               name="tag"
               {...register("tags")}
-              onChange={(e) => setTags(e.target.value)}
+              onChange={(e) =>
+                setTags(e.target.value.split("").map((tag) => tag.trim()))
+              }
               disabled={action === "delete"}
             />
             <button
+              type="button"
               onClick={() => {
                 showTags();
               }}
             >
               Gerar Tags
             </button>
-            {tagsRecommendation && (
-              <>
-                {tagsRecommendation.rank1.map((tag, index) => (
-                  <span key={index}>
-                    {tag}
-                    <button>
-                      <i className="fa-solid fa-x"></i>
-                    </button>
-                  </span>
-                ))}
-                {tagsRecommendation.rank2.map((tag, index) => (
-                  <span key={index}>
-                    {tag}
-                    <button>
-                      <i className="fa-solid fa-x"></i>
-                    </button>
-                  </span>
-                ))}
-                {tagsRecommendation.rank3.map((tag, index) => (
-                  <span key={index}>
-                    {tag}
-                    <button>
-                      <i className="fa-solid fa-x"></i>
-                    </button>
-                  </span>
-                ))}
-                {tagsRecommendation.rank4.map((tag, index) => (
-                  <span key={index}>
-                    {tag}
-                    <button>
-                      <i className="fa-solid fa-x"></i>
-                    </button>
-                  </span>
-                ))}
-                {tagsRecommendation.rank5.map((tag, index) => (
-                  <span key={index}>
-                    {tag}
-                    <button>
-                      <i className="fa-solid fa-x"></i>
-                    </button>
-                  </span>
-                ))}
-              </>
-            )}
           </section>
-          <input
-            type="text"
-            placeholder="Link 1"
-            name="links"
-            {...register("links")}
-            onChange={(e) => setLink1(e.target.value)}
-            disabled={action === "delete"}
-          />
 
-          <input
-            type="text"
-            placeholder="Link 2"
-            name="links"
-            {...register("link")}
-            onChange={(e) => setLink2(e.target.value)}
-            disabled={action === "delete"}
-          />
-
-          <input
-            type="text"
-            placeholder="Link 3"
-            name="links"
-            {...register("link")}
-            onChange={(e) => setLink3(e.target.value)}
-            disabled={action === "delete"}
-          />
-
-          <input
-            type="text"
-            placeholder="Link 4"
-            name="links"
-            {...register("link")}
-            onChange={(e) => setLink4(e.target.value)}
-          />
+          {links.map((link, index) => (
+            <input
+              key={index}
+              type="text"
+              placeholder={`Link ${index + 1}`}
+              name={`links[${index}]`}
+              {...register(`links[${index}]`)}
+              onChange={(e) => handleLinkChange(index, e.target.value)}
+              disabled={action === "delete"}
+            />
+          ))}
 
           <textarea
             type="text"

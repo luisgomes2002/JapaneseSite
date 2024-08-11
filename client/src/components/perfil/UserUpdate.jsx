@@ -8,12 +8,11 @@ import {
   UpdateAreaMargin,
   UserCard,
   StyledSelect,
-  ChangePassword,
 } from "./UserUpdateStyle";
 import { ButtonSpaceArea } from "./UserPageStyle";
 import ModalDelete from "../modal/modalDelete/ModalDelete";
 import { useNavigate, useParams } from "react-router-dom";
-import { updatePasswordUser, updateUser } from "../../services/userServices";
+import { updateUser } from "../../services/userServices";
 import { usersSchema } from "../schemas/usersSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,9 +31,6 @@ const UpdateUserFunction = () => {
   const [icon, setIcon] = useState("");
   const [background, setBackground] = useState("");
   const [about, setAbout] = useState("");
-
-  //password
-  const [showPasswordFields, setShowPasswordFields] = useState(false);
 
   const navigate = useNavigate();
 
@@ -60,19 +56,6 @@ const UpdateUserFunction = () => {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const changePassword = async (data) => {
-    try {
-      await updatePasswordUser(data, user._id);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handlePasswordChange = () => {
-    setShowPasswordFields(!showPasswordFields);
   };
 
   const showUserInformations = () => {
@@ -145,6 +128,18 @@ const UpdateUserFunction = () => {
               {...register("background")}
               onChange={(e) => setBackground(e.target.value)}
             />
+            <input
+              type="password"
+              name="password"
+              placeholder="Senha atual"
+              {...register("password")}
+            />
+            <input
+              type="password"
+              name="newPassword"
+              placeholder="Novas Senha"
+              {...register("newPassword")}
+            />
             <ChooseColor>
               <div>
                 <p>Selecione a cor de fundo:</p>
@@ -172,6 +167,7 @@ const UpdateUserFunction = () => {
               {...register("about")}
               onChange={(e) => setAbout(e.target.value)}
             />
+
             <ButtonSpaceArea>
               <button type="submit">Alterar</button>
               <button
@@ -181,10 +177,10 @@ const UpdateUserFunction = () => {
                 {openModal && <ModalDelete />}
                 Deletar Conta
               </button>
-              <SpanErrors>
-                {errors.name && <span>{errors.name.message}</span>}
-              </SpanErrors>
             </ButtonSpaceArea>
+            <SpanErrors>
+              {errors.name && <span>{errors.name.message}</span>}
+            </SpanErrors>
           </form>
           <UserCard>
             <img src={background} alt="background" />
@@ -202,31 +198,6 @@ const UpdateUserFunction = () => {
                 limit={100}
               />
             </section>
-            <ChangePassword>
-              <input
-                type="checkbox"
-                onChange={handlePasswordChange}
-                checked={!showPasswordFields}
-              />
-              <h2>Alterar Senha:</h2>
-              <form onSubmit={handleSubmitUser(changePassword)}>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Senha"
-                  disabled={showPasswordFields}
-                  {...register("password")}
-                />
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirmar Senha"
-                  disabled={showPasswordFields}
-                  {...register("confirmPassword")}
-                />
-                <button type="submit">Alterar Senha</button>
-              </form>
-            </ChangePassword>
           </UserCard>
         </InfoUpdate>
       </UserUpdateArea>

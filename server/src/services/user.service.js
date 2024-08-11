@@ -60,48 +60,27 @@ const findUserByIdService = async (userIdParam, userIdLogged) => {
   return user;
 };
 
-const updateUserService = async (
-  { name, username, email, avatar, background },
-  userId,
-  userIdLogged,
-) => {
-  if (!name && !username && !email && !avatar && !background)
+const updateUserService = async (userUpdate, userId, userIdLogged) => {
+  if (Object.keys(userUpdate).length === 0)
     throw new Error("Envie pelo menos um campo para atualizar o usuário");
 
   const user = await userRepositories.findByIdUserRepository(userId);
 
-  if (user._id != userIdLogged || user.fullPermission !== true) {
-    userRepositories.updateUserRepository(
-      userId,
-      name,
-      username,
-      email,
-      avatar,
-      background,
+  if (user._id == userIdLogged) {
+    const isPasswordValid = await bcrypt.compare(
+      userUpdate.password,
+      user.password,
     );
 
-    return { message: "Usuário atualizado com sucesso!" };
+    if (isPasswordValid) {
+      userUpdate.password = await bcrypt.hash(userUpdate.newPassword, 10);
+
+      userRepositories.updateUserRepository(userId, userUpdate);
+
+      return { message: "Usuário atualizado com sucesso!" };
+    }
   }
   throw new Error("Você não pode atualizar este usuário");
-};
-
-const updateUserPasswordService = async (
-  { password },
-  userId,
-  userIdLogged,
-) => {
-  if (!password) throw new Error("Envie a senha atualizar o usuário");
-
-  const user = await userRepositories.findByIdUserRepository(userId);
-
-  if (user._id != userIdLogged || user.fullPermission !== true)
-    throw new Error("Você não pode atualizar este usuário");
-
-  if (password) password = await bcrypt.hash(password, 10);
-
-  userRepositories.updateUserPasswordRepository(userId, password);
-
-  return { message: "Usuário atualizado com sucesso!" };
 };
 
 const deleteUserByIdService = async (userId, userIdLogged) => {
@@ -205,7 +184,6 @@ export default {
   findUserByUsernameService,
   findUserByIdService,
   updateUserService,
-  updateUserPasswordService,
   deleteUserByIdService,
   followUserService,
   totalPointsUserService,

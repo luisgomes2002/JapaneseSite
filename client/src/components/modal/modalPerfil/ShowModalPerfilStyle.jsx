@@ -17,22 +17,23 @@ export const AdjustArea = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   height: 90%;
 `;
 
 export const BaseInfo = styled.div`
-  display: flex;
   margin: 0 10px;
-  text-align: left;
+  justify-content: flex-start;
 
   a {
     display: flex;
   }
 
   img {
-    width: 56px;
-    height: 56px;
+    width: 60px;
+    height: 60px;
     margin: 0 20px;
+    border-radius: 5px;
   }
 
   h2 {
@@ -49,9 +50,8 @@ export const BaseInfo = styled.div`
 `;
 
 export const FollowPosts = styled.div`
-  display: flex;
-  margin: 0 20px;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
 
   h3 {
@@ -60,7 +60,8 @@ export const FollowPosts = styled.div`
 `;
 
 export const PostsImg = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: ${(props) =>
     props.children.length === 3 ? "space-between" : "flex-start"};
 
@@ -68,16 +69,22 @@ export const PostsImg = styled.div`
     width: 120px;
     height: 120px;
     object-fit: cover;
-    margin-right: ${(props) => (props.children.length === 2 ? "3px" : "0")};
+    border-radius: 0;
+    margin-right: ${(props) => (props.children.length >= 2 ? "3px" : "0")};
   }
 `;
 
 export const FollowButton = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
   button {
     width: 80%;
     height: 30px;
     border-radius: 10px;
     background-color: var(--second-main-color);
     color: #fff;
+    border: none;
   }
 `;

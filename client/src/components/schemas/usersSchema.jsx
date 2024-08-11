@@ -5,7 +5,7 @@ export const usersSchema = z.object({
     .string()
     .optional()
     .refine((value) => !/^\s*$/.test(value), {
-      message: "O Message não pode ter apenas espaços.",
+      message: "O Nome não pode ter apenas espaços.",
     }),
   username: z
     .string()
@@ -24,8 +24,8 @@ export const usersSchema = z.object({
   password: z.string().refine((value) => !/^\s*$/.test(value), {
     message: "O password não pode ter apenas espaços.",
   }),
-  confirmPassword: z.string().refine((value) => !/^\s*$/.test(value), {
-    message: "O confirmPassword não pode ter apenas espaços.",
+  newPassword: z.string().refine((value) => !/^\s*$/.test(value), {
+    message: "O novo password não pode ter apenas espaços.",
   }),
   avatar: z
     .string()

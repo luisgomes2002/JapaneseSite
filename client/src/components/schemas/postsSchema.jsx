@@ -20,7 +20,7 @@ export const postsSchema = z.object({
       message: "O texto não pode ter apenas espaços.",
     }),
   tags: z
-    .string()
+    .array(z.string())
     .nonempty({ message: "As tags não pode ser vazio." })
     .refine((value) => !/^\s*$/.test(value), {
       message: "As tags não pode ter apenas espaços.",

@@ -14,10 +14,6 @@ userRouter.use(validId);
 userRouter.get("/findById/:id?", userController.findUserByIdController);
 userRouter.patch("/points/:id", userController.totalPointsUserController);
 userRouter.patch("/update/:id", userController.updateUserController);
-userRouter.patch(
-  "/updatePassword/:id",
-  userController.updateUserPasswordController,
-);
 userRouter.delete("/delete/:id", userController.deleteUserByIdController);
 userRouter.get(
   "/findByUsername/:username",

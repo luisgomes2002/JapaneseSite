@@ -7,6 +7,7 @@ export const categoriesItens = [
     title: "Aprender",
     subTitle: "Aprender Japonês",
     img: baka,
+    link: "/japanese",
   },
   {
     id: 2,
@@ -31,5 +32,6 @@ export const categoriesItens = [
     title: "Comunidade",
     subTitle: "Posts",
     img: baka2,
+    link: "/community",
   },
 ];

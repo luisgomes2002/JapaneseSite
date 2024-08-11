@@ -52,30 +52,12 @@ const findUserByIdController = async (req, res) => {
 
 const updateUserController = async (req, res) => {
   try {
-    const { name, username, email, avatar, background } = req.body;
+    const userUpdate = req.body;
     const { id: userId } = req.params;
     const userIdLogged = req.userId;
 
     const response = await userService.updateUserService(
-      { name, username, email, avatar, background },
-      userId,
-      userIdLogged,
-    );
-
-    return res.send(response);
-  } catch (e) {
-    res.status(400).send(e.message);
-  }
-};
-
-const updateUserPasswordController = async (req, res) => {
-  try {
-    const { password } = req.body;
-    const { id: userId } = req.params;
-    const userIdLogged = req.userId;
-
-    const response = await userService.updateUserPasswordService(
-      { password },
+      userUpdate,
       userId,
       userIdLogged,
     );
@@ -152,7 +134,6 @@ export default {
   findUserByUsernameController,
   findUserByIdController,
   updateUserController,
-  updateUserPasswordController,
   deleteUserByIdController,
   followUserController,
   totalPointsUserController,

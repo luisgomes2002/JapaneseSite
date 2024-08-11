@@ -27,7 +27,7 @@ export const CardContainer = styled.section`
   }
 
   h3 {
-    padding-top: 10px;
+    padding: 2% 3%;
     color: #6c6c72;
     font-size: 15px;
     width: 120px;
@@ -83,11 +83,13 @@ export const CardIconsArea = styled.article`
   margin: 2% 0;
 `;
 
-export const CardIcons = styled.div`
-  margin-right: 10px;
+export const CardIconsAndUsername = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 3% 3% 0 3%;
 
-  i {
-    margin-right: 3px;
+  span {
+    padding: 0 1%;
   }
 `;
 
@@ -157,6 +159,8 @@ export const UserPagePostArea = styled.div`
   img {
     border-radius: 0px 5px 5px 0px;
     height: 250px;
+    max-width: 420px;
+    min-width: 420px;
   }
 `;
 
@@ -180,5 +184,18 @@ export const InfoPostsBody = styled.div`
 
   p {
     padding-top: 10px;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+
+    h2 {
+      margin-right: 2%;
+    }
+
+    i:hover {
+      color: #6f00ff6e;
+    }
   }
 `;
