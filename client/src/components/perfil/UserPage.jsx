@@ -81,21 +81,32 @@ const UserPage = () => {
     fetchData();
   }, [username, user.username, navegate]);
 
-  const backgroundStyle = {
+  const backgroundStyleUser = {
     backgroundImage:
       user.background && user.background !== "undefined"
         ? `url(${user.background})`
         : "none",
     backgroundColor:
-      user.background && user.background !== "undefined"
+      user.backgroundColor && user.backgroundColor !== "undefined"
         ? "transparent"
         : user.backgroundColor,
+  };
+
+  const backgroundStyleprofile = {
+    backgroundImage:
+      profileInfo.background && profileInfo.background !== "undefined"
+        ? `url(${profileInfo.background})`
+        : "none",
+    backgroundColor:
+      profileInfo.backgroundColor && profileInfo.backgroundColor !== "undefined"
+        ? "transparent"
+        : profileInfo.backgroundColor,
   };
 
   if (user.username === username) {
     return (
       <TotalSpace style={{ backgroundColor: "#121214" }}>
-        <GifArea style={backgroundStyle}>
+        <GifArea style={backgroundStyleUser}>
           <UserInfomationsArea>
             <UserInformation>
               <div>
@@ -201,7 +212,7 @@ const UserPage = () => {
   } else {
     return (
       <TotalSpace style={{ backgroundColor: "#121214" }}>
-        <GifArea style={backgroundStyle}>
+        <GifArea style={backgroundStyleprofile}>
           <UserInfomationsArea>
             <UserInformation>
               <div>

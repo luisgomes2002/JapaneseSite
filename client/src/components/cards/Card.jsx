@@ -1,7 +1,7 @@
 import {
   CardContainer,
   CardBody,
-  CardIcons,
+  CardIconsAndUsername,
   CardIconsCommunity,
   CardHomeBody,
   IconsArea,
@@ -134,31 +134,32 @@ const Card = ({
       <PostsByUser>
         <UserPagePostArea>
           <InfoPostsBody>
-            <h2>{title}</h2>
-            {username == user.username ? (
-              <>
-                <Link to={`/managePosts/edit/${postId}`}>
-                  <i className="fa-solid fa-pen-to-square"></i>
-                </Link>
-                <Link to={`/managePosts/delete/${postId}`}>
-                  <i className="fa-solid fa-trash"></i>
-                </Link>
-              </>
-            ) : (
-              ""
-            )}
-
+            <section>
+              <h2>{title}</h2>
+              {username == user.username ? (
+                <>
+                  <Link to={`/managePosts/edit/${postId}`}>
+                    <i className="fa-solid fa-pen-to-square"></i>
+                  </Link>
+                  <Link to={`/managePosts/delete/${postId}`}>
+                    <i className="fa-solid fa-trash"></i>
+                  </Link>
+                </>
+              ) : (
+                ""
+              )}
+            </section>
             <TextLimit text={text} limit={210} />
             <h3>@{username}</h3>
             <CardIconsArea>
-              <CardIcons>
+              <CardIconsAndUsername>
                 <i className="fa-regular fa-heart"></i>
                 <span>{likes?.length}</span>
-              </CardIcons>
-              <CardIcons>
+              </CardIconsAndUsername>
+              <CardIconsAndUsername>
                 <i className="fa-regular fa-message"></i>
                 <span>{comments?.length}</span>
-              </CardIcons>
+              </CardIconsAndUsername>
             </CardIconsArea>
           </InfoPostsBody>
           <img src={banner} alt="banner" />
@@ -175,14 +176,14 @@ const Card = ({
           <div>
             <h2>{title}</h2>
             <TextLimit text={text} limit={200} />
-            <CardIcons>
-              <div>
+            <div>
+              <CardIconsAndUsername>
                 <i className="fa-regular fa-heart"></i>
                 <span>{likes?.length}</span>
 
                 <i className="fa-regular fa-message"></i>
                 <span>{comments?.length}</span>
-              </div>
+              </CardIconsAndUsername>
               <h3
                 ref={usernameRef}
                 onMouseEnter={openModal}
@@ -190,7 +191,7 @@ const Card = ({
               >
                 @{username}
               </h3>
-            </CardIcons>
+            </div>
           </div>
         </Link>
         {isModalOpen && (

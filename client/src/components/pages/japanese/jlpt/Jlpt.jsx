@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { VideoList } from "../../videos/LoopVideo/Loop";
+import { VideoList } from "../../videos/loopVideo/Loop.jsx";
 import japanCulture from "../../../../assets/JLPT/japanCulture.jpg";
 import { IntroductionArea, Jlpthome, PageArea } from "./JlptStyled.jsx";
 

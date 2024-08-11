@@ -26,16 +26,6 @@ export const updateUser = (body, id) => {
   return response;
 };
 
-export const updatePasswordUser = (body, id) => {
-  delete body.confirmPassword;
-  const response = axios.patch(`${baseUrl}/user/updatePassword/${id}`, body, {
-    headers: {
-      Authorization: `Bearer ${Cookies.get("token")}`,
-    },
-  });
-  return response;
-};
-
 export const signin = (data) => {
   const response = axios.post(`${baseUrl}/auth/login`, data);
   return response;
