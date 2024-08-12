@@ -104,8 +104,8 @@ const Post = () => {
         <img src={post.banner} alt="banner" />
         <UserAndPostInfo>
           <div>
-            <h1>{post.name}</h1>
             <h1>{post.title}</h1>
+            <h2>Por: {post.name}</h2>
           </div>
           <OtherPosts>Outros posts</OtherPosts>
         </UserAndPostInfo>
@@ -113,6 +113,7 @@ const Post = () => {
       <OnlyPostArea>
         <div>
           <PostCreatorInfo>
+            <img src={post.avatar} alt="" />
             <div>
               <h1>{post.name}</h1>
               {post.username == "Conta Deletada" ? (
@@ -125,7 +126,11 @@ const Post = () => {
             </div>
           </PostCreatorInfo>
           <PostText>
-            <p>{post.text}</p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: post.text ? post.text.replace(/\n/g, "<br />") : "",
+              }}
+            />
           </PostText>
         </div>
         <FollowAndLike>
@@ -152,7 +157,7 @@ const Post = () => {
             {post.links &&
               post.links.map((link) => (
                 <>
-                  <a href={link}>Instagram</a>
+                  <a href={link}>{link}</a>
                 </>
               ))}
           </LinksRef>

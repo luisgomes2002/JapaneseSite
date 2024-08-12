@@ -19,24 +19,60 @@ export const UserAndPostInfo = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  margin-left: 15%;
-  height: 40%;
-  width: 100%;
+  height: 50%;
   float: left;
   position: absolute;
+  padding-left: 9%;
 
   h1 {
-    color: white;
+    width: 60%;
+    font-size: 70px;
+    color: #e4e0e0;
+    text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  h2 {
+    color: #e4e0e0;
+    text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
   }
 `;
 
 export const OtherPosts = styled.div``;
 
-export const OnlyPostArea = styled.div``;
+export const OnlyPostArea = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 35%;
+`;
 
-export const PostCreatorInfo = styled.section``;
+export const PostCreatorInfo = styled.section`
+  display: flex;
+  margin: 2% 0 0 8%;
 
-export const PostText = styled.div``;
+  img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-right: 2%;
+  }
+
+  h1 {
+    color: #fff;
+  }
+
+  a {
+    color: #8d8b8b;
+    text-decoration: none;
+  }
+`;
+
+export const PostText = styled.div`
+  padding: 5% 0 0 8%;
+
+  p {
+    font-size: 18px;
+    color: #cccaca;
+  }
+`;
 
 export const Comments = styled.div`
   margin: 2% 5%;
@@ -200,7 +236,7 @@ export const FollowAndLike = styled.div`
   button {
     margin: 20px;
     width: 150px;
-    height: 100px;
+    height: 70px;
     background-color: #2c2a2a;
     border: none;
     border-radius: 15px;
