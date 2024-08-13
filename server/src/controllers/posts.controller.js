@@ -11,7 +11,6 @@ const createPostController = async (req, res) => {
       { title, banner, text, tags, links },
       userId,
     );
-    console.log(links);
     return res.status(201).send(post);
   } catch (e) {
     res.status(500).send(e.message);
