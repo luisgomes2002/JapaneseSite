@@ -34,7 +34,7 @@ const Card = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [usernamePosition, setUsernamePosition] = useState({ top: 0, left: 0 });
   const usernameRef = useRef(null);
-
+  //Teste merge
   const navigate = useNavigate();
 
   const openModal = () => {
