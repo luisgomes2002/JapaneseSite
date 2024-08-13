@@ -16,6 +16,7 @@ import { useState, useEffect, useRef, useContext } from "react";
 import ModalPerfil from "../modal/modalPerfil/ShowModalPerfil";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({
   title,
@@ -33,6 +34,8 @@ const Card = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [usernamePosition, setUsernamePosition] = useState({ top: 0, left: 0 });
   const usernameRef = useRef(null);
+
+  const navigate = useNavigate();
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -59,8 +62,8 @@ const Card = ({
   if (top) {
     return (
       <CardBodyTop>
-        <h2>{title}</h2>
-        <TextLimit text={text} limit={280} />
+        <TextLimit text={title} limit={30} type={"title"} />
+        <TextLimit text={text} limit={280} type={"text"} />
         <h1
           ref={usernameRef}
           onMouseEnter={openModal}
@@ -95,8 +98,8 @@ const Card = ({
         <CardHomeBody>
           <div>
             <div>
-              <h2>{title}</h2>
-              <TextLimit text={text} limit={210} />
+              <TextLimit text={title} limit={30} type={"title"} />
+              <TextLimit text={text} limit={210} type={"text"} />
               <h3
                 ref={usernameRef}
                 onMouseEnter={openModal}
@@ -135,21 +138,25 @@ const Card = ({
         <UserPagePostArea>
           <InfoPostsBody>
             <section>
-              <h2>{title}</h2>
+              <TextLimit text={title} limit={30} type={"title"} />
               {username == user.username ? (
                 <>
-                  <Link to={`/managePosts/edit/${postId}`}>
+                  <button
+                    onClick={() => navigate(`/managePosts/edit/${postId}`)}
+                  >
                     <i className="fa-solid fa-pen-to-square"></i>
-                  </Link>
-                  <Link to={`/managePosts/delete/${postId}`}>
+                  </button>
+                  <button
+                    onClick={() => navigate(`/managePosts/delete/${postId}`)}
+                  >
                     <i className="fa-solid fa-trash"></i>
-                  </Link>
+                  </button>
                 </>
               ) : (
                 ""
               )}
             </section>
-            <TextLimit text={text} limit={210} />
+            <TextLimit text={text} limit={210} type={"text"} />
             <h3>@{username}</h3>
             <CardIconsArea>
               <CardIconsAndUsername>
@@ -169,13 +176,13 @@ const Card = ({
   } else {
     return (
       <CardContainer>
-        <Link to={`/post/${postId}`}>
+        <button onClick={() => navigate(`/post/${postId}`)}>
           <CardBody>
             <img src={banner} alt="banner" />
           </CardBody>
           <div>
-            <h2>{title}</h2>
-            <TextLimit text={text} limit={200} />
+            <TextLimit text={title} limit={30} type={"title"} />
+            <TextLimit text={text} limit={210} type={"text"} />
             <div>
               <CardIconsAndUsername>
                 <i className="fa-regular fa-heart"></i>
@@ -193,7 +200,7 @@ const Card = ({
               </h3>
             </div>
           </div>
-        </Link>
+        </button>
         {isModalOpen && (
           <ModalPerfil
             top={usernamePosition.top}

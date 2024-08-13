@@ -155,10 +155,10 @@ const Post = () => {
           </button>
           <LinksRef>
             {post.links &&
-              post.links.map((link) => (
-                <>
-                  <a href={link}>{link}</a>
-                </>
+              post.links.map((link, index) => (
+                <a href={link} key={index}>
+                  {link}
+                </a>
               ))}
           </LinksRef>
         </FollowAndLike>
@@ -183,8 +183,8 @@ const Post = () => {
         </CommentsArea>
         {post.comments &&
           post.comments.map((comment) => (
-            <>
-              <CommentsArea key={comment.idComment}>
+            <React.Fragment key={comment.idComment}>
+              <CommentsArea>
                 <Link to={`/profile/${comment.username}`}>
                   <img src={comment.icon} alt="icon" />
                 </Link>
@@ -220,7 +220,7 @@ const Post = () => {
                   </form>
                 </ReplayBox>
               </ReplayComment>
-            </>
+            </React.Fragment>
           ))}
       </Comments>
     </div>
