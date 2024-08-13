@@ -99,7 +99,7 @@ const ManagePosts = () => {
       console.log(error);
     }
   };
-
+  
   useEffect(() => {
     const fetchData = async () => {
       if (action === "edit" || action === "delete") {
@@ -151,6 +151,7 @@ const ManagePosts = () => {
             name="title"
             {...register("title")}
             onChange={(e) => setTitle(e.target.value)}
+            disabled={action == "delete"}
           />
           <input
             type="text"
@@ -158,6 +159,7 @@ const ManagePosts = () => {
             name="banner"
             {...register("banner")}
             onChange={(e) => setImageLink(e.target.value)}
+            disabled={action === "delete"}
           />
           <section>
             <input
@@ -178,6 +180,7 @@ const ManagePosts = () => {
               Gerar Tags
             </button>
           </section>
+        
           {links.map((link, index) => (
             <input
               key={index}
@@ -185,16 +188,19 @@ const ManagePosts = () => {
               placeholder={`Link ${index + 1}`}
               name={`links[${index}]`}
               {...register(`links[${index}]`)}
+
               value={link}
               onChange={(e) => handleLinkChange(index, e.target.value)}
             />
           ))}
+
           <textarea
             type="text"
             placeholder="Texto"
             name="text"
             {...register("text")}
             onChange={(e) => setText(e.target.value)}
+            disabled={action === "delete"}
           />
           <button
             type="submit"
