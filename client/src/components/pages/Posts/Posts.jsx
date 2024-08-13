@@ -104,8 +104,8 @@ const Post = () => {
         <img src={post.banner} alt="banner" />
         <UserAndPostInfo>
           <div>
-            <h1>{post.name}</h1>
             <h1>{post.title}</h1>
+            <h2>Por: {post.name}</h2>
           </div>
           <OtherPosts>Outros posts</OtherPosts>
         </UserAndPostInfo>
@@ -113,6 +113,7 @@ const Post = () => {
       <OnlyPostArea>
         <div>
           <PostCreatorInfo>
+            <img src={post.avatar} alt="" />
             <div>
               <h1>{post.name}</h1>
               {post.username == "Conta Deletada" ? (
@@ -125,7 +126,11 @@ const Post = () => {
             </div>
           </PostCreatorInfo>
           <PostText>
-            <p>{post.text}</p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: post.text ? post.text.replace(/\n/g, "<br />") : "",
+              }}
+            />
           </PostText>
         </div>
         <FollowAndLike>
@@ -150,10 +155,10 @@ const Post = () => {
           </button>
           <LinksRef>
             {post.links &&
-              post.links.map((link) => (
-                <>
-                  <a href={link}>Instagram</a>
-                </>
+              post.links.map((link, index) => (
+                <a href={link} key={index}>
+                  {link}
+                </a>
               ))}
           </LinksRef>
         </FollowAndLike>
@@ -178,8 +183,8 @@ const Post = () => {
         </CommentsArea>
         {post.comments &&
           post.comments.map((comment) => (
-            <>
-              <CommentsArea key={comment.idComment}>
+            <React.Fragment key={comment.idComment}>
+              <CommentsArea>
                 <Link to={`/profile/${comment.username}`}>
                   <img src={comment.icon} alt="icon" />
                 </Link>
@@ -215,7 +220,7 @@ const Post = () => {
                   </form>
                 </ReplayBox>
               </ReplayComment>
-            </>
+            </React.Fragment>
           ))}
       </Comments>
     </div>

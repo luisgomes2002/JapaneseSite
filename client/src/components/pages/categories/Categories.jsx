@@ -39,7 +39,8 @@ const Categories = () => {
       <Nav />
       <section className="section-categories" onMouseMove={handleMouseMove}>
         {categoriesItens.map((info, key) => (
-          <Link to={info.link}>
+
+          <Link to={info.link} key={key}>
             <div className="categories" key={key}>
               <div
                 className="name-categories"

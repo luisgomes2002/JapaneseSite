@@ -36,7 +36,6 @@ const ManagePosts = () => {
     const newLinks = [...links];
     newLinks[index] = value;
     setLinks(newLinks);
-    setValue("links", newLinks);
   };
 
   const registerPostSubmit = async (data) => {
@@ -82,19 +81,17 @@ const ManagePosts = () => {
   const getPost = async (id) => {
     try {
       const { data } = await getByIdPost(id);
+
       setTitle(data.title);
-      setValue("title", data.title);
-
       setImageLink(data.banner);
-      setValue("banner", data.banner);
-
       setTags(data.tags);
-      setValue("tags", data.tags);
-
-      setLinks(data.links);
-      setValue("links", data.links);
-
+      setLinks(data.links || ["", "", "", ""]);
       setText(data.text);
+
+      setValue("title", data.title);
+      setValue("banner", data.banner);
+      setValue("tags", data.tags);
+      setValue("links", data.links || ["", "", "", ""]);
       setValue("text", data.text);
 
       return data;
@@ -102,7 +99,7 @@ const ManagePosts = () => {
       console.log(error);
     }
   };
-
+  
   useEffect(() => {
     const fetchData = async () => {
       if (action === "edit" || action === "delete") {
@@ -173,7 +170,6 @@ const ManagePosts = () => {
               onChange={(e) =>
                 setTags(e.target.value.split("").map((tag) => tag.trim()))
               }
-              disabled={action === "delete"}
             />
             <button
               type="button"
@@ -184,7 +180,7 @@ const ManagePosts = () => {
               Gerar Tags
             </button>
           </section>
-
+        
           {links.map((link, index) => (
             <input
               key={index}
@@ -192,8 +188,9 @@ const ManagePosts = () => {
               placeholder={`Link ${index + 1}`}
               name={`links[${index}]`}
               {...register(`links[${index}]`)}
+
+              value={link}
               onChange={(e) => handleLinkChange(index, e.target.value)}
-              disabled={action === "delete"}
             />
           ))}
 
@@ -205,7 +202,6 @@ const ManagePosts = () => {
             onChange={(e) => setText(e.target.value)}
             disabled={action === "delete"}
           />
-
           <button
             type="submit"
             text={
