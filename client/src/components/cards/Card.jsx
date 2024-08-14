@@ -34,7 +34,7 @@ const Card = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [usernamePosition, setUsernamePosition] = useState({ top: 0, left: 0 });
   const usernameRef = useRef(null);
-  //Teste merge
+
   const navigate = useNavigate();
 
   const openModal = () => {
@@ -146,6 +146,7 @@ const Card = ({
                   >
                     <i className="fa-solid fa-pen-to-square"></i>
                   </button>
+                  {/* <Link to={`/managePosts/edit/${postId}`}>  <i className="fa-solid fa-pen-to-square"/></Link> */}
                   <button
                     onClick={() => navigate(`/managePosts/delete/${postId}`)}
                   >
