@@ -54,43 +54,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/community",
-        element: (
-          <ProtectiveRoutesNotLoggedIn>
-            <Community />
-          </ProtectiveRoutesNotLoggedIn>
-        ),
+        element: <Community />,
       },
       {
         path: "search/:title",
-        element: (
-          <ProtectiveRoutesNotLoggedIn>
-            <Search />
-          </ProtectiveRoutesNotLoggedIn>
-        ),
+        element: <Search />,
       },
       {
         path: "/profile/:username",
-        element: (
-          <ProtectiveRoutesNotLoggedIn>
-            <UserPage />
-          </ProtectiveRoutesNotLoggedIn>
-        ),
+        element: <UserPage />,
       },
       {
         path: "/adm",
-        element: (
-          <ProtectiveRoutesNotLoggedIn>
-            <Administration />
-          </ProtectiveRoutesNotLoggedIn>
-        ),
+        element: <Administration />,
       },
       {
         path: "/update/:username",
-        element: (
-          <ProtectiveRoutesNotLoggedIn>
-            <UserUpdate />
-          </ProtectiveRoutesNotLoggedIn>
-        ),
+        element: <UserUpdate />,
       },
       {
         path: "/auth",
@@ -119,11 +99,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/post/:id",
-        element: (
-          <ProtectiveRoutesNotLoggedIn>
-            <Post />
-          </ProtectiveRoutesNotLoggedIn>
-        ),
+        element: <Post />,
       },
       {
         path: "/categories",

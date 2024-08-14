@@ -3,13 +3,12 @@ import styled from "styled-components";
 export const PostIntroduction = styled.div`
   background-color: black;
   display: flex;
-  justify-content: center;
   align-items: center;
   margin-top: 5%;
 
   img {
     margin: 2% 0;
-    width: 90%;
+    width: 100%;
     object-fit: cover;
     max-height: 700px;
   }
@@ -25,7 +24,6 @@ export const UserAndPostInfo = styled.div`
   padding-left: 9%;
 
   h1 {
-    width: 60%;
     font-size: 70px;
     color: #e4e0e0;
     text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);

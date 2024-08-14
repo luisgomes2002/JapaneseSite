@@ -85,7 +85,7 @@ const ModalPerfil = ({ top, left, onMouseEnter, onMouseLeave, username }) => {
           {posts.slice(0, 3).map((item) => {
             return (
               <Link to={`/post/${item.id}`} key={item.id}>
-                <img src={item.banner} alt="" />
+                <img src={item.banner} alt="img" />
               </Link>
             );
           })}

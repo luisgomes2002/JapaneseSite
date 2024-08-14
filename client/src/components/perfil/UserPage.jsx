@@ -180,19 +180,17 @@ const UserPage = () => {
                 <div>
                   {posts.map((item) => {
                     return (
-                      <Link to={`/post/${item.id}`} key={item.id}>
-                        <Card
-                          perfil={true}
-                          key={item.id}
-                          postId={item.id}
-                          title={item.title}
-                          text={item.text}
-                          banner={item.banner}
-                          likes={item.likes}
-                          comments={item.comments}
-                          username={item.username}
-                        />
-                      </Link>
+                      <Card
+                        perfil={true}
+                        key={item.id}
+                        postId={item.id}
+                        title={item.title}
+                        text={item.text}
+                        banner={item.banner}
+                        likes={item.likes}
+                        comments={item.comments}
+                        username={item.username}
+                      />
                     );
                   })}
                 </div>
@@ -285,18 +283,17 @@ const UserPage = () => {
                   <div>
                     {posts.map((item) => {
                       return (
-                        <Link to={`/post/${item.id}`} key={item.id}>
-                          <Card
-                            perfil={true}
-                            key={item.id}
-                            title={item.title}
-                            text={item.text}
-                            banner={item.banner}
-                            likes={item.likes}
-                            comments={item.comments}
-                            username={item.username}
-                          />
-                        </Link>
+                        <Card
+                          perfil={true}
+                          key={item.id}
+                          postId={item.id}
+                          title={item.title}
+                          text={item.text}
+                          banner={item.banner}
+                          likes={item.likes}
+                          comments={item.comments}
+                          username={item.username}
+                        />
                       );
                     })}
                   </div>

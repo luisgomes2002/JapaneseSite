@@ -78,52 +78,6 @@ export const CardContainerCommunity = styled.section`
   width: 100%;
   border-radius: 25px;
   background-color: var(--card-color);
-
-  img {
-    width: 100%;
-    height: 400px;
-    max-height: 400px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 0px 25px 25px 0px;
-  }
-`;
-
-export const CardBodyCommunity = styled.article`
-  display: flex;
-  align-items: center;
-  text-align: left;
-
-  a {
-    text-decoration: none;
-  }
-
-  h2 {
-    padding: 3% 8%;
-    color: var(--second-main-color);
-    font-size: 35px;
-  }
-
-  h3 {
-    margin: 0 10%;
-    font-size: 20px;
-    color: var(--second-main-color);
-  }
-
-  p {
-    padding: 0 8%;
-    color: var(--main-color);
-    margin: 5% 0;
-  }
-
-  i {
-    color: var(--main-color);
-  }
-
-  span {
-    padding: 0 10%;
-    color: var(--main-color);
-  }
 `;
 
 export const CardIconsCommunity = styled.article`

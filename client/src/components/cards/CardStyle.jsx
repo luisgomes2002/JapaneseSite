@@ -1,14 +1,53 @@
 import styled from "styled-components";
 
 export const CardBodyTop = styled.div`
-  h1 {
-    padding: 15px 30px;
+  display: grid;
+  grid-template-columns: 45% 1fr;
+
+  h2 {
+    color: var(--second-main-color);
+    font-size: 35px;
+    padding: 5%;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 735px;
+    min-width: 735px;
+    border-radius: 0 25px 25px 0;
+  }
+
+  p {
+    font-size: 18px;
+    padding: 0 5% 5% 5%;
+    color: #cccaca;
+  }
+
+  h3 {
+    padding: 0 5%;
     color: #6c6c72;
     font-size: 15px;
+    width: 120px;
+    cursor: pointer;
+  }
+
+  i {
+    padding-top: 50%;
+    color: var(--main-color);
+  }
+
+  span {
+    padding: 0 10%;
+    color: var(--main-color);
   }
 `;
 
 export const CardContainer = styled.section`
+  display: grid;
+  grid-template-columns: 32% 1fr;
   margin: 0 0 2% 0;
   border-radius: 25px;
   background-color: var(--card-color);
@@ -21,7 +60,7 @@ export const CardContainer = styled.section`
   }
 
   h2 {
-    font-size: 35px;
+    font-size: 32px;
     padding: 2% 3%;
     color: var(--second-main-color);
   }
@@ -31,12 +70,13 @@ export const CardContainer = styled.section`
     color: #6c6c72;
     font-size: 15px;
     width: 120px;
+    cursor: pointer;
   }
 
   p {
     font-size: 18px;
     padding: 0 3%;
-    color: var(--main-color);
+    color: #cccaca;
   }
 
   i {
@@ -46,11 +86,6 @@ export const CardContainer = styled.section`
   span {
     padding: 0 10%;
     color: var(--main-color);
-  }
-
-  a {
-    display: grid;
-    grid-template-columns: 32% 1fr;
   }
 `;
 
@@ -88,8 +123,9 @@ export const CardIconsAndUsername = styled.div`
   align-items: center;
   padding: 3% 3% 0 3%;
 
-  span {
-    padding: 0 1%;
+  span,
+  i {
+    padding-right: 0.3rem;
   }
 `;
 
@@ -190,12 +226,10 @@ export const InfoPostsBody = styled.div`
     display: flex;
     align-items: center;
 
-    h2 {
+    button {
+      color: #6c6c72;
       margin-right: 2%;
-    }
-
-    i:hover {
-      color: #6f00ff6e;
+      font-size: 17px;
     }
   }
 `;

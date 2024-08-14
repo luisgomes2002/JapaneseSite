@@ -61,26 +61,35 @@ const Card = ({
 
   if (top) {
     return (
-      <CardBodyTop>
-        <TextLimit text={title} limit={30} type={"title"} />
-        <TextLimit text={text} limit={280} type={"text"} />
-        <h1
-          ref={usernameRef}
-          onMouseEnter={openModal}
-          onMouseLeave={closeModal}
-        >
-          @{username}
-        </h1>
-        <CardIconsCommunity>
-          <div>
-            <i className="fa-regular fa-heart"></i>
-            <span>{likes?.length}</span>
-          </div>
-          <div>
-            <i className="fa-regular fa-message"></i>
-            <span>{comments?.length}</span>
-          </div>
-        </CardIconsCommunity>
+      <>
+        <CardBodyTop>
+          <section>
+            <Link to={`/post/${postId}`}>
+              <TextLimit text={title} limit={30} type={"title"} />
+            </Link>
+            <TextLimit text={text} limit={280} type={"text"} />
+            <h3
+              ref={usernameRef}
+              onMouseEnter={openModal}
+              onMouseLeave={closeModal}
+            >
+              @{username}
+            </h3>
+            <CardIconsCommunity>
+              <div>
+                <i className="fa-regular fa-heart"></i>
+                <span>{likes?.length}</span>
+              </div>
+              <div>
+                <i className="fa-regular fa-message"></i>
+                <span>{comments?.length}</span>
+              </div>
+            </CardIconsCommunity>
+          </section>
+          <Link to={`/post/${postId}`}>
+            <img src={banner} alt="banner" />
+          </Link>
+        </CardBodyTop>
         {isModalOpen && (
           <ModalPerfil
             top={usernamePosition.top}
@@ -90,7 +99,7 @@ const Card = ({
             username={username}
           ></ModalPerfil>
         )}
-      </CardBodyTop>
+      </>
     );
   } else if (home) {
     return (
@@ -138,23 +147,22 @@ const Card = ({
         <UserPagePostArea>
           <InfoPostsBody>
             <section>
-              <TextLimit text={title} limit={30} type={"title"} />
-              {username == user.username ? (
+              <Link to={`/post/${postId}`}>
+                <TextLimit text={title} limit={30} type={"title"} />
+              </Link>
+              {username === user.username && (
                 <>
                   <button
                     onClick={() => navigate(`/managePosts/edit/${postId}`)}
                   >
                     <i className="fa-solid fa-pen-to-square"></i>
                   </button>
-                  {/* <Link to={`/managePosts/edit/${postId}`}>  <i className="fa-solid fa-pen-to-square"/></Link> */}
                   <button
                     onClick={() => navigate(`/managePosts/delete/${postId}`)}
                   >
                     <i className="fa-solid fa-trash"></i>
                   </button>
                 </>
-              ) : (
-                ""
               )}
             </section>
             <TextLimit text={text} limit={210} type={"text"} />
@@ -170,38 +178,42 @@ const Card = ({
               </CardIconsAndUsername>
             </CardIconsArea>
           </InfoPostsBody>
-          <img src={banner} alt="banner" />
+          <Link to={`/post/${postId}`}>
+            <img src={banner} alt="banner" />
+          </Link>
         </UserPagePostArea>
       </PostsByUser>
     );
   } else {
     return (
       <CardContainer>
-        <button onClick={() => navigate(`/post/${postId}`)}>
-          <CardBody>
+        <CardBody>
+          <Link to={`/post/${postId}`}>
             <img src={banner} alt="banner" />
-          </CardBody>
+          </Link>
+        </CardBody>
+        <div>
+          <Link to={`/post/${postId}`}>
+            <TextLimit text={title} limit={38} type={"title"} />
+          </Link>
+          <TextLimit text={text} limit={210} type={"text"} />
           <div>
-            <TextLimit text={title} limit={30} type={"title"} />
-            <TextLimit text={text} limit={210} type={"text"} />
-            <div>
-              <CardIconsAndUsername>
-                <i className="fa-regular fa-heart"></i>
-                <span>{likes?.length}</span>
+            <CardIconsAndUsername>
+              <i className="fa-regular fa-heart"></i>
+              <span>{likes?.length}</span>
 
-                <i className="fa-regular fa-message"></i>
-                <span>{comments?.length}</span>
-              </CardIconsAndUsername>
-              <h3
-                ref={usernameRef}
-                onMouseEnter={openModal}
-                onMouseLeave={closeModal}
-              >
-                @{username}
-              </h3>
-            </div>
+              <i className="fa-regular fa-message"></i>
+              <span>{comments?.length}</span>
+            </CardIconsAndUsername>
+            <h3
+              ref={usernameRef}
+              onMouseEnter={openModal}
+              onMouseLeave={closeModal}
+            >
+              @{username}
+            </h3>
           </div>
-        </button>
+        </div>
         {isModalOpen && (
           <ModalPerfil
             top={usernamePosition.top}

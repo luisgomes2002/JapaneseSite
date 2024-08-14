@@ -27,6 +27,7 @@ export const BaseInfo = styled.div`
 
   a {
     display: flex;
+    text-decoration: none;
   }
 
   img {
@@ -45,7 +46,7 @@ export const BaseInfo = styled.div`
   h3 {
     padding: 0;
     font-size: 20px;
-    color: #fff;
+    color: #dfdcd8;
   }
 `;
 
@@ -55,7 +56,11 @@ export const FollowPosts = styled.div`
   text-align: center;
 
   h3 {
-    color: #fff;
+    color: #dfdcd8;
+  }
+
+  p {
+    color: #dfdcd8;
   }
 `;
 

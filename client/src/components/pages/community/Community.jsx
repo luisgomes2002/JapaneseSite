@@ -3,7 +3,6 @@ import {
   SearchArea,
   CardContainerBody,
   CardContainerCommunity,
-  CardBodyCommunity,
   UsersPostsAreaCommunity,
   CardContainerBodyInfo,
   PostsInfoTop,
@@ -12,7 +11,7 @@ import { Card } from "../../cards/Card";
 import { getAllPosts, getTopPost } from "../../../services/postsServices";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { searchSchema } from "../../schemas/searchSchema";
 
@@ -77,19 +76,16 @@ const UsersPostsArea = () => {
           </form>
         </SearchArea>
         <CardContainerCommunity>
-          <CardBodyCommunity>
-            <Link to={`/post/${topPost.id}`} key={topPost.id}>
-              <Card
-                top={true}
-                title={topPost.title}
-                text={topPost.text}
-                likes={topPost.likes}
-                comments={topPost.comments}
-                username={topPost.username}
-              />
-            </Link>
-          </CardBodyCommunity>
-          <img src={topPost.banner} alt="banner" />
+          <Card
+            top={true}
+            postId={topPost.id}
+            title={topPost.title}
+            text={topPost.text}
+            likes={topPost.likes}
+            comments={topPost.comments}
+            username={topPost.username}
+            banner={topPost.banner}
+          />
         </CardContainerCommunity>
       </IntroSpaceCommunity>
       <CardContainerBodyInfo>
