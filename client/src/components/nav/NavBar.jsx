@@ -65,81 +65,42 @@ const NavBar = () => {
           <h1>MURASAKI</h1>
         </Link>
         <NavBarCategories>
-          {user &&
-          (user.fullPermission === undefined || !user.fullPermission) ? (
-            <>
-              <Link to="/categories">Categorias</Link>
-              <Link to="/post">Sobre</Link>
-              <Link to="/community">Comunidade</Link>
-              <button onClick={toggleNotifications}>
-                <i className="fa-solid fa-bell"></i>
-                {user.notification && user.notification.length > 0 && (
-                  <span>({user.notification.length})</span>
-                )}
-              </button>
-              {showNotifications && (
-                <Notifications>
-                  {user.notification?.map((notifications) => {
-                    return (
-                      <ForEachNotification key={notifications._id}>
-                        <Link to={`/profile/${notifications.username}`}>
-                          <h2>{notifications.username || "User Deletado"}</h2>
-                          <p>{notifications.title}</p>
-                        </Link>
-                        <button
-                          onClick={() =>
-                            deleteNotificationsNavBar(
-                              user._id,
-                              notifications.notificationIdCreated,
-                            )
-                          }
-                        >
-                          <i className="fa-solid fa-x"></i>
-                        </button>
-                      </ForEachNotification>
-                    );
-                  })}
-                </Notifications>
-              )}
-            </>
-          ) : (
-            <>
-              {/* MOD NAV BAR */}
-              <Link to="/categories">Categorias</Link>
-              <Link to="/post">Sobre</Link>
-              <Link to="/community">Comunidade</Link>
-              <button onClick={toggleNotifications}>
-                <i className="fa-solid fa-bell"></i>
-                {user.notification && user.notification.length > 0 && (
-                  <span>({user.notification.length})</span>
-                )}
-              </button>
-              {showNotifications && (
-                <Notifications>
-                  {user.notification?.map((notifications) => {
-                    return (
-                      <ForEachNotification key={notifications._id}>
-                        <Link to={`/profile/${notifications.username}`}>
-                          <h2>{notifications.username || "User Deletado"}</h2>
-                          <p>{notifications.title}</p>
-                        </Link>
-                        <button
-                          onClick={() =>
-                            deleteNotificationsNavBar(
-                              user._id,
-                              notifications.notificationIdCreated,
-                            )
-                          }
-                        >
-                          <i className="fa-solid fa-x"></i>
-                        </button>
-                      </ForEachNotification>
-                    );
-                  })}
-                </Notifications>
-              )}
-              {/* <Link to="/adm">Adm</Link> */}
-            </>
+          <Link to="/categories">Categorias</Link>
+          <Link to="/post">Sobre</Link>
+          <Link to="/community">Comunidade</Link>
+          <button onClick={toggleNotifications}>
+            <i className="fa-solid fa-bell"></i>
+            {user.notification && user.notification.length > 0 && (
+              <span>({user.notification.length})</span>
+            )}
+          </button>
+          {showNotifications && (
+            <Notifications>
+              {user.notification?.map((notifications) => {
+                return (
+                  <ForEachNotification key={notifications._id}>
+                    <Link to={`/profile/${notifications.username}`}>
+                      <h2>{notifications.username || "User Deletado"}</h2>
+                      <p>{notifications.title}</p>
+                    </Link>
+                    <button
+                      onClick={() =>
+                        deleteNotificationsNavBar(
+                          user._id,
+                          notifications.notificationIdCreated,
+                        )
+                      }
+                    >
+                      <i className="fa-solid fa-x"></i>
+                    </button>
+                  </ForEachNotification>
+                );
+              })}
+            </Notifications>
+          )}
+          {(user && user.fullPermission === undefined) ||
+          !user.fullPermission ? null : (
+            <Link to="/adm">Adm</Link>
           )}
           {user && Object.keys(user).length > 0 ? (
             <>

@@ -29,6 +29,8 @@ import Introduction from "./components/pages/japanese/japaneseLearner/introducti
 import ErrorPage from "./components/erroPage/ErrorPage.jsx";
 // Mod
 import Administration from "./components/pages/administration/Administration.jsx";
+//Chat
+import Chat from "./components/chat/Chat.jsx";
 // Protect
 import ProtectiveRoutesNotLoggedIn from "./components/protectiveRoutes/ProtectiveRoutesNotLoggedIn.jsx";
 import ProtectiveRoutesLogged from "./components/protectiveRoutes/ProtectiveRoutesLogged.jsx";
@@ -116,6 +118,10 @@ const router = createBrowserRouter([
       {
         path: "/managePosts/:action/:id?",
         element: <ManagePosts />,
+      },
+      {
+        path: "/chat",
+        element: <Chat />,
       },
     ],
   },
