@@ -106,7 +106,7 @@ function Home() {
           </div>
         </AboutBox>
       </About>
-      <Benefits>
+      {/* <Benefits>
         <div>
           <img src="" />
         </div>
@@ -140,7 +140,7 @@ function Home() {
             </div>
           </BenefitsInfoCard>
         </BenefitsInfo>
-      </Benefits>
+      </Benefits> */}
     </>
   );
 }

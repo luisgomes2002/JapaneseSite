@@ -66,19 +66,23 @@ const updateUserService = async (userUpdate, userId, userIdLogged) => {
 
   const user = await userRepositories.findByIdUserRepository(userId);
 
+  // Verifica se o user para atualizar e o user logado sao iguais.
   if (user._id == userIdLogged) {
-    const isPasswordValid = await bcrypt.compare(
-      userUpdate.password,
-      user.password,
-    );
+    // Se tiver um password para atualizar, compara os password.
+    if (userUpdate.password) {
+      const isPasswordValid = await bcrypt.compare(
+        userUpdate.password,
+        user.password,
+      );
 
-    if (isPasswordValid) {
-      userUpdate.password = await bcrypt.hash(userUpdate.newPassword, 10);
-
-      userRepositories.updateUserRepository(userId, userUpdate);
-
-      return { message: "Usuário atualizado com sucesso!" };
+      // Se a comparacocao retornar true atualiza o password/
+      if (isPasswordValid)
+        userUpdate.password = await bcrypt.hash(userUpdate.newPassword, 10);
     }
+
+    userRepositories.updateUserRepository(userId, userUpdate);
+
+    return { message: "Usuário atualizado com sucesso!" };
   }
   throw new Error("Você não pode atualizar este usuário");
 };

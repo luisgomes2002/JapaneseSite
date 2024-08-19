@@ -14,9 +14,12 @@ import { UserContext } from "../context/UserContext";
 
 const NavBar = () => {
   const { user, setUser } = useContext(UserContext);
-  const navigate = useNavigate();
 
   const [showNotifications, setShowNotifications] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  // console.log(isMobile);
+
+  const navigate = useNavigate();
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
@@ -56,6 +59,18 @@ const NavBar = () => {
 
   useEffect(() => {
     if (Cookies.get("token")) findUserLogged();
+    console.log("Resizing: ", window.innerWidth);
+
+    // NavBar Mobile size
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [user.notification]);
 
   return (
@@ -121,6 +136,7 @@ const NavBar = () => {
             </GoAuth>
           )}
         </NavBarCategories>
+        {isMobile && <i className="fa-solid fa-bars" />}
       </NavBarLogo>
     </Nav>
   );

@@ -8,6 +8,10 @@ export const Nav = styled.nav`
   top: 0;
   z-index: 1;
   padding: 10px 15% 0% 10%;
+
+  @media (max-width: 600px) {
+    padding: 5%;
+  }
 `;
 
 export const NavBarLogo = styled.div`
@@ -49,6 +53,30 @@ export const NavBarLogo = styled.div`
   button:hover {
     color: #dfdcd8;
     cursor: pointer;
+  }
+
+  i {
+    color: #dfdcd8;
+    /* font-size: 30px; */
+  }
+
+  @media (max-width: 600px) {
+    /* flex-direction: column; */
+    padding: 0;
+    /* position: fixed; */
+    /* justify-content: right; */
+
+    h1 {
+      display: none;
+    }
+
+    a {
+      display: none;
+    }
+
+    button {
+      display: none;
+    }
   }
 `;
 

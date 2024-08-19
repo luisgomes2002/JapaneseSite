@@ -24,6 +24,7 @@ const UpdateUserFunction = () => {
   const { username } = useParams();
   const [color, setColor] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const [updatePassword, setUpdatePassword] = useState(false);
 
   //user informations
   const [name, setName] = useState("");
@@ -81,6 +82,10 @@ const UpdateUserFunction = () => {
     setColor(e.target.value);
   };
 
+  const canUpdatePassword = (event) => {
+    setUpdatePassword(event.target.checked);
+  };
+
   useEffect(() => {
     userLoggedIn();
     showUserInformations();
@@ -92,7 +97,7 @@ const UpdateUserFunction = () => {
         <h1>Alterar informações da conta {user.username}</h1>
         <InfoUpdate>
           <form onSubmit={handleSubmitUser(editProfile)}>
-            <p>Informações basicas:</p>
+            <p>Informações:</p>
             <input
               type="text"
               name="name"
@@ -113,6 +118,26 @@ const UpdateUserFunction = () => {
               placeholder="E-mail"
               {...register("email")}
             />
+            <input
+              type="checkbox"
+              name="checkbox"
+              checked={updatePassword}
+              onChange={canUpdatePassword}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Senha atual"
+              {...register("password")}
+              disabled={!updatePassword}
+            />
+            <input
+              type="password"
+              name="newPassword"
+              placeholder="Novas Senha"
+              {...register("newPassword")}
+              disabled={!updatePassword}
+            />
             <p>Estilo do perfil:</p>
             <input
               type="text"
@@ -128,18 +153,7 @@ const UpdateUserFunction = () => {
               {...register("background")}
               onChange={(e) => setBackground(e.target.value)}
             />
-            <input
-              type="password"
-              name="password"
-              placeholder="Senha atual"
-              {...register("password")}
-            />
-            <input
-              type="password"
-              name="newPassword"
-              placeholder="Novas Senha"
-              {...register("newPassword")}
-            />
+
             <ChooseColor>
               <div>
                 <p>Selecione a cor de fundo:</p>
@@ -196,6 +210,7 @@ const UpdateUserFunction = () => {
               <TextLimit
                 text={about || `Até agora ${name} não incluiu uma introdução.`}
                 limit={100}
+                type={"text"}
               />
             </section>
           </UserCard>
