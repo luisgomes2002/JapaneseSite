@@ -67,24 +67,26 @@ const updateUserService = async (userUpdate, userId, userIdLogged) => {
   const user = await userRepositories.findByIdUserRepository(userId);
 
   // Verifica se o user para atualizar e o user logado sao iguais.
-  if (user._id == userIdLogged) {
-    // Se tiver um password para atualizar, compara os password.
-    if (userUpdate.password) {
-      const isPasswordValid = await bcrypt.compare(
-        userUpdate.password,
-        user.password,
-      );
+  if (user._id == userIdLogged)
+    throw new Error("Você não pode atualizar este usuário");
 
-      // Se a comparacocao retornar true atualiza o password/
-      if (isPasswordValid)
-        userUpdate.password = await bcrypt.hash(userUpdate.newPassword, 10);
-    }
+  // Update password
+  if (userUpdate.password) await validateAndHashPassword(user, userUpdate);
 
-    userRepositories.updateUserRepository(userId, userUpdate);
+  userRepositories.updateUserRepository(userId, userUpdate);
 
-    return { message: "Usuário atualizado com sucesso!" };
-  }
-  throw new Error("Você não pode atualizar este usuário");
+  return { message: "Usuário atualizado com sucesso!" };
+};
+
+const validateAndHashPassword = async (userWrotePassword, currentPassword) => {
+  const isPasswordValid = await bcrypt.compare(
+    userWrotePassword,
+    currentPassword,
+  );
+
+  if (!isPasswordValid) throw new Error("Senha inválida");
+
+  userUpdate.password = await bcrypt.hash(userUpdate.newPassword, 10);
 };
 
 const deleteUserByIdService = async (userId, userIdLogged) => {
@@ -95,7 +97,7 @@ const deleteUserByIdService = async (userId, userIdLogged) => {
   if (userId === userIdLogged || userWithPermission.fullPermission) {
     await userRepositories.transferPostsToAnotherUserRepository(
       userId,
-      "6622fa42055d3d62264c8804", //trocar para ID conta MOD
+      "6622fa42055d3d62264c8804", // Trocar para ID conta MOD
     );
     const user = await userRepositories.deleteUserRepository(userId);
 
