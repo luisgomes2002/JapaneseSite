@@ -71,7 +71,8 @@ const updateUserService = async (userUpdate, userId, userIdLogged) => {
     throw new Error("Você não pode atualizar este usuário");
 
   // Update password
-  if (userUpdate.password) await validateAndHashPassword(user, userUpdate);
+  if (userUpdate.password)
+    await validateAndHashPassword(userUpdate.password, user.password);
 
   userRepositories.updateUserRepository(userId, userUpdate);
 
