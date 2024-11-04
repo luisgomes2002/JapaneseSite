@@ -1,4 +1,4 @@
-import flashcardController from "../flashCards/flashcard.controller.js";
+import flashcardController from "../controllers/flashcard.controller.js";
 import authMiddleware from "../middlewares/auth.middleware.js";
 import { validId } from "../middlewares/global.middleware.js";
 

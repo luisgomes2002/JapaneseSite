@@ -100,6 +100,7 @@ const deleteUserByIdService = async (userId, userIdLogged) => {
       userId,
       "6622fa42055d3d62264c8804", // Trocar para ID conta MOD
     );
+
     const user = await userRepositories.deleteUserRepository(userId);
 
     if (!user) throw new Error("Usuário não encontrado");
